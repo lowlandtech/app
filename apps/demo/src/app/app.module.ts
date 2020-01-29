@@ -55,11 +55,13 @@ const APP_DIRECTIVES = [
 // Import routing module
 import { AppRoutingModule } from './app.routing';
 
+
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AsideModule } from '@spotacard/aside';
 import { FooterModule } from '@spotacard/footer';
+import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
 
 @NgModule({
   imports: [
@@ -69,7 +71,8 @@ import { FooterModule } from '@spotacard/footer';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     AsideModule,
-    FooterModule
+    FooterModule,
+    BreadcrumbsModule
   ],
   declarations: [
     AppComponent,
