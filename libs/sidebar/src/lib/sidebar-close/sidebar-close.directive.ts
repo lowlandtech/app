@@ -1,13 +1,9 @@
 import { Directive, HostListener } from '@angular/core';
 
-
-/**
-* Allows the off-canvas sidebar to be closed via click.
-*/
 @Directive({
-  selector: '[appSidebarClose]'
+  selector: '[scxSidebarClose]'
 })
-export class SidebarOffCanvasCloseDirective {
+export class SidebarCloseDirective {
   constructor() { }
 
   // Check if element has class
@@ -37,7 +33,3 @@ export class SidebarOffCanvasCloseDirective {
     }
   }
 }
-
-export const SIDEBAR_TOGGLE_DIRECTIVES = [
-    SidebarOffCanvasCloseDirective
-];
