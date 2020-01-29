@@ -23,6 +23,9 @@
     },
     "footer": {
       "tags": []
+    },
+    "breadcrumbs": {
+      "tags": []
     }
   }
 }
