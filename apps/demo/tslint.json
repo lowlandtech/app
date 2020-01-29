@@ -1,7 +1,7 @@
 {
   "extends": "../../tslint.json",
   "rules": {
-    "directive-selector": [true, "attribute", "spotacard", "camelCase"],
-    "component-selector": [true, "element", "spotacard", "kebab-case"]
+    "directive-selector": [true, "attribute", "scx", "camelCase"],
+    "component-selector": [true, "element", "scx", "kebab-case"]
   }
 }

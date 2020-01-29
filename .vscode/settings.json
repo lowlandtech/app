@@ -1,0 +1,27 @@
+{
+  "vsicons.presets.nestjs": true,
+  "files.exclude": {
+    "apps\\**\\tslint.json": true,
+    "apps\\**\\tsconfig.spec.json": true,
+    "apps\\**\\tsconfig.json": true,
+    "apps\\**\\tsconfig.app.json": true,
+    "apps\\**\\jest.config.js": true,
+    "apps\\**\\browserslist": true,
+    "apps\\**\\src\\test-setup.ts": true,
+    "libs\\**\\tslint.json": true,
+    "libs\\**\\tsconfig.spec.json": true,
+    "libs\\**\\tsconfig.lib.json": true,
+    "libs\\**\\tsconfig.json": true,
+    "libs\\**\\jest.config.js": true,
+    "libs\\**\\src\\test-setup.ts": true,
+    "apps\\**\\bin": true,
+    "yarn.lock": true,
+    "tslint.json": true,
+    ".prettierignore": true,
+    ".prettierrc": true,
+    ".gitignore": true,
+    ".editorconfig": true,
+    "jest.config.js": true,
+    "package-lock.json": true
+  }
+}

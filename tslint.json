@@ -63,8 +63,8 @@
         ]
       }
     ],
-    "directive-selector": [true, "attribute", "sc", "camelCase"],
-    "component-selector": [true, "element", "sc", "kebab-case"],
+    "directive-selector": [true, "attribute", "scx", "camelCase"],
+    "component-selector": [true, "element", "scx", "kebab-case"],
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,
