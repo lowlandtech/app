@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'scx-content',
   template: `
     <ng-content></ng-content>
+  `
 })
 export class ContentComponent implements OnInit {
 
