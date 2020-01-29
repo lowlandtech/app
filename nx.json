@@ -20,6 +20,9 @@
     },
     "aside": {
       "tags": []
+    },
+    "footer": {
+      "tags": []
     }
   }
 }

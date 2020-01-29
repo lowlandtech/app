@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@spotacard/aside": ["libs/aside/src/index.ts"]
+      "@spotacard/aside": ["libs/aside/src/index.ts"],
+      "@spotacard/footer": ["libs/footer/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
