@@ -12,6 +12,7 @@ import { BrandMinimizerDirective } from './sidebar-minimizer/brand-minimizer.dir
 import { SidebarNavItemComponent } from './sidebar-nav/sidebar-nav-item.component';
 import { SidebarNavDropdownComponent } from './sidebar-nav/sidebar-nav-dropdown.component';
 import { SidebarNavLinkComponent } from './sidebar-nav/sidebar-nav-link.component';
+import { SidebarNavTitleComponent } from './sidebar-nav/sidebar-nav-title.component';
 
 export const sidebarRoutes: Route[] = [];
 
@@ -28,7 +29,8 @@ export const sidebarRoutes: Route[] = [];
     BrandMinimizerDirective,
     SidebarNavItemComponent,
     SidebarNavDropdownComponent,
-    SidebarNavLinkComponent
+    SidebarNavLinkComponent,
+    SidebarNavTitleComponent
   ],
   exports: [
     SidebarComponent,
@@ -41,7 +43,8 @@ export const sidebarRoutes: Route[] = [];
     BrandMinimizerDirective,
     SidebarNavItemComponent,
     SidebarNavDropdownComponent,
-    SidebarNavLinkComponent
+    SidebarNavLinkComponent,
+    SidebarNavTitleComponent
   ]
 })
 export class SidebarModule {}
