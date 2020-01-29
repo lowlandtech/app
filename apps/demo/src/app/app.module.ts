@@ -18,7 +18,6 @@ const APP_CONTAINERS = [
 
 // Import components
 import {
-  AppAsideComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
   AppHeaderComponent,
@@ -31,7 +30,6 @@ import {
 } from './components';
 
 const APP_COMPONENTS = [
-  AppAsideComponent,
   AppBreadcrumbsComponent,
   AppFooterComponent,
   AppHeaderComponent,
@@ -64,6 +62,7 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { AsideModule } from '../../../../libs/aside/src/lib/aside.module';
 
 @NgModule({
   imports: [
@@ -71,7 +70,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     BrowserAnimationsModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    AsideModule
   ],
   declarations: [
     AppComponent,
