@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  template: `
+    <div class="animated fadeIn">
+      Hello World!
+    </div>
+  `
 })
 export class DashboardComponent {
 
