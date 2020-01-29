@@ -32,6 +32,9 @@
     },
     "content": {
       "tags": []
+    },
+    "sidebar": {
+      "tags": []
     }
   }
 }
