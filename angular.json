@@ -130,7 +130,7 @@
       "projectType": "library",
       "root": "libs/aside",
       "sourceRoot": "libs/aside/src",
-      "prefix": "spotacard",
+      "prefix": "scx",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
