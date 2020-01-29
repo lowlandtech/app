@@ -18,7 +18,6 @@ const APP_CONTAINERS = [
 
 // Import components
 import {
-  AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
   AppSidebarFormComponent,
@@ -28,7 +27,6 @@ import {
 } from './components';
 
 const APP_COMPONENTS = [
-  AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
   AppSidebarFormComponent,
