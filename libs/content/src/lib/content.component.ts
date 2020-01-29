@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'scx-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  template: `
+    <ng-content></ng-content>
 })
 export class ContentComponent implements OnInit {
 
