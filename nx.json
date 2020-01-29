@@ -17,6 +17,9 @@
     "demo-e2e": {
       "tags": [],
       "implicitDependencies": ["demo"]
+    },
+    "aside": {
+      "tags": []
     }
   }
 }

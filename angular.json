@@ -125,6 +125,44 @@
           }
         }
       }
+    },
+    "aside": {
+      "projectType": "library",
+      "root": "libs/aside",
+      "sourceRoot": "libs/aside/src",
+      "prefix": "spotacard",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/aside/tsconfig.lib.json",
+            "project": "libs/aside/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/aside/tsconfig.lib.json",
+              "libs/aside/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/aside/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/aside/jest.config.js",
+            "tsConfig": "libs/aside/tsconfig.spec.json",
+            "setupFile": "libs/aside/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
