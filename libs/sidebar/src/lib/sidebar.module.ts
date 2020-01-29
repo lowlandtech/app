@@ -13,6 +13,7 @@ import { SidebarNavItemComponent } from './sidebar-nav';
 import { SidebarNavDropdownComponent } from './sidebar-nav';
 import { SidebarNavLinkComponent } from './sidebar-nav';
 import { SidebarNavTitleComponent } from './sidebar-nav';
+import { MainComponent } from './main';
 
 export const sidebarRoutes: Route[] = [];
 
@@ -30,7 +31,8 @@ export const sidebarRoutes: Route[] = [];
     SidebarNavItemComponent,
     SidebarNavDropdownComponent,
     SidebarNavLinkComponent,
-    SidebarNavTitleComponent
+    SidebarNavTitleComponent,
+    MainComponent
   ],
   exports: [
     SidebarComponent,
@@ -44,7 +46,8 @@ export const sidebarRoutes: Route[] = [];
     SidebarNavItemComponent,
     SidebarNavDropdownComponent,
     SidebarNavLinkComponent,
-    SidebarNavTitleComponent
+    SidebarNavTitleComponent,
+    MainComponent
   ]
 })
 export class SidebarModule {}
