@@ -16,25 +16,6 @@ const APP_CONTAINERS = [
   SimpleLayoutComponent
 ]
 
-// Import components
-import {
-  AppSidebarComponent,
-  AppSidebarFooterComponent,
-  AppSidebarFormComponent,
-  AppSidebarHeaderComponent,
-  AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV
-} from './components';
-
-const APP_COMPONENTS = [
-  AppSidebarComponent,
-  AppSidebarFooterComponent,
-  AppSidebarFormComponent,
-  AppSidebarHeaderComponent,
-  AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV
-]
-
 // Import directives
 import {
   NAV_DROPDOWN_DIRECTIVES,
@@ -79,7 +60,6 @@ import { SidebarModule } from '@spotacard/sidebar';
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
-    ...APP_COMPONENTS,
     ...APP_DIRECTIVES
   ],
   providers: [{
