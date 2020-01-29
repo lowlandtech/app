@@ -60,6 +60,7 @@ import { FooterModule } from '@spotacard/footer';
 import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
 import { HeaderModule } from '@spotacard/header';
 import { ContentModule } from '@spotacard/content';
+import { SidebarModule } from '@spotacard/sidebar';
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import { ContentModule } from '@spotacard/content';
     FooterModule,
     BreadcrumbsModule,
     HeaderModule,
-    ContentModule
+    ContentModule,
+    SidebarModule
   ],
   declarations: [
     AppComponent,
