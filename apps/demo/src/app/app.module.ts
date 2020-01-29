@@ -19,7 +19,6 @@ const APP_CONTAINERS = [
 // Import components
 import {
   AppBreadcrumbsComponent,
-  AppFooterComponent,
   AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
@@ -31,7 +30,6 @@ import {
 
 const APP_COMPONENTS = [
   AppBreadcrumbsComponent,
-  AppFooterComponent,
   AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
@@ -62,7 +60,8 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { AsideModule } from '../../../../libs/aside/src/lib/aside.module';
+import { AsideModule } from '@spotacard/aside';
+import { FooterModule } from '@spotacard/footer';
 
 @NgModule({
   imports: [
@@ -71,7 +70,8 @@ import { AsideModule } from '../../../../libs/aside/src/lib/aside.module';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    AsideModule
+    AsideModule,
+    FooterModule
   ],
   declarations: [
     AppComponent,
