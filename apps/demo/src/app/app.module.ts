@@ -7,13 +7,13 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import {
-  FullLayoutComponent,
-  SimpleLayoutComponent
-} from './containers';
+  AdminComponent,
+  SiteComponent
+} from './layouts';
 
 const APP_CONTAINERS = [
-  FullLayoutComponent,
-  SimpleLayoutComponent
+  AdminComponent,
+  SiteComponent
 ]
 
 // Import directives
