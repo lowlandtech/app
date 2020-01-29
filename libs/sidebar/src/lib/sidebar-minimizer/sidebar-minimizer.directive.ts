@@ -5,7 +5,7 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class SidebarMinimizerDirective {
 
-  constructor() { console.log('SidebarMinimizerDirective'); }
+  constructor() { }
 
   @HostListener('click', ['$event'])
   toggleOpen($event: any) {

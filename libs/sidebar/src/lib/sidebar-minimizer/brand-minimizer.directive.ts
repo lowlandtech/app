@@ -5,7 +5,7 @@ import { Directive, HostListener } from '@angular/core';
 })
 export class BrandMinimizerDirective {
 
-  constructor() { console.log('BrandMinimizerDirective'); }
+  constructor() { }
 
   @HostListener('click', ['$event'])
   toggleOpen($event: any) {
