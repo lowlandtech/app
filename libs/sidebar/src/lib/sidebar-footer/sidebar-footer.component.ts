@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'scx-sidebar-footer',
-  template: ''
+  template: '<ng-content></ng-content>'
 })
 export class SidebarFooterComponent implements OnInit {
 
