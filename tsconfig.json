@@ -18,7 +18,8 @@
     "paths": {
       "@spotacard/aside": ["libs/aside/src/index.ts"],
       "@spotacard/footer": ["libs/footer/src/index.ts"],
-      "@spotacard/breadcrumbs": ["libs/breadcrumbs/src/index.ts"]
+      "@spotacard/breadcrumbs": ["libs/breadcrumbs/src/index.ts"],
+      "@spotacard/header": ["libs/header/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
