@@ -3,52 +3,70 @@ import { By } from '@angular/platform-browser';
 import { AsideComponent } from './aside.component';
 import { Component } from '@angular/core';
 
-@Component({
-  selector: 'scx-aside-test',
-  template: `
-    <scx-aside>
-      <span title>I'm a test</span>
-    </scx-aside>
-  `
-})
-class AsideComponentTest {}
+describe('Feature: Aside', () => {
 
-describe('AsideComponent', () => {
-  let component: AsideComponent;
-  let componentTest: AsideComponentTest;
-  let fixture: ComponentFixture<AsideComponent>;
-  let fixtureTest: ComponentFixture<AsideComponentTest>;
+  describe('AsideComponent', () => {
+    let component: AsideComponent;
+    let fixture: ComponentFixture<AsideComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AsideComponent, AsideComponentTest ]
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ AsideComponent ]
+      })
+      .compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AsideComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+  });
+
+  describe('AsideTestComponent', ()=> {
+
+    @Component({
+      selector: 'scx-aside-test',
+      template: `
+        <scx-aside>
+          <span title>I'm a test</span>
+        </scx-aside>
+      `
     })
-    .compileComponents();
-  }));
+    class AsideTestComponent {}
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AsideComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    let component: AsideTestComponent;
+    let fixture: ComponentFixture<AsideTestComponent>;
 
-    fixtureTest = TestBed.createComponent(AsideComponentTest);
-    componentTest = fixtureTest.componentInstance;
-    fixtureTest.detectChanges();
-  });
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ AsideComponent, AsideTestComponent ]
+      })
+      .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+      fixture = TestBed.createComponent(AsideTestComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
 
-  it('should create component test', () => {
-    expect(componentTest).toBeTruthy();
-  });
+  it('should create test component', () => {
+      expect(component).toBeTruthy();
+    });
 
   it('should have projected content', () => {
-    expect(
-      fixtureTest.debugElement.query(By.css('aside')).query(By.css('span'))
-        .nativeElement.innerHTML
-    ).toContain("I'm a test");
+      expect(
+        fixture.debugElement.query(By.css('aside')).query(By.css('span'))
+          .nativeElement.innerHTML
+      ).toContain("I'm a test");
+    });
+
   });
 
 });
