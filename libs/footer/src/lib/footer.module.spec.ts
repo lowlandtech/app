@@ -11,4 +11,5 @@ describe('FooterModule', () => {
   it('should create', () => {
     expect(FooterModule).toBeDefined();
   });
+
 });

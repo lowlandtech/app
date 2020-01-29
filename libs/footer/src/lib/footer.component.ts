@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'spotacard-footer',
-  templateUrl: './footer.component.html',
+  selector: 'csx-footer',
+  template: `
+    <footer class="app-footer">
+      <ng-content></ng-content>
+    </footer>
+  `,
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
