@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SidebarNavDropdownComponent } from './sidebar-nav-dropdown.component';
+import { SidebarModule } from '../sidebar.module';
 
 describe('SidebarNavDropdownComponent', () => {
   let component: SidebarNavDropdownComponent;
@@ -8,7 +8,7 @@ describe('SidebarNavDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarNavDropdownComponent ]
+      imports: [SidebarModule]
     })
     .compileComponents();
   }));
@@ -16,10 +16,12 @@ describe('SidebarNavDropdownComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SidebarNavDropdownComponent);
     component = fixture.componentInstance;
+    component.link = {icon: ''};
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

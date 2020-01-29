@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarNavTitleComponent } from './sidebar-nav-title.component';
+import { Renderer2 } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SidebarNavTitleComponent', () => {
   let component: SidebarNavTitleComponent;
@@ -8,7 +10,11 @@ describe('SidebarNavTitleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarNavTitleComponent ]
+      declarations: [ SidebarNavTitleComponent ],
+      imports: [RouterTestingModule],
+      providers: [
+        Renderer2
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +25,8 @@ describe('SidebarNavTitleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

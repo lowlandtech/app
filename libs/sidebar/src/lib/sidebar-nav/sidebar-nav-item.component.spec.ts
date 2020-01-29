@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarNavItemComponent } from './sidebar-nav-item.component';
+import { SidebarModule } from '../sidebar.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SidebarNavItemComponent', () => {
   let component: SidebarNavItemComponent;
@@ -8,7 +10,7 @@ describe('SidebarNavItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarNavItemComponent ]
+      imports: [ SidebarModule, RouterTestingModule ]
     })
     .compileComponents();
   }));
@@ -16,10 +18,14 @@ describe('SidebarNavItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SidebarNavItemComponent);
     component = fixture.componentInstance;
+    component.item = {
+      url: ''
+    };
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

@@ -8,11 +8,11 @@ import { SidebarFormComponent } from './sidebar-form';
 import { SidebarMinimizerComponent } from './sidebar-minimizer';
 import { SidebarNavComponent } from './sidebar-nav';
 import { SidebarMinimizerDirective } from './sidebar-minimizer';
-import { BrandMinimizerDirective } from './sidebar-minimizer/brand-minimizer.directive';
-import { SidebarNavItemComponent } from './sidebar-nav/sidebar-nav-item.component';
-import { SidebarNavDropdownComponent } from './sidebar-nav/sidebar-nav-dropdown.component';
-import { SidebarNavLinkComponent } from './sidebar-nav/sidebar-nav-link.component';
-import { SidebarNavTitleComponent } from './sidebar-nav/sidebar-nav-title.component';
+import { BrandMinimizerDirective } from './sidebar-minimizer';
+import { SidebarNavItemComponent } from './sidebar-nav';
+import { SidebarNavDropdownComponent } from './sidebar-nav';
+import { SidebarNavLinkComponent } from './sidebar-nav';
+import { SidebarNavTitleComponent } from './sidebar-nav';
 
 export const sidebarRoutes: Route[] = [];
 
