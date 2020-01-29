@@ -4,6 +4,7 @@ import { ContentComponent } from './content.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [ContentComponent]
+  declarations: [ContentComponent],
+  exports: [ContentComponent]
 })
 export class ContentModule {}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'scx-content',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   `
 })
 export class ContentComponent implements OnInit {
+  @HostBinding("class.app-body") class1= true;
 
   constructor() { }
 

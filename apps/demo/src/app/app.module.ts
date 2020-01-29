@@ -59,6 +59,7 @@ import { AsideModule } from '@spotacard/aside';
 import { FooterModule } from '@spotacard/footer';
 import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
 import { HeaderModule } from '@spotacard/header';
+import { ContentModule } from '@spotacard/content';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { HeaderModule } from '@spotacard/header';
     AsideModule,
     FooterModule,
     BreadcrumbsModule,
-    HeaderModule
+    HeaderModule,
+    ContentModule
   ],
   declarations: [
     AppComponent,
