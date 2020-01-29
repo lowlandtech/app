@@ -8,6 +8,7 @@ import { SidebarFormComponent } from './sidebar-form';
 import { SidebarMinimizerComponent } from './sidebar-minimizer';
 import { SidebarNavComponent } from './sidebar-nav';
 import { SidebarMinimizerDirective } from './sidebar-minimizer';
+import { BrandMinimizerDirective } from './sidebar-minimizer/brand-minimizer.directive';
 
 export const sidebarRoutes: Route[] = [];
 
@@ -20,7 +21,8 @@ export const sidebarRoutes: Route[] = [];
     SidebarFormComponent,
     SidebarMinimizerComponent,
     SidebarNavComponent,
-    SidebarMinimizerDirective
+    SidebarMinimizerDirective,
+    BrandMinimizerDirective
   ],
   exports: [
     SidebarComponent,
@@ -29,7 +31,8 @@ export const sidebarRoutes: Route[] = [];
     SidebarFormComponent,
     SidebarMinimizerComponent,
     SidebarNavComponent,
-    SidebarMinimizerDirective
+    SidebarMinimizerDirective,
+    BrandMinimizerDirective
   ]
 })
 export class SidebarModule {}
