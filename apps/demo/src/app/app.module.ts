@@ -18,7 +18,6 @@ const APP_CONTAINERS = [
 
 // Import components
 import {
-  AppBreadcrumbsComponent,
   AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
@@ -29,7 +28,6 @@ import {
 } from './components';
 
 const APP_COMPONENTS = [
-  AppBreadcrumbsComponent,
   AppHeaderComponent,
   AppSidebarComponent,
   AppSidebarFooterComponent,
