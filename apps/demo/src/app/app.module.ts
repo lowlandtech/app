@@ -39,14 +39,12 @@ const APP_COMPONENTS = [
 
 // Import directives
 import {
-  AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
   ReplaceDirective,
   SIDEBAR_TOGGLE_DIRECTIVES
 } from './directives';
 
 const APP_DIRECTIVES = [
-  AsideToggleDirective,
   NAV_DROPDOWN_DIRECTIVES,
   ReplaceDirective,
   SIDEBAR_TOGGLE_DIRECTIVES
@@ -62,6 +60,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AsideModule } from '@spotacard/aside';
 import { FooterModule } from '@spotacard/footer';
 import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
+import { HeaderModule } from '@spotacard/header';
 
 @NgModule({
   imports: [
@@ -72,7 +71,8 @@ import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
     TabsModule.forRoot(),
     AsideModule,
     FooterModule,
-    BreadcrumbsModule
+    BreadcrumbsModule,
+    HeaderModule
   ],
   declarations: [
     AppComponent,
