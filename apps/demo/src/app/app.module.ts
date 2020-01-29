@@ -19,12 +19,10 @@ const APP_CONTAINERS = [
 // Import directives
 import {
   NAV_DROPDOWN_DIRECTIVES,
-  ReplaceDirective,
 } from './directives';
 
 const APP_DIRECTIVES = [
-  NAV_DROPDOWN_DIRECTIVES,
-  ReplaceDirective,
+  NAV_DROPDOWN_DIRECTIVES
 ]
 
 // Import routing module
