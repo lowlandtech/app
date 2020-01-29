@@ -168,7 +168,7 @@
       "projectType": "library",
       "root": "libs/footer",
       "sourceRoot": "libs/footer/src",
-      "prefix": "spotacard",
+      "prefix": "scx",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
