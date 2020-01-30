@@ -1,10 +1,14 @@
-import { Directive } from '@angular/core';
+import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[scx-nav-dropdown]'
+  selector: '[scxNavDropdown]'
 })
 export class NavDropdownDirective {
 
-  constructor() { }
+  constructor(private el: ElementRef) { }
+
+  toggle() {
+    this.el.nativeElement.classList.toggle('open');
+  }
 
 }
