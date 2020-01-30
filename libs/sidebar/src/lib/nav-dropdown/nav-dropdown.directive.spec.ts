@@ -1,7 +1,6 @@
 import { NavDropdownDirective } from './nav-dropdown.directive';
 import { TestBed, ComponentFixture, async } from '@angular/core/testing';
-import { SidebarModule } from '../sidebar.module';
-import { Component, HostBinding, DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MockRender } from 'ng-mocks';
 
