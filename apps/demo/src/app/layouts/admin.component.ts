@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
         <scx-sidebar-form></scx-sidebar-form>
         <scx-sidebar-nav></scx-sidebar-nav>
         <scx-sidebar-footer></scx-sidebar-footer>
-        <scx-sidebar-minimizer></scx-sidebar-minimizer>
+        <button class="sidebar-minimizer" type="button" scxSidebarMinimizer scxBrandMinimizer></button>
       </scx-sidebar>
       <scx-main>
         <scx-breadcrumbs></scx-breadcrumbs>
