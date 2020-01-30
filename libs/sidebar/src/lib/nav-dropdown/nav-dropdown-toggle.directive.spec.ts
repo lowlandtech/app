@@ -1,8 +1,6 @@
 import { NavDropdownToggleDirective } from './nav-dropdown-toggle.directive';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { SidebarModule } from '../sidebar.module';
-import { RouterTestingModule } from '@angular/router/testing';
-import { Component, NgModule, Input, DebugElement } from '@angular/core';
+import { Component, NgModule, DebugElement } from '@angular/core';
 import { NavDropdownDirective } from '.';
 import { By } from '@angular/platform-browser';
 import { MockRender } from 'ng-mocks';
@@ -20,22 +18,23 @@ class HostComponent { }
   template: ``
 })
 class TestComponent { }
-// @NgModule({
-//   declarations: [
-//     HostComponent,
-//     NavDropdownDirective,
-//     NavDropdownToggleDirective
-//   ],
-//   // imports: [SidebarModule],
-//   exports: [
-//     HostComponent,
-//     NavDropdownDirective,
-//     NavDropdownToggleDirective
-//   ],
-// })
+@NgModule({
+  declarations: [
+    HostComponent,
+    TestComponent,
+    NavDropdownDirective,
+    NavDropdownToggleDirective
+  ],
+  exports: [
+    HostComponent,
+    TestComponent,
+    NavDropdownDirective,
+    NavDropdownToggleDirective
+  ],
+})
 class HostModule {}
 
-xdescribe.only('NavDropdownToggleDirective', () => {
+describe('NavDropdownToggleDirective', () => {
   let component: HostComponent;
   let directiveEl: DebugElement;
   let directiveE2: DebugElement;
@@ -43,11 +42,8 @@ xdescribe.only('NavDropdownToggleDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        HostComponent,
-        TestComponent,
-        NavDropdownDirective,
-        NavDropdownToggleDirective
+      imports: [
+        HostModule
       ]
     })
     .compileComponents();
