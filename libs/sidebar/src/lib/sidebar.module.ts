@@ -15,7 +15,8 @@ import { SidebarNavLinkComponent } from './sidebar-nav';
 import { SidebarNavTitleComponent } from './sidebar-nav';
 import { MainComponent } from './main';
 import { SidebarCloseDirective } from './sidebar-close';
-import { NavDropdownDirective } from './nav-dropdown/nav-dropdown.directive';
+import { NavDropdownDirective } from './nav-dropdown';
+import { NavDropdownToggleDirective } from './nav-dropdown';
 
 export const sidebarRoutes: Route[] = [];
 
@@ -36,7 +37,8 @@ export const sidebarRoutes: Route[] = [];
     SidebarNavTitleComponent,
     MainComponent,
     SidebarCloseDirective,
-    NavDropdownDirective
+    NavDropdownDirective,
+    NavDropdownToggleDirective
   ],
   exports: [
     SidebarComponent,
@@ -53,7 +55,8 @@ export const sidebarRoutes: Route[] = [];
     SidebarNavTitleComponent,
     MainComponent,
     SidebarCloseDirective,
-    NavDropdownDirective
+    NavDropdownDirective,
+    NavDropdownToggleDirective
   ]
 })
 export class SidebarModule {}
