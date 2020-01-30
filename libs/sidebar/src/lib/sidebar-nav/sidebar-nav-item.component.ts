@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
       <li [ngClass]="hasClass() ? 'nav-item nav-dropdown ' + item.class : 'nav-item nav-dropdown'"
           [class.open]="isActive()"
           routerLinkActive="open"
-          appNavDropdown>
+          scxNavDropdown>
         <scx-sidebar-nav-dropdown [link]='item'></scx-sidebar-nav-dropdown>
       </li>
     </ng-template>
