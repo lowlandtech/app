@@ -164,44 +164,6 @@
         }
       }
     },
-    "footer": {
-      "projectType": "library",
-      "root": "libs/footer",
-      "sourceRoot": "libs/footer/src",
-      "prefix": "scx",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/footer/tsconfig.lib.json",
-            "project": "libs/footer/ng-package.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/footer/tsconfig.lib.json",
-              "libs/footer/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/footer/**"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/footer/jest.config.js",
-            "tsConfig": "libs/footer/tsconfig.spec.json",
-            "setupFile": "libs/footer/src/test-setup.ts"
-          }
-        }
-      },
-      "schematics": {
-        "@nrwl/angular:component": {
-          "styleext": "scss"
-        }
-      }
-    },
     "breadcrumbs": {
       "projectType": "library",
       "root": "libs/breadcrumbs",
@@ -345,6 +307,44 @@
             "jestConfig": "libs/sidebar/jest.config.js",
             "tsConfig": "libs/sidebar/tsconfig.spec.json",
             "setupFile": "libs/sidebar/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "footer": {
+      "projectType": "library",
+      "root": "libs/footer",
+      "sourceRoot": "libs/footer/src",
+      "prefix": "scx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/footer/tsconfig.lib.json",
+            "project": "libs/footer/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/footer/tsconfig.lib.json",
+              "libs/footer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/footer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/footer/jest.config.js",
+            "tsConfig": "libs/footer/tsconfig.spec.json",
+            "setupFile": "libs/footer/src/test-setup.ts"
           }
         }
       },

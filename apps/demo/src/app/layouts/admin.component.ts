@@ -19,10 +19,10 @@ import { Component } from '@angular/core';
       </scx-main>
       <scx-aside></scx-aside>
     </scx-content>
-    <csx-footer>
+    <scx-footer>
       <span><a href="https://spotacard.com">Spotacard</a> &copy; 2020</span>
       <span class="ml-auto">Powered by <a href="https://lowlandtech.com">LowLandTech</a></span>
-    </csx-footer>
+    </scx-footer>
   `
 })
 export class AdminComponent { }

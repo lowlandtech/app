@@ -22,13 +22,13 @@ describe('Feature: Footer', () => {
       fixture.detectChanges();
     });
 
-  it('should create', () => {
+    it('should create', () => {
       expect(component).toBeTruthy();
     });
 
   });
 
-  xdescribe('FooterTestComponent', ()=> {
+  describe('FooterTestComponent', ()=> {
 
     @Component({
       selector: 'scx-footer-test',
