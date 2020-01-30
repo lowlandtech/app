@@ -1,43 +1,26 @@
+// imports external modules;
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
-import { AppComponent } from './app.component';
-
-// Import containers
-import {
-  AdminComponent,
-  SiteComponent
-} from './layouts';
-
-const APP_CONTAINERS = [
-  AdminComponent,
-  SiteComponent
-]
-
-// Import directives
-import {
-  NAV_DROPDOWN_DIRECTIVES,
-} from './directives';
-
-const APP_DIRECTIVES = [
-  NAV_DROPDOWN_DIRECTIVES
-]
-
-// Import routing module
-import { AppRoutingModule } from './app.routing';
-
-
-// Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+
+// imports library modules;
 import { AsideModule } from '@spotacard/aside';
 import { FooterModule } from '@spotacard/footer';
 import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
 import { HeaderModule } from '@spotacard/header';
 import { ContentModule } from '@spotacard/content';
 import { SidebarModule } from '@spotacard/sidebar';
+
+// imports routing module;
+import { AppRoutingModule } from './app.routing';
+
+// imports components;
+import { AppComponent } from './app.component';
+import { AdminComponent } from './layouts';
+import { SiteComponent } from './layouts';
 
 @NgModule({
   imports: [
@@ -55,8 +38,8 @@ import { SidebarModule } from '@spotacard/sidebar';
   ],
   declarations: [
     AppComponent,
-    ...APP_CONTAINERS,
-    ...APP_DIRECTIVES
+    AdminComponent,
+    SiteComponent
   ],
   providers: [{
     provide: LocationStrategy,
