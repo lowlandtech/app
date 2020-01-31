@@ -1,17 +1,16 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AdminComponent } from './admin.component';
-import { AppModule } from '../app.module';
+import { SiteComponent } from '../site.component';
 
-describe('AdminComponent', () => {
+describe('SiteComponent', () => {
 
-  let component: AdminComponent;
-  let fixture: ComponentFixture<AdminComponent>;
+  let component: SiteComponent;
+  let fixture: ComponentFixture<SiteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [ SiteComponent ],
       imports: [
-        AppModule,
         RouterTestingModule
       ]
     })
@@ -19,7 +18,7 @@ describe('AdminComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdminComponent);
+    fixture = TestBed.createComponent(SiteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

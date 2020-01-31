@@ -1,2 +1,2 @@
-export * from './admin.component';
-export * from './site.component';
+export * from './admin/admin.component';
+export * from './site/site.component';
