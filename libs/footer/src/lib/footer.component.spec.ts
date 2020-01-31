@@ -62,7 +62,7 @@ describe('Feature: Footer', () => {
 
   it('should have projected content', () => {
       expect(
-        fixture.debugElement.query(By.css('footer')).query(By.css('span'))
+        fixture.debugElement.query(By.css('span'))
           .nativeElement.innerHTML
       ).toContain("I'm a test");
     });
