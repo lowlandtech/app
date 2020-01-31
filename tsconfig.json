@@ -21,7 +21,8 @@
       "@spotacard/breadcrumbs": ["libs/breadcrumbs/src/index.ts"],
       "@spotacard/header": ["libs/header/src/index.ts"],
       "@spotacard/content": ["libs/content/src/index.ts"],
-      "@spotacard/sidebar": ["libs/sidebar/src/index.ts"]
+      "@spotacard/sidebar": ["libs/sidebar/src/index.ts"],
+      "@spotacard/theme": ["libs/theme/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
