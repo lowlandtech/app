@@ -37,13 +37,13 @@ $vimeo:                               #aad450 !default;
 
 // Navbar
 
-$navbar-height:                       55px !default;
+$navbar-height:                       50px !default;
 $navbar-bg:                           #fff !default;
 $navbar-border: (
   bottom: (
     size:                             1px,
     style:                            solid,
-    color:                            $border-color
+    color:                            $spotacard
   )
 )  !default;
 $navbar-brand-width:                  155px !default;

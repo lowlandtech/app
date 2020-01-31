@@ -8,9 +8,11 @@
 
 // Override Boostrap variables
 @import "bootstrap-variables";
+@import "materia/variables";
 
 // Import Bootstrap source files
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "materia/bootswatch";
 
 // Override core variables
 @import "core-variables";
