@@ -66,6 +66,8 @@
     "eslint": "6.1.0",
     "jest": "24.1.0",
     "jest-preset-angular": "7.0.0",
+    "jss": "^10.0.4",
+    "jss-preset-default": "^10.0.4",
     "ng-mocks": "^8.1.0",
     "ng-packagr": "^5.4.0",
     "prettier": "1.18.2",
