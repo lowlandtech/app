@@ -1,0 +1,36 @@
+<div class="card-preview">
+  <div class="card-meta">
+    <a>
+      <img [src]="card.author.image" />
+    </a>
+    <div class="info">
+      <a class="author" [routerLink]="['/profile', card.author.username]">
+        {{ card.author.username }}
+      </a>
+      <span class="date">
+        {{ card.createdAt | date: 'longDate' }}
+      </span>
+    </div>
+    <button
+      [ngClass]="{
+        'btn-outline-primary': !card.favorited,
+        'btn-primary': card.favorited
+      }"
+      class="btn btn-sm pull-xs-right"
+      (click)="toggleFavorite(card)"
+    >
+      <i class="ion-heart"></i>
+      <div class="info">{{ card.favoritesCount }}</div>
+    </button>
+  </div>
+  <a (click)="navigateToCard.emit(card.slug)" class="preview-link">
+    <h1>{{ card.title }}</h1>
+    <p>{{ card.description }}</p>
+    <span>Read more...</span>
+    <ul class="tag-list">
+      <li class="tag-default tag-pill tag-outline" *ngFor="let tag of card.tagList">
+        {{ tag }}
+      </li>
+    </ul>
+  </a>
+</div>

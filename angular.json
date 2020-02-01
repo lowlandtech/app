@@ -429,6 +429,44 @@
           "styleext": "scss"
         }
       }
+    },
+    "card-list": {
+      "projectType": "library",
+      "root": "libs/card-list",
+      "sourceRoot": "libs/card-list/src",
+      "prefix": "scx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/card-list/tsconfig.lib.json",
+            "project": "libs/card-list/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/card-list/tsconfig.lib.json",
+              "libs/card-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/card-list/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/card-list/jest.config.js",
+            "tsConfig": "libs/card-list/tsconfig.spec.json",
+            "setupFile": "libs/card-list/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

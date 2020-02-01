@@ -41,6 +41,9 @@
     },
     "api": {
       "tags": []
+    },
+    "card-list": {
+      "tags": []
     }
   }
 }
