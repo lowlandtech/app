@@ -59,6 +59,9 @@
     },
     "ngrx-error": {
       "tags": []
+    },
+    "ngrx-forms": {
+      "tags": []
     }
   }
 }
