@@ -5,6 +5,12 @@ import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NxModule } from '@nrwl/angular';
+
+import { environment } from '../environments/environment';
 
 // imports library modules;
 import { AsideModule } from '@spotacard/aside';
@@ -13,6 +19,10 @@ import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
 import { HeaderModule } from '@spotacard/header';
 import { ContentModule } from '@spotacard/content';
 import { SidebarModule } from '@spotacard/sidebar';
+import { ApiModule } from '@spotacard/api';
+import { AuthModule } from '@spotacard/auth';
+import { NgrxErrorModule } from '@spotacard/ngrx-error';
+import { NgrxRouterModule } from '@spotacard/ngrx-router';
 
 // imports routing module;
 import { AppRoutingModule } from './app.routing';
@@ -24,8 +34,11 @@ import { SiteComponent } from './layouts';
 
 @NgModule({
   imports: [
+    ApiModule,
+    AuthModule,
     BrowserModule,
     BrowserAnimationsModule,
+    NxModule.forRoot(),
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -34,7 +47,12 @@ import { SiteComponent } from './layouts';
     BreadcrumbsModule,
     HeaderModule,
     ContentModule,
-    SidebarModule
+    SidebarModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgrxRouterModule,
+    NgrxErrorModule,
   ],
   declarations: [
     AppComponent,
