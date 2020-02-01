@@ -74,13 +74,6 @@
     },
     "shared": {
       "tags": ["shared"]
-    },
-    "spotacard": {
-      "tags": []
-    },
-    "spotacard-e2e": {
-      "tags": [],
-      "implicitDependencies": ["spotacard"]
     }
   }
 }
