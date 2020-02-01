@@ -65,6 +65,9 @@
     },
     "ngrx-router": {
       "tags": []
+    },
+    "profile": {
+      "tags": []
     }
   }
 }
