@@ -1,5 +1,5 @@
 {
-  "npmScope": "conduit",
+  "npmScope": "spotacard",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -8,10 +8,10 @@
     "nx.json": "*"
   },
   "projects": {
-    "conduit-e2e": {
+    "spotacard-e2e": {
       "tags": []
     },
-    "conduit": {
+    "spotacard": {
       "tags": []
     },
     "api": {

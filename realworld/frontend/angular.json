@@ -1,39 +1,39 @@
 {
   "version": 1,
   "projects": {
-    "conduit": {
+    "spotacard": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/conduit",
-      "sourceRoot": "apps/conduit/src",
-      "prefix": "conduit",
+      "root": "apps/spotacard",
+      "sourceRoot": "apps/spotacard/src",
+      "prefix": "spotacard",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/conduit",
-            "index": "apps/conduit/src/index.html",
-            "main": "apps/conduit/src/main.ts",
-            "polyfills": "apps/conduit/src/polyfills.ts",
-            "tsConfig": "apps/conduit/tsconfig.app.json",
+            "outputPath": "dist/apps/spotacard",
+            "index": "apps/spotacard/src/index.html",
+            "main": "apps/spotacard/src/main.ts",
+            "polyfills": "apps/spotacard/src/polyfills.ts",
+            "tsConfig": "apps/spotacard/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/conduit/src/favicon.ico",
-              "apps/conduit/src/assets"
+              "apps/spotacard/src/favicon.ico",
+              "apps/spotacard/src/assets"
             ],
-            "styles": ["apps/conduit/src/styles.scss"],
+            "styles": ["apps/spotacard/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/conduit/src/environments/environment.ts",
-                  "with": "apps/conduit/src/environments/environment.prod.ts"
+                  "replace": "apps/spotacard/src/environments/environment.ts",
+                  "with": "apps/spotacard/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -62,90 +62,90 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "conduit:build"
+            "browserTarget": "spotacard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "conduit:build:production"
+              "browserTarget": "spotacard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "conduit:build"
+            "browserTarget": "spotacard:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/conduit/tsconfig.app.json",
-              "apps/conduit/tsconfig.spec.json"
+              "apps/spotacard/tsconfig.app.json",
+              "apps/spotacard/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/conduit/**"]
+            "exclude": ["**/node_modules/**", "!apps/spotacard/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/conduit/jest.config.js",
-            "tsConfig": "apps/conduit/tsconfig.spec.json",
-            "setupFile": "apps/conduit/src/test-setup.ts"
+            "jestConfig": "apps/spotacard/jest.config.js",
+            "tsConfig": "apps/spotacard/tsconfig.spec.json",
+            "setupFile": "apps/spotacard/src/test-setup.ts"
           }
         }
       }
     },
-    "conduit-e2e": {
-      "root": "apps/conduit-e2e",
-      "sourceRoot": "apps/conduit-e2e/src",
+    "spotacard-e2e": {
+      "root": "apps/spotacard-e2e",
+      "sourceRoot": "apps/spotacard-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/conduit-e2e/cypress.json",
-            "tsConfig": "apps/conduit-e2e/tsconfig.e2e.json",
-            "devServerTarget": "conduit:serve"
+            "cypressConfig": "apps/spotacard-e2e/cypress.json",
+            "tsConfig": "apps/spotacard-e2e/tsconfig.e2e.json",
+            "devServerTarget": "spotacard:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "conduit:serve:production"
+              "devServerTarget": "spotacard:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/conduit-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/conduit-e2e/**"]
+            "tsConfig": ["apps/spotacard-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/spotacard-e2e/**"]
           }
         }
       }
     },
-    "conduit-e2e": {
-      "root": "apps/conduit-e2e",
-      "sourceRoot": "apps/conduit-e2e/src",
+    "spotacard-e2e": {
+      "root": "apps/spotacard-e2e",
+      "sourceRoot": "apps/spotacard-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/conduit-e2e/cypress.json",
-            "devServerTarget": "conduit:serve",
-            "tsConfig": "apps/conduit-e2e/tsconfig.e2e.json"
+            "cypressConfig": "apps/spotacard-e2e/cypress.json",
+            "devServerTarget": "spotacard:serve",
+            "tsConfig": "apps/spotacard-e2e/tsconfig.e2e.json"
           }
         },
         "configurations": {
           "production": {
-            "devServerTarget": "conduit:serve:production"
+            "devServerTarget": "spotacard:serve:production"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/conduit-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/conduit-e2e/**"]
+            "tsConfig": ["apps/spotacard-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/spotacard-e2e/**"]
           }
         }
       },
@@ -476,5 +476,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "conduit"
+  "defaultProject": "spotacard"
 }
