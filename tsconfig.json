@@ -28,7 +28,8 @@
       "@spotacard/card": ["libs/card/src/index.ts"],
       "@spotacard/auth": ["libs/auth/src/index.ts"],
       "@spotacard/editor": ["libs/editor/src/index.ts"],
-      "@spotacard/home": ["libs/home/src/index.ts"]
+      "@spotacard/home": ["libs/home/src/index.ts"],
+      "@spotacard/ngrx-error": ["libs/ngrx-error/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
