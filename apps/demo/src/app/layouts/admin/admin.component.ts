@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { dark, darker, boxShadow } from '@spotacard/theme';
 
+const styles = {
+  footer: {
+    border: `1px solid ${dark}`,
+    background: dark,
+    boxShadow: boxShadow,
+    color: darker
+  }
+}
+
 @Component({
   template: `
     <scx-header></scx-header>
