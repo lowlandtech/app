@@ -30,7 +30,8 @@
       "@spotacard/editor": ["libs/editor/src/index.ts"],
       "@spotacard/home": ["libs/home/src/index.ts"],
       "@spotacard/ngrx-error": ["libs/ngrx-error/src/index.ts"],
-      "@spotacard/ngrx-forms": ["libs/ngrx-forms/src/index.ts"]
+      "@spotacard/ngrx-forms": ["libs/ngrx-forms/src/index.ts"],
+      "@spotacard/ngrx-router": ["libs/ngrx-router/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

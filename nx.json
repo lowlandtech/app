@@ -62,6 +62,9 @@
     },
     "ngrx-forms": {
       "tags": []
+    },
+    "ngrx-router": {
+      "tags": []
     }
   }
 }
