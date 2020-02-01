@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { dark, darker, boxShadow } from '@spotacard/theme';
 
 @Component({
   template: `
