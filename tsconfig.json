@@ -24,7 +24,8 @@
       "@spotacard/sidebar": ["libs/sidebar/src/index.ts"],
       "@spotacard/theme": ["libs/theme/src/index.ts"],
       "@spotacard/api": ["libs/api/src/index.ts"],
-      "@spotacard/card-list": ["libs/card-list/src/index.ts"]
+      "@spotacard/card-list": ["libs/card-list/src/index.ts"],
+      "@spotacard/card": ["libs/card/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
