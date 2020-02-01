@@ -11,12 +11,12 @@
     "nx.json": "*"
   },
   "projects": {
-    "demo": {
+    "spotacard": {
       "tags": []
     },
-    "demo-e2e": {
+    "spotacard-e2e": {
       "tags": [],
-      "implicitDependencies": ["demo"]
+      "implicitDependencies": ["spotacard"]
     },
     "aside": {
       "tags": []
