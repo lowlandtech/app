@@ -14,6 +14,11 @@ import { Component, OnInit, HostBinding } from '@angular/core';
       <span class="navbar-toggler-icon"></span>
     </button>
     <ng-content></ng-content>
+    <button
+      class="navbar-toggler d-md-down-none"
+      type="button"
+      scxAsideMenuToggler
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
   `
