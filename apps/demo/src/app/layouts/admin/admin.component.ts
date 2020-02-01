@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { dark, darker, boxShadow } from '@spotacard/theme';
+import { Component, OnInit } from '@angular/core';
+import { dark, darker, boxShadow, Sheet } from '@spotacard/theme';
+import jss from 'jss';
 
 const styles = {
   footer: {
@@ -35,4 +36,11 @@ const styles = {
     </scx-footer>
   `
 })
-export class AdminComponent { }
+export class AdminComponent implements OnInit {
+  public classes: any;
+
+  public ngOnInit(): void {
+    const sheet: Sheet = jss.createStyleSheet(styles, { link: true }).attach();
+    this.classes = sheet.classes;
+  }
+}
