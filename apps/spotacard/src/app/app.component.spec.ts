@@ -1,33 +1,31 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FooterComponent } from '@default/layout/footer/footer.component';
+import { NavbarComponent } from '@default/layout/navbar/navbar.component';
+import { StoreModule } from '@ngrx/store';
+import { AuthFacade, LocalStorageJwtService } from '@spotacard/auth';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent]
+      imports: [RouterTestingModule, StoreModule.forRoot({})],
+      declarations: [AppComponent, FooterComponent, NavbarComponent],
+      providers: [AuthFacade, LocalStorageJwtService],
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'spotacard'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('spotacard');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'Welcome to spotacard!'
-    );
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });
