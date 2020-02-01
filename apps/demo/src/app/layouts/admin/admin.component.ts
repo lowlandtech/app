@@ -30,7 +30,7 @@ const styles = {
       </scx-main>
       <scx-aside></scx-aside>
     </scx-content>
-    <scx-footer>
+    <scx-footer [class]="classes.footer">
       <span><a href="https://spotacard.com">Spotacard</a> &copy; 2020</span>
       <span class="ml-auto">Powered by <a href="https://lowlandtech.com">LowLandTech</a></span>
     </scx-footer>
