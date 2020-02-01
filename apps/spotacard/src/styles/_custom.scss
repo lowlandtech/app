@@ -31,44 +31,57 @@ html, body {
     .form-control:-ms-input-placeholder { color: $navbar-color; }
   }
   .nav-item {
+    padding: 5px;
 
-    .nav-link.nav-pill {
-      width: 32px;
-      height: 32px;
-      padding: 0;
-      line-height: 32px;
-      border: 1px solid $navbar-color;
-      border-radius: 50em;
+    .nav-link {
+      color: $color;
 
       &:hover {
-        border-color: $navbar-hover-color;
+        color: $spotacard-dark;
       }
 
-      .badge-pill {
-        margin-top: -18px;
-        margin-left: -5px;
-        border: 2px solid #fff !important;
-        line-height: 14px;
+      &:focus, .active {
+        color: $spotacard-darker !important;
       }
 
-      &.avatar {
-        width: 38px;
-        height: 38px;
+      .nav-pill {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        line-height: 32px;
+        border: 1px solid $navbar-color;
+        border-radius: 50em;
 
-        img {
-          width: 36px;
-          height: 36px;
-          margin: 0;
-          border: 0;
+        &:hover {
+          border-color: $navbar-hover-color;
         }
 
-        .badge {
-          margin-top: -22px;
-          margin-left: 5px;
+        .badge-pill {
+          margin-top: -18px;
+          margin-left: -5px;
+          border: 2px solid #fff !important;
+          line-height: 14px;
         }
 
-        &.dropdown-toggle:after {
-          display: none;
+        &.avatar {
+          width: 38px;
+          height: 38px;
+
+          img {
+            width: 36px;
+            height: 36px;
+            margin: 0;
+            border: 0;
+          }
+
+          .badge {
+            margin-top: -22px;
+            margin-left: 5px;
+          }
+
+          &.dropdown-toggle:after {
+            display: none;
+          }
         }
       }
     }
