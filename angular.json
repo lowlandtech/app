@@ -20,7 +20,7 @@
             "main": "apps/spotacard/src/main.ts",
             "polyfills": "apps/spotacard/src/polyfills.ts",
             "tsConfig": "apps/spotacard/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": ["apps/spotacard/src/favicon.ico", "apps/spotacard/src/assets"],
             "styles": [
               "node_modules/flag-icon-css/css/flag-icon.css",
@@ -43,7 +43,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
