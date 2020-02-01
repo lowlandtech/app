@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Spotacard.Features.Profiles;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
