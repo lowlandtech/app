@@ -40,7 +40,7 @@ const structure: Field[] = [
   styleUrls: ['./card-editor.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleEditorComponent implements OnInit, OnDestroy {
+export class CardEditorComponent implements OnInit, OnDestroy {
   structure$: Observable<Field[]>;
   data$: Observable<any>;
 
@@ -58,11 +58,11 @@ export class ArticleEditorComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.facade.publishArticle();
+    this.facade.publishCard();
   }
 
   ngOnDestroy() {
     this.ngrxFormsFacade.initializeForm();
-    this.facade.initializeArticle();
+    this.facade.initializeCard();
   }
 }

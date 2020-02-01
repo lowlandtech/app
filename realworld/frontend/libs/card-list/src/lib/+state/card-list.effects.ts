@@ -4,40 +4,40 @@ import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, concatMap, map, withLatestFrom } from 'rxjs/operators';
 
-import { ArticleListService } from '../card-list.service';
-import * as ArticleListActions from './card-list.actions';
+import { CardListService } from '../card-list.service';
+import * as CardListActions from './card-list.actions';
 
-import { ArticleListFacade } from './card-list.facade';
+import { CardListFacade } from './card-list.facade';
 
 @Injectable()
-export class ArticleListEffects {
+export class CardListEffects {
   setListPage = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.setListPage),
-      map(() => ArticleListActions.loadArticles()),
+      ofType(CardListActions.setListPage),
+      map(() => CardListActions.loadCards()),
     ),
   );
 
   setListTag = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.setListConfig),
-      map(() => ArticleListActions.loadArticles()),
+      ofType(CardListActions.setListConfig),
+      map(() => CardListActions.loadCards()),
     ),
   );
 
-  loadArticles = createEffect(() =>
+  loadCards = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.loadArticles),
+      ofType(CardListActions.loadCards),
       withLatestFrom(this.facade.listConfig$),
       concatMap(([_, config]) =>
-        this.articleListService.query(config).pipe(
+        this.cardListService.query(config).pipe(
           map(results =>
-            ArticleListActions.loadArticlesSuccess({
-              articles: results.articles,
-              articlesCount: results.articlesCount,
+            CardListActions.loadCardsSuccess({
+              cards: results.cards,
+              cardsCount: results.cardsCount,
             }),
           ),
-          catchError(error => of(ArticleListActions.loadArticlesFail({ error }))),
+          catchError(error => of(CardListActions.loadCardsFail({ error }))),
         ),
       ),
     ),
@@ -45,12 +45,12 @@ export class ArticleListEffects {
 
   favorite = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.favorite),
+      ofType(CardListActions.favorite),
       map(action => action.slug),
       concatMap(slug =>
         this.actionsService.favorite(slug).pipe(
-          map(card => ArticleListActions.favoriteSuccess({ card })),
-          catchError(error => of(ArticleListActions.favoriteFail(error))),
+          map(card => CardListActions.favoriteSuccess({ card })),
+          catchError(error => of(CardListActions.favoriteFail(error))),
         ),
       ),
     ),
@@ -58,12 +58,12 @@ export class ArticleListEffects {
 
   unFavorite = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleListActions.unFavorite),
+      ofType(CardListActions.unFavorite),
       map(action => action.slug),
       concatMap(slug =>
         this.actionsService.unfavorite(slug).pipe(
-          map(card => ArticleListActions.unFavoriteSuccess({ card })),
-          catchError(error => of(ArticleListActions.unFavoriteFail(error))),
+          map(card => CardListActions.unFavoriteSuccess({ card })),
+          catchError(error => of(CardListActions.unFavoriteFail(error))),
         ),
       ),
     ),
@@ -71,8 +71,8 @@ export class ArticleListEffects {
 
   constructor(
     private actions$: Actions,
-    private articleListService: ArticleListService,
+    private cardListService: CardListService,
     private actionsService: ActionsService,
-    private facade: ArticleListFacade,
+    private facade: CardListFacade,
   ) {}
 }

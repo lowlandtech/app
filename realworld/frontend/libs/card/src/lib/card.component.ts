@@ -1,11 +1,11 @@
-import { ArticleComment, ArticleData, User } from '@spotacard/api';
+import { CardComment, CardData, User } from '@spotacard/api';
 import { AuthFacade } from '@spotacard/auth';
 import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { ArticleFacade } from './+state/card.facade';
+import { CardFacade } from './+state/card.facade';
 
 const structure: Field[] = [
   {
@@ -24,9 +24,9 @@ const structure: Field[] = [
   styleUrls: ['./card.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleComponent implements OnInit, OnDestroy {
-  card$: Observable<ArticleData>;
-  comments$: Observable<ArticleComment[]>;
+export class CardComponent implements OnInit, OnDestroy {
+  card$: Observable<CardData>;
+  comments$: Observable<CardComment[]>;
   canModify = false;
   isAuthenticated$: Observable<boolean>;
   structure$: Observable<Field[]>;
@@ -37,7 +37,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngrxFormsFacade: NgrxFormsFacade,
-    private facade: ArticleFacade,
+    private facade: CardFacade,
     private auhtFacade: AuthFacade,
   ) {}
 
@@ -91,6 +91,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
-    this.facade.initializeArticle();
+    this.facade.initializeCard();
   }
 }

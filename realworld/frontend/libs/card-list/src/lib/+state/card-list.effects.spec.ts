@@ -7,29 +7,29 @@ import { StoreModule } from '@ngrx/store';
 import { DataPersistence } from '@nrwl/angular';
 import { hot } from '@nrwl/angular/testing';
 
-import { ArticleListService } from '../card-list.service';
-import { ArticleListEffects } from './card-list.effects';
-import { ArticleListFacade } from './card-list.facade';
+import { CardListService } from '../card-list.service';
+import { CardListEffects } from './card-list.effects';
+import { CardListFacade } from './card-list.facade';
 
-describe('ArticleListEffects', () => {
+describe('CardListEffects', () => {
   let actions;
-  let effects: ArticleListEffects;
+  let effects: CardListEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [StoreModule.forRoot({}), HttpClientTestingModule],
       providers: [
-        ArticleListEffects,
+        CardListEffects,
         DataPersistence,
         provideMockActions(() => actions),
         ActionsService,
-        ArticleListService,
+        CardListService,
         ApiService,
-        ArticleListFacade,
+        CardListFacade,
       ],
     });
 
-    effects = TestBed.inject(ArticleListEffects);
+    effects = TestBed.inject(CardListEffects);
   });
 
   describe('someEffect', () => {

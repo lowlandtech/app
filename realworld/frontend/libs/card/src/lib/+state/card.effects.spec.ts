@@ -5,29 +5,29 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { StoreModule } from '@ngrx/store';
 import { hot } from '@nrwl/angular/testing';
 
-import { ArticleService } from '../card.service';
-import { ArticleEffects } from './card.effects';
+import { CardService } from '../card.service';
+import { CardEffects } from './card.effects';
 import { ActionsService } from '@spotacard/shared';
 import { NgrxFormsFacade } from '@spotacard/ngrx-forms';
 
-describe('ArticleEffects', () => {
+describe('CardEffects', () => {
   let actions;
-  let effects: ArticleEffects;
+  let effects: CardEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [StoreModule.forRoot({}), HttpClientTestingModule],
       providers: [
-        ArticleEffects,
+        CardEffects,
         provideMockActions(() => actions),
-        ArticleService,
+        CardService,
         ApiService,
         ActionsService,
         NgrxFormsFacade,
       ],
     });
 
-    effects = TestBed.inject(ArticleEffects);
+    effects = TestBed.inject(CardEffects);
   });
 
   describe('someEffect', () => {

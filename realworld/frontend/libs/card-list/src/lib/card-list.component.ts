@@ -1,10 +1,10 @@
-import { ArticleData } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { withLatestFrom } from 'rxjs/operators';
 
-import { ArticleListFacade } from './+state/card-list.facade';
-import { ArticleListConfig } from './+state/card-list.reducer';
+import { CardListFacade } from './+state/card-list.facade';
+import { CardListConfig } from './+state/card-list.reducer';
 
 @Component({
   selector: 'app-card-list',
@@ -12,17 +12,17 @@ import { ArticleListConfig } from './+state/card-list.reducer';
   styleUrls: ['./card-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleListComponent implements OnInit {
+export class CardListComponent implements OnInit {
   totalPages$: Observable<number[]>;
-  articles$: Observable<ArticleData[]>;
-  listConfig$: Observable<ArticleListConfig>;
+  cards$: Observable<CardData[]>;
+  listConfig$: Observable<CardListConfig>;
   isLoading$: Observable<boolean>;
 
-  constructor(private facade: ArticleListFacade) {}
+  constructor(private facade: CardListFacade) {}
 
   ngOnInit() {
     this.totalPages$ = this.facade.totalPages$;
-    this.articles$ = this.facade.articles$;
+    this.cards$ = this.facade.cards$;
     this.listConfig$ = this.facade.listConfig$;
     this.isLoading$ = this.facade.isLoading$;
   }
@@ -35,8 +35,8 @@ export class ArticleListComponent implements OnInit {
     this.facade.unFavorite(slug);
   }
 
-  navigateToArticle(slug: string) {
-    this.facade.navigateToArticle(slug);
+  navigateToCard(slug: string) {
+    this.facade.navigateToCard(slug);
   }
 
   setPage(page: number) {

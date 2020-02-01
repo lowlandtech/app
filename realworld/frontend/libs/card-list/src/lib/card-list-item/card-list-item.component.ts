@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ArticleData } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 
 @Component({
   selector: 'app-card-list-item',
@@ -7,13 +7,13 @@ import { ArticleData } from '@spotacard/api';
   styleUrls: ['./card-list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleListItemComponent {
-  @Input() card: ArticleData;
+export class CardListItemComponent {
+  @Input() card: CardData;
   @Output() favorite: EventEmitter<string> = new EventEmitter();
   @Output() unFavorite: EventEmitter<string> = new EventEmitter();
-  @Output() navigateToArticle: EventEmitter<string> = new EventEmitter();
+  @Output() navigateToCard: EventEmitter<string> = new EventEmitter();
 
-  toggleFavorite(card: ArticleData) {
+  toggleFavorite(card: CardData) {
     if (card.favorited) {
       this.unFavorite.emit(card.slug);
     } else {

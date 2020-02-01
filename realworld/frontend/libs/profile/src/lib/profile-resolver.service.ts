@@ -1,5 +1,5 @@
-import { articleListInitialState } from '@spotacard/card-list';
-import * as fromArticleList from '@spotacard/card-list';
+import { cardListInitialState } from '@spotacard/card-list';
+import * as fromCardList from '@spotacard/card-list';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,17 +19,17 @@ export class ProfileResolverService implements Resolve<Profile> {
 }
 
 @Injectable()
-export class ProfileArticlesResolverService implements Resolve<Profile> {
+export class ProfileCardsResolverService implements Resolve<Profile> {
   constructor(private store: Store<any>) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     const username = route.params['username'];
     this.store.dispatch(
-      fromArticleList.setListConfig({
+      fromCardList.setListConfig({
         config: {
-          ...articleListInitialState.listConfig,
+          ...cardListInitialState.listConfig,
           filters: {
-            ...articleListInitialState.listConfig.filters,
+            ...cardListInitialState.listConfig.filters,
             author: username,
           },
         },
@@ -45,11 +45,11 @@ export class ProfileFavoritesResolverService implements Resolve<Profile> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     const username = route.parent.params['username'];
     this.store.dispatch(
-      fromArticleList.setListConfig({
+      fromCardList.setListConfig({
         config: {
-          ...articleListInitialState.listConfig,
+          ...cardListInitialState.listConfig,
           filters: {
-            ...articleListInitialState.listConfig.filters,
+            ...cardListInitialState.listConfig.filters,
             favorited: username,
           },
         },

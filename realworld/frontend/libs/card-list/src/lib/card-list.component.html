@@ -1,17 +1,17 @@
 <div class="app-card-preview" [hidden]="(isLoading$ | async) === false">
-  Loading articles...
+  Loading cards...
 </div>
 
-<div class="app-card-preview" [hidden]="(isLoading$ | async) || (articles$ | async).length > 0">
-  No articles are here... yet.
+<div class="app-card-preview" [hidden]="(isLoading$ | async) || (cards$ | async).length > 0">
+  No cards are here... yet.
 </div>
 
 <app-card-list-item
   [hidden]="isLoading$ | async"
-  (navigateToArticle)="navigateToArticle($event)"
+  (navigateToCard)="navigateToCard($event)"
   (unFavorite)="unFavorite($event)"
   (favorite)="favorite($event)"
-  *ngFor="let card of articles$ | async"
+  *ngFor="let card of cards$ | async"
   [card]="card"
 >
 </app-card-list-item>

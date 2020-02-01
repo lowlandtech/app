@@ -1,4 +1,4 @@
-import { ArticleData, User } from '@spotacard/api';
+import { CardData, User } from '@spotacard/api';
 import { Field } from '@spotacard/ngrx-forms';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCommentComponent {
-  @Input() card: ArticleData;
+  @Input() card: CardData;
   @Input() currentUser: User;
   @Input() data$: Observable<any>;
   @Input() structure$: Observable<Field[]>;

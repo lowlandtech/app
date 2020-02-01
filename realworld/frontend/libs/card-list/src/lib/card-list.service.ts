@@ -1,17 +1,17 @@
-import { ApiService, ArticleData } from '@spotacard/api';
+import { ApiService, CardData } from '@spotacard/api';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { ArticleListConfig, Cards } from './+state/card-list.reducer';
+import { CardListConfig, Cards } from './+state/card-list.reducer';
 
 @Injectable()
-export class ArticleListService {
+export class CardListService {
   constructor(private apiService: ApiService) {}
 
-  query(config: ArticleListConfig): Observable<{ articles: ArticleData[]; articlesCount: number }> {
+  query(config: CardListConfig): Observable<{ cards: CardData[]; cardsCount: number }> {
     return this.apiService.get(
-      '/articles' + (config.type === 'FEED' ? '/feed' : ''),
+      '/cards' + (config.type === 'FEED' ? '/feed' : ''),
       this.toHttpParams(config.filters),
     );
   }

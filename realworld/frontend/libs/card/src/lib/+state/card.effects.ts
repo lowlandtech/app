@@ -1,22 +1,22 @@
-import { ArticleService } from '../card.service';
+import { CardService } from '../card.service';
 import { ActionsService } from '@spotacard/shared';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, concatMap, exhaustMap, map, mergeMap, withLatestFrom } from 'rxjs/operators';
-import * as ArticleActions from './card.actions';
+import * as CardActions from './card.actions';
 
 import { NgrxFormsFacade, setErrors, resetForm } from '@spotacard/ngrx-forms';
 import { go } from '@spotacard/ngrx-router';
 @Injectable()
-export class ArticleEffects {
-  loadArticle = createEffect(() =>
+export class CardEffects {
+  loadCard = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.loadArticle),
+      ofType(CardActions.loadCard),
       concatMap(action =>
-        this.articleService.get(action.slug).pipe(
-          map(results => ArticleActions.loadArticleSuccess({ card: results })),
-          catchError(error => of(ArticleActions.loadArticleFail(error))),
+        this.cardService.get(action.slug).pipe(
+          map(results => CardActions.loadCardSuccess({ card: results })),
+          catchError(error => of(CardActions.loadCardFail(error))),
         ),
       ),
     ),
@@ -24,23 +24,23 @@ export class ArticleEffects {
 
   loadComments = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.loadComments),
+      ofType(CardActions.loadComments),
       concatMap(action =>
-        this.articleService.getComments(action.slug).pipe(
-          map(comments => ArticleActions.loadCommentsSuccess({ comments })),
-          catchError(error => of(ArticleActions.loadCommentsFail(error))),
+        this.cardService.getComments(action.slug).pipe(
+          map(comments => CardActions.loadCommentsSuccess({ comments })),
+          catchError(error => of(CardActions.loadCommentsFail(error))),
         ),
       ),
     ),
   );
 
-  deleteArticle = createEffect(() =>
+  deleteCard = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.deleteArticle),
+      ofType(CardActions.deleteCard),
       concatMap(action =>
-        this.articleService.deleteArticle(action.slug).pipe(
+        this.cardService.deleteCard(action.slug).pipe(
           map(_ => go({ to: { path: ['/'] } })),
-          catchError(error => of(ArticleActions.deleteArticleFail(error))),
+          catchError(error => of(CardActions.deleteCardFail(error))),
         ),
       ),
     ),
@@ -48,12 +48,12 @@ export class ArticleEffects {
 
   addComment = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.addComment),
+      ofType(CardActions.addComment),
       map(action => action.slug),
       withLatestFrom(this.ngrxFormsFacade.data$, this.ngrxFormsFacade.structure$),
       exhaustMap(([slug, data, structure]) =>
-        this.articleService.addComment(slug, data.comment).pipe(
-          mergeMap(comment => [ArticleActions.addCommentSuccess({ comment }), resetForm()]),
+        this.cardService.addComment(slug, data.comment).pipe(
+          mergeMap(comment => [CardActions.addCommentSuccess({ comment }), resetForm()]),
           catchError(result => of(setErrors({ errors: result.error.errors }))),
         ),
       ),
@@ -62,11 +62,11 @@ export class ArticleEffects {
 
   deleteComment = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.deleteComment),
+      ofType(CardActions.deleteComment),
       concatMap(action =>
-        this.articleService.deleteComment(action.commentId, action.slug).pipe(
-          map(_ => ArticleActions.deleteCommentSuccess({ commentId: action.commentId })),
-          catchError(error => of(ArticleActions.deleteCommentFail(error))),
+        this.cardService.deleteComment(action.commentId, action.slug).pipe(
+          map(_ => CardActions.deleteCommentSuccess({ commentId: action.commentId })),
+          catchError(error => of(CardActions.deleteCommentFail(error))),
         ),
       ),
     ),
@@ -74,12 +74,12 @@ export class ArticleEffects {
 
   follow = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.follow),
+      ofType(CardActions.follow),
       map(action => action.username),
       concatMap(username =>
         this.actionsService.followUser(username).pipe(
-          map(profile => ArticleActions.followSuccess({ profile })),
-          catchError(error => of(ArticleActions.followFail(error))),
+          map(profile => CardActions.followSuccess({ profile })),
+          catchError(error => of(CardActions.followFail(error))),
         ),
       ),
     ),
@@ -87,12 +87,12 @@ export class ArticleEffects {
 
   unFollow = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.unFollow),
+      ofType(CardActions.unFollow),
       map(action => action.username),
       concatMap(username =>
         this.actionsService.unfollowUser(username).pipe(
-          map(profile => ArticleActions.unFollowSuccess({ profile })),
-          catchError(error => of(ArticleActions.unFollowFail(error))),
+          map(profile => CardActions.unFollowSuccess({ profile })),
+          catchError(error => of(CardActions.unFollowFail(error))),
         ),
       ),
     ),
@@ -100,12 +100,12 @@ export class ArticleEffects {
 
   favorite = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.favorite),
+      ofType(CardActions.favorite),
       map(action => action.slug),
       concatMap(slug =>
         this.actionsService.favorite(slug).pipe(
-          map(card => ArticleActions.favoriteSuccess({ card })),
-          catchError(error => of(ArticleActions.favoriteFail(error))),
+          map(card => CardActions.favoriteSuccess({ card })),
+          catchError(error => of(CardActions.favoriteFail(error))),
         ),
       ),
     ),
@@ -113,12 +113,12 @@ export class ArticleEffects {
 
   unFavorite = createEffect(() =>
     this.actions$.pipe(
-      ofType(ArticleActions.unFavorite),
+      ofType(CardActions.unFavorite),
       map(action => action.slug),
       concatMap(slug =>
         this.actionsService.unfavorite(slug).pipe(
-          map(card => ArticleActions.unFavoriteSuccess({ card })),
-          catchError(error => of(ArticleActions.unFavoriteFail(error))),
+          map(card => CardActions.unFavoriteSuccess({ card })),
+          catchError(error => of(CardActions.unFavoriteFail(error))),
         ),
       ),
     ),
@@ -126,7 +126,7 @@ export class ArticleEffects {
 
   constructor(
     private actions$: Actions,
-    private articleService: ArticleService,
+    private cardService: CardService,
     private actionsService: ActionsService,
     private ngrxFormsFacade: NgrxFormsFacade,
   ) {}

@@ -1,4 +1,4 @@
-import { ArticleListModule } from '@spotacard/card-list';
+import { CardListModule } from '@spotacard/card-list';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { TagsListComponent } from './tags-list/tags-list.component';
 @NgModule({
   imports: [
     CommonModule,
-    ArticleListModule,
+    CardListModule,
     RouterModule.forChild([
       {
         path: '',

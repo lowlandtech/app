@@ -1,17 +1,17 @@
-import { ArticleData } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 import { Action, createReducer, on } from '@ngrx/store';
-import * as ArticleListActions from './card-list.actions';
+import * as CardListActions from './card-list.actions';
 
-export interface ArticleList {
-  listConfig: ArticleListConfig;
-  articles: Cards;
+export interface CardList {
+  listConfig: CardListConfig;
+  cards: Cards;
 }
 
-export interface ArticleListState {
-  readonly articleList: ArticleList;
+export interface CardListState {
+  readonly cardList: CardList;
 }
 
-export interface ArticleListConfig {
+export interface CardListConfig {
   type: ListType;
   currentPage: number;
   filters: Filters;
@@ -28,13 +28,13 @@ export interface Filters {
 export type ListType = 'ALL' | 'FEED';
 
 export interface Cards {
-  entities: ArticleData[];
-  articlesCount: number;
+  entities: CardData[];
+  cardsCount: number;
   loaded: boolean;
   loading: boolean;
 }
 
-export const articleListInitialState: ArticleList = {
+export const cardListInitialState: CardList = {
   listConfig: {
     type: 'ALL',
     currentPage: 1,
@@ -42,17 +42,17 @@ export const articleListInitialState: ArticleList = {
       limit: 10,
     },
   },
-  articles: {
+  cards: {
     entities: [],
-    articlesCount: 0,
+    cardsCount: 0,
     loaded: false,
     loading: false,
   },
 };
 
 const reducer = createReducer(
-  articleListInitialState,
-  on(ArticleListActions.setListPage, (state, action) => {
+  cardListInitialState,
+  on(CardListActions.setListPage, (state, action) => {
     const filters = {
       ...state.listConfig.filters,
       offset: state.listConfig.filters.limit * (action.page - 1),
@@ -64,50 +64,50 @@ const reducer = createReducer(
     };
     return { ...state, listConfig };
   }),
-  on(ArticleListActions.setListConfig, (state, action) => ({
+  on(CardListActions.setListConfig, (state, action) => ({
     ...state,
     listConfig: action.config,
   })),
-  on(ArticleListActions.loadArticles, (state, _) => {
-    const articles = { ...state.articles, loading: true };
-    return { ...state, articles };
+  on(CardListActions.loadCards, (state, _) => {
+    const cards = { ...state.cards, loading: true };
+    return { ...state, cards };
   }),
-  on(ArticleListActions.loadArticlesSuccess, (state, action) => {
-    const articles = {
-      ...state.articles,
-      entities: action.articles,
-      articlesCount: action.articlesCount,
+  on(CardListActions.loadCardsSuccess, (state, action) => {
+    const cards = {
+      ...state.cards,
+      entities: action.cards,
+      cardsCount: action.cardsCount,
       loading: false,
       loaded: true,
     };
-    return { ...state, articles };
+    return { ...state, cards };
   }),
-  on(ArticleListActions.loadArticlesFail, (state, _) => {
-    const articles = {
-      ...state.articles,
+  on(CardListActions.loadCardsFail, (state, _) => {
+    const cards = {
+      ...state.cards,
       entities: [],
-      articlesCount: 0,
+      cardsCount: 0,
       loading: false,
       loaded: true,
     };
-    return { ...state, articles };
+    return { ...state, cards };
   }),
-  on(ArticleListActions.unFavoriteSuccess, ArticleListActions.favoriteSuccess, (state, action) => ({
+  on(CardListActions.unFavoriteSuccess, CardListActions.favoriteSuccess, (state, action) => ({
     ...state,
-    articles: replaceArticle(state.articles, action.card),
+    cards: replaceCard(state.cards, action.card),
   })),
 );
 
-function replaceArticle(articles: Cards, payload: ArticleData): Cards {
-  const articleIndex = articles.entities.findIndex(a => a.slug === payload.slug);
+function replaceCard(cards: Cards, payload: CardData): Cards {
+  const cardIndex = cards.entities.findIndex(a => a.slug === payload.slug);
   const entities = [
-    ...articles.entities.slice(0, articleIndex),
-    Object.assign({}, articles.entities[articleIndex], payload),
-    ...articles.entities.slice(articleIndex + 1),
+    ...cards.entities.slice(0, cardIndex),
+    Object.assign({}, cards.entities[cardIndex], payload),
+    ...cards.entities.slice(cardIndex + 1),
   ];
-  return { ...articles, entities, loading: false, loaded: true };
+  return { ...cards, entities, loading: false, loaded: true };
 }
 
-export function articleListReducer(state: ArticleList | undefined, action: Action): ArticleList {
+export function cardListReducer(state: CardList | undefined, action: Action): CardList {
   return reducer(state, action);
 }

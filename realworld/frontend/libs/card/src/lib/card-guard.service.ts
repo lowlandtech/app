@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import * as fromArticle from './+state/card.reducer';
+import * as fromCard from './+state/card.reducer';
 import { filter, take, switchMap, tap } from 'rxjs/operators';
 import * as fromActions from './+state/card.actions';
-import { ArticleFacade } from './+state/card.facade';
+import { CardFacade } from './+state/card.facade';
 
 @Injectable()
-export class ArticleGuardService implements CanActivate {
-  constructor(private facade: ArticleFacade) {}
+export class CardGuardService implements CanActivate {
+  constructor(private facade: CardFacade) {}
 
-  waitForArticleToLoad(): Observable<boolean> {
-    return this.facade.articleLoaded$.pipe(
+  waitForCardToLoad(): Observable<boolean> {
+    return this.facade.cardLoaded$.pipe(
       filter(loaded => loaded),
       take(1),
     );
@@ -20,8 +20,8 @@ export class ArticleGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     const slug = route.params['slug'];
-    this.facade.loadArticle(slug);
+    this.facade.loadCard(slug);
 
-    return this.waitForArticleToLoad().pipe(tap(() => this.facade.loadComments(slug)));
+    return this.waitForCardToLoad().pipe(tap(() => this.facade.loadComments(slug)));
   }
 }

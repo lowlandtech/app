@@ -2,17 +2,17 @@ import { ApiService } from '@spotacard/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { inject, TestBed } from '@angular/core/testing';
 
-import { ArticleService } from './card.service';
+import { CardService } from './card.service';
 
-describe('ArticleService', () => {
+describe('CardService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ArticleService, ApiService],
+      providers: [CardService, ApiService],
     });
   });
 
-  it('should be created', inject([ArticleService], (service: ArticleService) => {
+  it('should be created', inject([CardService], (service: CardService) => {
     expect(service).toBeTruthy();
   }));
 });

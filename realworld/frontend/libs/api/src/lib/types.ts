@@ -6,14 +6,14 @@ export interface Profile {
   loading: boolean;
 }
 
-export interface ArticleComment {
+export interface CardComment {
   id: number;
   body: string;
   createdAt: string;
   author: Profile;
 }
 
-export interface ArticleData {
+export interface CardData {
   slug: string;
   title: string;
   description: string;

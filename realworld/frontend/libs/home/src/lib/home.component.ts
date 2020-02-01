@@ -7,9 +7,9 @@ import { Store } from '@ngrx/store';
 import * as fromHome from './+state/home.reducer';
 import * as fromAuth from '@spotacard/auth';
 import { withLatestFrom, tap, takeUntil } from 'rxjs/operators';
-import * as fromArticleList from '@spotacard/card-list';
-import { ArticleListConfig } from '@spotacard/card-list';
-import { articleListInitialState, ArticleListFacade } from '@spotacard/card-list';
+import * as fromCardList from '@spotacard/card-list';
+import { CardListConfig } from '@spotacard/card-list';
+import { cardListInitialState, CardListFacade } from '@spotacard/card-list';
 import { AuthFacade } from '@spotacard/auth';
 import { HomeFacade } from './+state/home.facade';
 
@@ -20,7 +20,7 @@ import { HomeFacade } from './+state/home.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  listConfig$: Observable<ArticleListConfig>;
+  listConfig$: Observable<CardListConfig>;
   tags$: Observable<string[]>;
   isAuthenticated: boolean;
   unsubscribe$: Subject<void> = new Subject();
@@ -28,27 +28,27 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private facade: HomeFacade,
     private router: Router,
-    private articleListFacade: ArticleListFacade,
+    private cardListFacade: CardListFacade,
     private authFacade: AuthFacade,
   ) {}
 
   ngOnInit() {
     this.authFacade.isLoggedIn$.pipe(takeUntil(this.unsubscribe$)).subscribe(isLoggedIn => {
       this.isAuthenticated = isLoggedIn;
-      this.getArticles();
+      this.getCards();
     });
-    this.listConfig$ = this.articleListFacade.listConfig$;
+    this.listConfig$ = this.cardListFacade.listConfig$;
     this.tags$ = this.facade.tags$;
   }
 
   setListTo(type: string = 'ALL') {
-    this.articleListFacade.setListConfig(<ArticleListConfig>{
-      ...articleListInitialState.listConfig,
+    this.cardListFacade.setListConfig(<CardListConfig>{
+      ...cardListInitialState.listConfig,
       type,
     });
   }
 
-  getArticles() {
+  getCards() {
     if (this.isAuthenticated) {
       this.setListTo('FEED');
     } else {
@@ -57,10 +57,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   setListTag(tag: string) {
-    this.articleListFacade.setListConfig(<ArticleListConfig>{
-      ...articleListInitialState.listConfig,
+    this.cardListFacade.setListConfig(<CardListConfig>{
+      ...cardListInitialState.listConfig,
       filters: {
-        ...articleListInitialState.listConfig.filters,
+        ...cardListInitialState.listConfig.filters,
         tag,
       },
     });

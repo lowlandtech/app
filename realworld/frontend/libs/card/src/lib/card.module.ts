@@ -6,15 +6,15 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { ArticleEffects } from './+state/card.effects';
-import { ArticleFacade } from './+state/card.facade';
-import { articleInitialState, articleReducer } from './+state/card.reducer';
+import { CardEffects } from './+state/card.effects';
+import { CardFacade } from './+state/card.facade';
+import { cardInitialState, cardReducer } from './+state/card.reducer';
 import { AddCommentComponent } from './add-comment/add-comment.component';
-import { ArticleCommentComponent } from './card-comment/card-comment.component';
-import { ArticleGuardService } from './card-guard.service';
-import { ArticleMetaComponent } from './card-meta/card-meta.component';
-import { ArticleComponent } from './card.component';
-import { ArticleService } from './card.service';
+import { CardCommentComponent } from './card-comment/card-comment.component';
+import { CardGuardService } from './card-guard.service';
+import { CardMetaComponent } from './card-meta/card-meta.component';
+import { CardComponent } from './card.component';
+import { CardService } from './card.service';
 import { MarkdownPipe } from './markdown.pipe';
 
 @NgModule({
@@ -23,18 +23,18 @@ import { MarkdownPipe } from './markdown.pipe';
     RouterModule.forChild([
       {
         path: '',
-        component: ArticleComponent,
-        canActivate: [ArticleGuardService],
+        component: CardComponent,
+        canActivate: [CardGuardService],
       },
     ]),
-    StoreModule.forFeature('card', articleReducer, {
-      initialState: articleInitialState,
+    StoreModule.forFeature('card', cardReducer, {
+      initialState: cardInitialState,
     }),
-    EffectsModule.forFeature([ArticleEffects]),
+    EffectsModule.forFeature([CardEffects]),
     NgrxFormsModule,
     SharedModule,
   ],
-  providers: [ArticleEffects, ArticleService, ArticleGuardService, ArticleFacade],
-  declarations: [ArticleComponent, ArticleMetaComponent, ArticleCommentComponent, MarkdownPipe, AddCommentComponent],
+  providers: [CardEffects, CardService, CardGuardService, CardFacade],
+  declarations: [CardComponent, CardMetaComponent, CardCommentComponent, MarkdownPipe, AddCommentComponent],
 })
-export class ArticleModule {}
+export class CardModule {}

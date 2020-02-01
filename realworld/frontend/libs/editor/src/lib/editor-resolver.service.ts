@@ -12,7 +12,7 @@ export class EditorResolverService implements Resolve<Observable<boolean>> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const slug = route.params['slug'];
     if (slug) {
-      this.facade.loadArticle(slug);
+      this.facade.loadCard(slug);
     }
     return of(true);
   }

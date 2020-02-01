@@ -1,10 +1,10 @@
-import { ArticleData } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 
 import { Action, createReducer, on } from '@ngrx/store';
 import * as EditorActions from './editor.actions';
 
 export interface Editor {
-  card: ArticleData;
+  card: CardData;
 }
 
 export interface EditorState {
@@ -34,8 +34,8 @@ export const editorInitialState: Editor = {
 
 const reducer = createReducer(
   editorInitialState,
-  on(EditorActions.loadArticleSuccess, (state, action) => ({ ...state, card: action.card })),
-  on(EditorActions.loadArticleFail, EditorActions.initializeArticle, () => editorInitialState),
+  on(EditorActions.loadCardSuccess, (state, action) => ({ ...state, card: action.card })),
+  on(EditorActions.loadCardFail, EditorActions.initializeCard, () => editorInitialState),
 );
 
 export function editorReducer(state: Editor | undefined, action: Action): Editor {

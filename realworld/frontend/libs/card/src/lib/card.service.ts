@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService, ArticleData, ArticleComment } from '@spotacard/api';
+import { ApiService, CardData, CardComment } from '@spotacard/api';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class ArticleService {
+export class CardService {
   constructor(private apiService: ApiService) {}
 
-  get(slug: string): Observable<ArticleData> {
-    return this.apiService.get('/articles/' + slug).pipe(map((data: any) => data.card));
+  get(slug: string): Observable<CardData> {
+    return this.apiService.get('/cards/' + slug).pipe(map((data: any) => data.card));
   }
 
-  getComments(slug: string): Observable<ArticleComment[]> {
-    return this.apiService.get(`/articles/${slug}/comments`).pipe(map((data: any) => data.comments));
+  getComments(slug: string): Observable<CardComment[]> {
+    return this.apiService.get(`/cards/${slug}/comments`).pipe(map((data: any) => data.comments));
   }
 
-  deleteArticle(slug: string) {
-    return this.apiService.delete('/articles/' + slug);
+  deleteCard(slug: string) {
+    return this.apiService.delete('/cards/' + slug);
   }
 
   deleteComment(commentId: number, slug: string) {
-    return this.apiService.delete(`/articles/${slug}/comments/${commentId}`);
+    return this.apiService.delete(`/cards/${slug}/comments/${commentId}`);
   }
 
-  addComment(slug, payload = ''): Observable<ArticleComment> {
+  addComment(slug, payload = ''): Observable<CardComment> {
     return this.apiService
-      .post(`/articles/${slug}/comments`, { comment: { body: payload } })
+      .post(`/cards/${slug}/comments`, { comment: { body: payload } })
       .pipe(map(data => data.comment));
   }
 }

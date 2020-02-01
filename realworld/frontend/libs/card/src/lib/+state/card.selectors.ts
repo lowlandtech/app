@@ -1,27 +1,27 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Card } from './card.reducer';
 
-const getArticle = createFeatureSelector<Card>('card');
-export const getArticleData = createSelector(
-  getArticle,
+const getCard = createFeatureSelector<Card>('card');
+export const getCardData = createSelector(
+  getCard,
   (state: Card) => state.data,
 );
 export const getComments = createSelector(
-  getArticle,
+  getCard,
   (state: Card) => state.comments,
 );
-export const getArticleLoaded = createSelector(
-  getArticle,
+export const getCardLoaded = createSelector(
+  getCard,
   (state: Card) => state.loaded,
 );
 export const getAuthorUsername = createSelector(
-  getArticle,
+  getCard,
   (state: Card) => state.data.author.username,
 );
 
-export const articleQuery = {
-  getArticleData,
+export const cardQuery = {
+  getCardData,
   getComments,
-  getArticleLoaded,
+  getCardLoaded,
   getAuthorUsername,
 };

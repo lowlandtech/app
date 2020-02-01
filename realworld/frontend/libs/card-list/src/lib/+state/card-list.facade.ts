@@ -1,43 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { ArticleListState, ArticleListConfig } from './card-list.reducer';
-import { articleListQuery } from './card-list.selectors';
-import * as ArticleListActions from './card-list.actions';
+import { CardListState, CardListConfig } from './card-list.reducer';
+import { cardListQuery } from './card-list.selectors';
+import * as CardListActions from './card-list.actions';
 import { withLatestFrom, map } from 'rxjs/operators';
 import { go } from '@spotacard/ngrx-router';
 @Injectable()
-export class ArticleListFacade {
-  articles$ = this.store.select(articleListQuery.getArticles);
-  listConfig$ = this.store.select(articleListQuery.getListConfig);
-  isLoading$ = this.store.select(articleListQuery.isLoading);
-  articlesCount$ = this.store.select(articleListQuery.getArticlesCount);
-  totalPages$ = this.articlesCount$.pipe(
+export class CardListFacade {
+  cards$ = this.store.select(cardListQuery.getCards);
+  listConfig$ = this.store.select(cardListQuery.getListConfig);
+  isLoading$ = this.store.select(cardListQuery.isLoading);
+  cardsCount$ = this.store.select(cardListQuery.getCardsCount);
+  totalPages$ = this.cardsCount$.pipe(
     withLatestFrom(this.listConfig$),
-    map(([articlesCount, config]) => {
-      return Array.from(new Array(Math.ceil(articlesCount / config.filters.limit)), (val, index) => index + 1);
+    map(([cardsCount, config]) => {
+      return Array.from(new Array(Math.ceil(cardsCount / config.filters.limit)), (val, index) => index + 1);
     }),
   );
 
-  constructor(private store: Store<ArticleListState>) {}
+  constructor(private store: Store<CardListState>) {}
 
   favorite(slug: string) {
-    this.store.dispatch(ArticleListActions.favorite({ slug }));
+    this.store.dispatch(CardListActions.favorite({ slug }));
   }
 
   unFavorite(slug: string) {
-    this.store.dispatch(ArticleListActions.unFavorite({ slug }));
+    this.store.dispatch(CardListActions.unFavorite({ slug }));
   }
 
-  navigateToArticle(slug: string) {
+  navigateToCard(slug: string) {
     this.store.dispatch(go({ to: { path: ['/card', slug] } }));
   }
 
   setPage(page: number) {
-    this.store.dispatch(ArticleListActions.setListPage({ page }));
+    this.store.dispatch(CardListActions.setListPage({ page }));
   }
 
-  setListConfig(config: ArticleListConfig) {
-    this.store.dispatch(ArticleListActions.setListConfig({ config }));
+  setListConfig(config: CardListConfig) {
+    this.store.dispatch(CardListActions.setListConfig({ config }));
   }
 }

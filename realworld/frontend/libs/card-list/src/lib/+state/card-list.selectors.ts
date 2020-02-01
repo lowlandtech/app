@@ -1,27 +1,27 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ArticleList } from './card-list.reducer';
+import { CardList } from './card-list.reducer';
 
-const getArticleList = createFeatureSelector<ArticleList>('articleList');
+const getCardList = createFeatureSelector<CardList>('cardList');
 export const getListConfig = createSelector(
-  getArticleList,
-  (state: ArticleList) => state.listConfig,
+  getCardList,
+  (state: CardList) => state.listConfig,
 );
-export const getArticles = createSelector(
-  getArticleList,
-  (state: ArticleList) => state.articles.entities,
+export const getCards = createSelector(
+  getCardList,
+  (state: CardList) => state.cards.entities,
 );
-export const getArticlesCount = createSelector(
-  getArticleList,
-  (state: ArticleList) => state.articles.articlesCount,
+export const getCardsCount = createSelector(
+  getCardList,
+  (state: CardList) => state.cards.cardsCount,
 );
 export const isLoading = createSelector(
-  getArticleList,
-  (state: ArticleList) => state.articles.loading,
+  getCardList,
+  (state: CardList) => state.cards.loading,
 );
 
-export const articleListQuery = {
+export const cardListQuery = {
   getListConfig,
-  getArticles,
-  getArticlesCount,
+  getCards,
+  getCardsCount,
   isLoading,
 };

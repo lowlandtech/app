@@ -1,47 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as ArticleActions from './card.actions';
-import { ArticleState } from './card.reducer';
-import { articleQuery } from './card.selectors';
+import * as CardActions from './card.actions';
+import { CardState } from './card.reducer';
+import { cardQuery } from './card.selectors';
 
 @Injectable()
-export class ArticleFacade {
-  card$ = this.store.select(articleQuery.getArticleData);
-  comments$ = this.store.select(articleQuery.getComments);
-  articleLoaded$ = this.store.select(articleQuery.getArticleLoaded);
-  authorUsername$ = this.store.select(articleQuery.getAuthorUsername);
+export class CardFacade {
+  card$ = this.store.select(cardQuery.getCardData);
+  comments$ = this.store.select(cardQuery.getComments);
+  cardLoaded$ = this.store.select(cardQuery.getCardLoaded);
+  authorUsername$ = this.store.select(cardQuery.getAuthorUsername);
 
-  constructor(private store: Store<ArticleState>) {}
+  constructor(private store: Store<CardState>) {}
 
-  loadArticle(slug: string) {
-    this.store.dispatch(ArticleActions.loadArticle({ slug }));
+  loadCard(slug: string) {
+    this.store.dispatch(CardActions.loadCard({ slug }));
   }
   loadComments(slug: string) {
-    this.store.dispatch(ArticleActions.loadComments({ slug }));
+    this.store.dispatch(CardActions.loadComments({ slug }));
   }
   follow(username: string) {
-    this.store.dispatch(ArticleActions.follow({ username }));
+    this.store.dispatch(CardActions.follow({ username }));
   }
   unfollow(username: string) {
-    this.store.dispatch(ArticleActions.unFollow({ username }));
+    this.store.dispatch(CardActions.unFollow({ username }));
   }
   favorite(slug: string) {
-    this.store.dispatch(ArticleActions.favorite({ slug }));
+    this.store.dispatch(CardActions.favorite({ slug }));
   }
   unfavorite(slug: string) {
-    this.store.dispatch(ArticleActions.unFavorite({ slug }));
+    this.store.dispatch(CardActions.unFavorite({ slug }));
   }
   delete(slug: string) {
-    this.store.dispatch(ArticleActions.deleteArticle({ slug }));
+    this.store.dispatch(CardActions.deleteCard({ slug }));
   }
   deleteComment(data: { commentId: number; slug: string }) {
-    this.store.dispatch(ArticleActions.deleteComment(data));
+    this.store.dispatch(CardActions.deleteComment(data));
   }
   submit(slug: string) {
-    this.store.dispatch(ArticleActions.addComment({ slug }));
+    this.store.dispatch(CardActions.addComment({ slug }));
   }
-  initializeArticle() {
-    this.store.dispatch(ArticleActions.initializeArticle());
+  initializeCard() {
+    this.store.dispatch(CardActions.initializeCard());
   }
 }

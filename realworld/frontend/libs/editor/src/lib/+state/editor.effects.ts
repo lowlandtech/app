@@ -10,12 +10,12 @@ import { go } from '@spotacard/ngrx-router';
 
 @Injectable()
 export class EditorEffects {
-  publishArticle$ = createEffect(() =>
+  publishCard$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(EditorActions.publishArticle),
+      ofType(EditorActions.publishCard),
       withLatestFrom(this.ngrxFormsFacade.data$),
       concatMap(([_, data]) =>
-        this.editorService.publishArticle(data).pipe(
+        this.editorService.publishCard(data).pipe(
           // TODO dispatch this action from the router facade when you refactor
           map(result =>
             go({
@@ -28,13 +28,13 @@ export class EditorEffects {
     ),
   );
 
-  loadArticle$ = createEffect(() =>
+  loadCard$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(EditorActions.loadArticle),
+      ofType(EditorActions.loadCard),
       concatMap(action =>
         this.editorService.get(action.id).pipe(
-          map(card => EditorActions.loadArticleSuccess({ card })),
-          catchError(error => of(EditorActions.loadArticleFail(error))),
+          map(card => EditorActions.loadCardSuccess({ card })),
+          catchError(error => of(EditorActions.loadCardFail(error))),
         ),
       ),
     ),

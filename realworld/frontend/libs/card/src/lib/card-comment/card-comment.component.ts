@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
-import { ArticleComment, ArticleData, User } from '@spotacard/api';
+import { CardComment, CardData, User } from '@spotacard/api';
 
 @Component({
   selector: 'app-card-comment',
@@ -7,10 +7,10 @@ import { ArticleComment, ArticleData, User } from '@spotacard/api';
   styleUrls: ['./card-comment.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleCommentComponent {
+export class CardCommentComponent {
   @Input() currentUser: User;
-  @Input() comment: ArticleComment;
-  @Input() card: ArticleData;
+  @Input() comment: CardComment;
+  @Input() card: CardData;
   @Output() delete: EventEmitter<{
     commentId: number;
     slug: string;

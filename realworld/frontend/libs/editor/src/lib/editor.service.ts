@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService, ArticleData } from '@spotacard/api';
+import { ApiService, CardData } from '@spotacard/api';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class EditorService {
   constructor(private apiService: ApiService) {}
 
-  publishArticle(card): Observable<ArticleData> {
+  publishCard(card): Observable<CardData> {
     if (card.slug) {
-      return this.apiService.put('/articles/' + card.slug, { card: card }).pipe(map(data => data.card));
+      return this.apiService.put('/cards/' + card.slug, { card: card }).pipe(map(data => data.card));
     }
-    return this.apiService.post('/articles/', { card: card }).pipe(map(data => data.card));
+    return this.apiService.post('/cards/', { card: card }).pipe(map(data => data.card));
   }
 
-  get(slug: string): Observable<ArticleData> {
-    return this.apiService.get('/articles/' + slug).pipe(map((data: any) => data.card));
+  get(slug: string): Observable<CardData> {
+    return this.apiService.get('/cards/' + slug).pipe(map((data: any) => data.card));
   }
 }

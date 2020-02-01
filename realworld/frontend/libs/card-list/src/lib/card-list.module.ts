@@ -5,25 +5,25 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { ArticleListEffects } from './+state/card-list.effects';
-import { ArticleListFacade } from './+state/card-list.facade';
-import { articleListInitialState, articleListReducer } from './+state/card-list.reducer';
-import { ArticleListItemComponent } from './card-list-item/card-list-item.component';
-import { ArticleListComponent } from './card-list.component';
-import { ArticleListService } from './card-list.service';
+import { CardListEffects } from './+state/card-list.effects';
+import { CardListFacade } from './+state/card-list.facade';
+import { cardListInitialState, cardListReducer } from './+state/card-list.reducer';
+import { CardListItemComponent } from './card-list-item/card-list-item.component';
+import { CardListComponent } from './card-list.component';
+import { CardListService } from './card-list.service';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
-    StoreModule.forFeature('articleList', articleListReducer, {
-      initialState: articleListInitialState,
+    StoreModule.forFeature('cardList', cardListReducer, {
+      initialState: cardListInitialState,
     }),
-    EffectsModule.forFeature([ArticleListEffects]),
+    EffectsModule.forFeature([CardListEffects]),
   ],
-  declarations: [ArticleListComponent, ArticleListItemComponent],
-  providers: [ArticleListService, ArticleListEffects, ArticleListFacade],
-  exports: [ArticleListComponent],
+  declarations: [CardListComponent, CardListItemComponent],
+  providers: [CardListService, CardListEffects, CardListFacade],
+  exports: [CardListComponent],
 })
-export class ArticleListModule {}
+export class CardListModule {}

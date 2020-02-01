@@ -77,22 +77,22 @@ The example application is a social blogging site (i.e. a Medium.com clone) call
 - Authenticate users via JWT (login/signup pages + logout button on settings page)
 - CRU\* users (sign up & settings page - no deleting required)
 - CRUD Cards
-- CR\*D Comments on articles (no updating required)
-- GET and display paginated lists of articles
-- Favorite articles
+- CR\*D Comments on cards (no updating required)
+- GET and display paginated lists of cards
+- Favorite cards
 - Follow other users
 
 **The general page breakdown looks like this:**
 
 - Home page (URL: /#/ )
   - List of tags
-  - List of articles pulled from either Feed, Global, or by Tag
-  - Pagination for list of articles
+  - List of cards pulled from either Feed, Global, or by Tag
+  - Pagination for list of cards
 - Sign in/Sign up pages (URL: /#/login, /#/register )
   - Uses JWT (store the token in localStorage)
   - Authentication can be easily switched to session/cookie based
 - Settings page (URL: /#/settings )
-- Editor page to create/edit articles (URL: /#/editor, /#/editor/card-slug-here )
+- Editor page to create/edit cards (URL: /#/editor, /#/editor/card-slug-here )
 - Card page (URL: /#/card/card-slug-here )
   - Delete card button (only shown to card's author)
   - Render markdown from server client side
@@ -100,4 +100,4 @@ The example application is a social blogging site (i.e. a Medium.com clone) call
   - Delete comment button (only shown to comment's author)
 - Profile page (URL: /#/profile/:username, /#/profile/:username/favorites )
   - Show basic user info
-  - List of articles populated from author's created articles or author's favorited articles
+  - List of cards populated from author's created cards or author's favorited cards

@@ -1,4 +1,4 @@
-import { ArticleData } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
@@ -8,27 +8,27 @@ import { editorQuery } from './editor.selectors';
 
 @Injectable()
 export class EditorFacade {
-  card$ = this.store.select(editorQuery.getArticle);
+  card$ = this.store.select(editorQuery.getCard);
 
   constructor(private store: Store<EditorState>) {}
 
-  loadArticle(id: string) {
-    this.store.dispatch(EditorActions.loadArticle({ id }));
+  loadCard(id: string) {
+    this.store.dispatch(EditorActions.loadCard({ id }));
   }
 
-  loadArticleSuccess(card: ArticleData) {
-    this.store.dispatch(EditorActions.loadArticleSuccess({ card }));
+  loadCardSuccess(card: CardData) {
+    this.store.dispatch(EditorActions.loadCardSuccess({ card }));
   }
 
-  loadArticleFail(error: Error) {
-    this.store.dispatch(EditorActions.loadArticleFail({ error }));
+  loadCardFail(error: Error) {
+    this.store.dispatch(EditorActions.loadCardFail({ error }));
   }
 
-  publishArticle() {
-    this.store.dispatch(EditorActions.publishArticle());
+  publishCard() {
+    this.store.dispatch(EditorActions.publishCard());
   }
 
-  initializeArticle() {
-    this.store.dispatch(EditorActions.initializeArticle());
+  initializeCard() {
+    this.store.dispatch(EditorActions.initializeCard());
   }
 }

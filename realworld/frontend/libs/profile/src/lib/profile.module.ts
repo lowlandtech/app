@@ -1,4 +1,4 @@
-import { ArticleListModule } from '@spotacard/card-list';
+import { CardListModule } from '@spotacard/card-list';
 import { AuthGuardService } from '@spotacard/auth';
 import { SharedModule } from '@spotacard/shared';
 import { CommonModule } from '@angular/common';
@@ -10,9 +10,9 @@ import { StoreModule } from '@ngrx/store';
 import { ProfileEffects } from './+state/profile.effects';
 import { ProfileFacade } from './+state/profile.facade';
 import { profileInitialState, profileReducer } from './+state/profile.reducer';
-import { ProfileArticlesComponent } from './profile-articles.component';
+import { ProfileCardsComponent } from './profile-cards.component';
 import {
-  ProfileArticlesResolverService,
+  ProfileCardsResolverService,
   ProfileFavoritesResolverService,
   ProfileResolverService,
 } from './profile-resolver.service';
@@ -22,7 +22,7 @@ import { ProfileService } from './profile.service';
 @NgModule({
   imports: [
     CommonModule,
-    ArticleListModule,
+    CardListModule,
     SharedModule,
     RouterModule.forChild([
       {
@@ -33,12 +33,12 @@ import { ProfileService } from './profile.service';
         children: [
           {
             path: '',
-            component: ProfileArticlesComponent,
-            resolve: { ProfileArticlesResolverService },
+            component: ProfileCardsComponent,
+            resolve: { ProfileCardsResolverService },
           },
           {
             path: 'favorites',
-            component: ProfileArticlesComponent,
+            component: ProfileCardsComponent,
             resolve: { ProfileFavoritesResolverService },
           },
         ],
@@ -53,10 +53,10 @@ import { ProfileService } from './profile.service';
     ProfileEffects,
     ProfileService,
     ProfileResolverService,
-    ProfileArticlesResolverService,
+    ProfileCardsResolverService,
     ProfileFavoritesResolverService,
     ProfileFacade,
   ],
-  declarations: [ProfileComponent, ProfileArticlesComponent],
+  declarations: [ProfileComponent, ProfileCardsComponent],
 })
 export class ProfileModule {}

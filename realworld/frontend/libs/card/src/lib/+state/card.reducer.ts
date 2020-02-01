@@ -1,19 +1,19 @@
-import { ArticleComment, ArticleData } from '@spotacard/api';
+import { CardComment, CardData } from '@spotacard/api';
 import { Action, createReducer, on } from '@ngrx/store';
-import * as ArticleActions from './card.actions';
+import * as CardActions from './card.actions';
 
 export interface Card {
-  data: ArticleData;
-  comments: ArticleComment[];
+  data: CardData;
+  comments: CardComment[];
   loading: boolean;
   loaded: boolean;
 }
 
-export interface ArticleState {
+export interface CardState {
   readonly card: Card;
 }
 
-export const articleInitialState: Card = {
+export const cardInitialState: Card = {
   data: {
     slug: '',
     title: '',
@@ -38,47 +38,47 @@ export const articleInitialState: Card = {
 };
 
 const reducer = createReducer(
-  articleInitialState,
-  on(ArticleActions.loadArticleSuccess, (state, action) => ({
+  cardInitialState,
+  on(CardActions.loadCardSuccess, (state, action) => ({
     ...state,
     data: action.card,
     loaded: true,
     loading: false,
   })),
-  on(ArticleActions.loadArticleFail, state => ({
+  on(CardActions.loadCardFail, state => ({
     ...state,
-    data: articleInitialState.data,
+    data: cardInitialState.data,
     loaded: false,
     loading: false,
   })),
-  on(ArticleActions.addCommentSuccess, (state, action) => {
-    const comments: ArticleComment[] = [action.comment, ...state.comments];
+  on(CardActions.addCommentSuccess, (state, action) => {
+    const comments: CardComment[] = [action.comment, ...state.comments];
     return { ...state, comments };
   }),
-  on(ArticleActions.deleteCommentSuccess, (state, action) => {
-    const comments: ArticleComment[] = state.comments.filter(item => item.id !== action.commentId);
+  on(CardActions.deleteCommentSuccess, (state, action) => {
+    const comments: CardComment[] = state.comments.filter(item => item.id !== action.commentId);
     return { ...state, comments };
   }),
-  on(ArticleActions.initializeArticle, state => articleInitialState),
-  on(ArticleActions.deleteArticleFail, state => articleInitialState),
-  on(ArticleActions.loadCommentsSuccess, (state, action) => ({
+  on(CardActions.initializeCard, state => cardInitialState),
+  on(CardActions.deleteCardFail, state => cardInitialState),
+  on(CardActions.loadCommentsSuccess, (state, action) => ({
     ...state,
     comments: action.comments,
   })),
-  on(ArticleActions.loadCommentsFail, state => ({
+  on(CardActions.loadCommentsFail, state => ({
     ...state,
-    comments: articleInitialState.comments,
+    comments: cardInitialState.comments,
   })),
-  on(ArticleActions.followSuccess, ArticleActions.unFollowSuccess, (state, action) => {
-    const data: ArticleData = { ...state.data, author: action.profile };
+  on(CardActions.followSuccess, CardActions.unFollowSuccess, (state, action) => {
+    const data: CardData = { ...state.data, author: action.profile };
     return { ...state, data };
   }),
-  on(ArticleActions.favoriteSuccess, ArticleActions.unFavoriteSuccess, (state, action) => ({
+  on(CardActions.favoriteSuccess, CardActions.unFavoriteSuccess, (state, action) => ({
     ...state,
     data: action.card,
   })),
 );
 
-export function articleReducer(state: Card | undefined, action: Action): Card {
+export function cardReducer(state: Card | undefined, action: Action): Card {
   return reducer(state, action);
 }

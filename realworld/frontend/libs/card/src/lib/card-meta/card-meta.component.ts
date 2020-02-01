@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
-import { ArticleData } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 
 @Component({
   selector: 'app-card-meta',
@@ -7,8 +7,8 @@ import { ArticleData } from '@spotacard/api';
   styleUrls: ['./card-meta.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleMetaComponent {
-  @Input() card: ArticleData;
+export class CardMetaComponent {
+  @Input() card: CardData;
   @Input() isAuthenticated: boolean;
   @Input() canModify: boolean;
   @Output() follow: EventEmitter<string> = new EventEmitter<string>();
@@ -33,7 +33,7 @@ export class ArticleMetaComponent {
     }
   }
 
-  deleteArticle() {
+  deleteCard() {
     this.delete.emit(this.card.slug);
   }
 }

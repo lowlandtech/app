@@ -23,7 +23,7 @@
       <div class="info">{{ card.favoritesCount }}</div>
     </button>
   </div>
-  <a (click)="navigateToArticle.emit(card.slug)" class="preview-link">
+  <a (click)="navigateToCard.emit(card.slug)" class="preview-link">
     <h1>{{ card.title }}</h1>
     <p>{{ card.description }}</p>
     <span>Read more...</span>
