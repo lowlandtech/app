@@ -40,40 +40,40 @@
       "tags": []
     },
     "api": {
-      "tags": []
-    },
-    "card-list": {
-      "tags": []
+      "tags": ["api"]
     },
     "card": {
-      "tags": []
+      "tags": ["card"]
+    },
+    "card-list": {
+      "tags": ["card-list"]
     },
     "auth": {
-      "tags": []
+      "tags": ["auth"]
     },
     "editor": {
-      "tags": []
+      "tags": ["editor"]
     },
     "home": {
-      "tags": []
+      "tags": ["home"]
     },
     "ngrx-error": {
-      "tags": []
+      "tags": ["ngrx-error"]
     },
     "ngrx-forms": {
-      "tags": []
-    },
-    "ngrx-router": {
-      "tags": []
+      "tags": ["ngrx-forms"]
     },
     "profile": {
-      "tags": []
+      "tags": ["profile"]
+    },
+    "ngrx-router": {
+      "tags": ["ngrx-router"]
     },
     "settings": {
-      "tags": []
+      "tags": ["settings"]
     },
     "shared": {
-      "tags": []
+      "tags": ["shared"]
     },
     "spotacard": {
       "tags": []
