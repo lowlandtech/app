@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { map } from 'rxjs/operators';
 import * as NgrxErrorActions from './ngrx-error.actions';
-import { go } from '@angular-ngrx-nx-realworld-example-app/ngrx-router';
+import { go } from '@spotacard/ngrx-router';
 
 @Injectable()
 export class NgrxErrorEffects {

@@ -24,7 +24,7 @@ namespace Spotacard
 {
     public class Startup
     {
-        public const string DEFAULT_DATABASE_CONNECTIONSTRING = "Filename=realworld.db";
+        public const string DEFAULT_DATABASE_CONNECTIONSTRING = "Filename=spotacard.db";
         public const string DEFAULT_DATABASE_PROVIDER = "sqlite";
 
         private readonly IConfiguration _config;
@@ -85,7 +85,7 @@ namespace Spotacard
                     },
                     new string[] {}}
                 });
-                x.SwaggerDoc("v1", new OpenApiInfo { Title = "RealWorld API", Version = "v1" });
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Spotacard API", Version = "v1" });
                 x.CustomSchemaIds(y => y.FullName);
                 x.DocInclusionPredicate((version, apiDescription) => true);
                 x.TagActionsBy(y => new List<string>()
@@ -145,7 +145,7 @@ namespace Spotacard
             // Enable middleware to serve swagger-ui assets(HTML, JS, CSS etc.)
             app.UseSwaggerUI(x =>
             {
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "RealWorld API V1");
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Spotacard API V1");
             });
 
             app.ApplicationServices.GetRequiredService<ConduitContext>().Database.EnsureCreated();

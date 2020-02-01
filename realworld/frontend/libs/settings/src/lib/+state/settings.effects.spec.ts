@@ -1,4 +1,4 @@
-import { ApiService } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ApiService } from '@spotacard/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -8,8 +8,8 @@ import { hot } from '@nrwl/angular/testing';
 
 import { SettingsService } from '../settings.service';
 import { SettingsEffects } from './settings.effects';
-import { AuthFacade } from '@angular-ngrx-nx-realworld-example-app/auth';
-import { NgrxFormsFacade } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { AuthFacade } from '@spotacard/auth';
+import { NgrxFormsFacade } from '@spotacard/ngrx-forms';
 
 describe('SettingsEffects', () => {
   let actions;

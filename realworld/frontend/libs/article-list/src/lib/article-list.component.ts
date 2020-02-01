@@ -1,4 +1,4 @@
-import { ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleData } from '@spotacard/api';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { withLatestFrom } from 'rxjs/operators';

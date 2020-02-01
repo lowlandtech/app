@@ -1,4 +1,4 @@
-import { Field, NgrxFormsFacade } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Observable } from 'rxjs';

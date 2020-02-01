@@ -1,4 +1,4 @@
-import { ActionsService } from '@angular-ngrx-nx-realworld-example-app/shared';
+import { ActionsService } from '@spotacard/shared';
 import { ProfileService } from '../profile.service';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';

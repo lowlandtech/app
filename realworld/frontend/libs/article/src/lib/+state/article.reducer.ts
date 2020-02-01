@@ -1,4 +1,4 @@
-import { ArticleComment, ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleComment, ArticleData } from '@spotacard/api';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as ArticleActions from './article.actions';
 

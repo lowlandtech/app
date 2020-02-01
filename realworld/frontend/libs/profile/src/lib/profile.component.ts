@@ -1,5 +1,5 @@
-import { User, Profile } from '@angular-ngrx-nx-realworld-example-app/api';
-import { AuthFacade } from '@angular-ngrx-nx-realworld-example-app/auth';
+import { User, Profile } from '@spotacard/api';
+import { AuthFacade } from '@spotacard/auth';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { map, takeUntil, tap } from 'rxjs/operators';

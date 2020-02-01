@@ -16,16 +16,16 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-ngrx-nx-realworld-example-app/*": ["libs/*"],
+      "@spotacard/*": ["libs/*"],
       "@default/*": ["apps/spotacard/src/app/*"],
       "@env/*": ["apps/spotacard/src/environments/*"],
-      "@angular-ngrx-nx-realworld-example-app/api": ["libs/api/src/index.ts"],
-      "@angular-ngrx-nx-realworld-example-app/article-list": ["libs/article-list/src/index.ts"],
-      "@angular-ngrx-nx-realworld-example-app/auth": ["libs/auth/src/index.ts"],
-      "@angular-ngrx-nx-realworld-example-app/ngrx-error": ["libs/ngrx-error/src/index.ts"],
-      "@angular-ngrx-nx-realworld-example-app/ngrx-forms": ["libs/ngrx-forms/src/index.ts"],
-      "@angular-ngrx-nx-realworld-example-app/ngrx-router": ["libs/ngrx-router/src/index.ts"],
-      "@angular-ngrx-nx-realworld-example-app/shared": ["libs/shared/src/index.ts"]
+      "@spotacard/api": ["libs/api/src/index.ts"],
+      "@spotacard/article-list": ["libs/article-list/src/index.ts"],
+      "@spotacard/auth": ["libs/auth/src/index.ts"],
+      "@spotacard/ngrx-error": ["libs/ngrx-error/src/index.ts"],
+      "@spotacard/ngrx-forms": ["libs/ngrx-forms/src/index.ts"],
+      "@spotacard/ngrx-router": ["libs/ngrx-router/src/index.ts"],
+      "@spotacard/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

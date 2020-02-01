@@ -1,5 +1,5 @@
-import { NgrxFormsModule } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
-import { SharedModule } from '@angular-ngrx-nx-realworld-example-app/shared';
+import { NgrxFormsModule } from '@spotacard/ngrx-forms';
+import { SharedModule } from '@spotacard/shared';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';

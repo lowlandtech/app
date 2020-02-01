@@ -1,4 +1,4 @@
-import { ApiService, ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ApiService, ArticleData } from '@spotacard/api';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

@@ -1,4 +1,4 @@
-import { NgrxFormsFacade, setErrors } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { NgrxFormsFacade, setErrors } from '@spotacard/ngrx-forms';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -6,7 +6,7 @@ import { catchError, concatMap, map, withLatestFrom } from 'rxjs/operators';
 
 import { EditorService } from '../editor.service';
 import * as EditorActions from './editor.actions';
-import { go } from '@angular-ngrx-nx-realworld-example-app/ngrx-router';
+import { go } from '@spotacard/ngrx-router';
 
 @Injectable()
 export class EditorEffects {

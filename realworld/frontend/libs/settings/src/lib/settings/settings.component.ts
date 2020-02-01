@@ -1,5 +1,5 @@
-import { AuthFacade } from '@angular-ngrx-nx-realworld-example-app/auth';
-import { Field, NgrxFormsFacade } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { AuthFacade } from '@spotacard/auth';
+import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';

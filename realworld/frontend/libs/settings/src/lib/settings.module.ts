@@ -1,5 +1,5 @@
-import { AuthGuardService } from '@angular-ngrx-nx-realworld-example-app/auth';
-import { NgrxFormsModule } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { AuthGuardService } from '@spotacard/auth';
+import { NgrxFormsModule } from '@spotacard/ngrx-forms';
 import { SettingsService } from './settings.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';

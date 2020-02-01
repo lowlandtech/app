@@ -1,16 +1,16 @@
-# ![RealWorld Example App](logo.png)
+# ![Spotacard App](logo.png)
 
-[![pipeline status](https://gitlab.com/stefanoslig/angular-ngrx-nx-realworld-example-app/badges/master/pipeline.svg)](https://gitlab.com/stefanoslig/angular-ngrx-nx-realworld-example-app/commits/master)
+[![pipeline status](https://gitlab.com/spotacard/spotacard/badges/master/pipeline.svg)](https://gitlab.com/spotacard/spotacard/commits/master)
 
-> ### Angular, ngrx/platform, nrwl/nx codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### Angular, ngrx/platform, nrwl/nx codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [Spotacard](https://github.com/spotacard/spotacard) spec and API.
 
-### [Demo](https://spotacard-af252.firebaseapp.com)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
+### [Demo](https://spotacard-af252.firebaseapp.com)&nbsp;&nbsp;&nbsp;&nbsp;[Spotacard](https://github.com/spotacard/spotacard)
 
 This codebase was created to demonstrate a fully fledged fullstack application built with Angular, ngrx/platform, nrwl/nx including CRUD operations, authentication, routing, pagination, and more.
 
 We've gone to great lengths to adhere to the Angular community styleguides & best practices.
 
-For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
+For more information on how to this works with other frontends/backends, head over to the [Spotacard](https://github.com/spotacard/spotacard) repo.
 
 # Getting started
 

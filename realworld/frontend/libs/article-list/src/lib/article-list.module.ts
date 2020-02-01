@@ -1,4 +1,4 @@
-import { SharedModule } from '@angular-ngrx-nx-realworld-example-app/shared';
+import { SharedModule } from '@spotacard/shared';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleData } from '@spotacard/api';
 
 import { ArticleListConfig } from './article-list.reducer';
 

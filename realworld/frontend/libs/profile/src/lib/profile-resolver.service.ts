@@ -1,12 +1,12 @@
-import { articleListInitialState } from '@angular-ngrx-nx-realworld-example-app/article-list';
-import * as fromArticleList from '@angular-ngrx-nx-realworld-example-app/article-list';
+import { articleListInitialState } from '@spotacard/article-list';
+import * as fromArticleList from '@spotacard/article-list';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { getProfile } from './+state/profile.actions';
-import { Profile } from '@angular-ngrx-nx-realworld-example-app/api';
+import { Profile } from '@spotacard/api';
 
 @Injectable()
 export class ProfileResolverService implements Resolve<Profile> {

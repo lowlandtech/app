@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ArticleData, ArticleComment, Profile } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleData, ArticleComment, Profile } from '@spotacard/api';
 
 export const loadArticle = createAction('[article] LOAD_ARTICLE', props<{ slug: string }>());
 

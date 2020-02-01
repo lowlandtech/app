@@ -1,6 +1,6 @@
-import { ArticleComment, ArticleData, User } from '@angular-ngrx-nx-realworld-example-app/api';
-import { AuthFacade } from '@angular-ngrx-nx-realworld-example-app/auth';
-import { Field, NgrxFormsFacade } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { ArticleComment, ArticleData, User } from '@spotacard/api';
+import { AuthFacade } from '@spotacard/auth';
+import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';

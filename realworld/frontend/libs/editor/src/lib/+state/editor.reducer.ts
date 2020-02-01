@@ -1,4 +1,4 @@
-import { ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleData } from '@spotacard/api';
 
 import { Action, createReducer, on } from '@ngrx/store';
 import * as EditorActions from './editor.actions';

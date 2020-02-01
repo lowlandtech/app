@@ -1,4 +1,4 @@
-import { ArticleData } from '@angular-ngrx-nx-realworld-example-app/api/src/lib/types';
+import { ArticleData } from '@spotacard/api/src/lib/types';
 import { createAction, props } from '@ngrx/store';
 
 export const publishArticle = createAction('[editor] PUBLISH_ARTICLE');

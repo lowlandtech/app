@@ -5,7 +5,7 @@ import { ArticleListState, ArticleListConfig } from './article-list.reducer';
 import { articleListQuery } from './article-list.selectors';
 import * as ArticleListActions from './article-list.actions';
 import { withLatestFrom, map } from 'rxjs/operators';
-import { go } from '@angular-ngrx-nx-realworld-example-app/ngrx-router';
+import { go } from '@spotacard/ngrx-router';
 @Injectable()
 export class ArticleListFacade {
   articles$ = this.store.select(articleListQuery.getArticles);

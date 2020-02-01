@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "RealWorld": {
+    "Spotacard": {
       "commandName": "Project"
     }
   }

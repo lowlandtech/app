@@ -1,4 +1,4 @@
-import { User } from '@angular-ngrx-nx-realworld-example-app/api';
+import { User } from '@spotacard/api';
 import { createReducer, Action, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
 

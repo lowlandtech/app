@@ -1,4 +1,4 @@
-import { ApiService } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ApiService } from '@spotacard/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -7,8 +7,8 @@ import { hot } from '@nrwl/angular/testing';
 
 import { ArticleService } from '../article.service';
 import { ArticleEffects } from './article.effects';
-import { ActionsService } from '@angular-ngrx-nx-realworld-example-app/shared';
-import { NgrxFormsFacade } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { ActionsService } from '@spotacard/shared';
+import { NgrxFormsFacade } from '@spotacard/ngrx-forms';
 
 describe('ArticleEffects', () => {
   let actions;

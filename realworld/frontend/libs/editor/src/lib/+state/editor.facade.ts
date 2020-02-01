@@ -1,4 +1,4 @@
-import { ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleData } from '@spotacard/api';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 

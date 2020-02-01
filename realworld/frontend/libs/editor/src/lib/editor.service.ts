@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService, ArticleData } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ApiService, ArticleData } from '@spotacard/api';
 import { map } from 'rxjs/operators';
 
 @Injectable()

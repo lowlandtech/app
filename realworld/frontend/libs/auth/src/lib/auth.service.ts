@@ -1,4 +1,4 @@
-import { ApiService, User } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ApiService, User } from '@spotacard/api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

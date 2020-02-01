@@ -1,5 +1,5 @@
-import { ArticleData, User } from '@angular-ngrx-nx-realworld-example-app/api';
-import { Field } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { ArticleData, User } from '@spotacard/api';
+import { Field } from '@spotacard/ngrx-forms';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 

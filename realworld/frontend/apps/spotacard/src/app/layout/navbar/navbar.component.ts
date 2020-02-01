@@ -1,5 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
-import { User } from '@angular-ngrx-nx-realworld-example-app/api';
+import { User } from '@spotacard/api';
 
 @Component({
   selector: 'spotacard-navbar',

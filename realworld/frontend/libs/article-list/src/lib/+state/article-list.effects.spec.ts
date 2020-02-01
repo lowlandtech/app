@@ -1,5 +1,5 @@
-import { ApiService } from '@angular-ngrx-nx-realworld-example-app/api';
-import { ActionsService } from '@angular-ngrx-nx-realworld-example-app/shared';
+import { ApiService } from '@spotacard/api';
+import { ActionsService } from '@spotacard/shared';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';

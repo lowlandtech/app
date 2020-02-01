@@ -1,5 +1,5 @@
-import { AuthFacade, getUser } from '@angular-ngrx-nx-realworld-example-app/auth';
-import { NgrxFormsFacade, setErrors } from '@angular-ngrx-nx-realworld-example-app/ngrx-forms';
+import { AuthFacade, getUser } from '@spotacard/auth';
+import { NgrxFormsFacade, setErrors } from '@spotacard/ngrx-forms';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -7,7 +7,7 @@ import { catchError, concatMap, map, mergeMap, withLatestFrom } from 'rxjs/opera
 
 import { SettingsService } from '../settings.service';
 import * as SettingsActions from './settings.actions';
-import { go } from '@angular-ngrx-nx-realworld-example-app/ngrx-router';
+import { go } from '@spotacard/ngrx-router';
 
 @Injectable()
 export class SettingsEffects {

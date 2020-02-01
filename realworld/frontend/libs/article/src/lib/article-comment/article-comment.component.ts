@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
-import { ArticleComment, ArticleData, User } from '@angular-ngrx-nx-realworld-example-app/api';
+import { ArticleComment, ArticleData, User } from '@spotacard/api';
 
 @Component({
   selector: 'app-article-comment',

@@ -1,9 +1,9 @@
-import { User } from '@angular-ngrx-nx-realworld-example-app/api';
-import { AuthFacade } from '@angular-ngrx-nx-realworld-example-app/auth';
+import { User } from '@spotacard/api';
+import { AuthFacade } from '@spotacard/auth';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter, take } from 'rxjs/operators';
-import { LocalStorageJwtService } from '@angular-ngrx-nx-realworld-example-app/auth';
+import { LocalStorageJwtService } from '@spotacard/auth';
 
 @Component({
   selector: 'spotacard-root',
