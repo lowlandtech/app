@@ -15,9 +15,9 @@ namespace Spotacard.Domain
         public int AuthorId { get; set; }
 
         [JsonIgnore]
-        public Article Article { get; set; }
+        public Card Card { get; set; }
         [JsonIgnore]
-        public int ArticleId { get; set; }
+        public int CardId { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

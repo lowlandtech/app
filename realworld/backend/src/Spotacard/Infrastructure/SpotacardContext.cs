@@ -15,7 +15,7 @@ namespace Spotacard.Infrastructure
         {
         }
 
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<Card> Cards { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Tag> Tags { get; set; }
@@ -27,11 +27,11 @@ namespace Spotacard.Infrastructure
         {
             modelBuilder.Entity<ArticleTag>(b =>
             {
-                b.HasKey(t => new { t.ArticleId, t.TagId });
+                b.HasKey(t => new { t.CardId, t.TagId });
 
-                b.HasOne(pt => pt.Article)
+                b.HasOne(pt => pt.Card)
                 .WithMany(p => p.ArticleTags)
-                .HasForeignKey(pt => pt.ArticleId);
+                .HasForeignKey(pt => pt.CardId);
 
                 b.HasOne(pt => pt.Tag)
                 .WithMany(t => t.ArticleTags)
@@ -40,11 +40,11 @@ namespace Spotacard.Infrastructure
 
             modelBuilder.Entity<ArticleFavorite>(b =>
             {
-                b.HasKey(t => new { t.ArticleId, t.PersonId });
+                b.HasKey(t => new { t.CardId, t.PersonId });
 
-                b.HasOne(pt => pt.Article)
+                b.HasOne(pt => pt.Card)
                     .WithMany(p => p.ArticleFavorites)
-                    .HasForeignKey(pt => pt.ArticleId);
+                    .HasForeignKey(pt => pt.CardId);
 
                 b.HasOne(pt => pt.Person)
                     .WithMany(t => t.ArticleFavorites)

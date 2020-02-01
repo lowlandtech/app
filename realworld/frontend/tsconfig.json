@@ -20,7 +20,7 @@
       "@default/*": ["apps/spotacard/src/app/*"],
       "@env/*": ["apps/spotacard/src/environments/*"],
       "@spotacard/api": ["libs/api/src/index.ts"],
-      "@spotacard/article-list": ["libs/article-list/src/index.ts"],
+      "@spotacard/card-list": ["libs/card-list/src/index.ts"],
       "@spotacard/auth": ["libs/auth/src/index.ts"],
       "@spotacard/ngrx-error": ["libs/ngrx-error/src/index.ts"],
       "@spotacard/ngrx-forms": ["libs/ngrx-forms/src/index.ts"],

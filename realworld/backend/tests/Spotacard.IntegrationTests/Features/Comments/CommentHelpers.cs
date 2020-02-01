@@ -9,7 +9,7 @@ namespace Spotacard.IntegrationTests.Features.Comments
     public static class CommentHelpers
     {
         /// <summary>
-        /// creates an article comment based on the given Create command. 
+        /// creates an card comment based on the given Create command. 
         /// Creates a default user if parameter userName is empty.
         /// </summary>
         /// <param name="fixture"></param>
@@ -31,7 +31,7 @@ namespace Spotacard.IntegrationTests.Features.Comments
             var created = await commentCreateHandler.Handle(command, new System.Threading.CancellationToken());
 
             var dbArticleWithComments = await fixture.ExecuteDbContextAsync(
-                db => db.Articles
+                db => db.Cards
                     .Include(a => a.Comments).Include(a => a.Author)
                     .Where(a => a.Slug == command.Slug)
                     .SingleOrDefaultAsync()

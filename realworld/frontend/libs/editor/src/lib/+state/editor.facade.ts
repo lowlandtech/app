@@ -8,7 +8,7 @@ import { editorQuery } from './editor.selectors';
 
 @Injectable()
 export class EditorFacade {
-  article$ = this.store.select(editorQuery.getArticle);
+  card$ = this.store.select(editorQuery.getArticle);
 
   constructor(private store: Store<EditorState>) {}
 
@@ -16,8 +16,8 @@ export class EditorFacade {
     this.store.dispatch(EditorActions.loadArticle({ id }));
   }
 
-  loadArticleSuccess(article: ArticleData) {
-    this.store.dispatch(EditorActions.loadArticleSuccess({ article }));
+  loadArticleSuccess(card: ArticleData) {
+    this.store.dispatch(EditorActions.loadArticleSuccess({ card }));
   }
 
   loadArticleFail(error: Error) {

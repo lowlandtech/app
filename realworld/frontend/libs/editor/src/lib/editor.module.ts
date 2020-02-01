@@ -9,7 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { EditorEffects } from './+state/editor.effects';
 import { EditorFacade } from './+state/editor.facade';
 import { editorReducer, editorInitialState } from './+state/editor.reducer';
-import { ArticleEditorComponent } from './article-editor/article-editor.component';
+import { ArticleEditorComponent } from './card-editor/card-editor.component';
 import { EditorResolverService } from './editor-resolver.service';
 import { EditorService } from './editor.service';
 

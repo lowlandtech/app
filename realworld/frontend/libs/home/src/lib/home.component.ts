@@ -7,9 +7,9 @@ import { Store } from '@ngrx/store';
 import * as fromHome from './+state/home.reducer';
 import * as fromAuth from '@spotacard/auth';
 import { withLatestFrom, tap, takeUntil } from 'rxjs/operators';
-import * as fromArticleList from '@spotacard/article-list';
-import { ArticleListConfig } from '@spotacard/article-list';
-import { articleListInitialState, ArticleListFacade } from '@spotacard/article-list';
+import * as fromArticleList from '@spotacard/card-list';
+import { ArticleListConfig } from '@spotacard/card-list';
+import { articleListInitialState, ArticleListFacade } from '@spotacard/card-list';
 import { AuthFacade } from '@spotacard/auth';
 import { HomeFacade } from './+state/home.facade';
 

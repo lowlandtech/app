@@ -31,17 +31,17 @@ namespace Spotacard.Features.Comments
 
             public async Task<CommentsEnvelope> Handle(Query message, CancellationToken cancellationToken)
             {
-                var article = await _context.Articles
+                var card = await _context.Cards
                     .Include(x => x.Comments)
                         .ThenInclude(x => x.Author)
                     .FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (article == null)
+                if (card == null)
                 {
-                    throw new RestException(HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
                 }
 
-                return new CommentsEnvelope(article.Comments);
+                return new CommentsEnvelope(card.Comments);
             }
         }
     }

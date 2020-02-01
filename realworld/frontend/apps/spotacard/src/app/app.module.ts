@@ -29,9 +29,9 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
             import('@spotacard/home/src/lib/home.module').then(m => m.HomeModule),
         },
         {
-          path: 'article/:slug',
+          path: 'card/:slug',
           loadChildren: () =>
-            import('@spotacard/article/src/lib/article.module').then(m => m.ArticleModule),
+            import('@spotacard/card/src/lib/card.module').then(m => m.ArticleModule),
         },
         {
           path: 'settings',

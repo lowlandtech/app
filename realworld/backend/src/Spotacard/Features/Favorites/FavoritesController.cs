@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Spotacard.Features.Articles;
+using Spotacard.Features.Cards;
 using Spotacard.Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

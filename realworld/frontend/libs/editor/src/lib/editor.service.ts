@@ -7,14 +7,14 @@ import { map } from 'rxjs/operators';
 export class EditorService {
   constructor(private apiService: ApiService) {}
 
-  publishArticle(article): Observable<ArticleData> {
-    if (article.slug) {
-      return this.apiService.put('/articles/' + article.slug, { article: article }).pipe(map(data => data.article));
+  publishArticle(card): Observable<ArticleData> {
+    if (card.slug) {
+      return this.apiService.put('/articles/' + card.slug, { card: card }).pipe(map(data => data.card));
     }
-    return this.apiService.post('/articles/', { article: article }).pipe(map(data => data.article));
+    return this.apiService.post('/articles/', { card: card }).pipe(map(data => data.card));
   }
 
   get(slug: string): Observable<ArticleData> {
-    return this.apiService.get('/articles/' + slug).pipe(map((data: any) => data.article));
+    return this.apiService.get('/articles/' + slug).pipe(map((data: any) => data.card));
   }
 }

@@ -54,13 +54,13 @@ namespace Spotacard.Features.Comments
 
             public async Task<CommentEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var article = await _context.Articles
+                var card = await _context.Cards
                     .Include(x => x.Comments)
                     .FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (article == null)
+                if (card == null)
                 {
-                    throw new RestException(HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
                 }
 
                 var author = await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
@@ -74,7 +74,7 @@ namespace Spotacard.Features.Comments
                 };
                 await _context.Comments.AddAsync(comment, cancellationToken);
 
-                article.Comments.Add(comment);
+                card.Comments.Add(comment);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

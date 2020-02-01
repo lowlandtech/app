@@ -16,10 +16,10 @@ export class ActionsService {
   }
 
   favorite(slug): Observable<ArticleData> {
-    return this.apiService.post('/articles/' + slug + '/favorite').pipe(map(data => data.article));
+    return this.apiService.post('/articles/' + slug + '/favorite').pipe(map(data => data.card));
   }
 
   unfavorite(slug): Observable<ArticleData> {
-    return this.apiService.delete('/articles/' + slug + '/favorite').pipe(map(data => data.article));
+    return this.apiService.delete('/articles/' + slug + '/favorite').pipe(map(data => data.card));
   }
 }

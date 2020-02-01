@@ -1,7 +1,7 @@
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Features.Articles;
+using Spotacard.Features.Cards;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 using FluentValidation;
@@ -43,16 +43,16 @@ namespace Spotacard.Features.Favorites
 
             public async Task<ArticleEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var article = await _context.Articles.FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
+                var card = await _context.Cards.FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (article == null)
+                if (card == null)
                 {
-                    throw new RestException(HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
                 }
 
                 var person = await _context.Persons.FirstOrDefaultAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
 
-                var favorite = await _context.ArticleFavorites.FirstOrDefaultAsync(x => x.ArticleId == article.ArticleId && x.PersonId == person.PersonId, cancellationToken);
+                var favorite = await _context.ArticleFavorites.FirstOrDefaultAsync(x => x.CardId == card.Id && x.PersonId == person.PersonId, cancellationToken);
 
                 if (favorite != null)
                 {
@@ -60,8 +60,8 @@ namespace Spotacard.Features.Favorites
                     await _context.SaveChangesAsync(cancellationToken);
                 }
 
-                return new ArticleEnvelope(await _context.Articles.GetAllData()
-                    .FirstOrDefaultAsync(x => x.ArticleId == article.ArticleId, cancellationToken));
+                return new ArticleEnvelope(await _context.Cards.GetAllData()
+                    .FirstOrDefaultAsync(x => x.CardId == card.Id, cancellationToken));
             }
         }
     }

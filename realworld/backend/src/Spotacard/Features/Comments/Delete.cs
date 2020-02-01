@@ -43,16 +43,16 @@ namespace Spotacard.Features.Comments
 
             public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
-                var article = await _context.Articles
+                var card = await _context.Cards
                     .Include(x => x.Comments)
                     .FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (article == null)
+                if (card == null)
                 {
-                    throw new RestException(HttpStatusCode.NotFound, new { Article = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
                 }
 
-                var comment = article.Comments.FirstOrDefault(x => x.CommentId == message.Id);
+                var comment = card.Comments.FirstOrDefault(x => x.CommentId == message.Id);
                 if (comment == null)
                 {
                     throw new RestException(HttpStatusCode.NotFound, new { Comment = Constants.NOT_FOUND });

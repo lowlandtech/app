@@ -1,5 +1,5 @@
-import { articleListInitialState } from '@spotacard/article-list';
-import * as fromArticleList from '@spotacard/article-list';
+import { articleListInitialState } from '@spotacard/card-list';
+import * as fromArticleList from '@spotacard/card-list';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';

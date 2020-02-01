@@ -1,4 +1,4 @@
-import { ArticleListModule } from '@spotacard/article-list';
+import { ArticleListModule } from '@spotacard/card-list';
 import { AuthGuardService } from '@spotacard/auth';
 import { SharedModule } from '@spotacard/shared';
 import { CommonModule } from '@angular/common';

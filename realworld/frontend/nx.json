@@ -17,11 +17,11 @@
     "api": {
       "tags": ["api"]
     },
-    "article": {
-      "tags": ["article"]
+    "card": {
+      "tags": ["card"]
     },
-    "article-list": {
-      "tags": ["article-list"]
+    "card-list": {
+      "tags": ["card-list"]
     },
     "auth": {
       "tags": ["auth"]

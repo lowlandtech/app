@@ -177,53 +177,53 @@
       },
       "prefix": "app"
     },
-    "article": {
-      "root": "libs/article",
-      "sourceRoot": "libs/article/src",
+    "card": {
+      "root": "libs/card",
+      "sourceRoot": "libs/card/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/article/tsconfig.lib.json",
-              "libs/article/tsconfig.spec.json"
+              "libs/card/tsconfig.lib.json",
+              "libs/card/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/article/**"]
+            "exclude": ["**/node_modules/**", "!libs/card/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/article/jest.config.js",
-            "tsConfig": "libs/article/tsconfig.spec.json",
-            "setupFile": "libs/article/src/test-setup.ts"
+            "jestConfig": "libs/card/jest.config.js",
+            "tsConfig": "libs/card/tsconfig.spec.json",
+            "setupFile": "libs/card/src/test-setup.ts"
           }
         }
       },
       "prefix": "app"
     },
-    "article-list": {
-      "root": "libs/article-list",
-      "sourceRoot": "libs/article-list/src",
+    "card-list": {
+      "root": "libs/card-list",
+      "sourceRoot": "libs/card-list/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/article-list/tsconfig.lib.json",
-              "libs/article-list/tsconfig.spec.json"
+              "libs/card-list/tsconfig.lib.json",
+              "libs/card-list/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/article-list/**"]
+            "exclude": ["**/node_modules/**", "!libs/card-list/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/article-list/jest.config.js",
-            "tsConfig": "libs/article-list/tsconfig.spec.json",
-            "setupFile": "libs/article-list/src/test-setup.ts"
+            "jestConfig": "libs/card-list/jest.config.js",
+            "tsConfig": "libs/card-list/tsconfig.spec.json",
+            "setupFile": "libs/card-list/src/test-setup.ts"
           }
         }
       },

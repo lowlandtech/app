@@ -4,7 +4,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import * as EditorActions from './editor.actions';
 
 export interface Editor {
-  article: ArticleData;
+  card: ArticleData;
 }
 
 export interface EditorState {
@@ -12,7 +12,7 @@ export interface EditorState {
 }
 
 export const editorInitialState: Editor = {
-  article: {
+  card: {
     slug: '',
     title: '',
     description: '',
@@ -34,7 +34,7 @@ export const editorInitialState: Editor = {
 
 const reducer = createReducer(
   editorInitialState,
-  on(EditorActions.loadArticleSuccess, (state, action) => ({ ...state, article: action.article })),
+  on(EditorActions.loadArticleSuccess, (state, action) => ({ ...state, card: action.card })),
   on(EditorActions.loadArticleFail, EditorActions.initializeArticle, () => editorInitialState),
 );
 

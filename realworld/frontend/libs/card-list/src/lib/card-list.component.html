@@ -1,0 +1,24 @@
+<div class="app-card-preview" [hidden]="(isLoading$ | async) === false">
+  Loading articles...
+</div>
+
+<div class="app-card-preview" [hidden]="(isLoading$ | async) || (articles$ | async).length > 0">
+  No articles are here... yet.
+</div>
+
+<app-card-list-item
+  [hidden]="isLoading$ | async"
+  (navigateToArticle)="navigateToArticle($event)"
+  (unFavorite)="unFavorite($event)"
+  (favorite)="favorite($event)"
+  *ngFor="let card of articles$ | async"
+  [card]="card"
+>
+</app-card-list-item>
+
+<app-pager
+  (setPage)="setPage($event)"
+  [hidden]="(totalPages$ | async)?.length <= 1 || (isLoading$ | async)"
+  [currentPage]="(listConfig$ | async).currentPage"
+  [totalPages]="totalPages$ | async"
+></app-pager>

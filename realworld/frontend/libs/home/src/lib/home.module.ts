@@ -1,4 +1,4 @@
-import { ArticleListModule } from '@spotacard/article-list';
+import { ArticleListModule } from '@spotacard/card-list';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
