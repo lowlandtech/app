@@ -33,7 +33,8 @@
       "@spotacard/ngrx-forms": ["libs/ngrx-forms/src/index.ts"],
       "@spotacard/ngrx-router": ["libs/ngrx-router/src/index.ts"],
       "@spotacard/profile": ["libs/profile/src/index.ts"],
-      "@spotacard/settings": ["libs/settings/src/index.ts"]
+      "@spotacard/settings": ["libs/settings/src/index.ts"],
+      "@spotacard/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

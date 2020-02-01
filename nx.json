@@ -71,6 +71,9 @@
     },
     "settings": {
       "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }
