@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/angular';
-import { DOCUMENT } from '@angular/common';
+
 import { AsidePartialState } from './aside.reducer';
 import {
   ToggleAside,
@@ -16,8 +16,7 @@ export class AsideEffects {
     AsideActionTypes.ToggleAside,
     {
       run: (action: ToggleAside, state: AsidePartialState) => {
-        this.document.querySelector('body')
-                     .classList.toggle('aside-menu-hidden');
+        // Your custom REST 'toggle' logic goes here. For now just return an empty list...
         return new AsideToggled();
       },
 
@@ -30,7 +29,6 @@ export class AsideEffects {
 
   constructor(
     private actions$: Actions,
-    private dataPersistence: DataPersistence<AsidePartialState>,
-    @Inject(DOCUMENT) private document: Document
-  ) { }
+    private dataPersistence: DataPersistence<AsidePartialState>
+  ) {}
 }

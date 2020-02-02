@@ -3,21 +3,22 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { SidebarTogglerDirective } from './sidebar.toggler';
 import { MobileSidebarTogglerDirective } from './mobile.sidebar.toggler';
-import { AsideMenuTogglerDirective } from './aside.menu.toggler';
+import { AsideModule } from '@spotacard/aside';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    AsideModule
+  ],
   declarations: [
     HeaderComponent,
     SidebarTogglerDirective,
-    MobileSidebarTogglerDirective,
-    AsideMenuTogglerDirective
+    MobileSidebarTogglerDirective
   ],
   exports: [
     HeaderComponent,
     SidebarTogglerDirective,
-    MobileSidebarTogglerDirective,
-    AsideMenuTogglerDirective
+    MobileSidebarTogglerDirective
   ]
 })
 export class HeaderModule {}

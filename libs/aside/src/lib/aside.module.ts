@@ -8,7 +8,8 @@ import { AsideEffects } from './+state/aside.effects';
 import { AsideFacade } from './+state/aside.facade';
 import { NxModule } from '@nrwl/angular';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { environment } from '@env/environment';
+import { AsideTogglerDirective } from './aside.toggler';
 
 @NgModule({
   imports: [
@@ -28,8 +29,8 @@ import { environment } from '../environments/environment';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreModule.forFeature(fromAside.ASIDE_FEATURE_KEY, fromAside.reducer)
   ],
-  declarations: [AsideComponent],
-  exports: [AsideComponent],
+  declarations: [AsideComponent,AsideTogglerDirective],
+  exports: [AsideComponent, AsideTogglerDirective],
   providers: [AsideFacade]
 })
 export class AsideModule {}

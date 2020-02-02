@@ -4,9 +4,9 @@ import { Directive, HostListener, ElementRef, HostBinding } from '@angular/core'
 * Allows the aside to be toggled via click.
 */
 @Directive({
-  selector: '[scxAsideMenuToggler]'
+  selector: '[scxAsideToggler]'
 })
-export class AsideMenuTogglerDirective {
+export class AsideTogglerDirective {
   @HostBinding('class.d-md-down-none') class1 = true;
 
   constructor(private elementRef:ElementRef){
@@ -19,3 +19,4 @@ export class AsideMenuTogglerDirective {
     document.querySelector('body').classList.toggle('aside-menu-hidden');
   }
 }
+
