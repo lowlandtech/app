@@ -50,7 +50,8 @@
     "rxjs": "~6.5.4",
     "simple-line-icons": "^2.4.1",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@ngrx/entity": "8.5.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.0-rc.12",
@@ -79,6 +80,8 @@
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "@ngrx/schematics": "8.5.0",
+    "@ngrx/store-devtools": "8.5.0"
   }
 }
