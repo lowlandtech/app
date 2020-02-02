@@ -30,7 +30,7 @@ export function reducer(
   action: AsideAction
 ): AsideState {
   switch (action.type) {
-    case AsideActionTypes.AsideToggled: {
+    case AsideActionTypes.ToggleAside: {
       state = {
         ...state,
         toggled: !state.toggled
