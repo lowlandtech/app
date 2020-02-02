@@ -1,5 +1,4 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { AsideFacade } from '@spotacard/aside';
 
 @Component({
   selector: 'scx-header',
@@ -18,9 +17,9 @@ export class HeaderComponent implements OnInit {
   @HostBinding('class.app-header') class1 = true;
   @HostBinding('class.navbar') class2 = true;
 
-  constructor(private facade: AsideFacade) {}
+  constructor() {}
 
   ngOnInit() {
-    this.facade.toggled$.subscribe(c=> {});
+
   }
 }
