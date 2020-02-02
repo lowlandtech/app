@@ -6,7 +6,7 @@ const getAsideState = createFeatureSelector<AsideState>(ASIDE_FEATURE_KEY);
 
 const getToggled = createSelector(
   getAsideState,
-  (state: AsideState) => state.toggled
+  (state: AsideState) => state.showing
 );
 const getError = createSelector(
   getAsideState,

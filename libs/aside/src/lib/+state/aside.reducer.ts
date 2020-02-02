@@ -13,7 +13,7 @@ export const ASIDE_FEATURE_KEY = 'aside';
 // export interface Entity {}
 
 export interface AsideState {
-  toggled: boolean; // has the Aside list been toggled
+  showing: boolean; // has the Aside list been toggled
   error?: any; // last none error (if any)
 }
 
@@ -22,7 +22,7 @@ export interface AsidePartialState {
 }
 
 export const initialState: AsideState = {
-  toggled: false
+  showing: false
 };
 
 export function reducer(
@@ -33,7 +33,7 @@ export function reducer(
     case AsideActionTypes.ToggleAside: {
       state = {
         ...state,
-        toggled: !state.toggled
+        showing: !state.showing
       };
       break;
     }
