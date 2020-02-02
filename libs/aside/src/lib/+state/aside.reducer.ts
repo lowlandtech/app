@@ -10,12 +10,10 @@ export const ASIDE_FEATURE_KEY = 'aside';
  */
 
 /* tslint:disable:no-empty-interface */
-export interface Entity {}
+// export interface Entity {}
 
 export interface AsideState {
-  list: Entity[]; // list of Aside; analogous to a sql normalized table
-  selectedId?: string | number; // which Aside record has been selected
-  loaded: boolean; // has the Aside list been loaded
+  toggled: boolean; // has the Aside list been toggled
   error?: any; // last none error (if any)
 }
 
@@ -24,8 +22,7 @@ export interface AsidePartialState {
 }
 
 export const initialState: AsideState = {
-  list: [],
-  loaded: false
+  toggled: false
 };
 
 export function reducer(
@@ -33,11 +30,10 @@ export function reducer(
   action: AsideAction
 ): AsideState {
   switch (action.type) {
-    case AsideActionTypes.AsideLoaded: {
+    case AsideActionTypes.AsideToggled: {
       state = {
         ...state,
-        list: action.payload,
-        loaded: true
+        toggled: !state.toggled
       };
       break;
     }

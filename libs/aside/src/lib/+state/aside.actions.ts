@@ -1,30 +1,28 @@
 import { Action } from '@ngrx/store';
-import { Entity } from './aside.reducer';
 
 export enum AsideActionTypes {
-  LoadAside = '[Aside] Load Aside',
-  AsideLoaded = '[Aside] Aside Loaded',
-  AsideLoadError = '[Aside] Aside Load Error'
+  ToggleAside = '[Aside] Toggle Aside',
+  AsideToggled = '[Aside] Aside Toggled',
+  AsideToggleError = '[Aside] Aside Toggle Error'
 }
 
-export class LoadAside implements Action {
-  readonly type = AsideActionTypes.LoadAside;
+export class ToggleAside implements Action {
+  readonly type = AsideActionTypes.ToggleAside;
 }
 
-export class AsideLoadError implements Action {
-  readonly type = AsideActionTypes.AsideLoadError;
-  constructor(public payload: any) {}
+export class AsideToggleError implements Action {
+  readonly type = AsideActionTypes.AsideToggleError;
+  constructor(public paytoggle: any) {}
 }
 
-export class AsideLoaded implements Action {
-  readonly type = AsideActionTypes.AsideLoaded;
-  constructor(public payload: Entity[]) {}
+export class AsideToggled implements Action {
+  readonly type = AsideActionTypes.AsideToggled;
 }
 
-export type AsideAction = LoadAside | AsideLoaded | AsideLoadError;
+export type AsideAction = ToggleAside | AsideToggled | AsideToggleError;
 
 export const fromAsideActions = {
-  LoadAside,
-  AsideLoaded,
-  AsideLoadError
+  ToggleAside,
+  AsideToggled,
+  AsideToggleError
 };

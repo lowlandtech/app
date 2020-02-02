@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { Observable } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { NxModule, DataPersistence } from '@nrwl/angular';
 import { hot } from '@nrwl/angular/testing';
 
 import { AsideEffects } from './aside.effects';
-import { LoadAside, AsideLoaded } from './aside.actions';
+import { ToggleAside, AsideToggled } from './aside.actions';
 
 describe('AsideEffects', () => {
   let actions: Observable<any>;
@@ -30,14 +30,14 @@ describe('AsideEffects', () => {
       ]
     });
 
-    effects = TestBed.get(AsideEffects);
+    effects = TestBed.inject(AsideEffects);
   });
 
-  describe('loadAside$', () => {
+  describe('toggleAside$', () => {
     it('should work', () => {
-      actions = hot('-a-|', { a: new LoadAside() });
-      expect(effects.loadAside$).toBeObservable(
-        hot('-a-|', { a: new AsideLoaded([]) })
+      actions = hot('-a-|', { a: new ToggleAside() });
+      expect(effects.toggleAside$).toBeObservable(
+        hot('-a-|', { a: new AsideToggled() })
       );
     });
   });
