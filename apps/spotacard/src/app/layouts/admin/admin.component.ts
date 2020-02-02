@@ -49,7 +49,7 @@ const styles = {
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/editor" routerLinkActive="active">
-            <i class="ion-compose"></i>&nbsp;New Post
+            <i class="ion-compose"></i>&nbsp;New Card
           </a>
         </li>
         <li class="nav-item">
