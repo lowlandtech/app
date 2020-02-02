@@ -37,6 +37,7 @@
     "@angular/platform-browser-dynamic": "^9.0.0-rc.13",
     "@angular/router": "^9.0.0-rc.13",
     "@ngrx/effects": "^8.6.0",
+    "@ngrx/entity": "8.5.0",
     "@ngrx/router-store": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
@@ -45,13 +46,13 @@
     "flag-icon-css": "^3.4.5",
     "font-awesome": "^4.7.0",
     "marked": "^0.8.0",
+    "ngrx-store-localstorage": "^8.0.0",
     "ngx-bootstrap": "^5.3.2",
     "node-sass": "^4.13.1",
     "rxjs": "~6.5.4",
     "simple-line-icons": "^2.4.1",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "@ngrx/entity": "8.5.0"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.0-rc.12",
