@@ -119,5 +119,6 @@ export class AdminComponent implements OnInit {
         filter(token => !!token),
       )
       .subscribe(token => this.authFacade.user());
+      
   }
 }

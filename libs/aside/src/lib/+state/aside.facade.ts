@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-
 import { select, Store } from '@ngrx/store';
-
 import { AsidePartialState } from './aside.reducer';
 import { asideQuery } from './aside.selectors';
 import { ToggleAside } from './aside.actions';

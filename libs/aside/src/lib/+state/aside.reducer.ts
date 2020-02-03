@@ -8,10 +8,6 @@ export const ASIDE_FEATURE_KEY = 'aside';
  *
  *  Note: replace if already defined in another module
  */
-
-/* tslint:disable:no-empty-interface */
-// export interface Entity {}
-
 export interface AsideState {
   showing: boolean; // has the Aside list been toggled
   error?: any; // last none error (if any)

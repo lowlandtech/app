@@ -52,7 +52,7 @@ import { SiteComponent } from './layouts';
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     NgrxRouterModule,
-    NgrxErrorModule,
+    NgrxErrorModule
   ],
   declarations: [
     AppComponent,

@@ -21,8 +21,8 @@ export class AsideTogglerDirective {
   @HostListener('click', ['$event'])
   toggleOpen($event: any) {
     $event.preventDefault();
-    this.document.querySelector('body')
-        .classList.toggle('aside-menu-hidden');
+    // this.document.querySelector('body')
+    //     .classList.toggle('aside-menu-hidden');
     this.facade.toggle();
   }
 }
