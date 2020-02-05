@@ -25,7 +25,7 @@ import {
   MobileSidebarTogglerDirective
 } from './header';
 import { FooterComponent } from './footer';
-import { ContentComponent } from './content/content.component';
+import { ContentComponent } from './content';
 import { AsideComponent, AsideTogglerDirective } from './aside';
 import { BreadcrumbsComponent } from './breadcrumbs';
 import { StoreModule } from '@ngrx/store';
