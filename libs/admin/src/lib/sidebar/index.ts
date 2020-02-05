@@ -6,5 +6,4 @@ export * from './sidebar-form';
 export * from './sidebar-header';
 export * from './sidebar-minimizer';
 export * from './sidebar-nav';
-export * from './navigation';
 export * from './sidebar.component';

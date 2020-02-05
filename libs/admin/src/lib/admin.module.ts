@@ -28,11 +28,23 @@ import { FooterComponent } from './footer';
 import { ContentComponent } from './content/content.component';
 import { AsideComponent, AsideTogglerDirective } from './aside';
 import { BreadcrumbsComponent } from './breadcrumbs';
+import { StoreModule } from '@ngrx/store';
+import {
+  ADMINSTATE_FEATURE_KEY,
+  adminStateReducer,
+  initialAdminState,
+  metaReducers,
+  AdminStateFacade
+} from './+state';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    StoreModule.forFeature(ADMINSTATE_FEATURE_KEY, adminStateReducer, {
+      initialState: initialAdminState,
+      metaReducers: metaReducers
+    }),
   ],
   declarations: [
     SidebarComponent,
@@ -85,6 +97,9 @@ import { BreadcrumbsComponent } from './breadcrumbs';
     AsideComponent,
     AsideTogglerDirective,
     BreadcrumbsComponent
+  ],
+  providers: [
+    AdminStateFacade
   ]
 })
 export class AdminModule {}

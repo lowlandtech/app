@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { navigation } from '../navigation';
+import { navigation } from '../../navigation';
 
 @Component({
   selector: 'scx-sidebar-nav',
