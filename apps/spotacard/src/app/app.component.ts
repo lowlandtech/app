@@ -10,7 +10,6 @@ import { Router, NavigationEnd } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  @HostBinding('aside-menu-hidden') asideMenuHidden = true;
 
   constructor(
     private router: Router) { }
