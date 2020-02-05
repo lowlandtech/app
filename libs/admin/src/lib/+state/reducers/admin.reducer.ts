@@ -2,7 +2,7 @@ import { AdminStateAction, AdminStateActionTypes, ProfileHidden } from '../actio
 import { ActionReducer, MetaReducer, Action } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-export const ADMINSTATE_FEATURE_KEY = 'adminState';
+export const ADMINSTATE_FEATURE_KEY = 'admin';
 
 // tslint:disable-next-line: no-empty-interface
 export interface Entity {}
