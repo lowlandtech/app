@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AsideFacade } from '@spotacard/aside';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,8 +13,7 @@ export class AppComponent implements OnInit {
   @HostBinding('aside-menu-hidden') asideMenuHidden = true;
 
   constructor(
-    private router: Router,
-    private aside: AsideFacade) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.router.events.subscribe(evt => {
@@ -23,9 +21,6 @@ export class AppComponent implements OnInit {
         return;
       }
       window.scrollTo(0, 0);
-    });
-    this.aside.toggled$.subscribe(()=>{
-      this.asideMenuHidden = !this.asideMenuHidden;
     });
   }
 }

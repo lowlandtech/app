@@ -13,12 +13,7 @@ import { NxModule } from '@nrwl/angular';
 import { environment } from '../environments/environment';
 
 // imports library modules;
-import { AsideModule } from '@spotacard/aside';
-import { FooterModule } from '@spotacard/footer';
-import { BreadcrumbsModule } from '@spotacard/breadcrumbs';
-import { HeaderModule } from '@spotacard/header';
-import { ContentModule } from '@spotacard/content';
-import { SidebarModule } from '@spotacard/sidebar';
+import { AdminModule } from '@spotacard/admin';
 import { ApiModule } from '@spotacard/api';
 import { AuthModule } from '@spotacard/auth';
 import { NgrxErrorModule } from '@spotacard/ngrx-error';
@@ -42,12 +37,7 @@ import { SiteComponent } from './layouts';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    AsideModule,
-    FooterModule,
-    BreadcrumbsModule,
-    HeaderModule,
-    ContentModule,
-    SidebarModule,
+    AdminModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
