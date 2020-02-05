@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { AdminStateFacade } from '../+state/facades/admin.facade';
 
 @Component({
   selector: 'scx-header',
@@ -6,7 +7,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
     <button class="navbar-toggler" type="button" scxMobileSidebarToggler></button>
     <a class="navbar-brand" href="#">
       <span class=" raised-button small-logo text-primary">CS</span>
-      <span class="logo">Spotacard</span>
+      <span *ngIf="showLogo" class="logo">Spotacard</span>
     </a>
     <button class="navbar-toggler" type="button" scxSidebarToggler></button>
     <ng-content></ng-content>
@@ -16,10 +17,18 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @HostBinding('class.app-header') class1 = true;
   @HostBinding('class.navbar') class2 = true;
-
-  constructor() {}
+  public showLogo = false;
+  constructor(
+    private facade: AdminStateFacade
+  ) {}
 
   ngOnInit() {
-
+    this.facade.sidebar$.subscribe(sidebar => {
+      if(sidebar.state === 'MAXIMIZED'){
+        this.showLogo = true;
+      } else {
+        this.showLogo = false;
+      }
+    })
   }
 }
