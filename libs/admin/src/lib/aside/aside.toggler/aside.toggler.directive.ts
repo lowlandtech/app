@@ -1,10 +1,7 @@
 import { Directive, HostListener, ElementRef, HostBinding, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { AdminStateFacade } from '../../+state';
-
-const hasClass = (target: any, elementClassName: string) => {
-  return new RegExp('(\\s|^)' + elementClassName + '(\\s|$)').test(target.className);
-};
+import { hasClass } from '../../tools';
 
 /**
 * Allows the aside to be toggled via click.
@@ -18,9 +15,10 @@ export class AsideTogglerDirective implements OnInit {
   private element: HTMLBodyElement;
 
   constructor(
+    @Inject(DOCUMENT)
+    private document: Document,
     private facade: AdminStateFacade,
-    private elementRef:ElementRef,
-    @Inject(DOCUMENT) private document: Document){
+    private elementRef:ElementRef){
     this.elementRef.nativeElement.innerHTML ='<span class="navbar-toggler-icon"></span>';
     this.element = this.document.querySelector('body');
   }
