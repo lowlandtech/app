@@ -25,12 +25,6 @@ import { TagsListComponent } from './tags-list/tags-list.component';
         resolve: { HomeResolverService },
       },
     ]),
-    StoreModule.forRoot(homeReducer, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
     StoreModule.forFeature('home', homeReducer, {
       initialState: homeInitialState,
     }),
