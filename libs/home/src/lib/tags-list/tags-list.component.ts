@@ -2,8 +2,13 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 
 @Component({
   selector: 'scx-tags-list',
-  templateUrl: './tags-list.component.html',
-  styleUrls: ['./tags-list.component.css'],
+  template: `
+    <p>Popular Tags</p>
+
+    <div class="tag-list">
+      <a *ngFor="let tag of tags" (click)="setListTag.emit(tag)" class="tag-pill tag-default">{{ tag }}</a>
+    </div>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagsListComponent {
