@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarNavDropdownComponent } from './sidebar-nav-dropdown.component';
-import { SidebarModule } from '../sidebar.module';
+import { AdminModule } from '../../admin.module';
 import { MockRender } from 'ng-mocks';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -11,7 +11,7 @@ describe('SidebarNavDropdownComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SidebarModule,
+        AdminModule,
         RouterTestingModule
       ]
     })
