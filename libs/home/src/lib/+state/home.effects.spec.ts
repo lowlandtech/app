@@ -9,13 +9,23 @@ import { hot } from '@nrwl/angular/testing';
 import { HomeService } from '../home.service';
 import { HomeEffects } from './home.effects';
 
+function reducer(){};
+
 describe('HomeEffects', () => {
   let actions;
   let effects: HomeEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot({}), HttpClientTestingModule],
+      imports: [
+        StoreModule.forRoot(reducer, {
+          runtimeChecks: {
+            strictStateImmutability: true,
+            strictActionImmutability: true
+          }
+        }),
+        HttpClientTestingModule
+      ],
       providers: [HomeEffects, DataPersistence, provideMockActions(() => actions), ApiService, HomeService],
     });
 
