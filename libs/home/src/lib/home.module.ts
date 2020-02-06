@@ -11,7 +11,7 @@ import { homeInitialState, homeReducer, HOMESTATE_FEATURE_KEY } from './+state/h
 import { HomeResolverService } from './home-resolver.service';
 import { HomeComponent } from './home.component';
 import { HomeService } from './home.service';
-import { TagsListComponent } from './tags-list/tags-list.component';
+import { TagsListComponent } from './tags-list';
 import { ApiModule } from '@spotacard/api';
 
 @NgModule({
