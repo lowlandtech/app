@@ -59,6 +59,9 @@
     },
     "admin": {
       "tags": []
+    },
+    "playground": {
+      "tags": []
     }
   }
 }

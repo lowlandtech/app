@@ -32,7 +32,8 @@
       "@spotacard/profile": ["libs/profile/src/index.ts"],
       "@spotacard/settings": ["libs/settings/src/index.ts"],
       "@spotacard/shared": ["libs/shared/src/index.ts"],
-      "@spotacard/admin": ["libs/admin/src/index.ts"]
+      "@spotacard/admin": ["libs/admin/src/index.ts"],
+      "@spotacard/playground": ["libs/playground/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
