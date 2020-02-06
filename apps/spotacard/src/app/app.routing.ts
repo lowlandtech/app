@@ -52,7 +52,14 @@ export const routes: Routes = [
           import('@spotacard/profile/src/lib/profile.module').then(
             m => m.ProfileModule
           )
-      }
+      },
+      {
+        path: 'playground',
+        loadChildren: () =>
+          import('@spotacard/playground/src/lib/playground.module').then(
+            m => m.PlaygroundModule
+          )
+      },
     ]
   }
 ];

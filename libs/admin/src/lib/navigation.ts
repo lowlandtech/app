@@ -7,5 +7,10 @@ export const navigation = [
       variant: 'info',
       text: 'NEW'
     }
+  },
+  {
+    name: 'Playground',
+    url: '/playground',
+    icon: 'icon-settings',
   }
 ];

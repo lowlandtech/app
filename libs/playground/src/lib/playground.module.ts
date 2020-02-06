@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Route } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { PlaygroundComponent } from './playground.component';
 
-export const playgroundRoutes: Route[] = [];
-
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        pathMatch: 'full',
+        component: PlaygroundComponent
+      },
+    ]),
+  ],
   declarations: [PlaygroundComponent],
   exports: [PlaygroundComponent]
 })
