@@ -1,19 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'scx-playground',
   template: `
-    <p>
-      playground works!
-    </p>
+    <div class="col col-md-12">
+      <div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
   `,
-  styles: []
+  styles: [`
+    .col {
+      padding-top: 10px;
+    }`
+  ]
 })
 export class PlaygroundComponent implements OnInit {
+  @HostBinding('class.row') class1 = true;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

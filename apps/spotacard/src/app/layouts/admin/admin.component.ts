@@ -11,7 +11,10 @@ const styles = {
     border: `1px solid ${dark}`,
     background: dark,
     boxShadow: boxShadow,
-    color: darker
+    color: darker,
+  },
+  container: {
+    padding: '10px'
   }
 };
 
@@ -82,11 +85,9 @@ const styles = {
           scxBrandMinimizer
         ></button>
       </scx-sidebar>
-      <scx-main>
+      <scx-main [class]="classes.container">
         <scx-breadcrumbs></scx-breadcrumbs>
-        <div class="container-fluid">
-          <router-outlet></router-outlet>
-        </div>
+        <router-outlet></router-outlet>
       </scx-main>
       <scx-aside>
         <scx-aside-list></scx-aside-list>
