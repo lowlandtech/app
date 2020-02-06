@@ -14,7 +14,7 @@ import { AuthFacade } from '@spotacard/auth';
 import { HomeFacade } from './+state/home.facade';
 
 @Component({
-  selector: 'app-home',
+  selector: 'scx-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
