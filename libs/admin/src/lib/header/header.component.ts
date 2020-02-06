@@ -5,19 +5,26 @@ import { AdminStateFacade } from '../+state/facades/admin.facade';
   selector: 'scx-header',
   template: `
     <button class="navbar-toggler" type="button" scxMobileSidebarToggler></button>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" [class]="{'navbar-brand-hidden': isHidden}" href="#">
       <span class=" raised-button small-logo text-primary">CS</span>
-      <span *ngIf="showLogo" class="logo">Spotacard</span>
+      <span *ngIf="isMaximized" class="logo">Spotacard</span>
     </a>
     <button class="navbar-toggler" type="button" scxSidebarToggler></button>
     <ng-content></ng-content>
     <button class="navbar-toggler" type="button" scxAsideToggler></button>
-  `
+  `,
+  styles: [`
+    .navbar-brand-hidden {
+      box-shadow: none;
+      width: fit-content !important;
+    }
+  `]
 })
 export class HeaderComponent implements OnInit {
   @HostBinding('class.app-header') class1 = true;
   @HostBinding('class.navbar') class2 = true;
-  public showLogo = false;
+  public isMaximized = false;
+  public isHidden = false;
   constructor(
     private facade: AdminStateFacade
   ) {}
@@ -25,9 +32,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.facade.sidebar$.subscribe(sidebar => {
       if(sidebar.state === 'MAXIMIZED'){
-        this.showLogo = true;
+        this.isMaximized = true;
       } else {
-        this.showLogo = false;
+        this.isMaximized = false;
+      }
+
+      if(sidebar.state === 'HIDDEN'){
+        this.isHidden = true;
+      } else {
+        this.isHidden = false;
       }
     })
   }
