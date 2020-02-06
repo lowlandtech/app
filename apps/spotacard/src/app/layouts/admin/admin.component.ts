@@ -88,7 +88,9 @@ const styles = {
           <router-outlet></router-outlet>
         </div>
       </scx-main>
-      <scx-aside></scx-aside>
+      <scx-aside>
+        <scx-aside-list></scx-aside-list>
+      </scx-aside>
     </scx-content>
     <scx-footer [class]="classes.footer">
       <span><a href="https://spotacard.com">Spotacard</a> &copy; 2020</span>
@@ -119,6 +121,6 @@ export class AdminComponent implements OnInit {
         filter(token => !!token),
       )
       .subscribe(token => this.authFacade.user());
-      
+
   }
 }
