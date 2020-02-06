@@ -12,11 +12,13 @@ import { HomeResolverService } from './home-resolver.service';
 import { HomeComponent } from './home.component';
 import { HomeService } from './home.service';
 import { TagsListComponent } from './tags-list/tags-list.component';
+import { ApiModule } from '@spotacard/api';
 
 @NgModule({
   imports: [
     CommonModule,
     CardListModule,
+    ApiModule,
     RouterModule.forChild([
       {
         path: '',
