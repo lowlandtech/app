@@ -19,7 +19,7 @@ describe('SidebarNavDropdownComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = fixture = MockRender(`<scx-sidebar-nav-dropdown [link]="{
+    fixture = MockRender(`<scx-sidebar-nav-dropdown [link]="{
       icon: '',
       children: [{
         class: '',
