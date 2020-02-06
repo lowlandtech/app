@@ -108,7 +108,9 @@ import { SharedModule } from '@spotacard/shared';
     ContentComponent,
     AsideComponent,
     AsideTogglerDirective,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    AsideListItemComponent,
+    AsideListComponent
   ],
   providers: [
     AdminStateFacade
