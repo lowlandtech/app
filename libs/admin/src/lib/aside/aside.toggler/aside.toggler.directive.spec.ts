@@ -20,7 +20,6 @@ describe('AsideTogglerDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({}),
         AdminModule
       ],
       declarations: [

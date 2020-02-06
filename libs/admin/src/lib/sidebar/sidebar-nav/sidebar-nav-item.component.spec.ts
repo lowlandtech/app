@@ -12,7 +12,6 @@ describe('SidebarNavItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[
-        StoreModule.forRoot({}),
         AdminModule,
         RouterTestingModule
       ]

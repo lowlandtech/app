@@ -26,7 +26,6 @@ describe.only('MobileSidebarTogglerDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({}),
         AdminModule
       ],
       declarations: [

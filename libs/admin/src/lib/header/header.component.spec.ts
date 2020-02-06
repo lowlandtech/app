@@ -11,7 +11,6 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[
-        StoreModule.forRoot({}),
         AdminModule
       ]
     })

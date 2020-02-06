@@ -41,6 +41,12 @@ import {
   imports: [
     CommonModule,
     RouterModule,
+    StoreModule.forRoot(adminStateReducer, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
     StoreModule.forFeature(ADMINSTATE_FEATURE_KEY, adminStateReducer, {
       initialState: initialAdminState,
       metaReducers: metaReducers

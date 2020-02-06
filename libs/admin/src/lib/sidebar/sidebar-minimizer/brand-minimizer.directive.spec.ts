@@ -20,7 +20,6 @@ describe('BrandMinimizerDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({}),
         AdminModule
       ],
       declarations: [

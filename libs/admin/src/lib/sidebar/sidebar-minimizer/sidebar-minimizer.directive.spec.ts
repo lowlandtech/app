@@ -4,7 +4,6 @@ import { MockRender } from 'ng-mocks';
 import { By } from '@angular/platform-browser';
 import { SidebarMinimizerDirective } from '.';
 import { AdminModule } from '../../admin.module';
-import { StoreModule } from '@ngrx/store';
 
 @Component({
   selector: 'scx-test-component',
@@ -20,7 +19,6 @@ describe('SidebarMinimizerDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        StoreModule.forRoot({}),
         AdminModule
       ],
       declarations: [

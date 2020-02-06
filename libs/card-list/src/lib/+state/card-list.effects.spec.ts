@@ -17,7 +17,9 @@ describe('CardListEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [StoreModule.forRoot({}), HttpClientTestingModule],
+      imports: [
+        StoreModule.forRoot({}),
+        HttpClientTestingModule],
       providers: [
         CardListEffects,
         DataPersistence,

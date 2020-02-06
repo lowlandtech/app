@@ -12,7 +12,6 @@ describe('SidebarNavDropdownComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[
-        StoreModule.forRoot({}),
         AdminModule,
         RouterTestingModule
       ]
