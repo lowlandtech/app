@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PlaygroundComponent } from './playground.component';
+import { UiModule } from '@spotacard/ui';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { PlaygroundComponent } from './playground.component';
         component: PlaygroundComponent
       },
     ]),
+    UiModule
   ],
   declarations: [PlaygroundComponent],
   exports: [PlaygroundComponent]
