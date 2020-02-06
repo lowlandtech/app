@@ -38,11 +38,13 @@ import {
 } from './+state';
 import { AsideListItemComponent } from './aside';
 import { AsideListComponent } from './aside';
+import { SharedModule } from '@spotacard/shared';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
     StoreModule.forRoot(adminStateReducer, {
       runtimeChecks: {
         strictStateImmutability: true,
