@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'scx-ui-header',
+  selector: 'scx-ui-card-header',
   template: `
     <p>
       header works!
