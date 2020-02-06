@@ -5,6 +5,7 @@ import { HeaderComponent } from './header';
 import { FooterComponent } from './footer';
 import { BodyComponent } from './body';
 import { ToolbarComponent } from './toolbar';
+import { TitleComponent } from './title';
 
 @NgModule({
   imports: [
@@ -15,14 +16,16 @@ import { ToolbarComponent } from './toolbar';
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    TitleComponent
   ],
   exports: [
     CardComponent,
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    TitleComponent
   ]
 })
 export class CardModule {}
