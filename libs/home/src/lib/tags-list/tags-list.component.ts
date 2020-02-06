@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-tags-list',
+  selector: 'scx-tags-list',
   templateUrl: './tags-list.component.html',
   styleUrls: ['./tags-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
