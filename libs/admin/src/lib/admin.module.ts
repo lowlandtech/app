@@ -36,6 +36,7 @@ import {
   metaReducers,
   AdminStateFacade
 } from './+state';
+import { AsideListComponent } from './aside';
 
 @NgModule({
   imports: [
@@ -77,6 +78,7 @@ import {
     AsideComponent,
     AsideTogglerDirective,
     BreadcrumbsComponent
+    AsideListComponent
   ],
   exports: [
     SidebarComponent,
