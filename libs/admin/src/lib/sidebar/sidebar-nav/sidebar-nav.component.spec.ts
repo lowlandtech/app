@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarNavComponent } from './sidebar-nav.component';
 import { AdminModule } from '../../admin.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
 
 describe('SidebarNavComponent', () => {
   let component: SidebarNavComponent;
@@ -10,7 +11,11 @@ describe('SidebarNavComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ AdminModule, RouterTestingModule ]
+      imports: [
+        StoreModule.forRoot({}),
+        AdminModule,
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));

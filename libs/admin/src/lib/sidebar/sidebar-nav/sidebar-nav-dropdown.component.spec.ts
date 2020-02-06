@@ -3,6 +3,7 @@ import { SidebarNavDropdownComponent } from './sidebar-nav-dropdown.component';
 import { AdminModule } from '../../admin.module';
 import { MockRender } from 'ng-mocks';
 import { RouterTestingModule } from '@angular/router/testing';
+import { StoreModule } from '@ngrx/store';
 
 describe('SidebarNavDropdownComponent', () => {
   let component: SidebarNavDropdownComponent;
@@ -10,7 +11,8 @@ describe('SidebarNavDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
+      imports:[
+        StoreModule.forRoot({}),
         AdminModule,
         RouterTestingModule
       ]

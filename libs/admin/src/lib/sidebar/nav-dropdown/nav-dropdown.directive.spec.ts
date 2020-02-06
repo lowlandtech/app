@@ -3,6 +3,8 @@ import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { MockRender } from 'ng-mocks';
+import { AdminModule } from '../../admin.module';
+import { StoreModule } from '@ngrx/store';
 
 @Component({
   selector: 'scx-test-component',
@@ -17,9 +19,12 @@ describe('NavDropdownDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({}),
+        AdminModule
+      ],
       declarations: [
-        TestComponent,
-        NavDropdownDirective
+        TestComponent
       ]
     })
     .compileComponents();
