@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'scx-ui-card-toolbar',
@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class ToolbarComponent implements OnInit {
+  @HostBinding('class.btn-toolbar') class1 = true;
+  @HostBinding('class.justify-content-between') class2 = true;
+  @HostBinding('class.float-right') class3 = true;
+  @HostBinding('attr.role') attr1 = 'toolbar';
+  @HostBinding('attr.aria-label') attr2 = 'Toolbar with button groups';
 
   constructor() { }
 
