@@ -5,7 +5,11 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   template: `
     <ng-content></ng-content>
   `,
-  styles: []
+  styles: [`
+    :host {
+      margin-bottom: 10px;
+    }
+  `]
 })
 export class CardComponent implements OnInit {
   @HostBinding('class.card') class1 = true;
