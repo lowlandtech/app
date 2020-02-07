@@ -1,14 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardModule } from './card';
+
+/* #region card components */
+import {
+  CardComponent,
+  HeaderComponent,
+  FooterComponent,
+  BodyComponent,
+  ToolbarComponent,
+  TitleComponent
+} from './card';
+
+const card = [
+  CardComponent,
+  HeaderComponent,
+  FooterComponent,
+  BodyComponent,
+  ToolbarComponent,
+  TitleComponent
+];
+/* #endregion */
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CardModule
+  imports: [CommonModule],
+  declarations: [
+    ...card
   ],
   exports: [
-    CardModule
+    ...card
   ]
 })
 export class UiModule {}
