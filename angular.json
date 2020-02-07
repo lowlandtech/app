@@ -88,7 +88,10 @@
               "apps/spotacard/tsconfig.app.json",
               "apps/spotacard/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/spotacard/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/spotacard/**"
+            ]
           }
         },
         "test": {
@@ -122,8 +125,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/spotacard-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/spotacard-e2e/**"]
+            "tsConfig": [
+              "apps/spotacard-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/spotacard-e2e/**"
+            ]
           }
         }
       }
@@ -148,7 +156,10 @@
               "libs/theme/tsconfig.lib.json",
               "libs/theme/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/theme/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/theme/**"
+            ]
           }
         },
         "test": {
@@ -186,7 +197,10 @@
               "libs/api/tsconfig.lib.json",
               "libs/api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/api/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/api/**"
+            ]
           }
         },
         "test": {
@@ -224,7 +238,10 @@
               "libs/card-list/tsconfig.lib.json",
               "libs/card-list/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/card-list/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/card-list/**"
+            ]
           }
         },
         "test": {
@@ -262,7 +279,10 @@
               "libs/card/tsconfig.lib.json",
               "libs/card/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/card/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/card/**"
+            ]
           }
         },
         "test": {
@@ -300,7 +320,10 @@
               "libs/auth/tsconfig.lib.json",
               "libs/auth/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/auth/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/auth/**"
+            ]
           }
         },
         "test": {
@@ -338,7 +361,10 @@
               "libs/editor/tsconfig.lib.json",
               "libs/editor/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/editor/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/editor/**"
+            ]
           }
         },
         "test": {
@@ -376,7 +402,10 @@
               "libs/home/tsconfig.lib.json",
               "libs/home/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/home/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/home/**"
+            ]
           }
         },
         "test": {
@@ -414,7 +443,10 @@
               "libs/ngrx-error/tsconfig.lib.json",
               "libs/ngrx-error/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ngrx-error/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ngrx-error/**"
+            ]
           }
         },
         "test": {
@@ -452,7 +484,10 @@
               "libs/ngrx-forms/tsconfig.lib.json",
               "libs/ngrx-forms/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ngrx-forms/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ngrx-forms/**"
+            ]
           }
         },
         "test": {
@@ -490,7 +525,10 @@
               "libs/ngrx-router/tsconfig.lib.json",
               "libs/ngrx-router/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ngrx-router/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ngrx-router/**"
+            ]
           }
         },
         "test": {
@@ -528,7 +566,10 @@
               "libs/profile/tsconfig.lib.json",
               "libs/profile/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/profile/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/profile/**"
+            ]
           }
         },
         "test": {
@@ -566,7 +607,10 @@
               "libs/settings/tsconfig.lib.json",
               "libs/settings/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/settings/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/settings/**"
+            ]
           }
         },
         "test": {
@@ -604,7 +648,10 @@
               "libs/shared/tsconfig.lib.json",
               "libs/shared/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/**"
+            ]
           }
         },
         "test": {
@@ -647,7 +694,10 @@
               "libs/admin/tsconfig.lib.json",
               "libs/admin/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/admin/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/admin/**"
+            ]
           }
         },
         "test": {
@@ -690,7 +740,10 @@
               "libs/playground/tsconfig.lib.json",
               "libs/playground/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/playground/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/playground/**"
+            ]
           }
         },
         "test": {
@@ -721,7 +774,10 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/**"
+            ]
           }
         },
         "test": {
@@ -731,11 +787,73 @@
             "tsConfig": "libs/ui/tsconfig.spec.json",
             "setupFile": "libs/ui/src/test-setup.ts"
           }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/ui",
+            "config": {
+              "configFolder": "libs/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       },
       "schematics": {
         "@nrwl/angular:component": {
           "styleext": "scss"
+        }
+      }
+    },
+    "ui-e2e": {
+      "root": "apps/ui-e2e",
+      "sourceRoot": "apps/ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ui-e2e/cypress.json",
+            "tsConfig": "apps/ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui:storybook"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ui-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ui-e2e/**"
+            ]
+          }
         }
       }
     }
