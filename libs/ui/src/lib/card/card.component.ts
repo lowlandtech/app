@@ -1,5 +1,14 @@
-import { Component, OnInit, HostBinding, Input, Output, EventEmitter } from '@angular/core';
+/* #region imports */
+import {
+  Component,
+  OnInit,
+  HostBinding,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Card } from './card.model';
+/* #endregion */
 
 @Component({
   selector: 'scx-ui-card',
@@ -15,17 +24,15 @@ import { Card } from './card.model';
 export class CardComponent implements OnInit {
   @HostBinding('class.card') class1 = true;
   @Input() card: Card;
-  @Output() hide: EventEmitter<Card>;
-  @Output() remove: EventEmitter<Card>;
-  @Output() collapse: EventEmitter<Card>;
-  @Output() expand: EventEmitter<Card>;
-  @Output() edit: EventEmitter<Card>;
-  @Output() append: EventEmitter<Card>;
-  @Output() prepend: EventEmitter<Card>;
+  @Output() hide: EventEmitter<Card> = new EventEmitter();;
+  @Output() remove: EventEmitter<Card> = new EventEmitter();;
+  @Output() collapse: EventEmitter<Card> = new EventEmitter();;
+  @Output() expand: EventEmitter<Card> = new EventEmitter();;
+  @Output() edit: EventEmitter<Card> = new EventEmitter();;
+  @Output() append: EventEmitter<Card> = new EventEmitter();;
+  @Output() prepend: EventEmitter<Card> = new EventEmitter();;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
