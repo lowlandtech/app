@@ -67,13 +67,6 @@ import { Component, OnInit, HostBinding } from '@angular/core';
     .col {
       padding-top: 10px;
     }
-    button {
-      box-shadow: none !important;
-    }
-    button:hover {
-      background-color: #E7701F;
-      color: white;
-    }
   `]
   /* #endregion */
 })

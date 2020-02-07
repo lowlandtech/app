@@ -200,3 +200,14 @@ html, body {
   border-left: 1px solid $spotacard-dark;
   box-shadow: $box-shadow;
 }
+
+.card-actions {
+  button {
+    box-shadow: none !important;
+
+    &:hover {
+      background-color: $spotacard;
+      color: white;
+    }
+  }
+}
