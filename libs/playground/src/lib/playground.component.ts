@@ -11,12 +11,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
             Featured
           </scx-ui-card-title>
           <scx-ui-card-toolbar>
-            <div class="btn-group" role="group" aria-label="First group">
-              <button class="btn btn-primary btn-sm" type="button">1</button>
-              <button class="btn btn-primary btn-sm" type="button">2</button>
-              <button class="btn btn-primary btn-sm" type="button">3</button>
-              <button class="btn btn-primary btn-sm" type="button">4</button>
-            </div>
+            <button class="btn btn-primary btn-sm" type="button">1</button>
+            <button class="btn btn-primary btn-sm" type="button">2</button>
           </scx-ui-card-toolbar>
         </scx-ui-card-header>
         <scx-ui-card-body>
@@ -38,12 +34,8 @@ import { Component, OnInit, HostBinding } from '@angular/core';
             Featured
           </scx-ui-card-title>
           <scx-ui-card-toolbar>
-            <div class="btn-group" role="group" aria-label="First group">
-              <button class="btn btn-primary btn-sm" type="button">1</button>
-              <button class="btn btn-primary btn-sm" type="button">2</button>
-              <button class="btn btn-primary btn-sm" type="button">3</button>
-              <button class="btn btn-primary btn-sm" type="button">4</button>
-            </div>
+            <button class="btn btn-primary btn-sm" type="button">3</button>
+            <button class="btn btn-primary btn-sm" type="button">4</button>
           </scx-ui-card-toolbar>
         </scx-ui-card-header>
         <scx-ui-card-body>
