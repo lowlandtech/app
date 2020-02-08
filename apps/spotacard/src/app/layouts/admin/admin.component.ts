@@ -8,9 +8,9 @@ import { take, filter } from 'rxjs/operators';
 
 const styles = {
   footer: {
-    border: `1px solid ${dark}`,
+    borderTop: `1px solid ${dark}`,
     background: dark,
-    boxShadow: boxShadow,
+    boxShadow: '0 -5px 5px -5px rgba(0, 0, 0, .2)',
     color: darker,
   },
   container: {
