@@ -20,4 +20,21 @@
   </div>
 </div>
 <ng-content select=".card-body"></ng-content>
-<ng-content select=".card-footer"></ng-content>
+<div class="card-footer">
+  <ng-content select=".card-footer-content"></ng-content>
+  <div class="btn-toolbar card-actions justify-content-between pull-right"
+    role="toolbar"
+    aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="Second group">
+      <ng-content select=".card-footer-toolbar"></ng-content>
+    </div>
+    <div class="btn-group" role="group" aria-label="First group">
+      <button class="btn btn-primary btn-sm" type="button">
+        Cancel
+      </button>
+      <button class="btn btn-primary btn-sm" type="button">
+        Ok
+      </button>
+    </div>
+  </div>
+</div>
