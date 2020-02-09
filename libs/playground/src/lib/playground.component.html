@@ -1,7 +1,7 @@
 <div class="col col-md-12">
-  <scx-ui-card>
+  <scx-ui-card [hasFooter]="true">
     <div class="card-header-title">
-      Featured
+      Card 1
     </div>
     <div class="card-toolbar">
       <button class="btn btn-primary btn-sm" type="button">1</button>
@@ -14,9 +14,15 @@
       </p>
     </div>
     <div class="card-footer-toolbar">
-
-        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
-
+      <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+    </div>
+  </scx-ui-card>
+  <scx-ui-card [hasFooter]="false">
+    <div class="card-header-title">
+      Card 2
+    </div>
+    <div class="card-body">
+      With supporting text below as a natural lead-in to additional content.
     </div>
   </scx-ui-card>
 </div>
