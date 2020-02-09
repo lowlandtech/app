@@ -4,11 +4,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   // tslint:disable-next-line:component-selector
   selector: '[page="playground"]',
   templateUrl:'./playground.component.html',
-  styles: [`
-    .col {
-      padding-top: 10px;
-    }
-  `]
+  styleUrls: ['./playground.component.scss']
 })
 export class PlaygroundComponent implements OnInit {
   @HostBinding('class.row') class1 = true;
