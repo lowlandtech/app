@@ -6,7 +6,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild,
   ElementRef
 } from '@angular/core';
 import { Card } from './card.model';
@@ -36,7 +35,7 @@ export class CardComponent implements OnInit {
   @Output() append: EventEmitter<Card> = new EventEmitter();;
   @Output() prepend: EventEmitter<Card> = new EventEmitter();;
 
-  constructor(private element: ElementRef) {}
+  constructor() {}
 
   ngOnInit(): void {
 
