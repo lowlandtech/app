@@ -1,33 +1,18 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CardModule } from './card/card.module';
 
-/* #region card components */
-import {
-  CardComponent,
-  HeaderComponent,
-  FooterComponent,
-  BodyComponent,
-  ToolbarComponent,
-  TitleComponent
-} from './card';
-
-const card = [
-  CardComponent,
-  HeaderComponent,
-  FooterComponent,
-  BodyComponent,
-  ToolbarComponent,
-  TitleComponent
-];
-/* #endregion */
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [
-    ...card
+  imports: [
+    CommonModule,
+    CardModule
   ],
-  exports: [
-    ...card
+  exports:[
+    CardModule,
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class UiModule {}

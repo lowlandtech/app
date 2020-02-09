@@ -1,0 +1,23 @@
+<div class="card-header">
+  <ng-content select=".card-header-title"></ng-content>
+  <div class="btn-toolbar card-actions justify-content-between pull-right"
+    role="toolbar"
+    aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="Second group">
+      <ng-content select=".card-toolbar"></ng-content>
+    </div>
+    <div class="btn-group" role="group" aria-label="First group">
+      <button class="btn btn-primary btn-sm" type="button">
+        <i class="icon-settings"></i>
+      </button>
+      <button class="btn btn-primary btn-sm" type="button">
+        <i class="icon-arrow-up"></i>
+      </button>
+      <button class="btn btn-primary btn-sm" type="button">
+        <i class="icon-close"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<ng-content select=".card-body"></ng-content>
+<ng-content select=".card-footer"></ng-content>

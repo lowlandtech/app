@@ -11,15 +11,9 @@ import { Card } from './card.model';
 /* #endregion */
 
 @Component({
-  selector: 'scx-ui-card',
-  template: `
-    <ng-content></ng-content>
-  `,
-  styles: [`
-    :host {
-      margin-bottom: 10px;
-    }
-  `]
+  selector: 'scx-ui-card, [component="scx-ui-card"]',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
   @HostBinding('class.card') class1 = true;
