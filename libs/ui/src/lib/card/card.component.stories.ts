@@ -8,13 +8,18 @@ import {
 import { UiModule } from '../ui.module';
 import { CardComponent } from './card.component';
 import { storiesOf, moduleMetadata } from '@storybook/angular';
+import { centered } from '@storybook/addon-centered/angular';
 
 export default {
   title: '<scx-ui-card>',
   component: 'CardComponent',
-  decorators: [withKnobs]
+  decorators: [
+    moduleMetadata({
+      imports: [UiModule]
+    }),
+    withKnobs
+  ]
 };
-
 
 const cardData = {
   id: '1',
@@ -25,45 +30,31 @@ const cardData = {
 };
 
 storiesOf('@spotacard/ui/<scx-ui-card>', module)
-  .addDecorator(
-    moduleMetadata({
-      imports: [ UiModule ]
-    }),
-  )
+  .addDecorator(centered)
   .add('complete', () => ({
-    /* #region template */
     template: `
-    <div class="container bg-faded py-3">
-      <div class="row">
-        <div class="col col-md-12 center">
-          <scx-ui-card>
-            <div class="card-header-title">
-              Featured
-            </div>
-            <div class="card-toolbar">
-              <button class="btn btn-primary btn-sm" type="button">1</button>
-              <button class="btn btn-primary btn-sm" type="button">2</button>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">
-                With supporting text below as a natural lead-in to additional content.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="fa-pull-right">
-                <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
-              </div>
-            </div>
-          </scx-ui-card>
+      <scx-ui-card>
+        <div class="card-header-title">
+          Featured
         </div>
-      </div>
-    </div>
-    `,
-    /* #endregion */
+        <div class="card-toolbar">
+          <button class="btn btn-primary btn-sm" type="button">1</button>
+          <button class="btn btn-primary btn-sm" type="button">2</button>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional content.
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="fa-pull-right">
+            <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+          </div>
+        </div>
+      </scx-ui-card>`,
     component: CardComponent,
     props: {
       card: object('card', { ...cardData })
-    },
-  })
-);
+    }
+  }));
