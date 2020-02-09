@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from './card/card.module';
 
@@ -10,9 +10,6 @@ import { CardModule } from './card/card.module';
   ],
   exports:[
     CardModule,
-  ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class UiModule {}
