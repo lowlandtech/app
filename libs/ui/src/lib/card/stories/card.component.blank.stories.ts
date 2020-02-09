@@ -33,8 +33,10 @@ export const Blank = () => {
           {{card.title}}
         </div>
         <div class="card-body">
-          <span>Card ID: </span>
-           {{card.id}}
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional content.
+          </p>
         </div>
       </scx-ui-card>`,
     props: {
