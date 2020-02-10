@@ -3,7 +3,10 @@ import { centered } from '@storybook/addon-centered/angular';
 
 export const config = {
   title: '@spotacard/ui/card',
-  decorators: [withKnobs, centered],
+  decorators: [
+    withKnobs,
+    centered
+  ],
   parameters: {
     knobs: {
       disableDebounce: true
