@@ -1,8 +1,10 @@
 :host {
   display: inline-block;
-
+  h5 {
+    color: black !important;
+  }
   button {
-    margin: 5px;
+    margin: 2px;
     min-width: 75px;
   }
 }
