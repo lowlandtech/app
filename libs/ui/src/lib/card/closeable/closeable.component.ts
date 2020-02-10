@@ -7,7 +7,6 @@ import { Card } from '../card.model';
   styleUrls: ['./closeable.component.scss']
 })
 export class CloseableComponent implements OnInit {
-  @Input() card: Card;
   @Output() closing: EventEmitter<Card> = new EventEmitter();
   @Output() cancelling: EventEmitter<Card> = new EventEmitter();
 

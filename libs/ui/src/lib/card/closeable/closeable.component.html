@@ -2,9 +2,9 @@
   <div class="row">
       <div class="col-xs-12">
           <div class="text-center">
-            <h3>Do you want to close this card?</h3>
-              <button type="submit" class="btn btn-success btn-sm" (click)="closing.emit(card)">Close</button>
-              <button type="submit" class="btn btn-danger btn-sm" (click)="cancelling.emit(card)">Cancel</button>
+            <h5>Do you really want to close this card?</h5>
+              <button type="submit" class="btn btn-success btn-sm" (click)="closing.emit()">Yes</button>
+              <button type="submit" class="btn btn-danger btn-sm" (click)="cancelling.emit()">No</button>
           </div>
       </div>
   </div>
