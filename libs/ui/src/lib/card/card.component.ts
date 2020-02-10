@@ -55,6 +55,13 @@ export class CardComponent implements OnInit {
       hasBackdrop: true
     });
     this.overlay = new ComponentPortal(CloseableComponent);
-    overlayRef.attach(this.overlay);
+    const componentRef = overlayRef.attach(this.overlay);
+    componentRef.instance.closing.subscribe(() => {
+
+    });
+    componentRef.instance.cancelling.subscribe(() => {
+      overlayRef.dispose();
+    });
+    componentRef.changeDetectorRef.detectChanges();
   }
 }
