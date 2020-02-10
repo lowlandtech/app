@@ -43,7 +43,7 @@ export const Complete = () => {
           </p>
         </div>
         <div class="card-footer">
-          <div class="fa-pull-right">
+          <div class="card-footer-toolbar fa-pull-right">
             <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
           </div>
         </div>
