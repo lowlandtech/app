@@ -1,3 +1,4 @@
+import { SharedModule } from '@spotacard/shared';
 import { object, boolean } from '@storybook/addon-knobs';
 import { CardComponent } from '../card.component';
 import { cardData, config } from './fixtures';
@@ -15,6 +16,7 @@ export const Blank = () => {
 
   return {
     moduleMetadata: {
+      imports: [SharedModule],
       entryComponents: [CardComponent],
       declarations: [CardComponent]
     },
