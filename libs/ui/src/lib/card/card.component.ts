@@ -8,7 +8,10 @@ import {
   EventEmitter,
   ElementRef
 } from '@angular/core';
+import { ComponentPortal } from '@angular/cdk/portal';
+import { DynamicOverlay } from '@spotacard/shared';
 import { Card } from './card.model';
+import { CloseableComponent } from './closeable';
 /* #endregion */
 
 @Component({
@@ -27,17 +30,31 @@ export class CardComponent implements OnInit {
   @Input() cancelable = true;
   @Input() okable = true;
 
-  @Output() hide: EventEmitter<Card> = new EventEmitter();;
-  @Output() remove: EventEmitter<Card> = new EventEmitter();;
-  @Output() collapse: EventEmitter<Card> = new EventEmitter();;
-  @Output() expand: EventEmitter<Card> = new EventEmitter();;
-  @Output() edit: EventEmitter<Card> = new EventEmitter();;
-  @Output() append: EventEmitter<Card> = new EventEmitter();;
-  @Output() prepend: EventEmitter<Card> = new EventEmitter();;
+  @Output() hide: EventEmitter<Card> = new EventEmitter();
+  @Output() remove: EventEmitter<Card> = new EventEmitter();
+  @Output() collapse: EventEmitter<Card> = new EventEmitter();
+  @Output() expand: EventEmitter<Card> = new EventEmitter();
+  @Output() edit: EventEmitter<Card> = new EventEmitter();
+  @Output() append: EventEmitter<Card> = new EventEmitter();
+  @Output() prepend: EventEmitter<Card> = new EventEmitter();
 
-  constructor() {}
+  private overlay: ComponentPortal<CloseableComponent>;
+
+  constructor(
+    private dynamicOverlay: DynamicOverlay,
+    private elRef: ElementRef
+  ) {}
 
   ngOnInit(): void {
+  }
 
+  public onClose() {
+    this.dynamicOverlay.setContainerElement(this.elRef.nativeElement);
+    const overlayRef = this.dynamicOverlay.create({
+      positionStrategy: this.dynamicOverlay.position().global().centerHorizontally().centerVertically(),
+      hasBackdrop: true
+    });
+    this.overlay = new ComponentPortal(CloseableComponent);
+    overlayRef.attach(this.overlay);
   }
 }

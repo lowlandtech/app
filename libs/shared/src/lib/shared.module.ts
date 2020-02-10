@@ -3,21 +3,27 @@ import { ActionsService } from './actions.service';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PagerComponent } from './pager/pager.component';
+import { DynamicOverlay, DynamicOverlayContainer } from './services';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   imports: [
     CommonModule,
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    OverlayModule
   ],
   declarations: [
     PagerComponent
   ],
   exports: [
     PagerComponent,
-    AccordionModule
+    AccordionModule,
+    OverlayModule
   ],
   providers: [
-    ActionsService
-  ],
+    ActionsService,
+    DynamicOverlay,
+    DynamicOverlayContainer
+  ]
 })
 export class SharedModule { }
