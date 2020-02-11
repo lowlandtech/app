@@ -323,3 +323,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+apps/spotacard-api/spotacard.db*
