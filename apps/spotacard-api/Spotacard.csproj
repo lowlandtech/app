@@ -8,6 +8,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="spotacard.db" />
+    <None Remove="spotacard.db-shm" />
+    <None Remove="spotacard.db-wal" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />

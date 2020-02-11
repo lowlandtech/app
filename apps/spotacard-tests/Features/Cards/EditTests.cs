@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using Spotacard.Features.Cards;
 using Spotacard.Infrastructure;
@@ -19,7 +19,7 @@ namespace Spotacard.IntegrationTests.Features.Cards
                     Title = "Test card dsergiu77",
                     Description = "Description of the test card",
                     Body = "Body of the test card",
-                    TagList = new string[] { "tag1", "tag2" }
+                    TagList = "tag1,tag2"
                 }
             };
 

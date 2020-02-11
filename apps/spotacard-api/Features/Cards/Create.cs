@@ -62,7 +62,7 @@ namespace Spotacard.Features.Cards
             {
                 var author = await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
                 var tags = new List<Tag>();
-                foreach (var tag in (message.Card.TagList.Replace(" ","").Split(",") ?? Enumerable.Empty<string>()))
+                foreach (var tag in (message.Card.TagList?.Replace(" ","").Split(",") ?? Enumerable.Empty<string>()))
                 {
                     var t = await _context.Tags.FindAsync(tag);
                     if (t == null)

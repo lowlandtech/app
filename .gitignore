@@ -324,3 +324,5 @@ testem.log
 .DS_Store
 Thumbs.db
 apps/spotacard-api/spotacard.db*
+
+*.ncrunchsolution
