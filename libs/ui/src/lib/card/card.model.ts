@@ -3,5 +3,5 @@ export interface Card {
   title: string;
   key: string;
   type: string;
-  tags: string[]
+  tags?: string[]
 }

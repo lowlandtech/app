@@ -46,6 +46,7 @@
     "@ngrx/store-devtools": "^8.6.0",
     "@storybook/addon-centered": "^5.3.12",
     "@storybook/addon-knobs": "^5.3.12",
+    "angular2-uuid": "^1.1.1",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
     "flag-icon-css": "^3.4.5",
