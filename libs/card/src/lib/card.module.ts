@@ -6,16 +6,16 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { CardEffects } from './+state/card.effects';
-import { CardFacade } from './+state/card.facade';
-import { cardInitialState, cardReducer } from './+state/card.reducer';
-import { AddCommentComponent } from './add-comment/add-comment.component';
-import { CardCommentComponent } from './card-comment/card-comment.component';
-import { CardGuardService } from './card-guard.service';
-import { CardMetaComponent } from './card-meta/card-meta.component';
-import { CardComponent } from './card.component';
-import { CardService } from './card.service';
-import { MarkdownPipe } from './markdown.pipe';
+import { CardEffects } from './+state';
+import { CardFacade } from './+state';
+import { cardInitialState, cardReducer } from './+state';
+import { AddCommentComponent } from './add-comment';
+import { CardCommentComponent } from './card-comment';
+import { CardGuardService } from './services';
+import { CardMetaComponent } from './card-meta';
+import { CardComponent } from './card';
+import { CardService } from './services';
+import { MarkdownPipe } from './pipes';
 
 @NgModule({
   imports: [
@@ -24,17 +24,28 @@ import { MarkdownPipe } from './markdown.pipe';
       {
         path: '',
         component: CardComponent,
-        canActivate: [CardGuardService],
-      },
+        canActivate: [CardGuardService]
+      }
     ]),
     StoreModule.forFeature('card', cardReducer, {
-      initialState: cardInitialState,
+      initialState: cardInitialState
     }),
     EffectsModule.forFeature([CardEffects]),
     NgrxFormsModule,
-    SharedModule,
+    SharedModule
   ],
-  providers: [CardEffects, CardService, CardGuardService, CardFacade],
-  declarations: [CardComponent, CardMetaComponent, CardCommentComponent, MarkdownPipe, AddCommentComponent],
+  providers: [
+    CardEffects,
+    CardService,
+    CardGuardService,
+    CardFacade
+  ],
+  declarations: [
+    CardComponent,
+    CardMetaComponent,
+    CardCommentComponent,
+    MarkdownPipe,
+    AddCommentComponent
+  ]
 })
-export class CardModule {}
+export class CardModule { }

@@ -1,13 +1,19 @@
 import { CardData, User } from '@spotacard/api';
 import { Field } from '@spotacard/ngrx-forms';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-add-comment',
+  selector: 'scx-add-comment',
   templateUrl: './add-comment.component.html',
-  styleUrls: ['./add-comment.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./add-comment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddCommentComponent {
   @Input() card: CardData;

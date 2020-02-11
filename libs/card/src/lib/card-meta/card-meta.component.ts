@@ -1,11 +1,17 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  EventEmitter,
+  Output
+} from '@angular/core';
 import { CardData } from '@spotacard/api';
 
 @Component({
   selector: 'scx-card-meta',
   templateUrl: './card-meta.component.html',
-  styleUrls: ['./card-meta.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./card-meta.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardMetaComponent {
   @Input() card: CardData;

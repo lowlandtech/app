@@ -8,7 +8,7 @@ describe('CardService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [CardService, ApiService],
+      providers: [CardService, ApiService]
     });
   });
 

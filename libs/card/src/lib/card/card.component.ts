@@ -1,11 +1,16 @@
 import { CardComment, CardData, User } from '@spotacard/api';
 import { AuthFacade } from '@spotacard/auth';
 import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { CardFacade } from './+state/card.facade';
+import { CardFacade } from '../+state/card.facade';
 
 const structure: Field[] = [
   {
@@ -13,16 +18,16 @@ const structure: Field[] = [
     name: 'comment',
     placeholder: 'Write a comment...',
     attrs: {
-      rows: 3,
-    },
-  },
+      rows: 3
+    }
+  }
 ];
 
 @Component({
-  selector: '',
+  selector: 'scx-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent implements OnInit, OnDestroy {
   card$: Observable<CardData>;
@@ -38,7 +43,7 @@ export class CardComponent implements OnInit, OnDestroy {
   constructor(
     private ngrxFormsFacade: NgrxFormsFacade,
     private facade: CardFacade,
-    private auhtFacade: AuthFacade,
+    private auhtFacade: AuthFacade
   ) {}
 
   ngOnInit() {
@@ -56,7 +61,7 @@ export class CardComponent implements OnInit, OnDestroy {
       .pipe(
         filter(auth => auth.loggedIn),
         auth$ => combineLatest([auth$, this.facade.authorUsername$]),
-        takeUntil(this.unsubscribe$),
+        takeUntil(this.unsubscribe$)
       )
       .subscribe(([auth, username]) => {
         this.canModify = auth.user.username === username;

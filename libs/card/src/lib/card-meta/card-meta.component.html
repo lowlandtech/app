@@ -10,7 +10,10 @@
   </div>
 
   <span [hidden]="!canModify">
-    <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/editor', card.slug]">
+    <a
+      class="btn btn-sm btn-outline-secondary"
+      [routerLink]="['/editor', card.slug]"
+    >
       <i class="ion-edit"></i> Edit Card
     </a>
 

@@ -1,11 +1,17 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  EventEmitter,
+  Output
+} from '@angular/core';
 import { CardComment, CardData, User } from '@spotacard/api';
 
 @Component({
   selector: 'scx-card-comment',
   templateUrl: './card-comment.component.html',
-  styleUrls: ['./card-comment.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./card-comment.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardCommentComponent {
   @Input() currentUser: User;
