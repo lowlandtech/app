@@ -19,87 +19,8 @@ const styles = {
 };
 
 @Component({
-  template: `
-    <scx-header>
-      <ul *ngIf="!isLoggedIn$|async" class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <!-- Add "active" class when you're on that page" -->
-          <a class="nav-link" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active"
-            >Sign in</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/register" routerLinkActive="active"
-            >Sign up</a
-          >
-        </li>
-      </ul>
-
-      <!-- Logged in user -->
-      <ul *ngIf="isLoggedIn$|async" class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <!-- Add "active" class when you're on that page" -->
-          <a
-            class="nav-link active"
-            [routerLink]="['/']"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Home</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/editor" routerLinkActive="active">
-            <i class="ion-compose"></i>&nbsp;New Card
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/settings" routerLinkActive="active">
-            <i class="ion-gear-a"></i>&nbsp;Settings
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['/profile', (user$|async).username]"
-            routerLinkActive="active"
-          >
-            <img [src]="(user$|async).image" *ngIf="(user$|async).image" class="user-pic" />
-            {{ (user$|async).username }}
-          </a>
-        </li>
-      </ul>
-    </scx-header>
-    <scx-content>
-      <scx-sidebar>
-        <scx-sidebar-header></scx-sidebar-header>
-        <scx-sidebar-form></scx-sidebar-form>
-        <scx-sidebar-nav></scx-sidebar-nav>
-        <scx-sidebar-footer></scx-sidebar-footer>
-        <button
-          class="sidebar-minimizer"
-          type="button"
-          scxSidebarMinimizer
-          scxBrandMinimizer
-        ></button>
-      </scx-sidebar>
-      <scx-main [class]="classes.container">
-        <scx-breadcrumbs></scx-breadcrumbs>
-        <router-outlet></router-outlet>
-      </scx-main>
-      <scx-aside>
-        <scx-aside-list></scx-aside-list>
-      </scx-aside>
-    </scx-content>
-    <scx-footer [class]="classes.footer">
-      <span><a href="https://spotacard.com">Spotacard</a> &copy; 2020</span>
-      <span class="ml-auto"
-        >Powered by <a href="https://lowlandtech.com">LowLandTech</a></span
-      >
-    </scx-footer>
-  `
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
   public user$: Observable<User>;
@@ -122,6 +43,5 @@ export class AdminComponent implements OnInit {
         filter(token => !!token),
       )
       .subscribe(token => this.authFacade.user());
-
   }
 }
