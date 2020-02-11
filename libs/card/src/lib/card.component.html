@@ -2,7 +2,7 @@
   <div class="banner">
     <div class="container">
       <h1>{{ (card$ | async).title }}</h1>
-      <app-card-meta
+      <scx-card-meta
         [card]="card$ | async"
         (follow)="follow($event)"
         (unfollow)="unfollow($event)"
@@ -11,7 +11,7 @@
         (delete)="delete($event)"
         [canModify]="canModify"
       >
-      </app-card-meta>
+      </scx-card-meta>
     </div>
   </div>
 
@@ -23,7 +23,7 @@
     </div>
     <hr />
     <div class="card-actions">
-      <app-card-meta
+      <scx-card-meta
         [card]="card$ | async"
         (follow)="follow($event)"
         (unfollow)="unfollow($event)"
@@ -31,7 +31,7 @@
         (unfavorite)="unfavorite($event)"
         (delete)="delete($event)"
         [canModify]="canModify"
-      ></app-card-meta>
+      ></scx-card-meta>
     </div>
 
     <div class="row">
@@ -53,13 +53,13 @@
           this card.
         </div>
 
-        <app-card-comment
+        <scx-card-comment
           *ngFor="let comment of comments$ | async"
           [currentUser]="currentUser$ | async"
           (delete)="deleteComment($event)"
           [card]="card$ | async"
           [comment]="comment"
-        ></app-card-comment>
+        ></scx-card-comment>
       </div>
     </div>
   </div>

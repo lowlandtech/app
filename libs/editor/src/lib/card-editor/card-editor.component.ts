@@ -35,7 +35,7 @@ const structure: Field[] = [
 ];
 
 @Component({
-  selector: 'app-card-editor',
+  selector: 'scx-card-editor',
   templateUrl: './card-editor.component.html',
   styleUrls: ['./card-editor.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

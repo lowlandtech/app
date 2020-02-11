@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output
 import { CardData } from '@spotacard/api';
 
 @Component({
-  selector: 'app-card-meta',
+  selector: 'scx-card-meta',
   templateUrl: './card-meta.component.html',
   styleUrls: ['./card-meta.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

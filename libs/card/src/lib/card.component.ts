@@ -19,7 +19,7 @@ const structure: Field[] = [
 ];
 
 @Component({
-  selector: 'app-card',
+  selector: '',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

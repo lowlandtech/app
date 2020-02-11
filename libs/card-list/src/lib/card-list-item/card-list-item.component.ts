@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy
 import { CardData } from '@spotacard/api';
 
 @Component({
-  selector: 'app-card-list-item',
+  selector: 'scx-card-list-item',
   templateUrl: './card-list-item.component.html',
   styleUrls: ['./card-list-item.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

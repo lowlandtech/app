@@ -7,7 +7,7 @@ import { CardListFacade } from './+state/card-list.facade';
 import { CardListConfig } from './+state/card-list.reducer';
 
 @Component({
-  selector: 'app-card-list',
+  selector: 'scx-card-list',
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
