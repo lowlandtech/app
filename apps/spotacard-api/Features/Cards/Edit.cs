@@ -42,9 +42,9 @@ namespace Spotacard.Features.Cards
 
         public class Handler : IRequestHandler<Command, CardEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
 
-            public Handler(ConduitContext context)
+            public Handler(GraphContext context)
             {
                 _context = context;
             }

@@ -41,12 +41,12 @@ namespace Spotacard.Features.Users
 
         public class Handler : IRequestHandler<Command, UserEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
             private readonly IPasswordHasher _passwordHasher;
             private readonly ICurrentUserAccessor _currentUserAccessor;
             private readonly IMapper _mapper;
 
-            public Handler(ConduitContext context, IPasswordHasher passwordHasher,
+            public Handler(GraphContext context, IPasswordHasher passwordHasher,
                 ICurrentUserAccessor currentUserAccessor, IMapper mapper)
             {
                 _context = context;

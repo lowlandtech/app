@@ -15,9 +15,9 @@ namespace Spotacard.Features.Tags
 
         public class QueryHandler : IRequestHandler<Query, TagsEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
 
-            public QueryHandler(ConduitContext context)
+            public QueryHandler(GraphContext context)
             {
                 _context = context;
             }

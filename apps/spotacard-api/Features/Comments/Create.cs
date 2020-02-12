@@ -43,10 +43,10 @@ namespace Spotacard.Features.Comments
 
         public class Handler : IRequestHandler<Command, CommentEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
             private readonly ICurrentUserAccessor _currentUserAccessor;
 
-            public Handler(ConduitContext context, ICurrentUserAccessor currentUserAccessor)
+            public Handler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
             {
                 _context = context;
                 _currentUserAccessor = currentUserAccessor;

@@ -28,11 +28,11 @@ namespace Spotacard.Features.Users
 
         public class QueryHandler : IRequestHandler<Query, UserEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
             private readonly IJwtTokenGenerator _jwtTokenGenerator;
             private readonly IMapper _mapper;
 
-            public QueryHandler(ConduitContext context, IJwtTokenGenerator jwtTokenGenerator, IMapper mapper)
+            public QueryHandler(GraphContext context, IJwtTokenGenerator jwtTokenGenerator, IMapper mapper)
             {
                 _context = context;
                 _jwtTokenGenerator = jwtTokenGenerator;

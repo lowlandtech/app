@@ -14,9 +14,9 @@ namespace Spotacard.Infrastructure
     /// <typeparam name="TResponse"></typeparam>
     public class DBContextTransactionPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        private readonly ConduitContext _context;
+        private readonly GraphContext _context;
 
-        public DBContextTransactionPipelineBehavior(ConduitContext context)
+        public DBContextTransactionPipelineBehavior(GraphContext context)
         {
             _context = context;
         }

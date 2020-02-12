@@ -1,4 +1,4 @@
-﻿using Spotacard.Domain;
+using Spotacard.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Spotacard.Infrastructure
 {
-    public class ConduitContext : DbContext
+    public class GraphContext : DbContext
     {
         private IDbContextTransaction _currentTransaction;
 
-        public ConduitContext(DbContextOptions options)
+        public GraphContext(DbContextOptions options)
             : base(options)
         {
         }
@@ -56,7 +56,7 @@ namespace Spotacard.Infrastructure
                 b.HasKey(t => new { t.ObserverId, t.TargetId });
 
                 // we need to add OnDelete RESTRICT otherwise for the SqlServer database provider, 
-                // app.ApplicationServices.GetRequiredService<ConduitContext>().Database.EnsureCreated(); throws the following error:
+                // app.ApplicationServices.GetRequiredService<GraphContext>().Database.EnsureCreated(); throws the following error:
                 // System.Data.SqlClient.SqlException
                 // HResult = 0x80131904
                 // Message = Introducing FOREIGN KEY constraint 'FK_FollowedPeople_Persons_TargetId' on table 'FollowedPeople' may cause cycles or multiple cascade paths.Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
@@ -67,7 +67,7 @@ namespace Spotacard.Infrastructure
                     .OnDelete(DeleteBehavior.Restrict);
 
                 // we need to add OnDelete RESTRICT otherwise for the SqlServer database provider, 
-                // app.ApplicationServices.GetRequiredService<ConduitContext>().Database.EnsureCreated(); throws the following error:
+                // app.ApplicationServices.GetRequiredService<GraphContext>().Database.EnsureCreated(); throws the following error:
                 // System.Data.SqlClient.SqlException
                 // HResult = 0x80131904
                 // Message = Introducing FOREIGN KEY constraint 'FK_FollowingPeople_Persons_TargetId' on table 'FollowedPeople' may cause cycles or multiple cascade paths.Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
