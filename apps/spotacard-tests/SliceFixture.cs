@@ -31,7 +31,7 @@ namespace Spotacard.IntegrationTests
 
             DbContextOptionsBuilder builder = new DbContextOptionsBuilder();
             builder.UseInMemoryDatabase(DbName);
-            services.AddSingleton(new ConduitContext(builder.Options));
+            services.AddSingleton(new GraphContext(builder.Options));
 
             startup.ConfigureServices(services);
 
@@ -41,9 +41,9 @@ namespace Spotacard.IntegrationTests
             _scopeFactory = _provider.GetService<IServiceScopeFactory>();
         }
 
-        public ConduitContext GetDbContext()
+        public GraphContext GetDbContext()
         {
-            return _provider.GetRequiredService<ConduitContext>();
+            return _provider.GetRequiredService<GraphContext>();
         }
 
         public void Dispose()
@@ -87,14 +87,14 @@ namespace Spotacard.IntegrationTests
             });
         }
 
-        public Task ExecuteDbContextAsync(Func<ConduitContext, Task> action)
+        public Task ExecuteDbContextAsync(Func<GraphContext, Task> action)
         {
-            return ExecuteScopeAsync(sp => action(sp.GetService<ConduitContext>()));
+            return ExecuteScopeAsync(sp => action(sp.GetService<GraphContext>()));
         }
 
-        public Task<T> ExecuteDbContextAsync<T>(Func<ConduitContext, Task<T>> action)
+        public Task<T> ExecuteDbContextAsync<T>(Func<GraphContext, Task<T>> action)
         {
-            return ExecuteScopeAsync(sp => action(sp.GetService<ConduitContext>()));
+            return ExecuteScopeAsync(sp => action(sp.GetService<GraphContext>()));
         }
 
         public Task InsertAsync(params object[] entities)

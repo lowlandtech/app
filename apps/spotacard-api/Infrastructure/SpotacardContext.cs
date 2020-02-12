@@ -1,12 +1,11 @@
-using Spotacard.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Spotacard.Domain;
 using System.Data;
-using System.Threading.Tasks;
 
 namespace Spotacard.Infrastructure
 {
-    public class GraphContext : DbContext
+  public class GraphContext : DbContext
     {
         private IDbContextTransaction _currentTransaction;
 
