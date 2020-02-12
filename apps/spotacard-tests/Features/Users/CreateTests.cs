@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Spotacard.Features.Users;
-using Spotacard.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Infrastructure.Security;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
-namespace Spotacard.IntegrationTests.Features.Users
+namespace Spotacard.Features.Users
 {
-    public class CreateTests : SliceFixture
+  public class CreateTests : SliceFixture
     {
         [Fact]
         public async Task Expect_Create_User()

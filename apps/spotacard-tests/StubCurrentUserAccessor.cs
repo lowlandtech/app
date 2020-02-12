@@ -1,11 +1,8 @@
-﻿using Spotacard.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Spotacard.Infrastructure;
 
-namespace Spotacard.IntegrationTests
+namespace Spotacard
 {
-    public class StubCurrentUserAccessor : ICurrentUserAccessor
+  public class StubCurrentUserAccessor : ICurrentUserAccessor
     {
         private readonly string _currentUserName;
 

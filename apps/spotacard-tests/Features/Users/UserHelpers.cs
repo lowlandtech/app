@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Spotacard.Features.Users;
 
-namespace Spotacard.IntegrationTests.Features.Users
+namespace Spotacard.Features.Users
 {
-    public static class UserHelpers
+  public static class UserHelpers
     {
         public static readonly string DefaultUserName = "username";
 

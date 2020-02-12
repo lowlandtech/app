@@ -2,9 +2,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Features.Comments;
-using Spotacard.IntegrationTests.Features.Users;
+using Spotacard.Features.Users;
 
-namespace Spotacard.IntegrationTests.Features.Comments
+namespace Spotacard.Features.Comments
 {
     public static class CommentHelpers
     {

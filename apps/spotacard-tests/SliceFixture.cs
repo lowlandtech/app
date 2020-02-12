@@ -1,15 +1,15 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Spotacard.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Spotacard.Infrastructure;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
-namespace Spotacard.IntegrationTests
+namespace Spotacard
 {
-    public class SliceFixture : IDisposable
+  public class SliceFixture : IDisposable
     {
         static readonly IConfiguration Config;
 

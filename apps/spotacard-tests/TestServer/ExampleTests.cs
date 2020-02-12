@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -6,6 +5,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Hosting;
 using NUnit.Framework;
+using System.Threading.Tasks;
+using Xunit;
+using Assert = NUnit.Framework.Assert;
 
 namespace Spotacard.TestServer
 {
@@ -18,7 +20,7 @@ namespace Spotacard.TestServer
       _fixture = TestServerFixture.Get<Startup>();
     }
 
-    [Test]
+    [Fact]
     public async Task PingShouldReturnPongTest()
     {
       var client = _fixture.CreateClient();
@@ -28,7 +30,7 @@ namespace Spotacard.TestServer
       Assert.That(responseString, Is.EqualTo("Pong"));
     }
 
-    [Test]
+    [Fact]
     public async Task BasicIntegrationExampleTest()
     {
       // Arrange

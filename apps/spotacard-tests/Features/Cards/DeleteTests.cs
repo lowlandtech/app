@@ -1,14 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Spotacard.Features.Comments;
+using Spotacard.Features.Users;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.EntityFrameworkCore;
-using Spotacard.Features.Cards;
-using Spotacard.IntegrationTests.Features.Comments;
-using Spotacard.IntegrationTests.Features.Users;
 
-namespace Spotacard.IntegrationTests.Features.Cards
+namespace Spotacard.Features.Cards
 {
-    public class DeleteTests : SliceFixture
+  public class DeleteTests : SliceFixture
     {
         [Fact]
         public async Task Expect_Delete_Card()

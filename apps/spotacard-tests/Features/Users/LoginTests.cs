@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
 using Spotacard.Domain;
-using Spotacard.Features.Users;
 using Spotacard.Infrastructure.Security;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
-namespace Spotacard.IntegrationTests.Features.Users
+namespace Spotacard.Features.Users
 {
-    public class LoginTests : SliceFixture
+  public class LoginTests : SliceFixture
     {
         [Fact]
         public async Task Expect_Login()

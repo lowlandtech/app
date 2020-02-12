@@ -1,13 +1,10 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Spotacard.Features.Cards;
-using Spotacard.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace Spotacard.IntegrationTests.Features.Cards
+namespace Spotacard.Features.Cards
 {
-    public class EditTests : SliceFixture
+  public class EditTests : SliceFixture
     {
         [Fact]
         public async Task Expect_Edit_Card()
