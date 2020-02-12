@@ -32,11 +32,11 @@ namespace Spotacard.Features.Followers
 
         public class QueryHandler : IRequestHandler<Command, ProfileEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
             private readonly ICurrentUserAccessor _currentUserAccessor;
             private readonly IProfileReader _profileReader;
 
-            public QueryHandler(ConduitContext context, ICurrentUserAccessor currentUserAccessor, IProfileReader profileReader)
+            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor, IProfileReader profileReader)
             {
                 _context = context;
                 _currentUserAccessor = currentUserAccessor;

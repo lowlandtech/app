@@ -31,10 +31,10 @@ namespace Spotacard.Features.Cards
 
         public class QueryHandler : IRequestHandler<Query, CardsEnvelope>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
             private readonly ICurrentUserAccessor _currentUserAccessor;
 
-            public QueryHandler(ConduitContext context, ICurrentUserAccessor currentUserAccessor)
+            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
             {
                 _context = context;
                 _currentUserAccessor = currentUserAccessor;

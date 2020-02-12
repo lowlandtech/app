@@ -34,9 +34,9 @@ namespace Spotacard.Features.Comments
 
         public class QueryHandler : IRequestHandler<Command>
         {
-            private readonly ConduitContext _context;
+            private readonly GraphContext _context;
 
-            public QueryHandler(ConduitContext context)
+            public QueryHandler(GraphContext context)
             {
                 _context = context;
             }

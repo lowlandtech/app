@@ -10,11 +10,11 @@ namespace Spotacard.Features.Profiles
 {
     public class ProfileReader : IProfileReader
     {
-        private readonly ConduitContext _context;
+        private readonly GraphContext _context;
         private readonly ICurrentUserAccessor _currentUserAccessor;
         private readonly IMapper _mapper;
 
-        public ProfileReader(ConduitContext context, ICurrentUserAccessor currentUserAccessor, IMapper mapper)
+        public ProfileReader(GraphContext context, ICurrentUserAccessor currentUserAccessor, IMapper mapper)
         {
             _context = context;
             _currentUserAccessor = currentUserAccessor;

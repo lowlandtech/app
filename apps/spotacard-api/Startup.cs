@@ -50,7 +50,7 @@ namespace Spotacard
             if (string.IsNullOrWhiteSpace(databaseProvider))
                 databaseProvider = DEFAULT_DATABASE_PROVIDER;
 
-            services.AddDbContext<ConduitContext>(options =>
+            services.AddDbContext<GraphContext>(options =>
             {
                 if (databaseProvider.ToLower().Trim().Equals("sqlite"))
                     options.UseSqlite(connectionString);
@@ -148,7 +148,7 @@ namespace Spotacard
                 x.SwaggerEndpoint("/swagger/v1/swagger.json", "Spotacard API V1");
             });
 
-            app.ApplicationServices.GetRequiredService<ConduitContext>().Database.EnsureCreated();
+            app.ApplicationServices.GetRequiredService<GraphContext>().Database.EnsureCreated();
         }
     }
 }
