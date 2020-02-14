@@ -22,6 +22,9 @@
     ".gitignore": true,
     ".editorconfig": true,
     "jest.config.js": true,
-    "package-lock.json": true
+    "package-lock.json": true,
+    "_NCrunch_spotacard": true,
+    "spotacard.v3.ncrunchsolution": true,
+    ".vs": true
   }
 }
