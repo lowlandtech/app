@@ -1,12 +1,11 @@
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Features.Users;
-using Spotacard.Features.Cards;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Cards
 {
-    public static class CardHelpers
+  public static class CardHelpers
     {
         /// <summary>
         /// creates an card based on the given Create command. It also creates a default user

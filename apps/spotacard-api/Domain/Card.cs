@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Newtonsoft.Json;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Domain
 {
@@ -41,5 +42,7 @@ namespace Spotacard.Domain
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+
+        public CardTypes Type { get; set; }
     }
 }
