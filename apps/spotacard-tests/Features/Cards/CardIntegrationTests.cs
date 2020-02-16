@@ -31,6 +31,7 @@ namespace Spotacard.Features.Cards
       Assert.That(cards.Find(card => card.Id == CardData.FirstItem.Id), Is.Not.Null);
       Assert.That(cards.Find(card => card.Id == CardData.SecondItem.Id), Is.Not.Null);
     }
+
     [Test]
     public async Task ShouldGetCardById()
     {
@@ -46,6 +47,7 @@ namespace Spotacard.Features.Cards
       // Assert
       Assert.That(card.Id, Is.EqualTo(CardData.FirstItem.Id));
     }
+
     [Test]
     public async Task ShouldPostNewCard()
     {
@@ -71,6 +73,7 @@ namespace Spotacard.Features.Cards
       Assert.That(added.Id, Is.Not.EqualTo(Guid.Empty));
       Assert.That(added.Title, Is.EqualTo("Test3"));
     }
+
     [Test]
     public async Task ShouldPutUpdatedCard()
     {
@@ -94,6 +97,7 @@ namespace Spotacard.Features.Cards
       Assert.That(updated, Is.Not.Null);
       Assert.That(updated.Title, Is.EqualTo("Test4"));
     }
+
     [Test]
     public async Task ShouldReturnNotFoundPut()
     {
@@ -117,6 +121,7 @@ namespace Spotacard.Features.Cards
       // Assert
       Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
     }
+
     [Test]
     public async Task ShouldDeleteCard()
     {

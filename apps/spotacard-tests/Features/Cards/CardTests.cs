@@ -1,11 +1,11 @@
+using System;
+using System.Linq;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Spotacard.Domain;
 using Spotacard.Features.Graphs;
 using Spotacard.Infrastructure;
-using System;
-using System.Linq;
 
 namespace Spotacard.Features.Cards
 {
@@ -85,7 +85,7 @@ namespace Spotacard.Features.Cards
       var response = GraphFixtures.Get();
       try
       {
-        var card = new Card { Title = "TestCard" };
+        var card = new Card {Title = "TestCard"};
         response.Graph.Cards.Add(card);
         response.Graph.SaveChanges();
 
@@ -119,9 +119,9 @@ namespace Spotacard.Features.Cards
         // Insert seed data into the database using one instance of the graph
         using (var graph = new GraphContext(options))
         {
-          graph.Cards.Add(new Card { Title = "https://example.com/cats" });
-          graph.Cards.Add(new Card { Title = "https://example.com/catfish" });
-          graph.Cards.Add(new Card { Title = "https://example.com/dogs" });
+          graph.Cards.Add(new Card {Title = "https://example.com/cats"});
+          graph.Cards.Add(new Card {Title = "https://example.com/catfish"});
+          graph.Cards.Add(new Card {Title = "https://example.com/dogs"});
           graph.SaveChanges();
         }
 
