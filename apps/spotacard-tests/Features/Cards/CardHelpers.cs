@@ -27,7 +27,8 @@ namespace Spotacard.Features.Cards
       var created = await handler.Handle(command, new CancellationToken());
 
       var card = await fixture
-        .ExecuteDbContextAsync(_graph => _graph.Cards.Where(_card => _card.Id == created.Card.Id)
+        .ExecuteDbContextAsync(_graph => _graph.Cards
+          .Where(_card => _card.Id == created.Card.Id)
         .SingleOrDefaultAsync());
 
       return card;

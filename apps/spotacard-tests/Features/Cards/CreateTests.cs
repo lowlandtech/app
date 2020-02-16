@@ -4,11 +4,12 @@ using NUnit.Framework;
 
 namespace Spotacard.Features.Cards
 {
-  public class CreateTests : SliceFixture
+  public class CreateTests
   {
     [Test]
     public async Task Expect_Create_Card()
     {
+      var fixture = new SliceFixture();
       var command = new Create.Command
       {
         Card = new Create.CardData
@@ -20,11 +21,11 @@ namespace Spotacard.Features.Cards
         }
       };
 
-      var card = await CardHelpers.CreateCard(this, command);
+      var card = await CardHelpers.CreateCard(fixture, command);
 
       Assert.That(card, Is.Not.Null);
       Assert.That(card.Title, Is.EqualTo(command.Card.Title));
-      Assert.That(card.TagList.Count(), Is.EqualTo(command.Card.TagList.Count()));
+      Assert.That(card.TagList.Count(), Is.EqualTo(command.Card.TagList.Split(",").Count()));
     }
   }
 }

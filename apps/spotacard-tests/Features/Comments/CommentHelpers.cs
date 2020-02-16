@@ -1,9 +1,9 @@
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Features.Users;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Comments
 {
@@ -25,24 +25,28 @@ namespace Spotacard.Features.Comments
         userName = user.Username;
       }
 
-      var dbContext = fixture.GetDbContext();
+      var graph = fixture.GetGraph();
       var currentAccessor = new StubCurrentUserAccessor(userName);
 
-      var commentCreateHandler = new Create.Handler(dbContext, currentAccessor);
-      var created = await commentCreateHandler.Handle(command, new CancellationToken());
+      var handler = new Create.Handler(graph, currentAccessor);
+      var created = await handler.Handle(command, new CancellationToken());
 
-      var dbCardWithComments = await fixture.ExecuteDbContextAsync(
-        db => db.Cards
-          .Include(a => a.Comments).Include(a => a.Author)
-          .Where(a => a.Slug == command.Slug)
+      var card = await fixture.ExecuteDbContextAsync(
+        _graph => _graph.Cards
+          .Include(_card => _card.Comments)
+          .Include(_card => _card.Author)
+          .Where(_card => _card.Slug == command.Slug)
           .SingleOrDefaultAsync()
       );
 
-      var dbComment = dbCardWithComments.Comments
-        .Where(c => c.CardId == dbCardWithComments.Id && c.Author == dbCardWithComments.Author)
-        .FirstOrDefault();
+      var comments = card.Comments
+        .FirstOrDefault(
+          _comment =>
+            _comment.CardId == card.Id &&
+            _comment.Author == card.Author
+        );
 
-      return dbComment;
+      return comments;
     }
   }
 }

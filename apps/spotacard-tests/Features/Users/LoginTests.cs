@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Spotacard.Features.Users
 {
-  public class LoginTests : SliceFixture
+  public class LoginTests
   {
+    private readonly SliceFixture _fixture = new SliceFixture();
+
     [Test]
     public async Task Expect_Login()
     {
@@ -19,7 +21,7 @@ namespace Spotacard.Features.Users
         Hash = new PasswordHasher().Hash("password", salt),
         Salt = salt
       };
-      await InsertAsync(person);
+      await _fixture.InsertAsync(person);
 
       var command = new Login.Command
       {
@@ -30,7 +32,7 @@ namespace Spotacard.Features.Users
         }
       };
 
-      var user = await SendAsync(command);
+      var user = await _fixture.SendAsync(command);
 
       Assert.That(user?.User, Is.Not.Null);
       Assert.That(user.User.Email, Is.EqualTo(command.User.Email));

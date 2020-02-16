@@ -1,13 +1,15 @@
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Spotacard.Infrastructure.Security;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Users
 {
-  public class CreateTests : SliceFixture
+  public class CreateTests
   {
+    private readonly SliceFixture _fixture = new SliceFixture();
+
     [Test]
     public async Task Expect_Create_User()
     {
@@ -21,10 +23,11 @@ namespace Spotacard.Features.Users
         }
       };
 
-      await SendAsync(command);
+      await _fixture.SendAsync(command);
 
-      var created = await ExecuteDbContextAsync(db =>
-        db.Persons.Where(d => d.Email == command.User.Email).SingleOrDefaultAsync());
+      var created = await _fixture.ExecuteDbContextAsync(_graph => _graph.Persons
+        .Where(_person => _person.Email == command.User.Email)
+        .SingleOrDefaultAsync());
 
       Assert.That(created, Is.Not.Null);
       Assert.That(new PasswordHasher().Hash("password", created.Salt), Is.EqualTo(created.Hash));
