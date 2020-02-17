@@ -40,7 +40,7 @@ namespace Spotacard.Features.Cards
 
       // Act
       var client = factory.CreateClient();
-      var response = await client.GetAsync($"cards/{CardData.FirstItemId}");
+      var response = await client.GetAsync($"cards/id/{CardData.FirstItemId}");
       var json = await response.Content.ReadAsStringAsync();
       var card = JsonConvert.DeserializeObject<Card>(json);
 
@@ -89,7 +89,7 @@ namespace Spotacard.Features.Cards
       // Act
       var client = factory.CreateClient();
       await client.PutAsync($"cards/{card.Id}", bytes);
-      var response = await client.GetAsync($"cards/{card.Id}");
+      var response = await client.GetAsync($"cards/id/{card.Id}");
       var json = await response.Content.ReadAsStringAsync();
       var updated = JsonConvert.DeserializeObject<Card>(json);
 
@@ -116,7 +116,7 @@ namespace Spotacard.Features.Cards
       // Act
       var client = factory.CreateClient();
       await client.PutAsync($"cards/{card.Id}", bytes);
-      var response = await client.GetAsync($"cards/{card.Id}");
+      var response = await client.GetAsync($"cards/id/{card.Id}");
 
       // Assert
       Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
@@ -131,10 +131,10 @@ namespace Spotacard.Features.Cards
 
       // Act
       await client.DeleteAsync($"cards/{CardData.FirstItem.Id}");
-      var response = await client.GetAsync($"cards/{CardData.FirstItem.Id}");
+      var response = await client.GetAsync($"cards/id/{CardData.FirstItem.Id}");
 
       // Assert
-      Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+      Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
     }
   }
 }
