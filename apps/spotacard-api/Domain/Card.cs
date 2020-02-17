@@ -18,6 +18,8 @@ namespace Spotacard.Domain
         [Required]
         public string Title { get; set; }
 
+        public ContractTypes Type { get; set; }
+
         public string Description { get; set; }
 
         public string Body { get; set; }
@@ -44,7 +46,5 @@ namespace Spotacard.Domain
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
-        public CardTypes Type { get; set; }
     }
 }

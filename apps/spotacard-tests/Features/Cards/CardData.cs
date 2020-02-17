@@ -17,14 +17,14 @@ namespace Spotacard.Features.Cards
     {
       Id = Guid.Parse(FirstItemId),
       Title = "Item 1",
-      Type = CardTypes.Todo
+      Type = ContractTypes.Todo
     };
 
     public static readonly Card SecondItem = new Card
     {
       Id = Guid.Parse(SecondItemId),
       Title = "Item 2",
-      Type = CardTypes.Todo
+      Type = ContractTypes.Todo
     };
 
     public CardData(GraphContext graph)
