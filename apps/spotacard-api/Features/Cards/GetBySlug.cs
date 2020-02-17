@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Spotacard.Features.Cards
 {
-    public class Details
+    public class GetBySlug
     {
         public class Query : IRequest<CardEnvelope>
         {

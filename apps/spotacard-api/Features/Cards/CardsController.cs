@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Spotacard.Infrastructure.Security;
 using MediatR;
@@ -34,7 +35,13 @@ namespace Spotacard.Features.Cards
         [HttpGet("{slug}")]
         public async Task<CardEnvelope> Get(string slug)
         {
-            return await _mediator.Send(new Details.Query(slug));
+            return await _mediator.Send(new GetBySlug.Query(slug));
+        }
+
+        [HttpGet("id/{id}")]
+        public async Task<CardEnvelope> Get(Guid id)
+        {
+          return await _mediator.Send(new GetById.Query(id));
         }
 
         [HttpPost]
