@@ -1,5 +1,6 @@
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
+using Spotacard.Domain;
 using Spotacard.Features.Apps;
 using Spotacard.Features.Projects;
 using Spotacard.Features.Steps;
@@ -14,26 +15,26 @@ namespace Spotacard.Core.Types
 {
   public class ContractResolver
   {
-    public IContract Get(ContractTypes type)
+    public IContract Get(ContractTypes type, Card card)
     {
       switch (type)
       {
         case ContractTypes.Todo:
-          return new TodoContract();
+          return new TodoContract(card);
         case ContractTypes.Project:
-          return new ProjectContract();
+          return new ProjectContract(card);
         case ContractTypes.Task:
-          return new TaskContract();
+          return new TaskContract(card);
         case ContractTypes.TaskList:
-          return new TaskListContract();
+          return new TaskListContract(card);
         case ContractTypes.App:
-          return new AppContract();
+          return new AppContract(card);
         case ContractTypes.Workflow:
-          return new WorkflowContract();
+          return new WorkflowContract(card);
         case ContractTypes.Step:
-          return new StepContract();
+          return new StepContract(card);
         case ContractTypes.Template:
-          return new TemplateContract();
+          return new TemplateContract(card);
         default:
           throw new ArgumentOutOfRangeException(nameof(type), type, "Invalid contract type");
       }
