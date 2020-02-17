@@ -8,15 +8,8 @@ namespace Spotacard
 {
   public class Program
   {
-    private static IConfigurationRoot _config
-      ;
-
     public static void Main(string[] args)
     {
-      _config = new ConfigurationBuilder()
-        .AddEnvironmentVariables()
-        .Build();
-
       CreateHostBuilder(args)
         .Build()
         .Migrate()
@@ -26,13 +19,18 @@ namespace Spotacard
 
     public static IHostBuilder CreateHostBuilder(string[] args)
     {
+      var config = new ConfigurationBuilder()
+        .AddEnvironmentVariables()
+        .Build();
+
       return Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
+        .ConfigureWebHostDefaults(builder =>
         {
-          webBuilder.UseConfiguration(_config)
+          builder
+            .UseConfiguration(config)
             .UseSerilog()
             .UseKestrel()
-            .UseUrls($"http://+:5000")
+            .UseUrls("http://+:5000")
             .UseStartup<Startup>();
         });
     }
