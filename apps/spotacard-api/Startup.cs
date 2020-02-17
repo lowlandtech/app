@@ -122,6 +122,11 @@ namespace Spotacard
       app.UseSwaggerUI(x => { x.SwaggerEndpoint("/swagger/v1/swagger.json", "Spotacard API V1"); });
 
       // app.ApplicationServices.GetRequiredService<GraphContext>().Database.EnsureCreated();
+
+      //app.UseEndpoints(endpoints =>
+      //{
+      //  endpoints.MapHub<CardHub>("/hubs/cards");
+      //});
     }
   }
 }
