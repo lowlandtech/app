@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -17,6 +17,7 @@ using Spotacard.Infrastructure.Security;
 using System.Collections.Generic;
 using System.Reflection;
 using Spotacard.Core;
+using Spotacard.Features.Cards;
 
 namespace Spotacard
 {
