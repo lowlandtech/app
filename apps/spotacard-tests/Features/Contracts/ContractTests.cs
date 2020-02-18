@@ -93,7 +93,6 @@ namespace Spotacard.Features.Contracts
       Assert.That(contract, Is.InstanceOf(typeof(ProjectContract)));
       Assert.That(contract.Card, Is.Not.Null);
     }
-
   }
 
   public class CardFixtures

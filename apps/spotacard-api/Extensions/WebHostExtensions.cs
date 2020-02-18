@@ -42,14 +42,12 @@ namespace Spotacard.Extensions
         var services = scope.ServiceProvider;
         var logger = services.GetRequiredService<ILogger<Program>>();
         var graph = services.GetRequiredService<GraphContext>();
-
         var migrationsAssembly = graph.GetService<IMigrationsAssembly>();
         var differ = graph.GetService<IMigrationsModelDiffer>();
 
         var hasDifferences = differ.HasDifferences(
           migrationsAssembly.ModelSnapshot.Model,
           graph.Model);
-
 
         if (!hasDifferences) return host;
 
