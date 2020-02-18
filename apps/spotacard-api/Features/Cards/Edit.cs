@@ -23,7 +23,7 @@ namespace Spotacard.Features.Cards
 
             public string Body { get; set; }
 
-            public string[] TagList { get; set; }
+            public string TagList { get; set; }
         }
 
         public class Command : IRequest<CardEnvelope>
@@ -67,9 +67,9 @@ namespace Spotacard.Features.Cards
                 card.Slug = card.Title.GenerateSlug();
 
                 // list of currently saved card tags for the given card
-                var cardTagList = (message.Card.TagList ?? Enumerable.Empty<string>());
+                var cardTagList = (message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>());
                 
-                var cardTagsToCreate = GetCardTagsToCreate(card, cardTagList);
+                var cardTagsToCreate = GetCardTagsToCreate(card, cardTagList, _context);
                 var cardTagsToDelete = GetCardTagsToDelete(card, cardTagList);
 
                 if (_context.ChangeTracker.Entries().First(x => x.Entity == card).State == EntityState.Modified
@@ -117,19 +117,22 @@ namespace Spotacard.Features.Cards
             /// <summary>
             /// check which card tags need to be added
             /// </summary>
-            static List<CardTag> GetCardTagsToCreate(Card card, IEnumerable<string> cardTagList)
+            static List<CardTag> GetCardTagsToCreate(Card card, IEnumerable<string> cardTagList, GraphContext graph)
             {
                 var cardTagsToCreate = new List<CardTag>();
                 foreach (var tag in cardTagList)
                 {
-                    var at = card.CardTags.FirstOrDefault(t => t.TagId == tag);
+                  var tagData = graph.Tags.Find(tag) ?? new Tag() {TagId = tag};
+
+                  var at = card.CardTags.FirstOrDefault(t => t.TagId == tag);
+                  
                     if (at == null)
                     {
                         at = new CardTag()
                         {
                             Card = card,
                             CardId = card.Id,
-                            Tag = new Tag() { TagId = tag },
+                            Tag = tagData,
                             TagId = tag
                         };
                         cardTagsToCreate.Add(at);
