@@ -27,7 +27,7 @@ import {
 import { FooterComponent } from './footer';
 import { ContentComponent } from './content';
 import { AsideComponent, AsideTogglerDirective } from './aside';
-import { BreadcrumbsComponent } from './breadcrumbs';
+import { ToolbarsComponent } from './toolbar';
 import { StoreModule } from '@ngrx/store';
 import {
   ADMINSTATE_FEATURE_KEY,
@@ -80,7 +80,7 @@ import { SharedModule } from '@spotacard/shared';
     ContentComponent,
     AsideComponent,
     AsideTogglerDirective,
-    BreadcrumbsComponent,
+    ToolbarsComponent,
     AsideListItemComponent,
     AsideListComponent
   ],
@@ -108,7 +108,7 @@ import { SharedModule } from '@spotacard/shared';
     ContentComponent,
     AsideComponent,
     AsideTogglerDirective,
-    BreadcrumbsComponent,
+    ToolbarsComponent,
     AsideListItemComponent,
     AsideListComponent
   ],
