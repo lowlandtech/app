@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { dark, darker, boxShadow, Sheet } from '@spotacard/theme';
+import { Component, OnInit } from '@angular/core';
+import { dark, darker, Sheet } from '@spotacard/theme';
 import jss from 'jss';
 import { User } from '@spotacard/api';
 import { Observable } from 'rxjs';
 import { AuthFacade, LocalStorageJwtService } from '@spotacard/auth';
 import { take, filter } from 'rxjs/operators';
+import { AdminStateFacade, AsideListItemComponent } from '@spotacard/admin';
 
 const styles = {
   footer: {
@@ -29,6 +30,7 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private authFacade: AuthFacade,
+    private adminFacade: AdminStateFacade,
     private localStorageJwtService: LocalStorageJwtService) { }
 
   public ngOnInit(): void {
@@ -42,6 +44,13 @@ export class AdminComponent implements OnInit {
         take(1),
         filter(token => !!token),
       )
-      .subscribe(token => this.authFacade.user());
+      .subscribe(() => this.authFacade.user());
+  }
+
+  public addPanel(){
+    this.adminFacade.asideListItemAdd({
+      title: '(new panel)',
+      component: AsideListItemComponent
+    });
   }
 }

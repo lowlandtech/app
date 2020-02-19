@@ -60,7 +60,11 @@
     ></button>
   </scx-sidebar>
   <scx-main [class]="classes.container">
-    <scx-toolbar></scx-toolbar>
+    <scx-toolbar>
+      <button class="btn btn-primary btn-sm" (click)="addPanel()">
+        <i class="icon-shuffle"></i>
+      </button>
+    </scx-toolbar>
     <router-outlet></router-outlet>
   </scx-main>
   <scx-aside>
