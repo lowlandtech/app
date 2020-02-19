@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AdminState as AdminState } from '../reducers';
 import { adminQuery } from '../selectors';
+import { AsideListItemAdd, AsideListItemRemove } from '../actions/admin.actions';
 import {
   SidebarHidden,
   SidebarMaximized,
@@ -11,12 +12,14 @@ import {
   AsideShown,
   AsideHidden
 } from '../actions';
+import { AsideListItem } from '../../aside';
 
 @Injectable()
 export class AdminStateFacade {
 	public sidebar$ = this.store.select(adminQuery.getSidebar);
 	public profile$ = this.store.select(adminQuery.getProfile);
 	public aside$ = this.store.select(adminQuery.getAside);
+	public asideItems$ = this.store.select(adminQuery.getAsideItems);
   public admin$ = this.store.select(adminQuery.getAdmin);
   public logo$ = this.store.select(adminQuery.getLogo);
 
@@ -52,5 +55,13 @@ export class AdminStateFacade {
 
   asideShow() {
     this.store.dispatch(new AsideShown);
+  }
+
+  asideListItemAdd(item: AsideListItem){
+    this.store.dispatch(new AsideListItemAdd(item))
+  }
+
+  asideListItemRemove(index: number){
+    this.store.dispatch(new AsideListItemRemove(index))
   }
 }

@@ -1,6 +1,7 @@
 import { AdminStateAction, AdminStateActionTypes, ProfileHidden } from '../actions/admin.actions';
 import { ActionReducer, MetaReducer, Action } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { AsideListItem } from '../../aside';
 
 export const ADMINSTATE_FEATURE_KEY = 'admin';
 
@@ -13,6 +14,7 @@ export interface SidebarState {
 }
 export interface AsideState {
   hidden: boolean;
+  items?: AsideListItem[];
 }
 export interface ProfileState {
   hidden: boolean;
@@ -37,7 +39,8 @@ export const initialAdminState: AdminState = {
     button: true
   },
   aside: {
-    hidden: true
+    hidden: true,
+    items: []
   },
   profile: {
     hidden: false,
@@ -46,6 +49,9 @@ export const initialAdminState: AdminState = {
 };
 
 export function adminStateReducer(state: AdminState = initialAdminState, action: AdminStateAction): AdminState {
+  const newState = {
+    ...state
+  }
   switch (action.type) {
     case AdminStateActionTypes.SidebarMaximized: {
       return {
@@ -107,6 +113,12 @@ export function adminStateReducer(state: AdminState = initialAdminState, action:
         }
       };
     }
+    case AdminStateActionTypes.AsideListItemAdd:
+      newState.aside.items.push(action.payload)
+      return newState;
+    case AdminStateActionTypes.AsideListItemRemove:
+      newState.aside.items.splice(action.payload)
+      return newState;
     default: {
       return state;
     }

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Entity } from '../reducers/admin.reducer';
+import { AsideListItem } from '../../aside';
 
 export enum AdminStateActionTypes {
   LoadAdminState = '[admin] LOAD_ADMINSTATE',
@@ -12,6 +13,8 @@ export enum AdminStateActionTypes {
   ProfileShown =  '[admin] SHOW_PROFILE_SUCCESS',
   AsideShown =  '[admin] SHOW_ASIDE_SUCCESS',
   AsideHidden =  '[admin] HIDE_ASIDE_SUCCESS',
+  AsideListItemAdd =  '[admin] ADD_ASIDE_LIST_ITEM',
+  AsideListItemRemove =  '[admin] REMOVE_ASIDE_LIST_ITEM',
 }
 
 export class LoadAdminState implements Action {
@@ -63,6 +66,16 @@ export class AsideHidden implements Action {
   constructor(public payload: boolean = true) {}
 }
 
+export class AsideListItemAdd implements Action {
+  readonly type = AdminStateActionTypes.AsideListItemAdd;
+  constructor(public payload: AsideListItem) {}
+}
+
+export class AsideListItemRemove implements Action {
+  readonly type = AdminStateActionTypes.AsideListItemRemove;
+  constructor(public payload: number ) {}
+}
+
 export type AdminStateAction = LoadAdminState |
                              AdminStateLoaded |
                              AdminStateLoadError |
@@ -72,7 +85,9 @@ export type AdminStateAction = LoadAdminState |
                              ProfileShown |
                              SidebarHidden |
                              SidebarMaximized |
-                             SidebarMinimized ;
+                             SidebarMinimized |
+                             AsideListItemAdd |
+                             AsideListItemRemove;
 
 export const fromAdminStateActions = {
   LoadAdminState: LoadAdminState,
@@ -84,5 +99,7 @@ export const fromAdminStateActions = {
   ProfileHidden,
   ProfileShown,
   AsideHidden,
-  AsideShown
+  AsideShown,
+  AsideListItemAdd,
+  AsideListItemRemove
 };
