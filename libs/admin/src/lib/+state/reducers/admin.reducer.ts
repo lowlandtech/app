@@ -1,7 +1,7 @@
 import { AdminStateAction, AdminStateActionTypes, ProfileHidden } from '../actions/admin.actions';
 import { ActionReducer, MetaReducer, Action } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import { AsideListItem } from '../../aside';
+import { AsideListItemModel } from '../../aside';
 
 export const ADMINSTATE_FEATURE_KEY = 'admin';
 
@@ -14,7 +14,7 @@ export interface SidebarState {
 }
 export interface AsideState {
   hidden: boolean;
-  items?: AsideListItem[];
+  items?: AsideListItemModel[];
 }
 export interface ProfileState {
   hidden: boolean;

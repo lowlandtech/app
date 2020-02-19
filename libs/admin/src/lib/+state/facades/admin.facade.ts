@@ -12,7 +12,7 @@ import {
   AsideShown,
   AsideHidden
 } from '../actions';
-import { AsideListItem } from '../../aside';
+import { AsideListItemModel } from '../../aside';
 
 @Injectable()
 export class AdminStateFacade {
@@ -57,7 +57,7 @@ export class AdminStateFacade {
     this.store.dispatch(new AsideShown);
   }
 
-  asideListItemAdd(item: AsideListItem){
+  asideListItemAdd(item: AsideListItemModel){
     this.store.dispatch(new AsideListItemAdd(item))
   }
 

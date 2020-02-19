@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Entity } from '../reducers/admin.reducer';
-import { AsideListItem } from '../../aside';
+import { AsideListItemModel } from '../../aside';
 
 export enum AdminStateActionTypes {
   LoadAdminState = '[admin] LOAD_ADMINSTATE',
@@ -68,7 +68,7 @@ export class AsideHidden implements Action {
 
 export class AsideListItemAdd implements Action {
   readonly type = AdminStateActionTypes.AsideListItemAdd;
-  constructor(public payload: AsideListItem) {}
+  constructor(public payload: AsideListItemModel) {}
 }
 
 export class AsideListItemRemove implements Action {
