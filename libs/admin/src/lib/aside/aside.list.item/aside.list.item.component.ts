@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'scx-aside-list-item',
-  template: `
-    <p>
-      aside-item works!
-    </p>
-  `,
-  styles: []
+  templateUrl: './aside.list.item.component.html',
+  styleUrls: ['./aside.list.item.component.scss']
 })
 export class AsideListItemComponent implements OnInit {
 

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AsideListItemComponent } from './aside-list-item.component';
+import { AsideListItemComponent } from './aside.list.item.component';
 
 describe('AsideListItemComponent', () => {
   let component: AsideListItemComponent;

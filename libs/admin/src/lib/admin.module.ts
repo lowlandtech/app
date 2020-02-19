@@ -112,6 +112,9 @@ import { SharedModule } from '@spotacard/shared';
     AsideListItemComponent,
     AsideListComponent
   ],
+  entryComponents: [
+    AsideListItemComponent
+  ],
   providers: [
     AdminStateFacade
   ]
