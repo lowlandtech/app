@@ -188,11 +188,32 @@ html, body {
   padding: 0.43rem !important;
 }
 
-.breadcrumb {
+.toolbar {
   background: $spotacard-dark;
   box-shadow: $box-shadow;
-  &-item.active {
-    color: $color;
+  border: 1px solid $spotacard-dark;
+  height: 50px;
+
+  .card-actions {
+    //height: inherit;
+
+    a, button {
+      display: block;
+      width: 50px;
+      padding: 15px 0 15px 0;
+      margin: 0 !important;
+      color:  $spotacard;
+      text-align: center;
+      background: transparent;
+      border: 0;
+      box-shadow: 0;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $spotacard;
+        color: white;
+      }
+    }
   }
 }
 
