@@ -53,4 +53,8 @@ export class AdminComponent implements OnInit {
       component: AsideListItemComponent
     });
   }
+
+  public removePanel() {
+    this.adminFacade.asideListItemRemove(0);
+  }
 }
