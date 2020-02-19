@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Entity } from '../reducers/admin.reducer';
-import { AsideListItemModel } from '../../aside';
+import { AsideListGroupModel } from '../../aside';
 
 export enum AdminStateActionTypes {
   LoadAdminState = '[admin] LOAD_ADMINSTATE',
@@ -13,8 +13,8 @@ export enum AdminStateActionTypes {
   ProfileShown =  '[admin] SHOW_PROFILE_SUCCESS',
   AsideShown =  '[admin] SHOW_ASIDE_SUCCESS',
   AsideHidden =  '[admin] HIDE_ASIDE_SUCCESS',
-  AsideListItemAdd =  '[admin] ADD_ASIDE_LIST_ITEM',
-  AsideListItemRemove =  '[admin] REMOVE_ASIDE_LIST_ITEM',
+  AsideListGroupAdd =  '[admin] ADD_ASIDE_LIST_GROUP',
+  AsideListGroupRemove =  '[admin] REMOVE_ASIDE_LIST_GROUP',
 }
 
 export class LoadAdminState implements Action {
@@ -66,13 +66,13 @@ export class AsideHidden implements Action {
   constructor(public payload: boolean = true) {}
 }
 
-export class AsideListItemAdd implements Action {
-  readonly type = AdminStateActionTypes.AsideListItemAdd;
-  constructor(public payload: AsideListItemModel) {}
+export class AsideListGroupAdd implements Action {
+  readonly type = AdminStateActionTypes.AsideListGroupAdd;
+  constructor(public payload: AsideListGroupModel) {}
 }
 
-export class AsideListItemRemove implements Action {
-  readonly type = AdminStateActionTypes.AsideListItemRemove;
+export class AsideListGroupRemove implements Action {
+  readonly type = AdminStateActionTypes.AsideListGroupRemove;
   constructor(public payload: number ) {}
 }
 
@@ -86,8 +86,8 @@ export type AdminStateAction = LoadAdminState |
                              SidebarHidden |
                              SidebarMaximized |
                              SidebarMinimized |
-                             AsideListItemAdd |
-                             AsideListItemRemove;
+                             AsideListGroupAdd |
+                             AsideListGroupRemove;
 
 export const fromAdminStateActions = {
   LoadAdminState: LoadAdminState,
@@ -100,6 +100,6 @@ export const fromAdminStateActions = {
   ProfileShown,
   AsideHidden,
   AsideShown,
-  AsideListItemAdd,
-  AsideListItemRemove
+  AsideListGroupAdd,
+  AsideListGroupRemove
 };

@@ -1,7 +1,7 @@
 import { AdminStateAction, AdminStateActionTypes, ProfileHidden } from '../actions/admin.actions';
 import { ActionReducer, MetaReducer, Action } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import { AsideListItemModel } from '../../aside';
+import { AsideListGroupModel as AsideListGroupModel } from '../../aside';
 
 export const ADMINSTATE_FEATURE_KEY = 'admin';
 
@@ -14,7 +14,8 @@ export interface SidebarState {
 }
 export interface AsideState {
   hidden: boolean;
-  items?: AsideListItemModel[];
+  groups?: AsideListGroupModel[];
+  groupCount?: number;
 }
 export interface ProfileState {
   hidden: boolean;
@@ -40,7 +41,8 @@ export const initialAdminState: AdminState = {
   },
   aside: {
     hidden: true,
-    items: []
+    groups: [],
+    groupCount: 0
   },
   profile: {
     hidden: false,
@@ -113,11 +115,13 @@ export function adminStateReducer(state: AdminState = initialAdminState, action:
         }
       };
     }
-    case AdminStateActionTypes.AsideListItemAdd:
-      newState.aside.items.push(action.payload)
+    case AdminStateActionTypes.AsideListGroupAdd:
+      newState.aside.groups.push(action.payload);
+      newState.aside.groupCount = newState.aside.groups.length;
       return newState;
-    case AdminStateActionTypes.AsideListItemRemove:
-      newState.aside.items.splice(action.payload)
+    case AdminStateActionTypes.AsideListGroupRemove:
+      newState.aside.groups.splice(action.payload);
+      newState.aside.groupCount = newState.aside.groups.length;
       return newState;
     default: {
       return state;

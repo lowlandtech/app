@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AdminState as AdminState } from '../reducers';
 import { adminQuery } from '../selectors';
-import { AsideListItemAdd, AsideListItemRemove } from '../actions/admin.actions';
+import { AsideListGroupAdd, AsideListGroupRemove } from '../actions/admin.actions';
 import {
   SidebarHidden,
   SidebarMaximized,
@@ -12,14 +12,14 @@ import {
   AsideShown,
   AsideHidden
 } from '../actions';
-import { AsideListItemModel } from '../../aside';
+import { AsideListGroupModel } from '../../aside';
 
 @Injectable()
 export class AdminStateFacade {
 	public sidebar$ = this.store.select(adminQuery.getSidebar);
 	public profile$ = this.store.select(adminQuery.getProfile);
 	public aside$ = this.store.select(adminQuery.getAside);
-	public asideItems$ = this.store.select(adminQuery.getAsideItems);
+	public groups$ = this.store.select(adminQuery.getGroups);
   public admin$ = this.store.select(adminQuery.getAdmin);
   public logo$ = this.store.select(adminQuery.getLogo);
 
@@ -57,11 +57,11 @@ export class AdminStateFacade {
     this.store.dispatch(new AsideShown);
   }
 
-  asideListItemAdd(item: AsideListItemModel){
-    this.store.dispatch(new AsideListItemAdd(item))
+  asideListItemAdd(item: AsideListGroupModel){
+    this.store.dispatch(new AsideListGroupAdd(item))
   }
 
   asideListItemRemove(index: number){
-    this.store.dispatch(new AsideListItemRemove(index))
+    this.store.dispatch(new AsideListGroupRemove(index))
   }
 }

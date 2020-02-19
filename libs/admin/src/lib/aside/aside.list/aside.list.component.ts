@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminStateFacade } from '../../+state/facades/admin.facade';
 import { Observable } from 'rxjs';
 import { AsideListItemComponent } from '../aside.list.item';
-import { AsideListItemModel } from '../aside.list.item.model';
+import { AsideListGroupModel } from '../aside.list.group.model';
 
 
 @Component({
@@ -11,18 +11,11 @@ import { AsideListItemModel } from '../aside.list.item.model';
   styleUrls: ['./aside.list.component.scss']
 })
 export class AsideListComponent implements OnInit {
-  public groups$: Observable<AsideListItemModel[]>;
+  public groups$: Observable<AsideListGroupModel[]>;
 
   constructor(private facade: AdminStateFacade, ) { }
 
   ngOnInit(): void {
-    this.groups$ = this.facade.asideItems$;
-  }
-
-  addGroupItem(): void {
-    this.facade.asideListItemAdd({
-      title: "new group",
-      component: AsideListItemComponent
-    })
+    this.groups$ = this.facade.groups$;
   }
 }
