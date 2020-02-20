@@ -27,6 +27,7 @@ namespace Spotacard.Extensions
         options.Issuer = issuer;
         options.Audience = audience;
         options.SigningCredentials = signingCredentials;
+        options.ValidFor = TimeSpan.FromHours(24);
       });
 
       var tokenValidationParameters = new TokenValidationParameters
