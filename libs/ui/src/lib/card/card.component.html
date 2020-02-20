@@ -21,7 +21,9 @@
 </div>
 <ng-content select=".card-body"></ng-content>
 <div class="card-footer" *ngIf="hasFooter">
-  <ng-content select=".card-footer-content"></ng-content>
+  <div class="pull-left">
+    <ng-content select=".card-footer-content"></ng-content>
+  </div>
   <div class="btn-toolbar card-actions justify-content-between pull-right"
     role="toolbar"
     aria-label="Toolbar with button groups">

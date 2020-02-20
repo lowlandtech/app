@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { UiModule } from '@spotacard/ui';
 
 import { CardListEffects } from './+state/card-list.effects';
 import { CardListFacade } from './+state/card-list.facade';
@@ -21,6 +22,7 @@ import { CardListService } from './card-list.service';
       initialState: cardListInitialState,
     }),
     EffectsModule.forFeature([CardListEffects]),
+    UiModule
   ],
   declarations: [CardListComponent, CardListItemComponent],
   providers: [CardListService, CardListEffects, CardListFacade],

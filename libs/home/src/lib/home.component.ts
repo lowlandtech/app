@@ -18,7 +18,7 @@ import { TagsListComponent } from './tags-list/tags-list.component';
 @Component({
   selector: 'scx-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {

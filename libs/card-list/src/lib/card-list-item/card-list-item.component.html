@@ -1,36 +1,67 @@
-<div class="card-preview">
-  <div class="card-meta">
-    <a>
-      <img [src]="card.author.image" />
-    </a>
-    <div class="info">
-      <a class="author" [routerLink]="['/profile', card.author.username]">
-        {{ card.author.username }}
-      </a>
-      <span class="date">
-        {{ card.createdAt | date: 'longDate' }}
-      </span>
-    </div>
-    <button
-      [ngClass]="{
-        'btn-outline-primary': !card.favorited,
-        'btn-primary': card.favorited
-      }"
-      class="btn btn-sm pull-xs-right"
-      (click)="toggleFavorite(card)"
-    >
-      <i class="ion-heart"></i>
-      <div class="info">{{ card.favoritesCount }}</div>
-    </button>
+<scx-ui-card [hasFooter]="false" [okable]="false" [cancelable]="false">
+  <div class="card-header-title">
+    {{ card.title }}
   </div>
-  <a (click)="navigateToCard.emit(card.slug)" class="preview-link">
-    <h1>{{ card.title }}</h1>
-    <p>{{ card.description }}</p>
-    <span>Read more...</span>
-    <ul class="tag-list">
-      <li class="tag-default tag-pill tag-outline" *ngFor="let tag of card.tagList">
-        {{ tag }}
-      </li>
-    </ul>
-  </a>
-</div>
+  <div class="card-toolbar">
+    <button class="btn btn-primary btn-sm" type="button">1</button>
+    <button class="btn btn-primary btn-sm" type="button">2</button>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card-meta">
+          <a>
+            <img [src]="card.author.image" />
+          </a>
+          <div class="info">
+            <a class="author" [routerLink]="['/profile', card.author.username]">
+              {{ card.author.username }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card-preview">
+          <a (click)="navigateToCard.emit(card.slug)" class="preview-link">
+            <p>{{ card.description }}</p>
+            <span>Read more...</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <button
+        [ngClass]="{
+          'btn-outline-primary': !card.favorited,
+          'btn-primary': card.favorited
+        }"
+        class="btn btn-sm pull-xs-right"
+        (click)="toggleFavorite(card)">
+          <i class="icon-heart"></i>
+          <span class="info">{{ card.favoritesCount }}</span>
+      </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div>
+          <span class="badge badge-pill badge-secondary" *ngFor="let tag of card.tagList">
+            {{ tag }}
+          </span>
+        </div>
+      </div>
+      <div class="col-md-9">
+
+      </div>
+      <div class="col-md-1">
+        <div class="date small text-muted text-right">
+          {{ card.createdAt | date: 'shortDate' }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer-content">
+  </div>
+  <div class="card-footer-toolbar">
+
+  </div>
+</scx-ui-card>

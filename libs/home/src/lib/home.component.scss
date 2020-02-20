@@ -1,0 +1,14 @@
+.nav-link {
+  cursor: pointer;
+}
+
+.tag-pill {
+  cursor: pointer;
+}
+
+:host {
+  .feed-toggle {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+}
