@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, Input } from '@angular/core';
 import { AsideListGroupDirective } from '../aside.list.group';
-import { AsideListGroupModel } from '../aside.list.group.model';
+import { AsideListGroupModel } from '../models';
 
 @Component({
   selector: 'scx-aside-list-item',
