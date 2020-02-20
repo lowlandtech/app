@@ -1,7 +1,11 @@
-import { AdminStateAction, AdminStateActionTypes, ProfileHidden } from '../actions/admin.actions';
+import {
+  AdminStateAction,
+  AdminStateActionTypes,
+  ProfileHidden
+} from '../actions/admin.actions';
 import { ActionReducer, MetaReducer, Action } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
-import { AsideListGroupModel as AsideListGroupModel } from '../../aside';
+import { AsideListGroupModel } from '../../aside';
 
 export const ADMINSTATE_FEATURE_KEY = 'admin';
 
@@ -22,10 +26,10 @@ export interface ProfileState {
   button: boolean;
 }
 export interface AdminState {
-  logo: boolean,
-  sidebar: SidebarState,
-  aside: AsideState,
-  profile: ProfileState,
+  logo: boolean;
+  sidebar: SidebarState;
+  aside: AsideState;
+  profile: ProfileState;
 }
 
 export interface AdminStatePartialState {
@@ -35,8 +39,8 @@ const STORE_KEYS_TO_PERSIST = ['sidebar', 'aside', 'profile', 'logo'];
 
 export const initialAdminState: AdminState = {
   logo: true,
-  sidebar : {
-    state: "MAXIMIZED",
+  sidebar: {
+    state: 'MAXIMIZED',
     button: true
   },
   aside: {
@@ -50,10 +54,16 @@ export const initialAdminState: AdminState = {
   }
 };
 
-export function adminStateReducer(state: AdminState = initialAdminState, action: AdminStateAction): AdminState {
+export function adminStateReducer(
+  state: AdminState = initialAdminState,
+  action: AdminStateAction
+): AdminState {
   const newState = {
     ...state
-  }
+  };
+  let group: AsideListGroupModel;
+  let index: number;
+
   switch (action.type) {
     case AdminStateActionTypes.SidebarMaximized: {
       return {
@@ -107,20 +117,35 @@ export function adminStateReducer(state: AdminState = initialAdminState, action:
       };
     }
     case AdminStateActionTypes.AsideHidden:
-    case AdminStateActionTypes.AsideShown:{
+    case AdminStateActionTypes.AsideShown: {
       return {
         ...state,
         aside: {
+          ...state.aside,
           hidden: action.payload
         }
       };
     }
     case AdminStateActionTypes.AsideListGroupAdd:
-      newState.aside.groups.push(action.payload);
+      group = newState.aside.groups.find(
+        _group => _group.title === action.payload.title
+      );
+      index = newState.aside.groups.indexOf(group);
+
+      if (index !== -1) {
+        newState.aside.groups[index] = action.payload;
+      } else {
+        newState.aside.groups.push(action.payload);
+      }
+
       newState.aside.groupCount = newState.aside.groups.length;
       return newState;
     case AdminStateActionTypes.AsideListGroupRemove:
-      newState.aside.groups.splice(action.payload);
+      group = newState.aside.groups.find(
+        _group => _group.title === action.payload
+      );
+      index = newState.aside.groups.indexOf(group);
+      newState.aside.groups.splice(index, 1);
       newState.aside.groupCount = newState.aside.groups.length;
       return newState;
     default: {
@@ -129,11 +154,15 @@ export function adminStateReducer(state: AdminState = initialAdminState, action:
   }
 }
 
-export function localStorageSyncReducer(reducer: ActionReducer<AdminState>): ActionReducer<AdminState> {
+export function localStorageSyncReducer(
+  reducer: ActionReducer<AdminState>
+): ActionReducer<AdminState> {
   return localStorageSync({
     keys: STORE_KEYS_TO_PERSIST,
-    rehydrate: true,
+    rehydrate: true
   })(reducer);
 }
 
-export const metaReducers: Array<MetaReducer<AdminState, Action>> = [localStorageSyncReducer];
+export const metaReducers: Array<MetaReducer<AdminState, Action>> = [
+  localStorageSyncReducer
+];

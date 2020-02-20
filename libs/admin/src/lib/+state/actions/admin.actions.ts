@@ -73,7 +73,7 @@ export class AsideListGroupAdd implements Action {
 
 export class AsideListGroupRemove implements Action {
   readonly type = AdminStateActionTypes.AsideListGroupRemove;
-  constructor(public payload: number ) {}
+  constructor(public payload: string ) {}
 }
 
 export type AdminStateAction = LoadAdminState |

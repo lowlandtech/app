@@ -1,0 +1,12 @@
+:host::ng-deep {
+  .panel-group {
+    height: inherit;
+    margin: 10px;
+    .panel .card {
+      margin-bottom: 10px !important;
+      .card-header {
+        padding: 8px 12px 8px 12px;
+      }
+    }
+  }
+}

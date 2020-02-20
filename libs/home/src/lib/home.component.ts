@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.adminFacade.addAsideListGroup({
       title: "Popular Tags",
       component: TagsListComponent,
+      isOpen: true,
       data: {
         injector: Injector.create([{provide: HomeFacade, useValue: this.facade}])
       }
@@ -80,6 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.adminFacade.removeAsideListGroup("Popular Tags");
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
