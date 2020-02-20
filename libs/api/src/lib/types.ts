@@ -14,6 +14,7 @@ export interface CardComment {
 }
 
 export interface CardData {
+  id?: string;
   slug: string;
   title: string;
   description: string;
