@@ -1,7 +1,6 @@
 import { CardData } from '@spotacard/api';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { withLatestFrom } from 'rxjs/operators';
 
 import { CardListFacade } from './+state/card-list.facade';
 import { CardListConfig } from './+state/card-list.reducer';
@@ -9,7 +8,7 @@ import { CardListConfig } from './+state/card-list.reducer';
 @Component({
   selector: 'scx-card-list',
   templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.css'],
+  styleUrls: ['./card-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardListComponent implements OnInit {

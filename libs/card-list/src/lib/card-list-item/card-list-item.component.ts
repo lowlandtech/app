@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CardData } from '@spotacard/api';
 
 @Component({
   selector: 'scx-card-list-item',
   templateUrl: './card-list-item.component.html',
-  styleUrls: ['./card-list-item.component.css'],
+  styleUrls: ['./card-list-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardListItemComponent {

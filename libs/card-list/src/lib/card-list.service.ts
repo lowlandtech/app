@@ -2,8 +2,7 @@ import { ApiService, CardData } from '@spotacard/api';
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { CardListConfig, Cards } from './+state/card-list.reducer';
+import { CardListConfig } from './+state/card-list.reducer';
 
 @Injectable()
 export class CardListService {
