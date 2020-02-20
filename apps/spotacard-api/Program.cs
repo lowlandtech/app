@@ -12,7 +12,7 @@ namespace Spotacard
     {
       CreateHostBuilder(args)
         .Build()
-        .Migrate()
+        // .Migrate()
         .SeedData()
         .Run();
     }
