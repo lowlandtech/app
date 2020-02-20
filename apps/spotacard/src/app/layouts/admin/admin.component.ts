@@ -48,13 +48,13 @@ export class AdminComponent implements OnInit {
   }
 
   public addPanel(){
-    this.adminFacade.asideListItemAdd({
+    this.adminFacade.addAsideListGroup({
       title: '(new panel)',
       component: AsideListItemComponent
     });
   }
 
   public removePanel() {
-    this.adminFacade.asideListItemRemove(0);
+    this.adminFacade.removeAsideListGroup(0);
   }
 }

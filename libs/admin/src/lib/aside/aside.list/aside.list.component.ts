@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminStateFacade } from '../../+state/facades/admin.facade';
 import { Observable } from 'rxjs';
-import { AsideListItemComponent } from '../aside.list.item';
 import { AsideListGroupModel } from '../aside.list.group.model';
 
 

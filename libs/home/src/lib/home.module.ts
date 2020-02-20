@@ -34,5 +34,8 @@ import { ApiModule } from '@spotacard/api';
   ],
   declarations: [HomeComponent, TagsListComponent],
   providers: [HomeEffects, HomeResolverService, HomeService, HomeFacade],
+  entryComponents: [
+    TagsListComponent
+  ]
 })
 export class HomeModule {}

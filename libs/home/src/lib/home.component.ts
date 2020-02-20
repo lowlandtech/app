@@ -1,5 +1,5 @@
 import { Observable, Subject } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ReflectiveInjector, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
@@ -12,6 +12,8 @@ import { CardListConfig } from '@spotacard/card-list';
 import { cardListInitialState, CardListFacade } from '@spotacard/card-list';
 import { AuthFacade } from '@spotacard/auth';
 import { HomeFacade } from './+state/home.facade';
+import { AdminStateFacade } from '@spotacard/admin';
+import { TagsListComponent } from './tags-list/tags-list.component';
 
 @Component({
   selector: 'scx-home',
@@ -30,6 +32,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private cardListFacade: CardListFacade,
     private authFacade: AuthFacade,
+    private adminFacade: AdminStateFacade
   ) {}
 
   ngOnInit() {
@@ -37,8 +40,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isAuthenticated = isLoggedIn;
       this.getCards();
     });
+    this.facade.selectedTag$.subscribe(tag=>{
+      this.setListTag(tag);
+    });
     this.listConfig$ = this.cardListFacade.listConfig$;
     this.tags$ = this.facade.tags$;
+    this.adminFacade.addAsideListGroup({
+      title: "Popular Tags",
+      component: TagsListComponent,
+      data: {
+        injector: Injector.create([{provide: HomeFacade, useValue: this.facade}])
+      }
+    });
   }
 
   setListTo(type: string = 'ALL') {

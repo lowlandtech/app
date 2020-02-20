@@ -39,6 +39,7 @@ import {
 import { AsideListItemComponent } from './aside';
 import { AsideListComponent } from './aside';
 import { SharedModule } from '@spotacard/shared';
+import { AsideListGroupDirective } from './aside';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import { SharedModule } from '@spotacard/shared';
     AsideTogglerDirective,
     ToolbarsComponent,
     AsideListItemComponent,
-    AsideListComponent
+    AsideListComponent,
+    AsideListGroupDirective
   ],
   exports: [
     SidebarComponent,

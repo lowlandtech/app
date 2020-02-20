@@ -57,11 +57,11 @@ export class AdminStateFacade {
     this.store.dispatch(new AsideShown);
   }
 
-  asideListItemAdd(item: AsideListGroupModel){
+  addAsideListGroup(item: AsideListGroupModel){
     this.store.dispatch(new AsideListGroupAdd(item))
   }
 
-  asideListItemRemove(index: number){
+  removeAsideListGroup(index: number){
     this.store.dispatch(new AsideListGroupRemove(index))
   }
 }
