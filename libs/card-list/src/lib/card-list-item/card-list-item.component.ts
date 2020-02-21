@@ -20,4 +20,8 @@ export class CardListItemComponent {
       this.favorite.emit(card.slug);
     }
   }
+
+  showNote(card: CardData){
+
+  }
 }

@@ -4,8 +4,9 @@
     <span>{{ card.title }}</span>
   </div>
   <div class="card-toolbar">
-    <button class="btn btn-primary btn-sm" type="button">1</button>
-    <button class="btn btn-primary btn-sm" type="button">2</button>
+    <button class="btn btn-primary btn-sm" type="button">
+      <span class="icon-pencil"></span>
+    </button>
   </div>
   <div class="card-body">
     <div class="row">
@@ -29,29 +30,35 @@
           </a>
         </div>
       </div>
-      <div class="col-md-1">
-        <button
-        [ngClass]="{
-          'btn-outline-primary': !card.favorited,
-          'btn-primary': card.favorited
-        }"
-        class="btn btn-sm pull-xs-right"
-        (click)="toggleFavorite(card)">
-          <i class="icon-heart"></i>
-          <span class="info">{{ card.favoritesCount }}</span>
-      </button>
+      <div class="col-md-1 p-0">
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <div>
-          <span class="badge badge-primary date">
-            {{ card.createdAt | date: 'shortDate' }}
-          </span>
-          <span class="badge badge-secondary" *ngFor="let tag of card.tagList">
-            {{ tag }}
-          </span>
+      <div class="col-md-12 pr-0">
+        <span class="badge badge-primary date">
+          {{ card.createdAt | date: 'shortDate' }}
+        </span>
+        <span class="badge badge-secondary" *ngFor="let tag of card.tagList">
+          {{ tag }}
+        </span>
+        <div class="btn btn-like btn-sm pull-right">
+          <i class="icon-eye"></i>
+          <span class="info">0</span>
         </div>
+        <button class="btn btn-like btn-sm pull-right"
+          (click)="showNote(card)">
+          <i class="icon-note"></i>
+          <span class="info">0</span>
+        </button>
+        <button class="btn btn-like btn-sm pull-right"
+          [ngClass]="{
+            'btn-outline-primary': !card.favorited,
+            'btn-primary': card.favorited
+          }"
+          (click)="toggleFavorite(card)">
+          <i class="icon-heart"></i>
+          <span class="info">{{ card.favoritesCount }}</span>
+        </button>
       </div>
     </div>
   </div>
