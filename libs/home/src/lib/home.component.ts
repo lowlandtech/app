@@ -1,13 +1,13 @@
 import { Observable, Subject } from 'rxjs';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ReflectiveInjector, Injector } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  Injector
+} from '@angular/core';
 
-import { Store } from '@ngrx/store';
-
-import * as fromHome from './+state/home.reducer';
-import * as fromAuth from '@spotacard/auth';
-import { withLatestFrom, tap, takeUntil } from 'rxjs/operators';
-import * as fromCardList from '@spotacard/card-list';
+import { takeUntil } from 'rxjs/operators';
 import { CardListConfig } from '@spotacard/card-list';
 import { cardListInitialState, CardListFacade } from '@spotacard/card-list';
 import { AuthFacade } from '@spotacard/auth';
@@ -19,7 +19,7 @@ import { TagsListComponent } from './tags-list/tags-list.component';
   selector: 'scx-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
   listConfig$: Observable<CardListConfig>;
@@ -29,28 +29,31 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private facade: HomeFacade,
-    private router: Router,
     private cardListFacade: CardListFacade,
     private authFacade: AuthFacade,
     private adminFacade: AdminStateFacade
   ) {}
 
-  ngOnInit() {
-    this.authFacade.isLoggedIn$.pipe(takeUntil(this.unsubscribe$)).subscribe(isLoggedIn => {
-      this.isAuthenticated = isLoggedIn;
-      this.getCards();
-    });
-    this.facade.selectedTag$.subscribe(tag=>{
+  public ngOnInit(): void {
+    this.authFacade.isLoggedIn$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(isLoggedIn => {
+        this.isAuthenticated = isLoggedIn;
+        this.getCards();
+      });
+    this.facade.selectedTag$.subscribe(tag => {
       this.setListTag(tag);
     });
     this.listConfig$ = this.cardListFacade.listConfig$;
     this.tags$ = this.facade.tags$;
     this.adminFacade.addAsideListGroup({
-      title: "Popular Tags",
+      title: 'Popular Tags',
       component: TagsListComponent,
       isOpen: true,
       data: {
-        injector: Injector.create([{provide: HomeFacade, useValue: this.facade}])
+        injector: Injector.create([
+          { provide: HomeFacade, useValue: this.facade }
+        ])
       }
     });
   }
@@ -58,7 +61,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   setListTo(type: string = 'ALL') {
     this.cardListFacade.setListConfig(<CardListConfig>{
       ...cardListInitialState.listConfig,
-      type,
+      type
     });
   }
 
@@ -75,13 +78,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       ...cardListInitialState.listConfig,
       filters: {
         ...cardListInitialState.listConfig.filters,
-        tag,
-      },
+        tag
+      }
     });
   }
 
   ngOnDestroy() {
-    this.adminFacade.removeAsideListGroup("Popular Tags");
+    this.adminFacade.removeAsideListGroup('Popular Tags');
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }

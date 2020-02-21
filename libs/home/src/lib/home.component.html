@@ -5,22 +5,21 @@
         <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
-              <a
+              <a class="nav-link"
                 [ngClass]="{ active: (listConfig$ | async)?.type === 'FEED' }"
-                class="nav-link"
-                (click)="setListTo('FEED')"
-                >Your Feed</a
-              >
+                (click)="setListTo('FEED')" >
+                Your Feed
+              </a>
             </li>
             <li class="nav-item">
-              <a
+              <a class="nav-link"
+
                 [ngClass]="{
                   active: (listConfig$ | async)?.type === 'ALL' && !(listConfig$ | async).filters?.tag
                 }"
-                class="nav-link"
-                (click)="setListTo('ALL')"
-                >Global Feed</a
-              >
+                (click)="setListTo('ALL')">
+                Global Feed
+              </a>
             </li>
             <li class="nav-item" [hidden]="!(listConfig$ | async).filters?.tag">
               <a class="nav-link active">
