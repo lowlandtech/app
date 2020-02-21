@@ -6,19 +6,22 @@
   No cards are here... yet.
 </div>
 
-<scx-card-list-item
-  [hidden]="isLoading$ | async"
-  (navigateToCard)="navigateToCard($event)"
-  (unFavorite)="unFavorite($event)"
-  (favorite)="favorite($event)"
-  *ngFor="let card of cards$ | async"
-  [card]="card"
->
-</scx-card-list-item>
+<div class="draggable-list" (cdkDropListDropped)="drop($event)" cdkDropList>
+  <scx-card-list-item
+    class="draggable-item"
+    [hidden]="isLoading$ | async"
+    (navigateToCard)="navigateToCard($event)"
+    (unFavorite)="unFavorite($event)"
+    (favorite)="favorite($event)"
+    *ngFor="let card of cards$ | async"
+    [card]="card"
+    cdkDrag>
+  </scx-card-list-item>
+</div>
 
 <app-pager
   (setPage)="setPage($event)"
   [hidden]="(totalPages$ | async)?.length <= 1 || (isLoading$ | async)"
   [currentPage]="(listConfig$ | async).currentPage"
-  [totalPages]="totalPages$ | async"
-></app-pager>
+  [totalPages]="totalPages$ | async">
+</app-pager>

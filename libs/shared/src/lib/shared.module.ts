@@ -5,12 +5,14 @@ import { NgModule } from '@angular/core';
 import { PagerComponent } from './pager/pager.component';
 import { DynamicOverlay, DynamicOverlayContainer } from './services';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
     CommonModule,
     AccordionModule.forRoot(),
-    OverlayModule
+    OverlayModule,
+    DragDropModule
   ],
   declarations: [
     PagerComponent
@@ -18,7 +20,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
   exports: [
     PagerComponent,
     AccordionModule,
-    OverlayModule
+    OverlayModule,
+    DragDropModule
   ],
   providers: [
     ActionsService,

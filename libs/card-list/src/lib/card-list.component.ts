@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { CardListFacade } from './+state/card-list.facade';
 import { CardListConfig } from './+state/card-list.reducer';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'scx-card-list',
@@ -40,5 +41,11 @@ export class CardListComponent implements OnInit {
 
   setPage(page: number) {
     this.facade.setPage(page);
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    this.cards$.subscribe(cards=>{
+      moveItemInArray(cards, event.previousIndex, event.currentIndex);
+    })
   }
 }

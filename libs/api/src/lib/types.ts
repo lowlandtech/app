@@ -25,6 +25,8 @@ export interface CardData {
   favorited: boolean;
   favoritesCount: number;
   author: Profile;
+  expanded?: boolean;
+  children?: CardData[];
 }
 
 export interface User {
