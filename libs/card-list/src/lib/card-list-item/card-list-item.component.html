@@ -42,19 +42,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-12">
         <div>
-          <span class="badge badge-pill badge-secondary" *ngFor="let tag of card.tagList">
+          <span class="badge badge-primary date">
+            {{ card.createdAt | date: 'shortDate' }}
+          </span>
+          <span class="badge badge-secondary" *ngFor="let tag of card.tagList">
             {{ tag }}
           </span>
-        </div>
-      </div>
-      <div class="col-md-9">
-
-      </div>
-      <div class="col-md-1">
-        <div class="date small text-muted text-right">
-          {{ card.createdAt | date: 'shortDate' }}
         </div>
       </div>
     </div>
