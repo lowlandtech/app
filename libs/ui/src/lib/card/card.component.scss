@@ -1,7 +1,11 @@
 :host {
   margin-bottom: 10px;
 
+  .card-header {
+    padding-bottom: 0;
+  }
   .card-footer {
+    padding: 10px;
     .card-actions {
       button {
         margin-left: 10px;

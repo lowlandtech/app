@@ -1,6 +1,7 @@
 <scx-ui-card [hasFooter]="false" [okable]="false" [cancelable]="false">
   <div class="card-header-title">
-    {{ card.title }}
+    <ng-content></ng-content>
+    <span>{{ card.title }}</span>
   </div>
   <div class="card-toolbar">
     <button class="btn btn-primary btn-sm" type="button">1</button>

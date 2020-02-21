@@ -9,13 +9,16 @@
 <div class="draggable-list" (cdkDropListDropped)="drop($event)" cdkDropList>
   <scx-card-list-item
     class="draggable-item"
+    cdkDrag
     [hidden]="isLoading$ | async"
     (navigateToCard)="navigateToCard($event)"
     (unFavorite)="unFavorite($event)"
     (favorite)="favorite($event)"
     *ngFor="let card of cards$ | async"
-    [card]="card"
-    cdkDrag>
+    [card]="card">
+    <div class="drag-handle" cdkDragHandle>
+      <i class="icon-menu"></i>
+    </div>
   </scx-card-list-item>
 </div>
 
