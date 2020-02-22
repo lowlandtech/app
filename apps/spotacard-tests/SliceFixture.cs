@@ -2,9 +2,11 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Spotacard.Core.Enums;
 using Spotacard.Infrastructure;
 
 namespace Spotacard
@@ -13,6 +15,7 @@ namespace Spotacard
   {
     private static readonly IConfiguration Config;
     private readonly string _dbName = Guid.NewGuid() + ".db";
+    private const string InMemoryConnectionString = "DataSource=:memory:";
     private readonly ServiceProvider _provider;
 
     private readonly IServiceScopeFactory _scopeFactory;
@@ -28,9 +31,15 @@ namespace Spotacard
     {
       var startup = new Startup(Config, null);
       var services = new ServiceCollection();
+      Startup.Settings.Provider = Providers.SqlLite;
+      var connection = new SqliteConnection(InMemoryConnectionString);
+      connection.Open();
 
-      var builder = new DbContextOptionsBuilder<GraphContext>();
+      var builder = new DbContextOptionsBuilder<GraphContext>()
+        .UseSqlite(connection);
+
       builder.UseInMemoryDatabase(_dbName);
+
       services.AddSingleton(new GraphContext(builder.Options));
 
       startup.ConfigureServices(services);
