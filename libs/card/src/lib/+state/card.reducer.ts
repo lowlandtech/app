@@ -1,4 +1,4 @@
-import { CardComment, CardData } from '@spotacard/api';
+import { CardComment, CardData, CardStatus } from '@spotacard/api';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as CardActions from './card.actions';
 
@@ -31,6 +31,7 @@ export const cardInitialState: Card = {
       following: false,
       loading: false,
     },
+    status: CardStatus.NORMAL
   },
   comments: [],
   loaded: false,

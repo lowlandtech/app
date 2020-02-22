@@ -1,4 +1,4 @@
-import { CardData } from '@spotacard/api';
+import { CardData, CardStatus } from '@spotacard/api';
 
 import { Action, createReducer, on } from '@ngrx/store';
 import * as EditorActions from './editor.actions';
@@ -29,6 +29,7 @@ export const editorInitialState: Editor = {
       following: false,
       loading: false,
     },
+    status: CardStatus.NORMAL
   },
 };
 
