@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DynamicOverlay } from '@spotacard/shared';
-import { Card } from './card.model';
 import { CloseableComponent } from './closeable';
 /* #endregion */
 
@@ -21,22 +20,25 @@ import { CloseableComponent } from './closeable';
 })
 export class CardComponent implements OnInit {
   @HostBinding('class.card') class1 = true;
-  @Input() card: Card;
+  @Input() cardId: string;
   @Input() hasHeader = true;
   @Input() hasSettings = false;
-  @Input() sizeable = true;
+  @Input() collapsable = true;
   @Input() closeable = true;
   @Input() hasFooter = false;
   @Input() cancelable = true;
   @Input() okable = true;
 
-  @Output() hide: EventEmitter<Card> = new EventEmitter();
-  @Output() remove: EventEmitter<Card> = new EventEmitter();
-  @Output() collapse: EventEmitter<Card> = new EventEmitter();
-  @Output() expand: EventEmitter<Card> = new EventEmitter();
-  @Output() edit: EventEmitter<Card> = new EventEmitter();
-  @Output() append: EventEmitter<Card> = new EventEmitter();
-  @Output() prepend: EventEmitter<Card> = new EventEmitter();
+  @Output() hiding: EventEmitter<string> = new EventEmitter();
+  @Output() removing: EventEmitter<string> = new EventEmitter();
+  @Output() collapsing: EventEmitter<string> = new EventEmitter();
+  @Output() expanding: EventEmitter<string> = new EventEmitter();
+  @Output() editing: EventEmitter<string> = new EventEmitter();
+  @Output() appending: EventEmitter<string> = new EventEmitter();
+  @Output() prepending: EventEmitter<string> = new EventEmitter();
+  @Output() closing: EventEmitter<string> = new EventEmitter();
+  @Output() cancelling: EventEmitter<string> = new EventEmitter();
+  @Output() oking: EventEmitter<string> = new EventEmitter();
 
   private overlay: ComponentPortal<CloseableComponent>;
 
@@ -57,7 +59,7 @@ export class CardComponent implements OnInit {
     this.overlay = new ComponentPortal(CloseableComponent);
     const componentRef = overlayRef.attach(this.overlay);
     componentRef.instance.closing.subscribe(() => {
-
+      this.oking.emit(this.cardId);
     });
     componentRef.instance.cancelling.subscribe(() => {
       overlayRef.dispose();

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Card } from '../card.model';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'scx-ui-closeable',
@@ -7,12 +6,10 @@ import { Card } from '../card.model';
   styleUrls: ['./closeable.component.scss']
 })
 export class CloseableComponent implements OnInit {
-  @Output() closing: EventEmitter<Card> = new EventEmitter();
-  @Output() cancelling: EventEmitter<Card> = new EventEmitter();
+  @Output() closing: EventEmitter<string> = new EventEmitter();
+  @Output() cancelling: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

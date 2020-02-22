@@ -10,7 +10,7 @@
       <button class="btn btn-primary btn-sm" type="button" *ngIf="hasSettings">
         <i class="icon-settings"></i>
       </button>
-      <button class="btn btn-primary btn-sm" type="button" *ngIf="sizeable">
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="collapsable" (click)="collapsing.emit(cardId)">
         <i class="icon-arrow-up"></i>
       </button>
       <button class="btn btn-primary btn-sm" type="button" *ngIf="closeable" (click)="onClose()">
