@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CardList } from './card-list.reducer';
+import { CardList, CARDLIST_STATE_FEATURE_KEY } from './card-list.reducer';
 
-const getCardList = createFeatureSelector<CardList>('cardList');
+const getCardList = createFeatureSelector<CardList>(CARDLIST_STATE_FEATURE_KEY);
 export const getListConfig = createSelector(
   getCardList,
   (state: CardList) => state.listConfig,

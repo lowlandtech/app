@@ -2,13 +2,15 @@ import { CardData } from '@spotacard/api';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as CardListActions from './card-list.actions';
 
+export const   CARDLIST_STATE_FEATURE_KEY = 'cardList';
+
 export interface CardList {
   listConfig: CardListConfig;
   cards: Cards;
 }
 
 export interface CardListState {
-  readonly cardList: CardList;
+  readonly [CARDLIST_STATE_FEATURE_KEY]: CardList;
 }
 
 export interface CardListConfig {

@@ -8,7 +8,7 @@ import { UiModule } from '@spotacard/ui';
 
 import { CardListEffects } from './+state/card-list.effects';
 import { CardListFacade } from './+state/card-list.facade';
-import { cardListInitialState, cardListReducer } from './+state/card-list.reducer';
+import { cardListInitialState, cardListReducer, CARDLIST_STATE_FEATURE_KEY } from './+state/card-list.reducer';
 import { CardListItemComponent } from './card-list-item/card-list-item.component';
 import { CardListComponent } from './card-list.component';
 import { CardListService } from './card-list.service';
@@ -18,7 +18,7 @@ import { CardListService } from './card-list.service';
     CommonModule,
     SharedModule,
     RouterModule,
-    StoreModule.forFeature('cardList', cardListReducer, {
+    StoreModule.forFeature(CARDLIST_STATE_FEATURE_KEY, cardListReducer, {
       initialState: cardListInitialState,
     }),
     EffectsModule.forFeature([CardListEffects]),
