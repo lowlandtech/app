@@ -6,13 +6,16 @@ import { PagerComponent } from './pager/pager.component';
 import { DynamicOverlay, DynamicOverlayContainer } from './services';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
     AccordionModule.forRoot(),
     OverlayModule,
-    DragDropModule
+    DragDropModule,
+    CollapseModule.forRoot()
   ],
   declarations: [
     PagerComponent
@@ -21,7 +24,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     PagerComponent,
     AccordionModule,
     OverlayModule,
-    DragDropModule
+    DragDropModule,
+    CollapseModule
   ],
   providers: [
     ActionsService,
