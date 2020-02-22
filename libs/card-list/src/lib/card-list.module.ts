@@ -8,7 +8,7 @@ import { UiModule } from '@spotacard/ui';
 
 import { CardListEffects } from './+state/card-list.effects';
 import { CardListFacade } from './+state/card-list.facade';
-import { cardListInitialState, cardListReducer, CARDLIST_STATE_FEATURE_KEY } from './+state/card-list.reducer';
+import { cardListInitialState, cardListReducer, CARDLIST_STATE_FEATURE_KEY, metaReducers } from './+state/card-list.reducer';
 import { CardListItemComponent } from './card-list-item/card-list-item.component';
 import { CardListComponent } from './card-list.component';
 import { CardListService } from './card-list.service';
@@ -20,6 +20,7 @@ import { CardListService } from './card-list.service';
     RouterModule,
     StoreModule.forFeature(CARDLIST_STATE_FEATURE_KEY, cardListReducer, {
       initialState: cardListInitialState,
+      metaReducers: metaReducers
     }),
     EffectsModule.forFeature([CardListEffects]),
     UiModule

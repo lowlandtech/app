@@ -1,8 +1,10 @@
 import { CardData } from '@spotacard/api';
-import { Action, createReducer, on } from '@ngrx/store';
+import { Action, createReducer, on, ActionReducer, MetaReducer } from '@ngrx/store';
 import * as CardListActions from './card-list.actions';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 export const   CARDLIST_STATE_FEATURE_KEY = 'cardList';
+const STORE_KEYS_TO_PERSIST = ['listConfig', 'cards'];
 
 export interface CardList {
   listConfig: CardListConfig;
@@ -113,3 +115,14 @@ function replaceCard(cards: Cards, payload: CardData): Cards {
 export function cardListReducer(state: CardList | undefined, action: Action): CardList {
   return reducer(state, action);
 }
+
+export function localStorageSyncReducer(_reducer: ActionReducer<CardList>): ActionReducer<CardList> {
+  return localStorageSync({
+    keys: STORE_KEYS_TO_PERSIST,
+    rehydrate: true
+  })(_reducer);
+}
+
+export const metaReducers: Array<MetaReducer<CardList, Action>> = [
+  localStorageSyncReducer
+];
