@@ -18,11 +18,6 @@ export class CardListItemComponent {
   @Output() favorite: EventEmitter<string> = new EventEmitter();
   @Output() unFavorite: EventEmitter<string> = new EventEmitter();
   @Output() navigateToCard: EventEmitter<string> = new EventEmitter();
-  @Output() statusChange: EventEmitter<CardStatus> = new EventEmitter();
-
-  get isCollapsed(){
-    return this.card.status === CardStatus.MINIMIZED;
-  }
 
   toggleFavorite(card: CardData) {
     if (card.favorited) {
@@ -30,15 +25,6 @@ export class CardListItemComponent {
     } else {
       this.favorite.emit(card.slug);
     }
-  }
-
-  onCollapse() {
-    if(this.card.status !== CardStatus.MINIMIZED){
-      this.card.status = CardStatus.MINIMIZED;
-    } else if(this.card.status === CardStatus.MINIMIZED){
-      this.card.status = CardStatus.NORMAL;
-    }
-    this.statusChange.emit(this.card.status)
   }
 
   showNote(card: CardData) { }
