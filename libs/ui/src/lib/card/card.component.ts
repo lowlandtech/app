@@ -59,13 +59,11 @@ export class CardComponent implements OnInit {
         const card = cards.find(_card => _card.id === this.cardId)
         if(card){
           this.card = card;
-          console.log('found:'+ this.card.id);
         } else {
           this.card = {
             id: this.cardId,
             status: CardStatus.NORMAL
           }
-          console.log('not:found:'+ this.card.id);
         }
       })
     }
