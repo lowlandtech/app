@@ -10,6 +10,9 @@
       <button class="btn btn-primary btn-sm" type="button" *ngIf="hasSettings">
         <i class="icon-settings"></i>
       </button>
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="expandable" (click)="onExpanding()">
+        <span class="icon-pencil"></span>
+      </button>
       <button class="btn btn-primary btn-sm" type="button" *ngIf="collapsable" (click)="onCollapsing()">
         <i class="icon-arrow-up"></i>
       </button>
@@ -19,7 +22,7 @@
     </div>
   </div>
 </div>
-<div *ngIf="!(card.status===1)">
+<div *ngIf="!(card.status==1)">
   <ng-content select=".card-body"></ng-content>
   <div class="card-footer" *ngIf="hasFooter">
     <div class="pull-left">

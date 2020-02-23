@@ -10,10 +10,10 @@ import {
 } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DynamicOverlay } from '@spotacard/shared';
-import { CloseableComponent } from '../closeable';
-import { CardFacade } from '../+state/card.facade';
-import { CardStateData } from '../+state/card.models';
 import { CardStatus } from '@spotacard/api';
+import { CloseableComponent } from '../closeable';
+import { CardFacade } from '../+state';
+import { CardStateData } from '../+state';
 /* #endregion */
 
 @Component({
@@ -23,6 +23,9 @@ import { CardStatus } from '@spotacard/api';
 })
 export class CardComponent implements OnInit {
   @HostBinding('class.card') class1 = true;
+  @HostBinding('class.card--expanded')
+  @Input() isExpanded = false;
+
   @Input() cardId: string;
   @Input() hasHeader = true;
   @Input() hasSettings = false;
@@ -31,6 +34,7 @@ export class CardComponent implements OnInit {
   @Input() hasFooter = false;
   @Input() cancelable = true;
   @Input() okable = true;
+  @Input() expandable = true;
 
   @Output() normalizing: EventEmitter<string> = new EventEmitter();
   @Output() hiding: EventEmitter<string> = new EventEmitter();
@@ -82,14 +86,17 @@ export class CardComponent implements OnInit {
   }
 
   public onExpanding(){
+    console.log('click')
     if(this.card.status === CardStatus.EXPANDED){
       this.card.status = CardStatus.NORMAL;
       this.facade.normalize(this.card);
       this.normalizing.emit(this.cardId);
+      this.isExpanded = false;
     } else if(this.card.status === CardStatus.NORMAL){
       this.card.status = CardStatus.EXPANDED;
       this.facade.expand(this.card);
       this.expanding.emit(this.cardId);
+      this.isExpanded = true;
     }
   }
 

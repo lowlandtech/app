@@ -1,12 +1,9 @@
-<scx-ui-card [hasFooter]="false" [okable]="false" [cancelable]="false" [cardId]="card.id">
+<scx-ui-card [hasFooter]="true" [okable]="false" [cancelable]="false" [cardId]="card.id">
   <div class="card-header-title">
     <ng-content></ng-content>
     <span>{{ card.title }}</span>
   </div>
   <div class="card-toolbar">
-    <button class="btn btn-primary btn-sm" type="button">
-      <span class="icon-pencil"></span>
-    </button>
   </div>
   <div class="card-body">
     <div class="row">
@@ -61,5 +58,8 @@
         </button>
       </div>
     </div>
+  </div>
+  <div class="card-footer-content">
+    <span>some test content</span>
   </div>
 </scx-ui-card>

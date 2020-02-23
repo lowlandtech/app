@@ -1,6 +1,3 @@
-import { CardComment, CardData, User } from '@spotacard/api';
-import { AuthFacade } from '@spotacard/auth';
-import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,7 +7,11 @@ import {
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { CardFacade } from '../+state/card.facade';
+import { CardComment, CardData, User } from '@spotacard/api';
+import { AuthFacade } from '@spotacard/auth';
+import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
+
+import { CardFacade } from '../+state';
 
 const structure: Field[] = [
   {
