@@ -1,4 +1,4 @@
-<scx-ui-card [hasFooter]="false" [okable]="false" [cancelable]="false" (collapsing)="onCollapse()">
+<scx-ui-card [hasFooter]="false" [okable]="false" [cancelable]="false" (collapsing)="onCollapse()" [cardId]="card.id">
   <div class="card-header-title">
     <ng-content></ng-content>
     <span>{{ card.title }}</span>

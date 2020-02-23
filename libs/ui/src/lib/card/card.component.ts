@@ -11,6 +11,9 @@ import {
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DynamicOverlay } from '@spotacard/shared';
 import { CloseableComponent } from './closeable';
+import { CardFacade } from './+state/card.facade';
+import { CardStateData } from './+state/card.models';
+import { CardStatus } from '@spotacard/api';
 /* #endregion */
 
 @Component({
@@ -41,16 +44,51 @@ export class CardComponent implements OnInit {
   @Output() oking: EventEmitter<string> = new EventEmitter();
 
   private overlay: ComponentPortal<CloseableComponent>;
+  private card: CardStateData;
 
   constructor(
+    private facade: CardFacade,
     private dynamicOverlay: DynamicOverlay,
     private elRef: ElementRef
   ) {}
 
   ngOnInit(): void {
+    if(!this.cardId) return;
+    this.facade.cards$.subscribe(cards => {
+      const card = cards.find(_card => _card.id === this.cardId)
+      if(card){
+        this.card = card;
+      } else {
+        this.card = {
+          id: this.cardId,
+          status: CardStatus.NORMAL
+        }
+      }
+    })
   }
 
-  public onClose() {
+  public onCollapsing(){
+    this.card.status = this.card.status === CardStatus.MINIMIZED
+        ? CardStatus.NORMAL : CardStatus.MINIMIZED;
+    this.facade.collapse(this.card);
+    this.collapsing.emit(this.card.id);
+  }
+
+  public onExpanding(){
+    this.card.status = this.card.status === CardStatus.EXPANDED
+        ? CardStatus.NORMAL : CardStatus.EXPANDED;
+    this.facade.expand(this.card);
+    this.expanding.emit(this.card.id);
+  }
+
+  public onHiding(){
+    this.card.status = this.card.status === CardStatus.HIDDEN
+        ? CardStatus.NORMAL : CardStatus.HIDDEN;
+    this.facade.hide(this.card);
+    this.hiding.emit(this.card.id);
+  }
+
+  public onClosing() {
     this.dynamicOverlay.setContainerElement(this.elRef.nativeElement);
     const overlayRef = this.dynamicOverlay.create({
       positionStrategy: this.dynamicOverlay.position().global().centerHorizontally().centerVertically(),
@@ -59,7 +97,7 @@ export class CardComponent implements OnInit {
     this.overlay = new ComponentPortal(CloseableComponent);
     const componentRef = overlayRef.attach(this.overlay);
     componentRef.instance.closing.subscribe(() => {
-      this.oking.emit(this.cardId);
+      this.closing.emit(this.cardId);
     });
     componentRef.instance.cancelling.subscribe(() => {
       overlayRef.dispose();
