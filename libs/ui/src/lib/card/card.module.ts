@@ -12,7 +12,7 @@ import {
   CardFacade
 } from './+state';
 
-import { CardComponent } from './card.component';
+import { CardComponent } from './card';
 import { CloseableComponent } from './closeable';
 
 @NgModule({

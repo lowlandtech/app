@@ -10,9 +10,9 @@ import {
 } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DynamicOverlay } from '@spotacard/shared';
-import { CloseableComponent } from './closeable';
-import { CardFacade } from './+state/card.facade';
-import { CardStateData } from './+state/card.models';
+import { CloseableComponent } from '../closeable';
+import { CardFacade } from '../+state/card.facade';
+import { CardStateData } from '../+state/card.models';
 import { CardStatus } from '@spotacard/api';
 /* #endregion */
 
