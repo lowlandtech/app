@@ -25,4 +25,8 @@ export class CardFacade {
   public collapse(card: CardStateData) {
     this.store.dispatch(actions.collapse({payload: card}));
   }
+
+  public normalize(card: CardStateData) {
+    this.store.dispatch(actions.normalize({payload: card}));
+  }
 }

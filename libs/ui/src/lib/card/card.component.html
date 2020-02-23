@@ -19,24 +19,26 @@
     </div>
   </div>
 </div>
-<ng-content select=".card-body"></ng-content>
-<div class="card-footer" *ngIf="hasFooter">
-  <div class="pull-left">
-    <ng-content select=".card-footer-content"></ng-content>
-  </div>
-  <div class="btn-toolbar card-actions justify-content-between pull-right"
-    role="toolbar"
-    aria-label="Toolbar with button groups">
-    <div class="btn-group" role="group" aria-label="Second group">
-      <ng-content select=".card-footer-toolbar"></ng-content>
+<div *ngIf="!(card.status===1)">
+  <ng-content select=".card-body"></ng-content>
+  <div class="card-footer" *ngIf="hasFooter">
+    <div class="pull-left">
+      <ng-content select=".card-footer-content"></ng-content>
     </div>
-    <div class="btn-group" role="group" aria-label="First group">
-      <button class="btn btn-primary btn-sm" type="button"  *ngIf="cancelable">
-        Cancel
-      </button>
-      <button class="btn btn-primary btn-sm" type="button" *ngIf="okable">
-        Ok
-      </button>
+    <div class="btn-toolbar card-actions justify-content-between pull-right"
+      role="toolbar"
+      aria-label="Toolbar with button groups">
+      <div class="btn-group" role="group" aria-label="Second group">
+        <ng-content select=".card-footer-toolbar"></ng-content>
+      </div>
+      <div class="btn-group" role="group" aria-label="First group">
+        <button class="btn btn-primary btn-sm" type="button"  *ngIf="cancelable">
+          Cancel
+        </button>
+        <button class="btn btn-primary btn-sm" type="button" *ngIf="okable">
+          Ok
+        </button>
+      </div>
     </div>
   </div>
 </div>

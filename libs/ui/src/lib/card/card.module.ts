@@ -4,18 +4,20 @@ import { SharedModule } from '@spotacard/shared';
 import { CardComponent } from './card.component';
 import { CloseableComponent } from './closeable';
 import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 import * as fromCard from './+state/card.reducer';
 import { CardFacade } from './+state/card.facade';
 import { NxModule } from '@nrwl/angular';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '@env/environment';
+import { initialState, metaReducers } from './+state/card.reducer';
+
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     NxModule.forRoot(),
-    StoreModule.forFeature(fromCard.CARD_FEATURE_KEY, fromCard.reducer)
+    StoreModule.forFeature(fromCard.CARD_FEATURE_KEY, fromCard.reducer, {
+      initialState: initialState,
+      metaReducers: metaReducers
+    }),
   ],
   declarations: [CardComponent, CloseableComponent],
   exports: [CardComponent, CloseableComponent],

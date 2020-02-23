@@ -32,6 +32,7 @@ export class CardComponent implements OnInit {
   @Input() cancelable = true;
   @Input() okable = true;
 
+  @Output() normalizing: EventEmitter<string> = new EventEmitter();
   @Output() hiding: EventEmitter<string> = new EventEmitter();
   @Output() removing: EventEmitter<string> = new EventEmitter();
   @Output() collapsing: EventEmitter<string> = new EventEmitter();
@@ -44,7 +45,7 @@ export class CardComponent implements OnInit {
   @Output() oking: EventEmitter<string> = new EventEmitter();
 
   private overlay: ComponentPortal<CloseableComponent>;
-  private card: CardStateData;
+  public card: CardStateData;
 
   constructor(
     private facade: CardFacade,
@@ -53,25 +54,33 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(!this.cardId) return;
-    this.facade.cards$.subscribe(cards => {
-      const card = cards.find(_card => _card.id === this.cardId)
-      if(card){
-        this.card = card;
-      } else {
-        this.card = {
-          id: this.cardId,
-          status: CardStatus.NORMAL
+    if(!this.card||!this.cardId) {
+      this.facade.cards$.subscribe(cards => {
+        const card = cards.find(_card => _card.id === this.cardId)
+        if(card){
+          this.card = card;
+          console.log('found:'+ this.card.id);
+        } else {
+          this.card = {
+            id: this.cardId,
+            status: CardStatus.NORMAL
+          }
+          console.log('not:found:'+ this.card.id);
         }
-      }
-    })
+      })
+    }
   }
 
   public onCollapsing(){
-    this.card.status = this.card.status === CardStatus.MINIMIZED
-        ? CardStatus.NORMAL : CardStatus.MINIMIZED;
-    this.facade.collapse(this.card);
-    this.collapsing.emit(this.card.id);
+    if(this.card.status === CardStatus.MINIMIZED){
+      this.card.status = CardStatus.NORMAL;
+      this.facade.normalize(this.card);
+      this.normalizing.emit(this.cardId);
+    } else if(this.card.status === CardStatus.NORMAL){
+      this.card.status = CardStatus.MINIMIZED;
+      this.facade.collapse(this.card);
+      this.collapsing.emit(this.cardId);
+    }
   }
 
   public onExpanding(){
