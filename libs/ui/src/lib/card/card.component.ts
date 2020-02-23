@@ -82,17 +82,27 @@ export class CardComponent implements OnInit {
   }
 
   public onExpanding(){
-    this.card.status = this.card.status === CardStatus.EXPANDED
-        ? CardStatus.NORMAL : CardStatus.EXPANDED;
-    this.facade.expand(this.card);
-    this.expanding.emit(this.card.id);
+    if(this.card.status === CardStatus.EXPANDED){
+      this.card.status = CardStatus.NORMAL;
+      this.facade.normalize(this.card);
+      this.normalizing.emit(this.cardId);
+    } else if(this.card.status === CardStatus.NORMAL){
+      this.card.status = CardStatus.EXPANDED;
+      this.facade.expand(this.card);
+      this.expanding.emit(this.cardId);
+    }
   }
 
   public onHiding(){
-    this.card.status = this.card.status === CardStatus.HIDDEN
-        ? CardStatus.NORMAL : CardStatus.HIDDEN;
-    this.facade.hide(this.card);
-    this.hiding.emit(this.card.id);
+    if(this.card.status === CardStatus.HIDDEN){
+      this.card.status = CardStatus.NORMAL;
+      this.facade.normalize(this.card);
+      this.normalizing.emit(this.cardId);
+    } else if(this.card.status === CardStatus.NORMAL){
+      this.card.status = CardStatus.HIDDEN;
+      this.facade.hide(this.card);
+      this.hiding.emit(this.cardId);
+    }
   }
 
   public onClosing() {
