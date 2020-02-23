@@ -1,17 +1,22 @@
-import { SharedModule } from '@spotacard/shared';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { UiModule } from '@spotacard/ui';
+import { SharedModule } from '@spotacard/shared';
 
-import { CardListEffects } from './+state/card-list.effects';
-import { CardListFacade } from './+state/card-list.facade';
-import { cardListInitialState, cardListReducer, CARDLIST_STATE_FEATURE_KEY, metaReducers } from './+state/card-list.reducer';
+import { CardListEffects } from './+state';
+import { CardListFacade } from './+state';
+import {
+  cardListInitialState,
+  cardListReducer,
+  CARDLIST_STATE_FEATURE_KEY,
+  metaReducers
+} from './+state';
 import { CardListItemComponent } from './card-list-item/card-list-item.component';
-import { CardListComponent } from './card-list.component';
 import { CardListService } from './card-list.service';
+import { CardListComponent } from './card-list/card-list.component';
 
 @NgModule({
   imports: [
@@ -27,6 +32,6 @@ import { CardListService } from './card-list.service';
   ],
   declarations: [CardListComponent, CardListItemComponent],
   providers: [CardListService, CardListEffects, CardListFacade],
-  exports: [CardListComponent],
+  exports: [CardListComponent]
 })
 export class CardListModule {}
