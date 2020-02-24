@@ -14,9 +14,9 @@ import {
   CARDLIST_STATE_FEATURE_KEY,
   metaReducers
 } from './+state';
-import { CardListItemComponent } from './card-list-item/card-list-item.component';
+import { CardListItemComponent } from './card-list-item';
 import { CardListService } from './card-list.service';
-import { CardListComponent } from './card-list/card-list.component';
+import { CardListComponent } from './card-list';
 
 @NgModule({
   imports: [
@@ -28,10 +28,19 @@ import { CardListComponent } from './card-list/card-list.component';
       metaReducers: metaReducers
     }),
     EffectsModule.forFeature([CardListEffects]),
-    UiModule
+    UiModule,
   ],
-  declarations: [CardListComponent, CardListItemComponent],
-  providers: [CardListService, CardListEffects, CardListFacade],
-  exports: [CardListComponent]
+  declarations: [
+    CardListComponent,
+    CardListItemComponent,
+  ],
+  providers: [
+    CardListService,
+    CardListEffects,
+    CardListFacade,
+  ],
+  exports: [
+    CardListComponent,
+  ]
 })
 export class CardListModule {}

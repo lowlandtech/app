@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { CardData } from '@spotacard/api';
-import { CardListConfig } from '../+state/card-list.reducer';
-import { CardListFacade } from '../+state/card-list.facade';
+import { CardListConfig } from '../+state';
+import { CardListFacade } from '../+state';
 
 @Component({
   selector: 'scx-card-list',
