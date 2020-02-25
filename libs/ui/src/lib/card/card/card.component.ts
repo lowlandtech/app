@@ -10,10 +10,11 @@ import {
 } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { DynamicOverlay } from '@spotacard/shared';
-import { CardStatus } from '@spotacard/api';
 import { CloseableComponent } from '../closeable';
 import { CardFacade } from '../+state';
 import { CardStateData } from '../+state';
+import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 /* #endregion */
 
 @Component({
@@ -23,8 +24,7 @@ import { CardStateData } from '../+state';
 })
 export class CardComponent implements OnInit {
   @HostBinding('class.card') class1 = true;
-  @HostBinding('class.card--expanded')
-  @Input() isExpanded = false;
+  @HostBinding('class.card--expanded') class2 = false;
 
   @Input() cardId: string;
   @Input() hasHeader = true;
@@ -49,8 +49,9 @@ export class CardComponent implements OnInit {
   @Output() oking: EventEmitter<string> = new EventEmitter();
 
   private overlay: ComponentPortal<CloseableComponent>;
+  public minimized: boolean;
+  public expanded: boolean;
   public card: CardStateData;
-
   constructor(
     private facade: CardFacade,
     private dynamicOverlay: DynamicOverlay,
@@ -58,58 +59,26 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(!this.card||!this.cardId) {
-      this.facade.cards$.subscribe(cards => {
-        const card = cards.find(_card => _card.id === this.cardId)
-        if(card){
-          this.card = card;
-        } else {
-          this.card = {
-            id: this.cardId,
-            status: CardStatus.NORMAL
-          }
-        }
-      })
-    }
+    this.facade.selectCard(this.cardId);
+    this.facade.getCard(this.cardId).subscribe(card => {
+      this.card = card;
+      this.class2 = this.card.expanded;
+    });
   }
 
   public onCollapsing(){
-    if(this.card.status === CardStatus.MINIMIZED){
-      this.card.status = CardStatus.NORMAL;
-      this.facade.normalize(this.card);
-      this.normalizing.emit(this.cardId);
-    } else if(this.card.status === CardStatus.NORMAL){
-      this.card.status = CardStatus.MINIMIZED;
-      this.facade.collapse(this.card);
-      this.collapsing.emit(this.cardId);
-    }
+    this.facade.collapse(this.cardId);
+    this.collapsing.emit(this.cardId);
   }
 
   public onExpanding(){
-    console.log('click')
-    if(this.card.status === CardStatus.EXPANDED){
-      this.card.status = CardStatus.NORMAL;
-      this.facade.normalize(this.card);
-      this.normalizing.emit(this.cardId);
-      this.isExpanded = false;
-    } else if(this.card.status === CardStatus.NORMAL){
-      this.card.status = CardStatus.EXPANDED;
-      this.facade.expand(this.card);
-      this.expanding.emit(this.cardId);
-      this.isExpanded = true;
-    }
+    this.facade.expand(this.cardId);
+    this.expanding.emit(this.cardId);
   }
 
   public onHiding(){
-    if(this.card.status === CardStatus.HIDDEN){
-      this.card.status = CardStatus.NORMAL;
-      this.facade.normalize(this.card);
-      this.normalizing.emit(this.cardId);
-    } else if(this.card.status === CardStatus.NORMAL){
-      this.card.status = CardStatus.HIDDEN;
-      this.facade.hide(this.card);
-      this.hiding.emit(this.cardId);
-    }
+    this.facade.hide(this.cardId);
+    this.hiding.emit(this.cardId);
   }
 
   public onClosing() {

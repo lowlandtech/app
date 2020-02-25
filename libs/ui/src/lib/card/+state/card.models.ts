@@ -1,6 +1,7 @@
-import { CardStatus } from '@spotacard/api';
-
 export interface CardStateData {
   id: string;
-  status: CardStatus;
+  hidden: boolean;
+  expanded: boolean;
+  minimized: boolean;
+  normal: boolean;
 }

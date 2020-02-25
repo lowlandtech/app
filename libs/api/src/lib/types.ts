@@ -25,7 +25,6 @@ export interface CardData {
   favorited: boolean;
   favoritesCount: number;
   author: Profile;
-  status: CardStatus;
   children?: CardData[];
 }
 
@@ -35,11 +34,4 @@ export interface User {
   username: string;
   bio: string;
   image: string;
-}
-
-export enum CardStatus {
-  NORMAL,
-  MINIMIZED,
-  EXPANDED,
-  HIDDEN
 }

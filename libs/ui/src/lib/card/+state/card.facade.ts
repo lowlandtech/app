@@ -1,32 +1,40 @@
 import { Injectable } from '@angular/core';
 
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import * as actions from './card.actions';
 import * as fromCard from './card.reducer';
 import * as CardSelectors from './card.selectors';
-import { CardStateData } from './card.models';
 
 @Injectable()
 export class CardFacade {
 
-  cards$ = this.store.pipe(select(CardSelectors.getCards));
+  states$ = this.store.pipe(select(CardSelectors.getStates));
+  card$ = this.store.pipe(select(CardSelectors.getCard));
 
-  constructor(private store: Store<fromCard.CardState>) {}
-
-  public expand(card: CardStateData) {
-    this.store.dispatch(actions.expand({payload: card}));
+  getCard(cardId: string) {
+    return this.store.pipe(select(CardSelectors.getCardById, {cardId}))
   }
 
-  public hide(card: CardStateData) {
-    this.store.dispatch(actions.hide({payload: card}));
+  constructor(private store: Store<fromCard.CardsState>) {}
+
+  public expand(cardId: string) {
+    this.store.dispatch(actions.expand({payload: cardId}));
   }
 
-  public collapse(card: CardStateData) {
-    this.store.dispatch(actions.collapse({payload: card}));
+  public hide(cardId: string) {
+    this.store.dispatch(actions.hide({payload: cardId}));
   }
 
-  public normalize(card: CardStateData) {
-    this.store.dispatch(actions.normalize({payload: card}));
+  public collapse(cardId: string) {
+    this.store.dispatch(actions.collapse({payload: cardId}));
+  }
+
+  public normalize(cardId: string) {
+    this.store.dispatch(actions.normalize({payload: cardId}));
+  }
+
+  public selectCard(cardId: string) {
+    this.store.dispatch(actions.selectCard({payload: cardId}));
   }
 }

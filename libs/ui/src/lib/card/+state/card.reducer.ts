@@ -1,49 +1,113 @@
-import { createReducer, on, Action, MetaReducer, ActionReducer } from '@ngrx/store';
+import { createReducer, on, Action, MetaReducer, ActionReducer, StateObservable } from '@ngrx/store';
 import * as CardActions from './card.actions';
-import { CardStateData } from './card.models';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { CardStateData } from './card.models';
 
 export const CARD_FEATURE_KEY = 'cardStates';
-export const STORE_KEYS_TO_PERSIST = ['states']
-export interface CardState {
-  readonly states: CardStateData[];
+export const STORE_KEYS_TO_PERSIST = ['states','selectedCardId']
+
+export interface States {
+  [id: string]: CardStateData;
+}
+export interface CardsState {
+  readonly selectedCardId: string;
+  readonly states: States;
 }
 
-export const initialState: CardState = {
-  states: []
+export const initialState: CardsState = {
+  selectedCardId: '',
+  states: {}
 };
 
 const cardReducer = createReducer(
   initialState,
-  on(CardActions.normalize,
-     CardActions.expand,
-     CardActions.hide,
-     CardActions.collapse, (state, action) => {
-    return replaceCard(state, action.payload);
+  on(CardActions.selectCard,(state, action) => {
+    return {
+      ...state,
+      selectedCardId: action.payload
+    }
+  }),
+  on(CardActions.normalize,(state, action) => {
+    const cards = {
+      ...state
+    }
+    cards.states[action.payload] = {
+      id: action.payload,
+      normal: true,
+      hidden: false,
+      minimized: false,
+      expanded: false,
+    }
+    return {
+      ...state,
+      states: cards.states,
+      selectedCardId: action.payload
+    }
+  }),
+  on(CardActions.expand,(state, action) => {
+    const cards = {
+      ...state
+    }
+    cards.states[action.payload] = {
+      id: action.payload,
+      normal: state.states[action.payload].expanded,
+      hidden: false,
+      minimized: false,
+      expanded: !state.states[action.payload].expanded,
+    }
+    return {
+      ...state,
+      states: cards.states,
+      selectedCardId: action.payload
+    }
+  }),
+  on(CardActions.hide,(state, action) => {
+    const cards = {
+      ...state
+    }
+    cards.states[action.payload] = {
+      id: action.payload,
+      normal: state.states[action.payload].hidden,
+      hidden: !state.states[action.payload].hidden,
+      minimized: false,
+      expanded: false,
+    }
+    return {
+      ...state,
+      states: cards.states,
+      selectedCardId: action.payload
+    }
+  }),
+  on(CardActions.collapse, (state, action) => {
+    const cards = {
+      ...state
+    }
+    cards.states[action.payload] = {
+      id: action.payload,
+      normal: state.states[action.payload].minimized,
+      hidden: false,
+      minimized: !state.states[action.payload].minimized,
+      expanded: false,
+    }
+    return {
+      ...state,
+      states: cards.states,
+      selectedCardId: action.payload
+    }
   }),
 );
 
-function replaceCard(states: CardState, payload: CardStateData): CardState {
-  const cardIndex = states.states.findIndex(_card => _card.id === payload.id);
-  const cards = [
-    ...states.states.slice(0, cardIndex),
-    Object.assign({}, states[cardIndex], payload),
-    ...states.states.slice(cardIndex + 1),
-  ];
-  return { ...states, states: cards };
-}
-
-export function reducer(state: CardState | undefined, action: Action) {
+export function reducer(state: CardsState | undefined, action: Action) {
   return cardReducer(state, action);
 }
 
-export function localStorageSyncReducer(_reducer: ActionReducer<CardState>): ActionReducer<CardState> {
+export function localStorageSyncReducer(_reducer: ActionReducer<CardsState>): ActionReducer<CardsState> {
   return localStorageSync({
     keys: STORE_KEYS_TO_PERSIST,
     rehydrate: true
   })(_reducer);
 }
 
-export const metaReducers: Array<MetaReducer<CardState, Action>> = [
+export const metaReducers: Array<MetaReducer<CardsState, Action>> = [
   localStorageSyncReducer
 ];

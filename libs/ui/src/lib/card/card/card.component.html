@@ -10,19 +10,19 @@
       <button class="btn btn-primary btn-sm" type="button" *ngIf="hasSettings">
         <i class="icon-settings"></i>
       </button>
-      <button class="btn btn-primary btn-sm" type="button" *ngIf="expandable" (click)="onExpanding()">
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="expandable" (click)="onExpanding(card)">
         <span class="icon-pencil"></span>
       </button>
-      <button class="btn btn-primary btn-sm" type="button" *ngIf="collapsable" (click)="onCollapsing()">
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="collapsable" (click)="onCollapsing(card)">
         <i class="icon-arrow-up"></i>
       </button>
-      <button class="btn btn-primary btn-sm" type="button" *ngIf="closeable" (click)="onClosing()">
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="closeable" (click)="onClosing(card)">
         <i class="icon-close"></i>
       </button>
     </div>
   </div>
 </div>
-<div *ngIf="!(card.status==1)">
+<div *ngIf="!card.minimized">
   <ng-content select=".card-body"></ng-content>
   <div class="card-footer" *ngIf="hasFooter">
     <div class="pull-left">

@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { CardData, CardStatus } from '@spotacard/api';
+import { CardData } from '@spotacard/api';
 
 @Component({
   selector: 'scx-card-list-item',
