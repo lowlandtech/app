@@ -14,11 +14,11 @@ namespace Spotacard.Features.Contracts
 {
     public class ContractTests
     {
-        private readonly CardFixtures _fixture;
+        private readonly ContractFixtures _fixture;
 
         public ContractTests()
         {
-            _fixture = new CardFixtures();
+            _fixture = new ContractFixtures();
         }
 
         [Test]
