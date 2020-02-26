@@ -22,8 +22,19 @@ export const initialState: CardsState = {
 const cardReducer = createReducer(
   initialState,
   on(CardActions.selectCard,(state, action) => {
+    const cards = {...state };
+    if(!cards.states.hasOwnProperty(action.payload)) {
+      cards.states[action.payload] = {
+        id: action.payload,
+        normal: true,
+        hidden: false,
+        minimized: false,
+        expanded: false,
+      }
+    }
     return {
       ...state,
+      states: cards.states,
       selectedCardId: action.payload
     }
   }),
