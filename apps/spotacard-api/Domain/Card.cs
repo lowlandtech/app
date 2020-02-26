@@ -42,8 +42,12 @@ namespace Spotacard.Domain
         [JsonIgnore]
         public List<CardFavorite> CardFavorites { get; set; }
 
+        [JsonIgnore]
+        public List<CardAttribute> CardAttributes { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+
     }
 }

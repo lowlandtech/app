@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Spotacard.Domain;
 using System.Data;
@@ -11,10 +11,12 @@ namespace Spotacard.Infrastructure
 
         public GraphContext(DbContextOptions options) : base(options) { }
 
+        
         public DbSet<Card> Cards { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<CardAttribute> Attributes { get; set; }
         public DbSet<CardTag> CardTags { get; set; }
         public DbSet<CardFavorite> CardFavorites { get; set; }
         public DbSet<FollowedPeople> FollowedPeople { get; set; }
@@ -73,7 +75,16 @@ namespace Spotacard.Infrastructure
                     .HasForeignKey(pt => pt.TargetId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-        }
+
+            modelBuilder.Entity<CardAttribute>(b =>
+            {
+              b.HasKey(t => t.Id);
+
+              b.HasOne(pt => pt.Card)
+                .WithMany(p => p.CardAttributes)
+                .HasForeignKey(pt => pt.CardId);
+            });
+    }
 
         #region Transaction Handling
         public void BeginTransaction()
