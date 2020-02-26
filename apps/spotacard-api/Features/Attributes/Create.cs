@@ -1,10 +1,13 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Attributes
 {
@@ -54,10 +57,13 @@ namespace Spotacard.Features.Attributes
 
             public async Task<AttributeEnvelope> Handle(Command request, CancellationToken cancellationToken)
             {
-                var card = await _graph.Cards.FindAsync(request.CardId, cancellationToken);
+                var card = await _graph.Cards.SingleOrDefaultAsync(_card => _card.Id == request.CardId, cancellationToken);
+                if (card == null)
+                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
+
                 var attribute = new CardAttribute
                 {
-                    Index = card.CardAttributes.Count,
+                    Index = card.CardAttributes?.Count ?? 0,
                     Name = request.Attribute.Name,
                     Type = request.Attribute.Type,
                     Value = request.Attribute.Value,
