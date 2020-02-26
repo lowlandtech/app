@@ -1,9 +1,9 @@
-using Spotacard.Domain;
 using System.Collections.Generic;
+using Spotacard.Domain;
 
 namespace Spotacard.Features.Attributes
 {
-  public class AttributesEnvelope
+    public class AttributesEnvelope
     {
         public AttributesEnvelope(List<CardAttribute> attributes)
         {
