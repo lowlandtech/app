@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Spotacard.Core.Contracts;
 
 namespace Spotacard.Core.Types
 {

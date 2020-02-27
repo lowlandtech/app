@@ -1,7 +1,7 @@
-namespace Spotacard.Core
+namespace Spotacard.Core.Contracts
 {
-  public interface IActivity
-  {
-    void Execute();
-  }
+    public interface IActivity
+    {
+        void Execute();
+    }
 }

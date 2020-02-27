@@ -1,9 +1,7 @@
-using System.Collections.Generic;
-
-namespace Spotacard.Core
+namespace Spotacard.Core.Contracts
 {
-  public interface ISeeder : IActivity
-  {
-    List<IActivity> Activities { get; set; }
-  }
+    public interface ISeeder : IActivity
+    {
+
+    }
 }

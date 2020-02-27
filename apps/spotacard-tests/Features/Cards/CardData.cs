@@ -2,6 +2,7 @@ using Spotacard.Core;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
 using System;
+using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 
 namespace Spotacard.Features.Cards
