@@ -8,7 +8,7 @@ namespace Spotacard.Features.Attributes
 {
     public class AttributeHelpers
     {
-        public static async Task<CardAttribute> CreateCardAttribute(SliceFixture fixture, Create.Command command)
+        public static async Task<CardAttribute> CreateCardAttribute(TestFixture fixture, Create.Command command)
         {
             var graph = fixture.GetGraph();
 
@@ -23,7 +23,7 @@ namespace Spotacard.Features.Attributes
             return attribute;
         }
 
-        public static async Task<AttributesEnvelope> ListCardAttribute(SliceFixture fixture, List.Query command)
+        public static async Task<AttributesEnvelope> ListCardAttribute(TestFixture fixture, List.Query command)
         {
             var graph = fixture.GetGraph();
             var handler = new List.QueryHandler(graph);

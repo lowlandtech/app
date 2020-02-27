@@ -17,7 +17,7 @@ namespace Spotacard.Features.Comments
         /// <param name="command"></param>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public static async Task<Comment> CreateComment(SliceFixture fixture, Create.Command command, string userName)
+        public static async Task<Comment> CreateComment(TestFixture fixture, Create.Command command, string userName)
         {
             if (string.IsNullOrWhiteSpace(userName))
             {

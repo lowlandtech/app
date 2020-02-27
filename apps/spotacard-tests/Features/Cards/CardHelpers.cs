@@ -15,7 +15,7 @@ namespace Spotacard.Features.Cards
         /// <param name="fixture"></param>
         /// <param name="command"></param>
         /// <returns></returns>
-        public static async Task<Card> CreateCard(SliceFixture fixture, Create.Command command)
+        public static async Task<Card> CreateCard(TestFixture fixture, Create.Command command)
         {
             // first create the default user
             var user = await UserHelpers.CreateDefaultUser(fixture);

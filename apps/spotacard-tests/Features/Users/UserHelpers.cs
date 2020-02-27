@@ -11,7 +11,7 @@ namespace Spotacard.Features.Users
         /// </summary>
         /// <param name="fixture"></param>
         /// <returns></returns>
-        public static async Task<User> CreateDefaultUser(SliceFixture fixture)
+        public static async Task<User> CreateDefaultUser(TestFixture fixture)
         {
             var command = new Create.Command
             {

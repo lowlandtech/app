@@ -12,7 +12,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_List_Attribute()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
             fixture.CreateAttribute(new CardAttribute
             {
@@ -45,7 +45,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_Create_Attribute()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
 
             var command = new Create.Command
@@ -72,7 +72,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_Edit_Attribute()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
             var attribute = fixture.CreateAttribute(new CardAttribute
             {
@@ -112,7 +112,7 @@ namespace Spotacard.Features.Attributes
         public async Task Expect_Delete_Attribute()
         {
             // arrange
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
 
             var createCmd = new Create.Command

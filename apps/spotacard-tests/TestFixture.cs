@@ -11,11 +11,11 @@ using Spotacard.Infrastructure;
 
 namespace Spotacard
 {
-    public class SliceFixture : IDisposable
+    public class TestFixture : IDisposable
     {
         private static readonly IConfiguration Config;
 
-        static SliceFixture()
+        static TestFixture()
         {
             Config = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
@@ -25,7 +25,7 @@ namespace Spotacard
             Config["Provider"] = "1";
         }
 
-        public SliceFixture(Func<GraphContext, IActivity> seed = null)
+        public TestFixture(Func<GraphContext, IActivity> seed = null)
         {
             Application = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
@@ -40,7 +40,7 @@ namespace Spotacard
             activity.Execute();
         }
 
-        public SliceFixture()
+        public TestFixture()
         {
             var startup = new Startup(Config, null);
             var services = new ServiceCollection();

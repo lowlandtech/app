@@ -11,7 +11,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public void ShouldWriteCardToDatabase()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             try
             {
                 var graph = fixture.GetGraph();
@@ -31,7 +31,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public void ShouldBeEmpty()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             try
             {
                 var graph = fixture.GetGraph();
@@ -46,7 +46,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public void ShouldBeRequiredName()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             try
             {
                 var graph = fixture.GetGraph();
@@ -63,7 +63,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public void ShouldGenerateCardId()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             try
             {
                 var graph = fixture.GetGraph();
@@ -83,7 +83,7 @@ namespace Spotacard.Features.Cards
         public void ShouldFindCardByName()
         {
             // In-memory database only exists while the connection is open
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
 
             try
             {

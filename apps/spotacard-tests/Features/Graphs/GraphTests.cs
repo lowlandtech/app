@@ -8,7 +8,7 @@ namespace Spotacard.Features.Graphs
         [Test]
         public async Task DatabaseIsAvailableAndCanBeConnectedTo()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             try
             {
                 var graph = fixture.GetGraph();

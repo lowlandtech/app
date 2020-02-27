@@ -8,7 +8,7 @@ namespace Spotacard.Features.Users
 {
     public class CreateTests
     {
-        private readonly SliceFixture _fixture = new SliceFixture();
+        private readonly TestFixture _fixture = new TestFixture();
 
         [Test]
         public async Task Expect_Create_User()

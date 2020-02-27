@@ -10,7 +10,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_Edit_Card()
         {
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var createCommand = new Create.Command
             {
                 Card = new Create.CardData

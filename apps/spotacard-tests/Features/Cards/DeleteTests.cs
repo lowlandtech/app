@@ -12,7 +12,7 @@ namespace Spotacard.Features.Cards
         public async Task Expect_Delete_Card()
         {
             // arrange
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var createCmd = new Create.Command
             {
                 Card = new Create.CardData
@@ -42,7 +42,7 @@ namespace Spotacard.Features.Cards
         public async Task Expect_Delete_Card_With_Tags()
         {
             // arrange
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var createCmd = new Create.Command
             {
                 Card = new Create.CardData
@@ -73,7 +73,7 @@ namespace Spotacard.Features.Cards
         public async Task Expect_Delete_Card_With_Comments()
         {
             // arrange
-            var fixture = new SliceFixture();
+            var fixture = new TestFixture();
             var createCardCmd = new Create.Command
             {
                 Card = new Create.CardData

@@ -15,7 +15,7 @@ namespace Spotacard.Features.Attributes
         public async Task Expect_List_Attribute()
         {
             // Arrange
-            var fixture = new SliceFixture(graph => new AttributeData(graph));
+            var fixture = new TestFixture(graph => new AttributeData(graph));
             // Act
             var client = fixture.Application.CreateClient();
             var response = await client.GetAsync($"cards/{AttributeData.CardId}/attributes");
@@ -39,7 +39,7 @@ namespace Spotacard.Features.Attributes
         public async Task Expect_Create_Attribute()
         {
             // Arrange
-            var fixture = new SliceFixture(graph => new AttributeData(graph));
+            var fixture = new TestFixture(graph => new AttributeData(graph));
             var attribute = new CardAttribute
             {
                 Name = "Description",
