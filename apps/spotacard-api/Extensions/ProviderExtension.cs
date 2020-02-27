@@ -1,12 +1,14 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Infrastructure;
+using System;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace Spotacard.Extensions
 {
-  public static class ProviderExtension
+    public static class ProviderExtension
   {
     private const string SQLLITE = "ConnectionStrings:SqlLite";
     private const string PGSQL = "ConnectionStrings:PgSql";
@@ -14,27 +16,27 @@ namespace Spotacard.Extensions
     private const string SQLSERVER = "ConnectionStrings:SqlServer";
     private const string SQLSERVER_ASSEMBLY = "Spotacard";
 
-    public static void AddProvider(this IServiceCollection services)
+    public static void AddProvider(this IServiceCollection services, ISettings settings)
     {
-      switch (Startup.Settings.Provider)
+      switch (settings.Provider)
       {
         case Providers.SqlLite:
-          services.AddSqlLite();
+          services.AddSqlLite(settings.Configuration);
           break;
         case Providers.PgSql:
-          services.AddPgSql();
+          services.AddPgSql(settings.Configuration);
           break;
         case Providers.SqlServer:
-          services.AddSqlServer();
+          services.AddSqlServer(settings.Configuration);
           break;
         default:
           throw new ArgumentOutOfRangeException();
       }
     }
 
-    private static void AddPgSql(this IServiceCollection services)
+    private static void AddPgSql(this IServiceCollection services, IConfiguration configuration)
     {
-      var cs = Startup.Configuration[PGSQL];
+      var cs = configuration[PGSQL];
       services
         .AddEntityFrameworkNpgsql()
         .AddDbContext<GraphContext>(options =>
@@ -45,18 +47,18 @@ namespace Spotacard.Extensions
         .BuildServiceProvider();
     }
 
-    private static void AddSqlLite(this IServiceCollection services)
-    {
-      var cs = Startup.Configuration[SQLLITE];
+    private static void AddSqlLite(this IServiceCollection services, IConfiguration configuration)
+        {
+      var cs = configuration[SQLLITE];
       services
         .AddDbContext<GraphContext>(
           options => options.UseSqlite(cs, builder =>
             builder.MigrationsAssembly(SQLSERVER_ASSEMBLY)));
     }
 
-    private static void AddSqlServer(this IServiceCollection services)
-    {
-      var cs = Startup.Configuration[SQLSERVER];
+    private static void AddSqlServer(this IServiceCollection services, IConfiguration configuration)
+        {
+      var cs = configuration[SQLSERVER];
       services
         .AddDbContext<GraphContext>(options =>
         {

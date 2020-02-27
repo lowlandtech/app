@@ -1,16 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Spotacard.Core;
+using Spotacard.Core.Contracts;
 using Spotacard.Infrastructure;
 using System;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Spotacard.Extensions
 {
-  public static class WebHostExtensions
+    public static class WebHostExtensions
   {
     public static IHost SeedData(this IHost host)
     {
