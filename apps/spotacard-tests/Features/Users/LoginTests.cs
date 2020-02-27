@@ -1,43 +1,43 @@
+using System;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using Spotacard.Domain;
 using Spotacard.Infrastructure.Security;
-using System;
-using System.Threading.Tasks;
 
 namespace Spotacard.Features.Users
 {
-  public class LoginTests
-  {
-    private readonly SliceFixture _fixture = new SliceFixture();
-
-    [Test]
-    public async Task Expect_Login()
+    public class LoginTests
     {
-      var salt = Guid.NewGuid().ToByteArray();
-      var person = new Person
-      {
-        Username = "username",
-        Email = "email",
-        Hash = new PasswordHasher().Hash("password", salt),
-        Salt = salt
-      };
-      await _fixture.InsertAsync(person);
+        private readonly SliceFixture _fixture = new SliceFixture();
 
-      var command = new Login.Command
-      {
-        User = new Login.UserData
+        [Test]
+        public async Task Expect_Login()
         {
-          Email = "email",
-          Password = "password"
+            var salt = Guid.NewGuid().ToByteArray();
+            var person = new Person
+            {
+                Username = "username",
+                Email = "email",
+                Hash = new PasswordHasher().Hash("password", salt),
+                Salt = salt
+            };
+            await _fixture.InsertAsync(person);
+
+            var command = new Login.Command
+            {
+                User = new Login.UserData
+                {
+                    Email = "email",
+                    Password = "password"
+                }
+            };
+
+            var user = await _fixture.SendAsync(command);
+
+            Assert.That(user?.User, Is.Not.Null);
+            Assert.That(user.User.Email, Is.EqualTo(command.User.Email));
+            Assert.That("username", Is.EqualTo(user.User.Username));
+            Assert.That(user.User.Token, Is.Not.Null);
         }
-      };
-
-      var user = await _fixture.SendAsync(command);
-
-      Assert.That(user?.User, Is.Not.Null);
-      Assert.That(user.User.Email, Is.EqualTo(command.User.Email));
-      Assert.That("username", Is.EqualTo(user.User.Username));
-      Assert.That(user.User.Token, Is.Not.Null);
     }
-  }
 }

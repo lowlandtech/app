@@ -2,9 +2,10 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
-using Microsoft.EntityFrameworkCore;
 
 namespace Spotacard.Features.Profiles
 {
@@ -28,11 +29,8 @@ namespace Spotacard.Features.Profiles
             var person = await _context.Persons.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Username == username);
 
-            if (person == null)
-            {
-                throw new RestException(HttpStatusCode.NotFound, new { User = Constants.NOT_FOUND });
-            }
-            var profile = _mapper.Map<Domain.Person, Profile>(person);
+            if (person == null) throw new RestException(HttpStatusCode.NotFound, new {User = Constants.NOT_FOUND});
+            var profile = _mapper.Map<Person, Profile>(person);
 
             if (currentUserName != null)
             {
@@ -41,11 +39,9 @@ namespace Spotacard.Features.Profiles
                     .Include(x => x.Followers)
                     .FirstOrDefaultAsync(x => x.Username == currentUserName);
 
-                if (currentPerson.Followers.Any(x => x.TargetId == person.Id))
-                {
-                    profile.IsFollowed = true;
-                }
+                if (currentPerson.Followers.Any(x => x.TargetId == person.Id)) profile.IsFollowed = true;
             }
+
             return new ProfileEnvelope(profile);
         }
     }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Domain;
-using Spotacard.Infrastructure;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Infrastructure;
 
 namespace Spotacard.Features.Cards
 {
@@ -60,14 +60,16 @@ namespace Spotacard.Features.Cards
 
             public async Task<CardEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var author = await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
+                var author =
+                    await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(),
+                        cancellationToken);
                 var tags = new List<Tag>();
-                foreach (var tag in (message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>()))
+                foreach (var tag in message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>())
                 {
                     var t = await _context.Tags.FindAsync(tag);
                     if (t == null)
                     {
-                        t = new Tag()
+                        t = new Tag
                         {
                             TagId = tag
                         };
@@ -75,10 +77,11 @@ namespace Spotacard.Features.Cards
                         //save immediately for reuse
                         await _context.SaveChangesAsync(cancellationToken);
                     }
+
                     tags.Add(t);
                 }
 
-                var card = new Card()
+                var card = new Card
                 {
                     Author = author,
                     Body = message.Card.Body,
@@ -90,7 +93,7 @@ namespace Spotacard.Features.Cards
                 };
                 await _context.Cards.AddAsync(card, cancellationToken);
 
-                await _context.CardTags.AddRangeAsync(tags.Select(x => new CardTag()
+                await _context.CardTags.AddRangeAsync(tags.Select(x => new CardTag
                 {
                     Card = card,
                     Tag = x

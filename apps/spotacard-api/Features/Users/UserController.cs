@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Users
 {
@@ -11,8 +11,8 @@ namespace Spotacard.Features.Users
     [Authorize(AuthenticationSchemes = JwtIssuerOptions.Schemes)]
     public class UserController
     {
-        private readonly IMediator _mediator;
         private readonly ICurrentUserAccessor _currentUserAccessor;
+        private readonly IMediator _mediator;
 
         public UserController(IMediator mediator, ICurrentUserAccessor currentUserAccessor)
         {
@@ -23,14 +23,14 @@ namespace Spotacard.Features.Users
         [HttpGet]
         public async Task<UserEnvelope> GetCurrent()
         {
-            return await _mediator.Send(new Details.Query()
+            return await _mediator.Send(new Details.Query
             {
                 Username = _currentUserAccessor.GetCurrentUsername()
             });
         }
 
         [HttpPut]
-        public async Task<UserEnvelope> UpdateUser([FromBody]Edit.Command command)
+        public async Task<UserEnvelope> UpdateUser([FromBody] Edit.Command command)
         {
             return await _mediator.Send(command);
         }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Spotacard.Domain;
 
 namespace Spotacard.Features.Users
 {
@@ -6,7 +7,7 @@ namespace Spotacard.Features.Users
     {
         public MappingProfile()
         {
-            CreateMap<Domain.Person, User>(MemberList.None);
+            CreateMap<Person, User>(MemberList.None);
         }
     }
 }

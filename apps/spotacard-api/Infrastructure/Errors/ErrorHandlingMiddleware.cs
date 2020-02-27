@@ -10,9 +10,9 @@ namespace Spotacard.Infrastructure.Errors
 {
     public class ErrorHandlingMiddleware
     {
-        private readonly RequestDelegate next;
-        private readonly ILogger<ErrorHandlingMiddleware> _logger;
         private readonly IStringLocalizer<ErrorHandlingMiddleware> _localizer;
+        private readonly ILogger<ErrorHandlingMiddleware> _logger;
+        private readonly RequestDelegate next;
 
         public ErrorHandlingMiddleware(
             RequestDelegate next,
@@ -20,8 +20,8 @@ namespace Spotacard.Infrastructure.Errors
             ILogger<ErrorHandlingMiddleware> logger)
         {
             this.next = next;
-            this._logger = logger;
-            this._localizer = localizer;
+            _logger = logger;
+            _localizer = localizer;
         }
 
         public async Task Invoke(HttpContext context)
@@ -48,11 +48,11 @@ namespace Spotacard.Infrastructure.Errors
             {
                 case RestException re:
                     errors = re.Errors;
-                    context.Response.StatusCode = (int)re.Code;
+                    context.Response.StatusCode = (int) re.Code;
                     break;
                 case Exception e:
                     errors = string.IsNullOrWhiteSpace(e.Message) ? "Error" : e.Message;
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
                     break;
             }
 

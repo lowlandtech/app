@@ -1,14 +1,12 @@
-﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 
 namespace Spotacard.Infrastructure
 {
     /// <summary>
-    /// Adds transaction to the processing pipeline
+    ///     Adds transaction to the processing pipeline
     /// </summary>
     /// <typeparam name="TRequest"></typeparam>
     /// <typeparam name="TResponse"></typeparam>
@@ -21,9 +19,10 @@ namespace Spotacard.Infrastructure
             _context = context;
         }
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
-            TResponse result = default(TResponse);
+            TResponse result = default;
 
             try
             {

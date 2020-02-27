@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
-using Spotacard.Domain;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
+using Spotacard.Domain;
 
 namespace Spotacard.Features.Attributes
 {
@@ -13,7 +13,7 @@ namespace Spotacard.Features.Attributes
         public async Task Expect_List_Attribute()
         {
             var fixture = new SliceFixture();
-            var card = fixture.CreateCard(new Card { Title = "Test Card 1" });
+            var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
             fixture.CreateAttribute(new CardAttribute
             {
                 Index = 0,
@@ -46,7 +46,7 @@ namespace Spotacard.Features.Attributes
         public async Task Expect_Create_Attribute()
         {
             var fixture = new SliceFixture();
-            var card = fixture.CreateCard(new Card { Title = "Test Card 1" });
+            var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
 
             var command = new Create.Command
             {
@@ -73,7 +73,7 @@ namespace Spotacard.Features.Attributes
         public async Task Expect_Edit_Attribute()
         {
             var fixture = new SliceFixture();
-            var card = fixture.CreateCard(new Card { Title = "Test Card 1" });
+            var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
             var attribute = fixture.CreateAttribute(new CardAttribute
             {
                 Index = 0,
@@ -113,7 +113,7 @@ namespace Spotacard.Features.Attributes
         {
             // arrange
             var fixture = new SliceFixture();
-            var card = fixture.CreateCard(new Card { Title = "Test Card 1" });
+            var card = fixture.CreateCard(new Card {Title = "Test Card 1"});
 
             var createCmd = new Create.Command
             {

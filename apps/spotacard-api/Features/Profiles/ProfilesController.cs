@@ -17,7 +17,7 @@ namespace Spotacard.Features.Profiles
         [HttpGet("{username}")]
         public async Task<ProfileEnvelope> Get(string username)
         {
-            return await _mediator.Send(new Profiles.Details.Query()
+            return await _mediator.Send(new Details.Query
             {
                 Username = username
             });

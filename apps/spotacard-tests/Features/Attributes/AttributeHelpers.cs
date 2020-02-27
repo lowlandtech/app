@@ -1,9 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using Spotacard.Domain;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NUnit.Framework.Constraints;
+using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
 
 namespace Spotacard.Features.Attributes
 {

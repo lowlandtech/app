@@ -3,11 +3,11 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Comments
 {
@@ -48,16 +48,11 @@ namespace Spotacard.Features.Comments
                     .Include(x => x.Comments)
                     .FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (card == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
-                }
+                if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
                 var comment = card.Comments.FirstOrDefault(x => x.Id == message.Id);
                 if (comment == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Comment = Constants.NOT_FOUND });
-                }
+                    throw new RestException(HttpStatusCode.NotFound, new {Comment = Constants.NOT_FOUND});
 
                 _context.Comments.Remove(comment);
                 await _context.SaveChangesAsync(cancellationToken);

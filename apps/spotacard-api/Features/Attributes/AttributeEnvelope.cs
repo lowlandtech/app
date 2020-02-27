@@ -8,6 +8,7 @@ namespace Spotacard.Features.Attributes
         {
             Attribute = attribute;
         }
+
         public CardAttribute Attribute { get; }
     }
 }

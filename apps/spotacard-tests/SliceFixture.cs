@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
@@ -6,18 +8,12 @@ using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
-using System;
-using System.Threading.Tasks;
 
 namespace Spotacard
 {
     public class SliceFixture : IDisposable
     {
         private static readonly IConfiguration Config;
-
-        public WebApplicationFactory<Startup> Application { get; }
-        public IServiceScopeFactory Factory { get; set; }
-        public IServiceProvider Provider { get; set; }
 
         static SliceFixture()
         {
@@ -34,10 +30,7 @@ namespace Spotacard
             Application = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
                 {
-                    builder.ConfigureServices(services =>
-                    {
-                        services.ReplaceGraphContext();
-                    });
+                    builder.ConfigureServices(services => { services.ReplaceGraphContext(); });
                 });
 
             Step(Application.Services);
@@ -45,13 +38,6 @@ namespace Spotacard
             if (seed == null) return;
             var activity = seed(GetGraph());
             activity.Execute();
-        }
-
-        public void Step(IServiceProvider provider)
-        {
-            Provider = provider;
-            Factory = Provider.GetService<IServiceScopeFactory>();
-            GetGraph().Database.EnsureCreated();
         }
 
         public SliceFixture()
@@ -64,10 +50,20 @@ namespace Spotacard
 
             Step(services.BuildServiceProvider());
         }
-        
+
+        public WebApplicationFactory<Startup> Application { get; }
+        public IServiceScopeFactory Factory { get; set; }
+        public IServiceProvider Provider { get; set; }
+
         public void Dispose()
         {
+        }
 
+        public void Step(IServiceProvider provider)
+        {
+            Provider = provider;
+            Factory = Provider.GetService<IServiceScopeFactory>();
+            GetGraph().Database.EnsureCreated();
         }
 
         public Card CreateCard(Card card)

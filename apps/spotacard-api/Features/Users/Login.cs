@@ -3,12 +3,13 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
-using Spotacard.Infrastructure.Security;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
+using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Users
 {
@@ -46,11 +47,12 @@ namespace Spotacard.Features.Users
         public class Handler : IRequestHandler<Command, UserEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly IPasswordHasher _passwordHasher;
             private readonly IJwtTokenGenerator _jwtTokenGenerator;
             private readonly IMapper _mapper;
+            private readonly IPasswordHasher _passwordHasher;
 
-            public Handler(GraphContext context, IPasswordHasher passwordHasher, IJwtTokenGenerator jwtTokenGenerator, IMapper mapper)
+            public Handler(GraphContext context, IPasswordHasher passwordHasher, IJwtTokenGenerator jwtTokenGenerator,
+                IMapper mapper)
             {
                 _context = context;
                 _passwordHasher = passwordHasher;
@@ -60,18 +62,15 @@ namespace Spotacard.Features.Users
 
             public async Task<UserEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var person = await _context.Persons.Where(x => x.Email == message.User.Email).SingleOrDefaultAsync(cancellationToken);
+                var person = await _context.Persons.Where(x => x.Email == message.User.Email)
+                    .SingleOrDefaultAsync(cancellationToken);
                 if (person == null)
-                {
-                    throw new RestException(HttpStatusCode.Unauthorized, new { Error = "Invalid email / password." });
-                }
+                    throw new RestException(HttpStatusCode.Unauthorized, new {Error = "Invalid email / password."});
 
                 if (!person.Hash.SequenceEqual(_passwordHasher.Hash(message.User.Password, person.Salt)))
-                {
-                    throw new RestException(HttpStatusCode.Unauthorized, new { Error = "Invalid email / password." });
-                }
+                    throw new RestException(HttpStatusCode.Unauthorized, new {Error = "Invalid email / password."});
 
-                var user = _mapper.Map<Domain.Person, User>(person);
+                var user = _mapper.Map<Person, User>(person);
                 user.Token = await _jwtTokenGenerator.CreateToken(person.Username);
                 return new UserEnvelope(user);
             }

@@ -57,9 +57,10 @@ namespace Spotacard.Features.Attributes
 
             public async Task<AttributeEnvelope> Handle(Command request, CancellationToken cancellationToken)
             {
-                var card = await _graph.Cards.SingleOrDefaultAsync(_card => _card.Id == request.CardId, cancellationToken);
+                var card = await _graph.Cards.SingleOrDefaultAsync(_card => _card.Id == request.CardId,
+                    cancellationToken);
                 if (card == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
                 var attribute = new CardAttribute
                 {

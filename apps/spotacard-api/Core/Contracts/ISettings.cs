@@ -5,15 +5,15 @@ using Spotacard.Core.Enums;
 
 namespace Spotacard.Core.Contracts
 {
-  public interface ISettings
-  {
-    bool IsDevelopment();
-    string[] GetTranslationFile(string path);
-    DirectoryInfo Repositories { get; }
-    Providers Provider { get; set; }
-    List<string> Plugins { get; set; }
-    string PluginPath { get; set; }
+    public interface ISettings
+    {
+        DirectoryInfo Repositories { get; }
+        Providers Provider { get; set; }
+        List<string> Plugins { get; set; }
+        string PluginPath { get; set; }
 
-    IConfiguration Configuration { get; }
+        IConfiguration Configuration { get; }
+        bool IsDevelopment();
+        string[] GetTranslationFile(string path);
     }
 }

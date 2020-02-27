@@ -1,13 +1,13 @@
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Features.Profiles;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
-using FluentValidation;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Spotacard.Features.Followers
 {
@@ -27,7 +27,7 @@ namespace Spotacard.Features.Followers
         {
             public CommandValidator()
             {
-                DefaultValidatorExtensions.NotNull(RuleFor(x => x.Username)).NotEmpty();
+                RuleFor(x => x.Username).NotNull().NotEmpty();
             }
         }
 
@@ -37,7 +37,8 @@ namespace Spotacard.Features.Followers
             private readonly ICurrentUserAccessor _currentUserAccessor;
             private readonly IProfileReader _profileReader;
 
-            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor, IProfileReader profileReader)
+            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor,
+                IProfileReader profileReader)
             {
                 _context = context;
                 _currentUserAccessor = currentUserAccessor;
@@ -46,20 +47,22 @@ namespace Spotacard.Features.Followers
 
             public async Task<ProfileEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var target = await _context.Persons.FirstOrDefaultAsync(x => x.Username == message.Username, cancellationToken);
+                var target =
+                    await _context.Persons.FirstOrDefaultAsync(x => x.Username == message.Username, cancellationToken);
 
-                if (target == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { User = Constants.NOT_FOUND });
-                }
+                if (target == null) throw new RestException(HttpStatusCode.NotFound, new {User = Constants.NOT_FOUND});
 
-                var observer = await _context.Persons.FirstOrDefaultAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
+                var observer =
+                    await _context.Persons.FirstOrDefaultAsync(
+                        x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
 
-                var followedPeople = await _context.FollowedPeople.FirstOrDefaultAsync(x => x.ObserverId == observer.Id && x.TargetId == target.Id, cancellationToken);
+                var followedPeople =
+                    await _context.FollowedPeople.FirstOrDefaultAsync(
+                        x => x.ObserverId == observer.Id && x.TargetId == target.Id, cancellationToken);
 
                 if (followedPeople == null)
                 {
-                    followedPeople = new FollowedPeople()
+                    followedPeople = new FollowedPeople
                     {
                         Observer = observer,
                         ObserverId = observer.Id,

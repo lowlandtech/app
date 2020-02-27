@@ -1,6 +1,6 @@
 using System.Linq;
-using Spotacard.Domain;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
 
 namespace Spotacard.Features.Cards
 {

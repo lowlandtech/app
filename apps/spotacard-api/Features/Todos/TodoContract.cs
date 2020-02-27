@@ -3,12 +3,13 @@ using Spotacard.Domain;
 
 namespace Spotacard.Features.Todos
 {
-  public class TodoContract : IContract
-  {
-    public TodoContract(Card card)
+    public class TodoContract : IContract
     {
-      Card = card;
+        public TodoContract(Card card)
+        {
+            Card = card;
+        }
+
+        public Card Card { get; }
     }
-    public Card Card { get; }
-  }
 }

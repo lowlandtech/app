@@ -3,12 +3,13 @@ using Spotacard.Domain;
 
 namespace Spotacard.Features.TaskLists
 {
-  public class TaskListContract : IContract
-  {
-    public TaskListContract(Card card)
+    public class TaskListContract : IContract
     {
-      Card = card;
+        public TaskListContract(Card card)
+        {
+            Card = card;
+        }
+
+        public Card Card { get; }
     }
-    public Card Card { get; }
-  }
 }

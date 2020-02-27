@@ -50,11 +50,12 @@ namespace Spotacard.Features.Attributes
                 var attribute = await _graph.Attributes
                     .FirstOrDefaultAsync(_attribute => _attribute.Id == request.Id, cancellationToken);
                 if (attribute == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { Attribute = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new {Attribute = Constants.NOT_FOUND});
 
-                var card = await _graph.Cards.SingleOrDefaultAsync(_card => _card.Id == request.Attribute.CardId, cancellationToken);
+                var card = await _graph.Cards.SingleOrDefaultAsync(_card => _card.Id == request.Attribute.CardId,
+                    cancellationToken);
                 if (card == null)
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
+                    throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
                 attribute.Index = request.Attribute.Index;
                 attribute.Name = request.Attribute.Name;

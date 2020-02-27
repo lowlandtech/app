@@ -1,17 +1,19 @@
+using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Spotacard.Domain;
-using System.Data;
 
 namespace Spotacard.Infrastructure
 {
-  public class GraphContext : DbContext
+    public class GraphContext : DbContext
     {
         private IDbContextTransaction _currentTransaction;
 
-        public GraphContext(DbContextOptions options) : base(options) { }
+        public GraphContext(DbContextOptions options) : base(options)
+        {
+        }
 
-        
+
         public DbSet<Card> Cards { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Person> Persons { get; set; }
@@ -25,20 +27,20 @@ namespace Spotacard.Infrastructure
         {
             modelBuilder.Entity<CardTag>(b =>
             {
-                b.HasKey(t => new { t.CardId, t.TagId });
+                b.HasKey(t => new {t.CardId, t.TagId});
 
                 b.HasOne(pt => pt.Card)
-                .WithMany(p => p.CardTags)
-                .HasForeignKey(pt => pt.CardId);
+                    .WithMany(p => p.CardTags)
+                    .HasForeignKey(pt => pt.CardId);
 
                 b.HasOne(pt => pt.Tag)
-                .WithMany(t => t.CardTags)
-                .HasForeignKey(pt => pt.TagId);
+                    .WithMany(t => t.CardTags)
+                    .HasForeignKey(pt => pt.TagId);
             });
 
             modelBuilder.Entity<CardFavorite>(b =>
             {
-                b.HasKey(t => new { t.CardId, t.PersonId });
+                b.HasKey(t => new {t.CardId, t.PersonId});
 
                 b.HasOne(pt => pt.Card)
                     .WithMany(p => p.CardFavorites)
@@ -51,7 +53,7 @@ namespace Spotacard.Infrastructure
 
             modelBuilder.Entity<FollowedPeople>(b =>
             {
-                b.HasKey(t => new { t.ObserverId, t.TargetId });
+                b.HasKey(t => new {t.ObserverId, t.TargetId});
 
                 // we need to add OnDelete RESTRICT otherwise for the SqlServer database provider, 
                 // app.ApplicationServices.GetRequiredService<GraphContext>().Database.EnsureCreated(); throws the following error:
@@ -78,26 +80,21 @@ namespace Spotacard.Infrastructure
 
             modelBuilder.Entity<CardAttribute>(b =>
             {
-              b.HasKey(t => t.Id);
+                b.HasKey(t => t.Id);
 
-              b.HasOne(pt => pt.Card)
-                .WithMany(p => p.CardAttributes)
-                .HasForeignKey(pt => pt.CardId);
+                b.HasOne(pt => pt.Card)
+                    .WithMany(p => p.CardAttributes)
+                    .HasForeignKey(pt => pt.CardId);
             });
-    }
+        }
 
         #region Transaction Handling
+
         public void BeginTransaction()
         {
-            if (_currentTransaction != null)
-            {
-                return;
-            }
+            if (_currentTransaction != null) return;
 
-            if (!Database.IsInMemory())
-            {
-                _currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
-            }
+            if (!Database.IsInMemory()) _currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
         }
 
         public void CommitTransaction()
@@ -136,6 +133,7 @@ namespace Spotacard.Infrastructure
                 }
             }
         }
+
         #endregion
     }
 }

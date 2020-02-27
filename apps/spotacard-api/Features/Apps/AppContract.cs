@@ -3,12 +3,13 @@ using Spotacard.Domain;
 
 namespace Spotacard.Features.Apps
 {
-  public class AppContract : IContract
-  {
-    public AppContract(Card card)
+    public class AppContract : IContract
     {
-      Card = card;
+        public AppContract(Card card)
+        {
+            Card = card;
+        }
+
+        public Card Card { get; }
     }
-    public Card Card { get; }
-  }
 }

@@ -1,10 +1,10 @@
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Comments
 {
@@ -33,13 +33,10 @@ namespace Spotacard.Features.Comments
             {
                 var card = await _context.Cards
                     .Include(x => x.Comments)
-                        .ThenInclude(x => x.Author)
+                    .ThenInclude(x => x.Author)
                     .FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (card == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
-                }
+                if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
                 return new CommentsEnvelope(card.Comments);
             }

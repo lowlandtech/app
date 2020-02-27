@@ -2,12 +2,13 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
-using Spotacard.Infrastructure.Security;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
+using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Users
 {
@@ -44,11 +45,8 @@ namespace Spotacard.Features.Users
                 var person = await _context.Persons
                     .AsNoTracking()
                     .FirstOrDefaultAsync(x => x.Username == message.Username, cancellationToken);
-                if (person == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { User = Constants.NOT_FOUND });
-                }
-                var user = _mapper.Map<Domain.Person, User>(person);
+                if (person == null) throw new RestException(HttpStatusCode.NotFound, new {User = Constants.NOT_FOUND});
+                var user = _mapper.Map<Person, User>(person);
                 user.Token = await _jwtTokenGenerator.CreateToken(person.Username);
                 return new UserEnvelope(user);
             }

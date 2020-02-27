@@ -3,12 +3,13 @@ using Spotacard.Domain;
 
 namespace Spotacard.Features.Steps
 {
-  public class StepContract : IContract
-  {
-    public StepContract(Card card)
+    public class StepContract : IContract
     {
-      Card = card;
+        public StepContract(Card card)
+        {
+            Card = card;
+        }
+
+        public Card Card { get; }
     }
-    public Card Card { get; }
-  }
 }

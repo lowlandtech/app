@@ -2,11 +2,11 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Cards
 {
@@ -44,10 +44,7 @@ namespace Spotacard.Features.Cards
                 var card = await _context.Cards.GetAllData()
                     .FirstOrDefaultAsync(x => x.Id == message.Id, cancellationToken);
 
-                if (card == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
-                }
+                if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
                 return new CardEnvelope(card);
             }
         }

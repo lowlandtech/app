@@ -4,12 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Domain;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Cards
 {
@@ -52,14 +52,11 @@ namespace Spotacard.Features.Cards
             public async Task<CardEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
                 var card = await _context.Cards
-                    .Include(x => x.CardTags)    // include also the card tags since they also need to be updated
+                    .Include(x => x.CardTags) // include also the card tags since they also need to be updated
                     .Where(x => x.Slug == message.Slug)
                     .FirstOrDefaultAsync(cancellationToken);
 
-                if (card == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
-                }
+                if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
                 card.Description = message.Card.Description ?? card.Description;
                 card.Body = message.Card.Body ?? card.Body;
@@ -67,16 +64,14 @@ namespace Spotacard.Features.Cards
                 card.Slug = card.Title.GenerateSlug();
 
                 // list of currently saved card tags for the given card
-                var cardTagList = (message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>());
-                
+                var cardTagList = message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>();
+
                 var cardTagsToCreate = GetCardTagsToCreate(card, cardTagList, _context);
                 var cardTagsToDelete = GetCardTagsToDelete(card, cardTagList);
 
                 if (_context.ChangeTracker.Entries().First(x => x.Entity == card).State == EntityState.Modified
                     || cardTagsToCreate.Any() || cardTagsToDelete.Any())
-                {
                     card.UpdatedAt = DateTime.UtcNow;
-                }
 
                 // add the new card tags
                 await _context.CardTags.AddRangeAsync(cardTagsToCreate, cancellationToken);
@@ -91,7 +86,7 @@ namespace Spotacard.Features.Cards
             }
 
             /// <summary>
-            /// get the list of Tags to be added
+            ///     get the list of Tags to be added
             /// </summary>
             /// <param name="cardTagList"></param>
             /// <returns></returns>
@@ -103,7 +98,7 @@ namespace Spotacard.Features.Cards
                     var t = await _context.Tags.FindAsync(tag);
                     if (t == null)
                     {
-                        t = new Tag()
+                        t = new Tag
                         {
                             TagId = tag
                         };
@@ -115,20 +110,21 @@ namespace Spotacard.Features.Cards
             }
 
             /// <summary>
-            /// check which card tags need to be added
+            ///     check which card tags need to be added
             /// </summary>
-            static List<CardTag> GetCardTagsToCreate(Card card, IEnumerable<string> cardTagList, GraphContext graph)
+            private static List<CardTag> GetCardTagsToCreate(Card card, IEnumerable<string> cardTagList,
+                GraphContext graph)
             {
                 var cardTagsToCreate = new List<CardTag>();
                 foreach (var tag in cardTagList)
                 {
-                  var tagData = graph.Tags.Find(tag) ?? new Tag() {TagId = tag};
+                    var tagData = graph.Tags.Find(tag) ?? new Tag {TagId = tag};
 
-                  var at = card.CardTags.FirstOrDefault(t => t.TagId == tag);
-                  
+                    var at = card.CardTags.FirstOrDefault(t => t.TagId == tag);
+
                     if (at == null)
                     {
-                        at = new CardTag()
+                        at = new CardTag
                         {
                             Card = card,
                             CardId = card.Id,
@@ -143,18 +139,15 @@ namespace Spotacard.Features.Cards
             }
 
             /// <summary>
-            /// check which card tags need to be deleted
+            ///     check which card tags need to be deleted
             /// </summary>
-            static List<CardTag> GetCardTagsToDelete(Card card, IEnumerable<string> cardTagList)
+            private static List<CardTag> GetCardTagsToDelete(Card card, IEnumerable<string> cardTagList)
             {
                 var cardTagsToDelete = new List<CardTag>();
                 foreach (var tag in card.CardTags)
                 {
                     var at = cardTagList.FirstOrDefault(t => t == tag.TagId);
-                    if (at == null)
-                    {
-                        cardTagsToDelete.Add(tag);
-                    }
+                    if (at == null) cardTagsToDelete.Add(tag);
                 }
 
                 return cardTagsToDelete;

@@ -8,59 +8,59 @@ namespace Spotacard.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Title",
-                table: "Cards",
+                "Title",
+                "Cards",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)",
                 oldNullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "Type",
-                table: "Cards",
+                "Type",
+                "Cards",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateTable(
-                name: "CardAttributes",
-                columns: table => new
+                "CardAttributes",
+                table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(),
                     Name = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true),
                     Value = table.Column<string>(nullable: true),
-                    CardId = table.Column<Guid>(nullable: false)
+                    CardId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CardAttributes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CardAttributes_Cards_CardId",
-                        column: x => x.CardId,
-                        principalTable: "Cards",
-                        principalColumn: "Id",
+                        "FK_CardAttributes_Cards_CardId",
+                        x => x.CardId,
+                        "Cards",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardAttributes_CardId",
-                table: "CardAttributes",
-                column: "CardId");
+                "IX_CardAttributes_CardId",
+                "CardAttributes",
+                "CardId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CardAttributes");
+                "CardAttributes");
 
             migrationBuilder.DropColumn(
-                name: "Type",
-                table: "Cards");
+                "Type",
+                "Cards");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Title",
-                table: "Cards",
-                type: "nvarchar(max)",
+                "Title",
+                "Cards",
+                "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string));
         }

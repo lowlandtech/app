@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
-using Spotacard.Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Comments
 {
@@ -19,7 +19,7 @@ namespace Spotacard.Features.Comments
 
         [HttpPost("{slug}/comments")]
         [Authorize(AuthenticationSchemes = JwtIssuerOptions.Schemes)]
-        public async Task<CommentEnvelope> Create(string slug, [FromBody]Create.Command command)
+        public async Task<CommentEnvelope> Create(string slug, [FromBody] Create.Command command)
         {
             command.Slug = slug;
             return await _mediator.Send(command);

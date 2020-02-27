@@ -14,8 +14,7 @@ namespace Spotacard.Domain
 
         public string Slug { get; set; }
 
-        [Required]
-        public string Title { get; set; }
+        [Required] public string Title { get; set; }
 
         public ContractTypes Type { get; set; }
 
@@ -27,27 +26,21 @@ namespace Spotacard.Domain
 
         public List<Comment> Comments { get; set; }
 
-        [NotMapped]
-        public bool Favorited => CardFavorites?.Any() ?? false;
+        [NotMapped] public bool Favorited => CardFavorites?.Any() ?? false;
 
-        [NotMapped]
-        public int FavoritesCount => CardFavorites?.Count ?? 0;
+        [NotMapped] public int FavoritesCount => CardFavorites?.Count ?? 0;
 
         [NotMapped]
         public List<string> TagList => (CardTags?.Select(x => x.TagId) ?? Enumerable.Empty<string>()).ToList();
 
-        [JsonIgnore]
-        public List<CardTag> CardTags { get; set; }
+        [JsonIgnore] public List<CardTag> CardTags { get; set; }
 
-        [JsonIgnore]
-        public List<CardFavorite> CardFavorites { get; set; }
+        [JsonIgnore] public List<CardFavorite> CardFavorites { get; set; }
 
-        [JsonIgnore]
-        public List<CardAttribute> CardAttributes { get; set; }
+        [JsonIgnore] public List<CardAttribute> CardAttributes { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
     }
 }

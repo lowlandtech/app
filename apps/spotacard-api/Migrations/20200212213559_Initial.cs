@@ -8,10 +8,10 @@ namespace Spotacard.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Persons",
-                columns: table => new
+                "Persons",
+                table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(),
                     Username = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Bio = table.Column<string>(nullable: true),
@@ -19,199 +19,193 @@ namespace Spotacard.Migrations
                     Hash = table.Column<byte[]>(nullable: true),
                     Salt = table.Column<byte[]>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Persons", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
+                "Tags",
+                table => new
                 {
-                    TagId = table.Column<string>(nullable: false)
+                    TagId = table.Column<string>()
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.TagId);
-                });
+                constraints: table => { table.PrimaryKey("PK_Tags", x => x.TagId); });
 
             migrationBuilder.CreateTable(
-                name: "Cards",
-                columns: table => new
+                "Cards",
+                table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(),
                     Slug = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Body = table.Column<string>(nullable: true),
                     AuthorId = table.Column<Guid>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    CreatedAt = table.Column<DateTime>(),
+                    UpdatedAt = table.Column<DateTime>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cards_Persons_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
+                        "FK_Cards_Persons_AuthorId",
+                        x => x.AuthorId,
+                        "Persons",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "FollowedPeople",
-                columns: table => new
+                "FollowedPeople",
+                table => new
                 {
-                    ObserverId = table.Column<Guid>(nullable: false),
-                    TargetId = table.Column<Guid>(nullable: false)
+                    ObserverId = table.Column<Guid>(),
+                    TargetId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FollowedPeople", x => new { x.ObserverId, x.TargetId });
+                    table.PrimaryKey("PK_FollowedPeople", x => new {x.ObserverId, x.TargetId});
                     table.ForeignKey(
-                        name: "FK_FollowedPeople_Persons_ObserverId",
-                        column: x => x.ObserverId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
+                        "FK_FollowedPeople_Persons_ObserverId",
+                        x => x.ObserverId,
+                        "Persons",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FollowedPeople_Persons_TargetId",
-                        column: x => x.TargetId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
+                        "FK_FollowedPeople_Persons_TargetId",
+                        x => x.TargetId,
+                        "Persons",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CardFavorites",
-                columns: table => new
+                "CardFavorites",
+                table => new
                 {
-                    CardId = table.Column<Guid>(nullable: false),
-                    PersonId = table.Column<Guid>(nullable: false)
+                    CardId = table.Column<Guid>(),
+                    PersonId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CardFavorites", x => new { x.CardId, x.PersonId });
+                    table.PrimaryKey("PK_CardFavorites", x => new {x.CardId, x.PersonId});
                     table.ForeignKey(
-                        name: "FK_CardFavorites_Cards_CardId",
-                        column: x => x.CardId,
-                        principalTable: "Cards",
-                        principalColumn: "Id",
+                        "FK_CardFavorites_Cards_CardId",
+                        x => x.CardId,
+                        "Cards",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CardFavorites_Persons_PersonId",
-                        column: x => x.PersonId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
+                        "FK_CardFavorites_Persons_PersonId",
+                        x => x.PersonId,
+                        "Persons",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "CardTags",
-                columns: table => new
+                "CardTags",
+                table => new
                 {
-                    CardId = table.Column<Guid>(nullable: false),
-                    TagId = table.Column<string>(nullable: false)
+                    CardId = table.Column<Guid>(),
+                    TagId = table.Column<string>()
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CardTags", x => new { x.CardId, x.TagId });
+                    table.PrimaryKey("PK_CardTags", x => new {x.CardId, x.TagId});
                     table.ForeignKey(
-                        name: "FK_CardTags_Cards_CardId",
-                        column: x => x.CardId,
-                        principalTable: "Cards",
-                        principalColumn: "Id",
+                        "FK_CardTags_Cards_CardId",
+                        x => x.CardId,
+                        "Cards",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CardTags_Tags_TagId",
-                        column: x => x.TagId,
-                        principalTable: "Tags",
-                        principalColumn: "TagId",
+                        "FK_CardTags_Tags_TagId",
+                        x => x.TagId,
+                        "Tags",
+                        "TagId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
+                "Comments",
+                table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(),
                     Body = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<Guid>(nullable: false),
-                    CardId = table.Column<Guid>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: false)
+                    AuthorId = table.Column<Guid>(),
+                    CardId = table.Column<Guid>(),
+                    CreatedAt = table.Column<DateTime>(),
+                    UpdatedAt = table.Column<DateTime>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Persons_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "Persons",
-                        principalColumn: "Id",
+                        "FK_Comments_Persons_AuthorId",
+                        x => x.AuthorId,
+                        "Persons",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Comments_Cards_CardId",
-                        column: x => x.CardId,
-                        principalTable: "Cards",
-                        principalColumn: "Id",
+                        "FK_Comments_Cards_CardId",
+                        x => x.CardId,
+                        "Cards",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardFavorites_PersonId",
-                table: "CardFavorites",
-                column: "PersonId");
+                "IX_CardFavorites_PersonId",
+                "CardFavorites",
+                "PersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cards_AuthorId",
-                table: "Cards",
-                column: "AuthorId");
+                "IX_Cards_AuthorId",
+                "Cards",
+                "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CardTags_TagId",
-                table: "CardTags",
-                column: "TagId");
+                "IX_CardTags_TagId",
+                "CardTags",
+                "TagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_AuthorId",
-                table: "Comments",
-                column: "AuthorId");
+                "IX_Comments_AuthorId",
+                "Comments",
+                "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_CardId",
-                table: "Comments",
-                column: "CardId");
+                "IX_Comments_CardId",
+                "Comments",
+                "CardId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FollowedPeople_TargetId",
-                table: "FollowedPeople",
-                column: "TargetId");
+                "IX_FollowedPeople_TargetId",
+                "FollowedPeople",
+                "TargetId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CardFavorites");
+                "CardFavorites");
 
             migrationBuilder.DropTable(
-                name: "CardTags");
+                "CardTags");
 
             migrationBuilder.DropTable(
-                name: "Comments");
+                "Comments");
 
             migrationBuilder.DropTable(
-                name: "FollowedPeople");
+                "FollowedPeople");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                "Tags");
 
             migrationBuilder.DropTable(
-                name: "Cards");
+                "Cards");
 
             migrationBuilder.DropTable(
-                name: "Persons");
+                "Persons");
         }
     }
 }

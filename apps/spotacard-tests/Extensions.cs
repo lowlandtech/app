@@ -2,7 +2,6 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Spotacard.Core.Enums;
 using Spotacard.Infrastructure;
 
 namespace Spotacard
@@ -10,6 +9,7 @@ namespace Spotacard
     public static class Extensions
     {
         private const string InMemoryConnectionString = "DataSource=:memory:";
+
         public static void ReplaceGraphContext(this IServiceCollection services)
         {
             services.RemoveAll<GraphContext>();

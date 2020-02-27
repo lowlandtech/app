@@ -1,9 +1,9 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Infrastructure;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Infrastructure;
 
 namespace Spotacard.Features.Tags
 {
@@ -25,7 +25,7 @@ namespace Spotacard.Features.Tags
             public async Task<TagsEnvelope> Handle(Query message, CancellationToken cancellationToken)
             {
                 var tags = await _context.Tags.OrderBy(x => x.TagId).AsNoTracking().ToListAsync(cancellationToken);
-                return new TagsEnvelope()
+                return new TagsEnvelope
                 {
                     Tags = tags.Select(x => x.TagId).ToList()
                 };

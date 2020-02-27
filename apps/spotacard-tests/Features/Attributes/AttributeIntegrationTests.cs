@@ -1,11 +1,11 @@
-using Newtonsoft.Json;
-using NUnit.Framework;
-using Spotacard.Domain;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using NUnit.Framework;
+using Spotacard.Domain;
 
 namespace Spotacard.Features.Attributes
 {
@@ -29,8 +29,10 @@ namespace Spotacard.Features.Attributes
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Attributes, Is.Not.Null);
             Assert.That(result.Attributes.Count, Is.EqualTo(2));
-            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute1.Id), Is.Not.Null);
-            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute2.Id), Is.Not.Null);
+            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute1.Id),
+                Is.Not.Null);
+            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute2.Id),
+                Is.Not.Null);
         }
 
         [Test]

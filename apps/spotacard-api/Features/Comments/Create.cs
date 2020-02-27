@@ -2,12 +2,12 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Spotacard.Domain;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Comments
 {
@@ -58,14 +58,13 @@ namespace Spotacard.Features.Comments
                     .Include(x => x.Comments)
                     .FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (card == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
-                }
+                if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
-                var author = await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
+                var author =
+                    await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(),
+                        cancellationToken);
 
-                var comment = new Comment()
+                var comment = new Comment
                 {
                     Author = author,
                     Body = message.Comment.Body,

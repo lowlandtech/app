@@ -1,13 +1,13 @@
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Features.Cards;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
-using FluentValidation;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Spotacard.Features.Favorites
 {
@@ -27,7 +27,7 @@ namespace Spotacard.Features.Favorites
         {
             public CommandValidator()
             {
-                DefaultValidatorExtensions.NotNull(RuleFor(x => x.Slug)).NotEmpty();
+                RuleFor(x => x.Slug).NotNull().NotEmpty();
             }
         }
 
@@ -46,18 +46,19 @@ namespace Spotacard.Features.Favorites
             {
                 var card = await _context.Cards.FirstOrDefaultAsync(x => x.Slug == message.Slug, cancellationToken);
 
-                if (card == null)
-                {
-                    throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
-                }
+                if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
-                var person = await _context.Persons.FirstOrDefaultAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
+                var person =
+                    await _context.Persons.FirstOrDefaultAsync(
+                        x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
 
-                var favorite = await _context.CardFavorites.FirstOrDefaultAsync(x => x.CardId == card.Id && x.PersonId == person.Id, cancellationToken);
+                var favorite =
+                    await _context.CardFavorites.FirstOrDefaultAsync(
+                        x => x.CardId == card.Id && x.PersonId == person.Id, cancellationToken);
 
                 if (favorite == null)
                 {
-                    favorite = new CardFavorite()
+                    favorite = new CardFavorite
                     {
                         Card = card,
                         CardId = card.Id,

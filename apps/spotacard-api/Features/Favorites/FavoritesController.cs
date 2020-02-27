@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Spotacard.Features.Cards;
-using Spotacard.Infrastructure.Security;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Spotacard.Features.Cards;
+using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Favorites
 {

@@ -10,7 +10,6 @@ namespace Spotacard.Features.Profiles
 
         public string Image { get; set; }
 
-        [JsonProperty("following")]
-        public bool IsFollowed { get; set; }
+        [JsonProperty("following")] public bool IsFollowed { get; set; }
     }
 }

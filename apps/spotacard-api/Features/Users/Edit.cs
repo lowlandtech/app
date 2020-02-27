@@ -3,11 +3,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Security;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Users
 {
@@ -42,9 +43,9 @@ namespace Spotacard.Features.Users
         public class Handler : IRequestHandler<Command, UserEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly IPasswordHasher _passwordHasher;
             private readonly ICurrentUserAccessor _currentUserAccessor;
             private readonly IMapper _mapper;
+            private readonly IPasswordHasher _passwordHasher;
 
             public Handler(GraphContext context, IPasswordHasher passwordHasher,
                 ICurrentUserAccessor currentUserAccessor, IMapper mapper)
@@ -58,7 +59,8 @@ namespace Spotacard.Features.Users
             public async Task<UserEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
                 var currentUsername = _currentUserAccessor.GetCurrentUsername();
-                var person = await _context.Persons.Where(x => x.Username == currentUsername).FirstOrDefaultAsync(cancellationToken);
+                var person = await _context.Persons.Where(x => x.Username == currentUsername)
+                    .FirstOrDefaultAsync(cancellationToken);
 
                 person.Username = message.User.Username ?? person.Username;
                 person.Email = message.User.Email ?? person.Email;
@@ -74,7 +76,7 @@ namespace Spotacard.Features.Users
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new UserEnvelope(_mapper.Map<Domain.Person, User>(person));
+                return new UserEnvelope(_mapper.Map<Person, User>(person));
             }
         }
     }
