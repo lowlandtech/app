@@ -31,8 +31,6 @@ namespace Spotacard.Features.Cards
     public CardData(GraphContext graph)
     {
       _graph = graph;
-      _graph.Database.EnsureDeleted();
-      _graph.Database.EnsureCreated();
     }
 
     public void Execute()

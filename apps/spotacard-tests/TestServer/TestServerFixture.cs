@@ -8,6 +8,7 @@ using Spotacard.Infrastructure;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Spotacard.Core.Contracts;
 
 namespace Spotacard.TestServer
 {

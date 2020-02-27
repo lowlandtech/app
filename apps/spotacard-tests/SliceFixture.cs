@@ -1,60 +1,73 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using MediatR;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
-using Spotacard.Features.Favorites;
 using Spotacard.Infrastructure;
+using System;
+using System.Threading.Tasks;
 
 namespace Spotacard
 {
     public class SliceFixture : IDisposable
     {
-        private const string InMemoryConnectionString = "DataSource=:memory:";
         private static readonly IConfiguration Config;
-        private readonly string _dbName = Guid.NewGuid() + ".db";
-        private readonly ServiceProvider _provider;
 
-        private readonly IServiceScopeFactory _scopeFactory;
+        public WebApplicationFactory<Startup> Application { get; }
+        public IServiceScopeFactory Factory { get; set; }
+        public IServiceProvider Provider { get; set; }
 
         static SliceFixture()
         {
             Config = new ConfigurationBuilder()
                 .AddEnvironmentVariables()
                 .Build();
+
+            // use sqlite;
+            Config["Provider"] = "1";
+        }
+
+        public SliceFixture(Func<GraphContext, IActivity> seed = null)
+        {
+            Application = new WebApplicationFactory<Startup>()
+                .WithWebHostBuilder(builder =>
+                {
+                    builder.ConfigureServices(services =>
+                    {
+                        services.ReplaceGraphContext();
+                    });
+                });
+
+            Step(Application.Services);
+
+            if (seed == null) return;
+            var activity = seed(GetGraph());
+            activity.Execute();
+        }
+
+        public void Step(IServiceProvider provider)
+        {
+            Provider = provider;
+            Factory = Provider.GetService<IServiceScopeFactory>();
+            GetGraph().Database.EnsureCreated();
         }
 
         public SliceFixture()
         {
             var startup = new Startup(Config, null);
             var services = new ServiceCollection();
-            Startup.Settings.Provider = Providers.SqlLite;
-            var connection = new SqliteConnection(InMemoryConnectionString);
-            connection.Open();
-
-            var builder = new DbContextOptionsBuilder<GraphContext>()
-                .UseSqlite(connection);
-
-            // builder.UseInMemoryDatabase(_dbName);
-
-            services.AddSingleton(new GraphContext(builder.Options));
-
+            startup.Settings.Provider = Providers.SqlLite;
             startup.ConfigureServices(services);
+            services.ReplaceGraphContext();
 
-            _provider = services.BuildServiceProvider();
-
-            GetGraph().Database.EnsureCreated();
-            _scopeFactory = _provider.GetService<IServiceScopeFactory>();
+            Step(services.BuildServiceProvider());
         }
-
+        
         public void Dispose()
         {
-            File.Delete(_dbName);
+
         }
 
         public Card CreateCard(Card card)
@@ -75,18 +88,18 @@ namespace Spotacard
 
         public GraphContext GetGraph()
         {
-            return _provider.GetRequiredService<GraphContext>();
+            return Provider.GetRequiredService<GraphContext>();
         }
 
         public async Task ExecuteScopeAsync(Func<IServiceProvider, Task> action)
         {
-            using var scope = _scopeFactory.CreateScope();
+            using var scope = Factory.CreateScope();
             await action(scope.ServiceProvider);
         }
 
         public async Task<T> ExecuteScopeAsync<T>(Func<IServiceProvider, Task<T>> action)
         {
-            using var scope = _scopeFactory.CreateScope();
+            using var scope = Factory.CreateScope();
             return await action(scope.ServiceProvider);
         }
 

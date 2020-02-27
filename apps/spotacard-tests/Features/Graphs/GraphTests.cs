@@ -1,22 +1,23 @@
-using NUnit.Framework;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace Spotacard.Features.Graphs
 {
-  public class GraphTests
-  {
-    [Test]
-    public async Task DatabaseIsAvailableAndCanBeConnectedTo()
+    public class GraphTests
     {
-      var response = GraphFixtures.Get();
-      try
-      {
-        Assert.True(await response.Graph.Database.CanConnectAsync());
-      }
-      finally
-      {
-        response.Connection.Close();
-      }
+        [Test]
+        public async Task DatabaseIsAvailableAndCanBeConnectedTo()
+        {
+            var fixture = new SliceFixture();
+            try
+            {
+                var graph = fixture.GetGraph();
+                Assert.True(await graph.Database.CanConnectAsync());
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
+        }
     }
-  }
 }
