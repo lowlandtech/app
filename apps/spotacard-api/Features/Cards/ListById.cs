@@ -10,7 +10,7 @@ using Spotacard.Infrastructure.Errors;
 
 namespace Spotacard.Features.Cards
 {
-    public class GetById
+    public class ListById
     {
         public class Query : IRequest<CardEnvelope>
         {
