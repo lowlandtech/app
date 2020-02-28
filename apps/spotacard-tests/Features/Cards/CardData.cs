@@ -36,8 +36,8 @@ namespace Spotacard.Features.Cards
 
         public void Execute()
         {
-            _graph.Cards.Add(FirstItem);
-            _graph.Cards.Add(SecondItem);
+            _graph.Cards.Add(FirstItem.Copy());
+            _graph.Cards.Add(SecondItem.Copy());
             _graph.SaveChanges();
         }
     }
