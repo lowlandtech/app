@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using Spotacard.Domain;
-using Spotacard.TestServer;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Cards
 {
@@ -17,124 +10,165 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task ShouldGetCardList()
         {
-            // Arrange
-            var factory = TestServerFixture.Get<Startup>(graph => new CardData(graph));
+            var fixture = new TestFixture(graph => new CardData(graph));
+            try
+            {
+                // Arrange
+                var uri = new Uri("cards", UriKind.Relative);
+                // Act
+                var client = fixture.CreateClient();
+                var response = await client.GetAsync(uri);
+                var result = await fixture.Get<CardsEnvelope>(response);
 
-            // Act
-            var client = factory.CreateClient();
-            var response = await client.GetAsync("cards");
-            var json = await response.Content.ReadAsStringAsync();
-            var cards = JsonConvert.DeserializeObject<List<Card>>(json);
-
-            // Assert
-            Assert.That(cards.Count, Is.EqualTo(2));
-            Assert.That(cards.Find(card => card.Id == CardData.FirstItem.Id), Is.Not.Null);
-            Assert.That(cards.Find(card => card.Id == CardData.SecondItem.Id), Is.Not.Null);
+                // Assert
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result.Cards.Count, Is.EqualTo(2));
+                Assert.That(result.Cards.Find(card => card.Id == CardData.FirstItem.Id), Is.Not.Null);
+                Assert.That(result.Cards.Find(card => card.Id == CardData.SecondItem.Id), Is.Not.Null);
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
         }
 
         [Test]
         public async Task ShouldGetCardById()
         {
-            // Arrange
-            var factory = TestServerFixture.Get<Startup>(graph => new CardData(graph));
-
-            // Act
-            var client = factory.CreateClient();
-            var response = await client.GetAsync($"cards/id/{CardData.FirstItemId}");
-            var json = await response.Content.ReadAsStringAsync();
-            var card = JsonConvert.DeserializeObject<Card>(json);
-
-            // Assert
-            Assert.That(card.Id, Is.EqualTo(CardData.FirstItem.Id));
+            var fixture = new TestFixture(graph => new CardData(graph));
+            try
+            {
+                // Arrange
+                var uri = new Uri($"cards/id/{CardData.FirstItemId}", UriKind.Relative);
+                // Act
+                var client = fixture.CreateClient();
+                var response = await client.GetAsync(uri);
+                var result = await fixture.Get<CardEnvelope>(response);
+                // Assert
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result.Card.Id, Is.EqualTo(CardData.FirstItem.Id));
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
         }
 
         [Test]
         public async Task ShouldPostNewCard()
         {
-            // Arrange
-            var factory = TestServerFixture.Get<Startup>(graph => new CardData(graph));
-            var card = new Card
+            var fixture = new TestFixture(graph => new CardData(graph));
+            try
             {
-                Title = "Test3"
-            };
-            var content = JsonConvert.SerializeObject(card);
-            var buffer = Encoding.UTF8.GetBytes(content);
-            var bytes = new ByteArrayContent(buffer);
-            bytes.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                // Arrange
+                var uri = new Uri($"cards", UriKind.Relative);
+                var command = new Create.Command
+                {
+                    Card = new Create.CardData
+                    {
+                        Title = "Test card",
+                        Description = "Description of the test card",
+                        Body = "Body of the test card",
+                        TagList = "tag1,tag2"
+                    }
+                };
 
-            // Act
-            var client = factory.CreateClient();
-            var response = await client.PostAsync("cards", bytes);
-            var json = await response.Content.ReadAsStringAsync();
-            var added = JsonConvert.DeserializeObject<Card>(json);
+                // Act
+                var client = fixture.CreateClient();
+                var response = await client.PostAsync(uri, fixture.Content(command));
+                var result = await fixture.Get<CardEnvelope>(response);
 
-            // Assert
-            Assert.That(added, Is.Not.Null);
-            Assert.That(added.Id, Is.Not.EqualTo(Guid.Empty));
-            Assert.That(added.Title, Is.EqualTo("Test3"));
+                // Assert
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result.Card, Is.Not.Null);
+                Assert.That(result.Card.Id, Is.Not.EqualTo(Guid.Empty));
+                Assert.That(result.Card.Title, Is.EqualTo("Test card"));
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
         }
 
         [Test]
         public async Task ShouldPutUpdatedCard()
         {
-            // Arrange
-            var factory = TestServerFixture.Get<Startup>(graph => new CardData(graph));
-            var card = CardData.FirstItem;
-            card.Title = "Test4";
-            var content = JsonConvert.SerializeObject(card);
-            var buffer = Encoding.UTF8.GetBytes(content);
-            var bytes = new ByteArrayContent(buffer);
-            bytes.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var fixure = new TestFixture(graph => new CardData(graph));
+            try
+            {
+                // Arrange
+                var uri = new Uri($"cards/{CardData.FirstItem.Slug}", UriKind.Relative);
+                var command = new Edit.Command
+                {
+                    Card = new Edit.CardData
+                    {
+                        Title = "Updated " + CardData.FirstItem.Title,
+                        Description = "Updated " + CardData.FirstItem.Description,
+                        Body = "Updated " + CardData.FirstItem.Body
+                    },
+                    Slug = CardData.FirstItem.Slug
+                };
+                // remove the first tag and add a new tag
+                command.Card.TagList = "tag1,tag2,tag3";
 
-            // Act
-            var client = factory.CreateClient();
-            await client.PutAsync($"cards/{card.Id}", bytes);
-            var response = await client.GetAsync($"cards/id/{card.Id}");
-            var json = await response.Content.ReadAsStringAsync();
-            var updated = JsonConvert.DeserializeObject<Card>(json);
+                // Act
+                var client = fixure.CreateClient();
+                var response = await client.PutAsync(uri, fixure.Content(command));
+                var result = await fixure.Get<CardEnvelope>(response);
 
-            // Assert
-            Assert.That(updated, Is.Not.Null);
-            Assert.That(updated.Title, Is.EqualTo("Test4"));
+                // Assert
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result.Card, Is.Not.Null);
+                Assert.That(result.Card.Title, Is.EqualTo("Updated " + CardData.FirstItem.Title));
+                Assert.That(result.Card.Description, Is.EqualTo("Updated " + CardData.FirstItem.Description));
+                Assert.That(result.Card.Body, Is.EqualTo("Updated " + CardData.FirstItem.Body));
+            }
+            finally
+            {
+                fixure.Dispose();
+            }
         }
 
         [Test]
         public async Task ShouldReturnNotFoundPut()
         {
-            // Arrange
-            var factory = TestServerFixture.Get<Startup>(graph => new CardData(graph));
-            var card = new Card
+            var fixture = new TestFixture(graph => new CardData(graph));
+            try
             {
-                Id = new Guid("9cf6d7b1-792a-4c7c-ac6d-a218ada3047d"),
-                Title = "Test4"
-            };
-            var content = JsonConvert.SerializeObject(card);
-            var buffer = Encoding.UTF8.GetBytes(content);
-            var bytes = new ByteArrayContent(buffer);
-            bytes.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            // Act
-            var client = factory.CreateClient();
-            await client.PutAsync($"cards/{card.Id}", bytes);
-            var response = await client.GetAsync($"cards/id/{card.Id}");
-
-            // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+                // Arrange
+                var id = new Guid("9cf6d7b1-792a-4c7c-ac6d-a218ada3047d");
+                var uri = new Uri($"cards/id/{id}", UriKind.Relative);
+                // Act
+                var client = fixture.CreateClient();
+                var response = await client.GetAsync(uri);
+                // Assert
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
         }
 
         [Test]
         public async Task ShouldDeleteCard()
         {
-            // Arrange
-            var factory = TestServerFixture.Get<Startup>(graph => new CardData(graph));
-            var client = factory.CreateClient();
+            var fixture = new TestFixture(graph => new CardData(graph));
+            try
+            {
+                // Arrange
+                var uri = new Uri($"cards/{CardData.FirstItem.Id}", UriKind.Relative);
+                var client = fixture.CreateClient();
+                // Act
+                var response = await client.DeleteAsync(uri);
+                // Assert
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
 
-            // Act
-            await client.DeleteAsync($"cards/{CardData.FirstItem.Id}");
-            var response = await client.GetAsync($"cards/id/{CardData.FirstItem.Id}");
-
-            // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
     }
 }

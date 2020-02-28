@@ -25,8 +25,7 @@ namespace Spotacard.Features.Cards
         }
 
         [HttpGet("feed")]
-        public async Task<CardsEnvelope> GetFeed([FromQuery] string tag, [FromQuery] string author,
-            [FromQuery] string favorited, [FromQuery] int? limit, [FromQuery] int? offset)
+        public async Task<CardsEnvelope> GetFeed([FromQuery] string tag, [FromQuery] string author, [FromQuery] string favorited, [FromQuery] int? limit, [FromQuery] int? offset)
         {
             return await _mediator.Send(new List.Query(tag, author, favorited, limit, offset)
             {
@@ -40,11 +39,11 @@ namespace Spotacard.Features.Cards
             return await _mediator.Send(new GetBySlug.Query(slug));
         }
 
-        //[HttpGet("id/{id}")]
-        //public async Task<CardEnvelope> Get(Guid id)
-        //{
-        //    return await _mediator.Send(new GetById.Query(id));
-        //}
+        [HttpGet("id/{id}")]
+        public async Task<CardEnvelope> Get(Guid id)
+        {
+            return await _mediator.Send(new GetById.Query(id));
+        }
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtIssuerOptions.Schemes)]

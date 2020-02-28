@@ -30,22 +30,22 @@ namespace Spotacard.Features.Cards
 
         public class QueryHandler : IRequestHandler<Query, CardsEnvelope>
         {
-            private readonly GraphContext _context;
+            private readonly GraphContext _graph;
             private readonly ICurrentUserAccessor _currentUserAccessor;
 
-            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
+            public QueryHandler(GraphContext graph, ICurrentUserAccessor currentUserAccessor)
             {
-                _context = context;
+                _graph = graph;
                 _currentUserAccessor = currentUserAccessor;
             }
 
             public async Task<CardsEnvelope> Handle(Query message, CancellationToken cancellationToken)
             {
-                var queryable = _context.Cards.GetAllData();
+                var queryable = _graph.Cards.GetAllData();
 
                 if (message.IsFeed && _currentUserAccessor.GetCurrentUsername() != null)
                 {
-                    var currentUser = await _context.Persons.Include(x => x.Following)
+                    var currentUser = await _graph.Persons.Include(x => x.Following)
                         .FirstOrDefaultAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(),
                             cancellationToken);
                     queryable = queryable.Where(
@@ -54,7 +54,7 @@ namespace Spotacard.Features.Cards
 
                 if (!string.IsNullOrWhiteSpace(message.Tag))
                 {
-                    var tag = await _context.CardTags.FirstOrDefaultAsync(x => x.TagId == message.Tag,
+                    var tag = await _graph.CardTags.FirstOrDefaultAsync(x => x.TagId == message.Tag,
                         cancellationToken);
                     if (tag != null)
                         queryable = queryable.Where(x => x.CardTags.Select(y => y.TagId).Contains(tag.TagId));
@@ -65,7 +65,7 @@ namespace Spotacard.Features.Cards
                 if (!string.IsNullOrWhiteSpace(message.Author))
                 {
                     var author =
-                        await _context.Persons.FirstOrDefaultAsync(x => x.Username == message.Author,
+                        await _graph.Persons.FirstOrDefaultAsync(x => x.Username == message.Author,
                             cancellationToken);
                     if (author != null)
                         queryable = queryable.Where(x => x.Author == author);
@@ -76,7 +76,7 @@ namespace Spotacard.Features.Cards
                 if (!string.IsNullOrWhiteSpace(message.FavoritedUsername))
                 {
                     var author =
-                        await _context.Persons.FirstOrDefaultAsync(x => x.Username == message.FavoritedUsername,
+                        await _graph.Persons.FirstOrDefaultAsync(x => x.Username == message.FavoritedUsername,
                             cancellationToken);
                     if (author != null)
                         queryable = queryable.Where(x => x.CardFavorites.Any(y => y.PersonId == author.Id));

@@ -15,6 +15,7 @@ namespace Spotacard.Features.Cards
         {
             Id = Guid.Parse(FirstItemId),
             Title = "Item 1",
+            Slug = "item-1",
             Type = ContractTypes.Todo
         };
 
@@ -22,6 +23,7 @@ namespace Spotacard.Features.Cards
         {
             Id = Guid.Parse(SecondItemId),
             Title = "Item 2",
+            Slug = "item-2",
             Type = ContractTypes.Todo
         };
 

@@ -200,7 +200,7 @@ namespace Spotacard
 
         public async Task<T> Get<T>(HttpResponseMessage response)
         {
-            Assert.That(response.IsSuccessStatusCode, Is.True);
+            response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(json);
         }

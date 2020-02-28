@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Cards
 {
@@ -18,11 +18,8 @@ namespace Spotacard.Features.Cards
         public class CardData
         {
             public string Title { get; set; }
-
             public string Description { get; set; }
-
             public string Body { get; set; }
-
             public string TagList { get; set; }
         }
 
@@ -42,16 +39,14 @@ namespace Spotacard.Features.Cards
 
         public class Handler : IRequestHandler<Command, CardEnvelope>
         {
-            private readonly GraphContext _context;
-
-            public Handler(GraphContext context)
+            private readonly GraphContext _graph;
+            public Handler(GraphContext graph)
             {
-                _context = context;
+                _graph = graph;
             }
-
             public async Task<CardEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var card = await _context.Cards
+                var card = await _graph.Cards
                     .Include(x => x.CardTags) // include also the card tags since they also need to be updated
                     .Where(x => x.Slug == message.Slug)
                     .FirstOrDefaultAsync(cancellationToken);
@@ -66,21 +61,21 @@ namespace Spotacard.Features.Cards
                 // list of currently saved card tags for the given card
                 var cardTagList = message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>();
 
-                var cardTagsToCreate = GetCardTagsToCreate(card, cardTagList, _context);
+                var cardTagsToCreate = GetCardTagsToCreate(card, cardTagList, _graph);
                 var cardTagsToDelete = GetCardTagsToDelete(card, cardTagList);
 
-                if (_context.ChangeTracker.Entries().First(x => x.Entity == card).State == EntityState.Modified
+                if (_graph.ChangeTracker.Entries().First(x => x.Entity == card).State == EntityState.Modified
                     || cardTagsToCreate.Any() || cardTagsToDelete.Any())
                     card.UpdatedAt = DateTime.UtcNow;
 
                 // add the new card tags
-                await _context.CardTags.AddRangeAsync(cardTagsToCreate, cancellationToken);
+                await _graph.CardTags.AddRangeAsync(cardTagsToCreate, cancellationToken);
                 // delete the tags that do not exist anymore
-                _context.CardTags.RemoveRange(cardTagsToDelete);
+                _graph.CardTags.RemoveRange(cardTagsToDelete);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _graph.SaveChangesAsync(cancellationToken);
 
-                return new CardEnvelope(await _context.Cards.GetAllData()
+                return new CardEnvelope(await _graph.Cards.GetAllData()
                     .Where(x => x.Slug == card.Slug)
                     .FirstOrDefaultAsync(cancellationToken));
             }
@@ -95,7 +90,7 @@ namespace Spotacard.Features.Cards
                 var tagsToCreate = new List<Tag>();
                 foreach (var tag in cardTagList)
                 {
-                    var t = await _context.Tags.FindAsync(tag);
+                    var t = await _graph.Tags.FindAsync(tag);
                     if (t == null)
                     {
                         t = new Tag

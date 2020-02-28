@@ -21,7 +21,6 @@ namespace Spotacard.Features.Attributes
                 // Assert
                 Assert.That(result, Is.Not.Null);
                 Assert.That(result.Attributes, Is.Not.Null);
-                Assert.That(result.Attributes.Count, Is.EqualTo(2));
                 Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute1.Id), Is.Not.Null);
                 Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute2.Id), Is.Not.Null);
             }

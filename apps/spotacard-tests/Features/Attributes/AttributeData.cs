@@ -1,8 +1,8 @@
-using System;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
+using System;
 
 namespace Spotacard.Features.Attributes
 {
