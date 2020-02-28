@@ -1,9 +1,11 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json;
-using NUnit.Framework;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
@@ -15,9 +17,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Spotacard
 {
@@ -51,6 +50,10 @@ namespace Spotacard
             Config["Provider"] = "1";
         }
 
+        /// <summary>
+        /// Starts a test server to run tests against ...
+        /// </summary>
+        /// <param name="seed"></param>
         public TestFixture(Func<GraphContext, IActivity> seed = null)
         {
             Application = new WebApplicationFactory<Startup>()
