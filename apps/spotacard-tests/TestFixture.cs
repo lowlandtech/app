@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
@@ -7,13 +5,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
+using Spotacard.Features.Users;
 using Spotacard.Infrastructure;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Spotacard
 {
     public class TestFixture : IDisposable
     {
         private static readonly IConfiguration Config;
+        public string Token { get; set; }
 
         static TestFixture()
         {
@@ -33,7 +39,9 @@ namespace Spotacard
                     builder.ConfigureServices(services => { services.ReplaceGraphContext(); });
                 });
 
-            Step(Application.Services);
+            Provider = Application.Services;
+            Step1();
+            Step2();
 
             if (seed == null) return;
             var activity = seed(GetGraph());
@@ -47,8 +55,10 @@ namespace Spotacard
             startup.Settings.Provider = Providers.SqlLite;
             startup.ConfigureServices(services);
             services.ReplaceGraphContext();
+            Provider = services.BuildServiceProvider();
 
-            Step(services.BuildServiceProvider());
+            Step1();
+            Step2();
         }
 
         public WebApplicationFactory<Startup> Application { get; }
@@ -59,11 +69,28 @@ namespace Spotacard
         {
         }
 
-        public void Step(IServiceProvider provider)
+        private void Step1()
         {
-            Provider = provider;
             Factory = Provider.GetService<IServiceScopeFactory>();
             GetGraph().Database.EnsureCreated();
+        }
+
+        private void Step2()
+        {
+            using var scope = Provider.CreateScope();
+            var services = scope.ServiceProvider;
+            var seeder = services.GetRequiredService<ISeeder>();
+            seeder.Execute();
+            var mediator = services.GetRequiredService<IMediator>();
+            var result = mediator.Send(new Login.Command
+            {
+                User = new Login.UserData
+                {
+                    Email = "admin@spotacard",
+                    Password = "admin"
+                }
+            });
+            Token = result.Result.User.Token;
         }
 
         public Card CreateCard(Card card)
@@ -135,6 +162,19 @@ namespace Spotacard
                 foreach (var entity in entities) db.Add(entity);
                 return db.SaveChangesAsync();
             });
+        }
+
+        public HttpClient CreateClient()
+        {
+            var client = Application.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", Token);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            return client;
+        }
+
+        public HttpContent Content<T>(T command)
+        {
+            return new StringContent(JsonConvert.SerializeObject(command), Encoding.Default, "application/json");
         }
     }
 }

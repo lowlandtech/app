@@ -25,7 +25,6 @@ namespace Spotacard.Features.Attributes
         {
             public AttributeDataValidator()
             {
-                RuleFor(x => x.Index).NotNull().NotEmpty();
                 RuleFor(x => x.Name).NotNull().NotEmpty();
                 RuleFor(x => x.Type).NotNull().NotEmpty();
                 RuleFor(x => x.Value).NotNull().NotEmpty();

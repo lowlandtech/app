@@ -51,6 +51,7 @@ namespace Spotacard.Features.Attributes
 
         public void Execute()
         {
+            _graph.Cards.Add(Card);
             _graph.Attributes.Add(CardAttribute1);
             _graph.Attributes.Add(CardAttribute2);
             _graph.SaveChanges();

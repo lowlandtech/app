@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -29,32 +30,31 @@ namespace Spotacard.Features.Attributes
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Attributes, Is.Not.Null);
             Assert.That(result.Attributes.Count, Is.EqualTo(2));
-            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute1.Id),
-                Is.Not.Null);
-            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute2.Id),
-                Is.Not.Null);
+            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute1.Id), Is.Not.Null);
+            Assert.That(result.Attributes.Find(attribute => attribute.Id == AttributeData.CardAttribute2.Id), Is.Not.Null);
         }
 
         [Test]
         public async Task Expect_Create_Attribute()
         {
             // Arrange
+            var uri = new Uri($"cards/{AttributeData.CardId}/attributes", UriKind.Relative);
             var fixture = new TestFixture(graph => new AttributeData(graph));
-            var attribute = new CardAttribute
+            var command = new Create.Command
             {
-                Name = "Description",
-                Type = "string",
-                Value = "Body of the test attribute"
+                Attribute = new Create.AttributeData
+                {
+                    Name = "Description",
+                    Type = "string",
+                    Value = "Body of the test attribute"
+                },
+                CardId = new Guid(AttributeData.CardId)
             };
-            var content = JsonConvert.SerializeObject(attribute);
-            var buffer = Encoding.UTF8.GetBytes(content);
-            var bytes = new ByteArrayContent(buffer);
-            bytes.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
             // Act
-            var client = fixture.Application.CreateClient();
-            var response = await client.PostAsync($"cards/{AttributeData.CardId}/attributes", bytes);
+            var client = fixture.CreateClient();
 
+            var response = await client.PostAsync(uri, fixture.Content(command));
             Assert.That(response.IsSuccessStatusCode, Is.True);
 
             var json = await response.Content.ReadAsStringAsync();
