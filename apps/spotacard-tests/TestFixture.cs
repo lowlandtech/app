@@ -10,10 +10,14 @@ using Spotacard.Domain;
 using Spotacard.Features.Users;
 using Spotacard.Infrastructure;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Spotacard
 {
@@ -21,6 +25,21 @@ namespace Spotacard
     {
         private static readonly IConfiguration Config;
         public string Token { get; set; }
+
+        private readonly string _inMemoryConnectionString = $"DataSource=file:{Path.GetFileNameWithoutExtension(Path.GetRandomFileName())}?mode=memory";
+
+        private void ReplaceGraphContext(IServiceCollection services)
+        {
+            services.RemoveAll<GraphContext>();
+
+            var connection = new SqliteConnection(_inMemoryConnectionString);
+            connection.Open();
+
+            var builder = new DbContextOptionsBuilder<GraphContext>()
+                .UseSqlite(connection);
+
+            services.AddSingleton(new GraphContext(builder.Options));
+        }
 
         static TestFixture()
         {
@@ -37,7 +56,7 @@ namespace Spotacard
             Application = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
                 {
-                    builder.ConfigureServices(services => { services.ReplaceGraphContext(); });
+                    builder.ConfigureServices(ReplaceGraphContext);
                 });
 
             Provider = Application.Services;
@@ -55,7 +74,7 @@ namespace Spotacard
             var services = new ServiceCollection();
             startup.Settings.Provider = Providers.SqlLite;
             startup.ConfigureServices(services);
-            services.ReplaceGraphContext();
+            ReplaceGraphContext(services);
             Provider = services.BuildServiceProvider();
 
             Step1();
@@ -68,6 +87,7 @@ namespace Spotacard
 
         public void Dispose()
         {
+            GetGraph().Database.CloseConnection();
         }
 
         private void Step1()
