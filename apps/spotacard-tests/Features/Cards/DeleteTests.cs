@@ -74,7 +74,7 @@ namespace Spotacard.Features.Cards
         {
             // arrange
             var fixture = new TestFixture();
-            var createCardCmd = new Create.Command
+            var command = new Create.Command
             {
                 Card = new Create.CardData
                 {
@@ -84,15 +84,15 @@ namespace Spotacard.Features.Cards
                 }
             };
 
-            var created = await CardHelpers.CreateCard(fixture, createCardCmd);
+            var created = await CardHelpers.CreateCard(fixture, command);
             var deleteCmd = new Delete.Command(created.Slug);
-            var graph = fixture.GetGraph();
-            var handler = new Delete.QueryHandler(graph);
+
+            var handler = new Delete.QueryHandler(fixture.GetGraph());
             await handler.Handle(deleteCmd, new CancellationToken());
 
             // act
-            var deleted = await fixture.ExecuteDbContextAsync(_graph => _graph.Cards
-                .Where(_card => _card.Slug == deleteCmd.Slug)
+            var deleted = await fixture.ExecuteDbContextAsync(graph => graph.Cards
+                .Where(card => card.Slug == deleteCmd.Slug)
                 .SingleOrDefaultAsync());
 
             // assert

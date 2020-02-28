@@ -11,7 +11,7 @@ namespace Spotacard.Features.Attributes
 {
     public class Delete
     {
-        public class Command : IRequest<AttributeEnvelope>, IRequest<Unit>
+        public class Command : IRequest<Unit>
         {
             public Command(Guid id)
             {

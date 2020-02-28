@@ -123,19 +123,18 @@ namespace Spotacard.Features.Attributes
                     Name = "Description",
                     Type = "string",
                     Value = "Body of the test attribute"
-                }
+                },
+                CardId = card.Id
             };
-            createCmd.CardId = card.Id;
 
             var created = await AttributeHelpers.CreateCardAttribute(fixture, createCmd);
             var deleteCmd = new Delete.Command(created.Id);
-            var graph = fixture.GetGraph();
-            var handler = new Delete.QueryHandler(graph);
+            var handler = new Delete.QueryHandler(fixture.GetGraph());
             await handler.Handle(deleteCmd, new CancellationToken());
 
             // act
-            var deleted = await fixture.ExecuteDbContextAsync(_graph => _graph.Attributes
-                .Where(_attribute => _attribute.Id == deleteCmd.Id)
+            var deleted = await fixture.ExecuteDbContextAsync(graph => graph.Attributes
+                .Where(attribute => attribute.Id == deleteCmd.Id)
                 .SingleOrDefaultAsync());
 
             // assert

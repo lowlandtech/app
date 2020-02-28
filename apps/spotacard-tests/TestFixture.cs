@@ -2,6 +2,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using NUnit.Framework;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
@@ -12,7 +14,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace Spotacard
 {
@@ -175,6 +176,13 @@ namespace Spotacard
         public HttpContent Content<T>(T command)
         {
             return new StringContent(JsonConvert.SerializeObject(command), Encoding.Default, "application/json");
+        }
+
+        public async Task<T> Get<T>(HttpResponseMessage response)
+        {
+            Assert.That(response.IsSuccessStatusCode, Is.True);
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }
