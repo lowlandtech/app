@@ -93,7 +93,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task ShouldPutUpdatedCard()
         {
-            var fixure = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(graph => new CardData(graph));
             try
             {
                 // Arrange
@@ -112,9 +112,9 @@ namespace Spotacard.Features.Cards
                 command.Card.TagList = "tag1,tag2,tag3";
 
                 // Act
-                var client = fixure.CreateClient();
-                var response = await client.PutAsync(uri, fixure.Content(command));
-                var result = await fixure.Get<CardEnvelope>(response);
+                var client = fixture.CreateClient();
+                var response = await client.PutAsync(uri, fixture.Content(command));
+                var result = await fixture.Get<CardEnvelope>(response);
 
                 // Assert
                 Assert.That(result, Is.Not.Null);
@@ -125,7 +125,7 @@ namespace Spotacard.Features.Cards
             }
             finally
             {
-                fixure.Dispose();
+                fixture.Dispose();
             }
         }
 
