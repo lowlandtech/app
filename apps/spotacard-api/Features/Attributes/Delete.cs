@@ -1,11 +1,11 @@
-using System;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
+using System;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Attributes
 {
@@ -17,7 +17,6 @@ namespace Spotacard.Features.Attributes
             {
                 Id = id;
             }
-
             public Guid Id { get; }
         }
 
@@ -32,12 +31,10 @@ namespace Spotacard.Features.Attributes
         public class QueryHandler : IRequestHandler<Command>
         {
             private readonly GraphContext _graph;
-
             public QueryHandler(GraphContext graph)
             {
                 _graph = graph;
             }
-
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
                 var attribute = await _graph.Attributes.FindAsync(request.Id);

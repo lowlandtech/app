@@ -1,13 +1,13 @@
-using System;
-using System.Net;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
+using System;
+using System.Net;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Attributes
 {

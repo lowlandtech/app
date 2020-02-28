@@ -1,9 +1,9 @@
-using System;
-using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spotacard.Infrastructure.Security;
+using System;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Attributes
 {

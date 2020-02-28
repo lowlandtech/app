@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Reflection;
 using AutoMapper;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -17,6 +15,8 @@ using Spotacard.Features.Profiles;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 using Spotacard.Infrastructure.Security;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace Spotacard
 {
