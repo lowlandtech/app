@@ -12,7 +12,7 @@ namespace Spotacard.Features.Cards
         public async Task ShouldReceiveMessage()
         {
             // Arrange
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             fixture.CreateClient();
             var server = fixture.Application.Server;
             var connection = await fixture.Application.StartConnectionAsync(server.CreateHandler(), "cards");

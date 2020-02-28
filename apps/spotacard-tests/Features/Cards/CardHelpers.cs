@@ -20,14 +20,14 @@ namespace Spotacard.Features.Cards
             // first create the default user
             var user = await UserHelpers.CreateDefaultUser(fixture);
 
-            var graph = fixture.GetGraph();
+            var context = fixture.GetContext();
             var currentAccessor = new StubCurrentUserAccessor(user.Username);
 
-            var handler = new Create.Handler(graph, currentAccessor);
+            var handler = new Create.Handler(context, currentAccessor);
             var created = await handler.Handle(command, new CancellationToken());
 
             var card = await fixture
-                .ExecuteDbContextAsync(_graph => _graph.Cards
+                .ExecuteDbContextAsync(_context => _context.Cards
                     .Where(_card => _card.Id == created.Card.Id)
                     .SingleOrDefaultAsync());
 

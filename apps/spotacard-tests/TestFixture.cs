@@ -67,7 +67,7 @@ namespace Spotacard
             Step2();
 
             if (seed == null) return;
-            var activity = seed(GetGraph());
+            var activity = seed(GetContext());
             activity.Execute();
         }
 
@@ -90,13 +90,13 @@ namespace Spotacard
 
         public void Dispose()
         {
-            GetGraph().Database.CloseConnection();
+            GetContext().Database.CloseConnection();
         }
 
         private void Step1()
         {
             Factory = Provider.GetService<IServiceScopeFactory>();
-            GetGraph().Database.EnsureCreated();
+            GetContext().Database.EnsureCreated();
         }
 
         private void Step2()
@@ -119,21 +119,21 @@ namespace Spotacard
 
         public Card CreateCard(Card card)
         {
-            var graph = GetGraph();
-            graph.Cards.Add(card);
-            graph.SaveChanges();
+            var context = GetContext();
+            context.Cards.Add(card);
+            context.SaveChanges();
             return card;
         }
 
         public CardAttribute CreateAttribute(CardAttribute attribute)
         {
-            var graph = GetGraph();
-            graph.Attributes.Add(attribute);
-            graph.SaveChanges();
+            var context = GetContext();
+            context.Attributes.Add(attribute);
+            context.SaveChanges();
             return attribute;
         }
 
-        public GraphContext GetGraph()
+        public GraphContext GetContext()
         {
             return Provider.GetRequiredService<GraphContext>();
         }

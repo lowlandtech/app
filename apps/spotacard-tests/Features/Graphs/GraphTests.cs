@@ -11,8 +11,8 @@ namespace Spotacard.Features.Graphs
             var fixture = new TestFixture();
             try
             {
-                var graph = fixture.GetGraph();
-                Assert.True(await graph.Database.CanConnectAsync());
+                var context = fixture.GetContext();
+                Assert.True(await context.Database.CanConnectAsync());
             }
             finally
             {

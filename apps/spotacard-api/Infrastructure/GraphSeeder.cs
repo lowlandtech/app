@@ -8,26 +8,26 @@ namespace Spotacard.Infrastructure
 {
     public class GraphSeeder : Seeder
     {
-        public GraphSeeder(GraphContext graph, IMediator mediator)
+        public GraphSeeder(GraphContext context, IMediator mediator)
         {
-            Activities.Add(new PersonSeeder(graph, mediator));
+            Activities.Add(new PersonSeeder(context, mediator));
         }
     }
 
     public class PersonSeeder : ISeeder
     {
-        private readonly GraphContext _graph;
+        private readonly GraphContext _context;
         private readonly IMediator _mediator;
 
-        public PersonSeeder(GraphContext graph, IMediator mediator)
+        public PersonSeeder(GraphContext context, IMediator mediator)
         {
-            _graph = graph;
+            _context = context;
             _mediator = mediator;
         }
 
         public void Execute()
         {
-            if (_graph.Persons.SingleOrDefault(person => person.Username == "admin") != null) return;
+            if (_context.Persons.SingleOrDefault(person => person.Username == "admin") != null) return;
 
             var command = new Create.Command
             {

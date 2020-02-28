@@ -41,20 +41,20 @@ namespace Spotacard.Extensions
             {
                 var services = scope.ServiceProvider;
                 var logger = services.GetRequiredService<ILogger<Program>>();
-                var graph = services.GetRequiredService<GraphContext>();
-                var migrationsAssembly = graph.GetService<IMigrationsAssembly>();
-                var differ = graph.GetService<IMigrationsModelDiffer>();
+                var context = services.GetRequiredService<GraphContext>();
+                var migrationsAssembly = context.GetService<IMigrationsAssembly>();
+                var differ = context.GetService<IMigrationsModelDiffer>();
 
                 var hasDifferences = differ.HasDifferences(
                     migrationsAssembly.ModelSnapshot.Model,
-                    graph.Model);
+                    context.Model);
 
                 if (!hasDifferences) return host;
 
                 try
                 {
                     logger.LogInformation("Migrating database");
-                    graph.Database.Migrate();
+                    context.Database.Migrate();
                     logger.LogInformation("Migrated database");
                 }
                 catch (Exception ex)

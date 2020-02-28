@@ -9,7 +9,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_List_Attribute()
         {
-            var fixture = new TestFixture(graph => new AttributeData(graph));
+            var fixture = new TestFixture(context => new AttributeData(context));
             try
             {
                 // Arrange
@@ -33,7 +33,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_Create_Attribute()
         {
-            var fixture = new TestFixture(graph => new AttributeData(graph));
+            var fixture = new TestFixture(context => new AttributeData(context));
             try
             {
                 // Arrange
@@ -70,7 +70,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_Edit_Attribute()
         {
-            var fixture = new TestFixture(graph => new AttributeData(graph));
+            var fixture = new TestFixture(context => new AttributeData(context));
             try
             {
                 // Arrange
@@ -106,7 +106,7 @@ namespace Spotacard.Features.Attributes
         [Test]
         public async Task Expect_Delete_Attribute()
         {
-            var fixture = new TestFixture(graph => new AttributeData(graph));
+            var fixture = new TestFixture(context => new AttributeData(context));
             try
             {
                 // Arrange

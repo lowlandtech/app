@@ -27,18 +27,18 @@ namespace Spotacard.Features.Cards
             Type = ContractTypes.Todo
         };
 
-        private readonly GraphContext _graph;
+        private readonly GraphContext _context;
 
-        public CardData(GraphContext graph)
+        public CardData(GraphContext context)
         {
-            _graph = graph;
+            _context = context;
         }
 
         public void Execute()
         {
-            _graph.Cards.Add(FirstItem.Copy());
-            _graph.Cards.Add(SecondItem.Copy());
-            _graph.SaveChanges();
+            _context.Cards.Add(FirstItem.Copy());
+            _context.Cards.Add(SecondItem.Copy());
+            _context.SaveChanges();
         }
     }
 }

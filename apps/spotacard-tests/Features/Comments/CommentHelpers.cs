@@ -25,14 +25,14 @@ namespace Spotacard.Features.Comments
                 userName = user.Username;
             }
 
-            var graph = fixture.GetGraph();
+            var context = fixture.GetContext();
             var currentAccessor = new StubCurrentUserAccessor(userName);
 
-            var handler = new Create.Handler(graph, currentAccessor);
+            var handler = new Create.Handler(context, currentAccessor);
             var created = await handler.Handle(command, new CancellationToken());
 
             var card = await fixture.ExecuteDbContextAsync(
-                _graph => _graph.Cards
+                _context => _context.Cards
                     .Include(_card => _card.Comments)
                     .Include(_card => _card.Author)
                     .Where(_card => _card.Slug == command.Slug)

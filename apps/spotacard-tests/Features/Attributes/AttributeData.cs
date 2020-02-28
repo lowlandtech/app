@@ -42,19 +42,19 @@ namespace Spotacard.Features.Attributes
             CardId = new Guid(CardId)
         };
 
-        private readonly GraphContext _graph;
+        private readonly GraphContext _context;
 
-        public AttributeData(GraphContext graph)
+        public AttributeData(GraphContext context)
         {
-            _graph = graph;
+            _context = context;
         }
 
         public void Execute()
         {
-            _graph.Cards.Add(Card);
-            _graph.Attributes.Add(CardAttribute1);
-            _graph.Attributes.Add(CardAttribute2);
-            _graph.SaveChanges();
+            _context.Cards.Add(Card);
+            _context.Attributes.Add(CardAttribute1);
+            _context.Attributes.Add(CardAttribute2);
+            _context.SaveChanges();
         }
     }
 }

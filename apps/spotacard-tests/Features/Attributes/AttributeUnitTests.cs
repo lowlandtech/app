@@ -97,8 +97,8 @@ namespace Spotacard.Features.Attributes
             };
 
             // remove the first tag and add a new tag
-            var graph = fixture.GetGraph();
-            var handler = new Edit.Handler(graph);
+            var context = fixture.GetContext();
+            var handler = new Edit.Handler(context);
             var edited = await handler.Handle(editCommand, new CancellationToken());
 
             Assert.That(edited, Is.Not.Null);
@@ -129,11 +129,11 @@ namespace Spotacard.Features.Attributes
 
             var created = await AttributeHelpers.CreateCardAttribute(fixture, createCmd);
             var deleteCmd = new Delete.Command(created.Id);
-            var handler = new Delete.QueryHandler(fixture.GetGraph());
+            var handler = new Delete.QueryHandler(fixture.GetContext());
             await handler.Handle(deleteCmd, new CancellationToken());
 
             // act
-            var deleted = await fixture.ExecuteDbContextAsync(graph => graph.Attributes
+            var deleted = await fixture.ExecuteDbContextAsync(context => context.Attributes
                 .Where(attribute => attribute.Id == deleteCmd.Id)
                 .SingleOrDefaultAsync());
 

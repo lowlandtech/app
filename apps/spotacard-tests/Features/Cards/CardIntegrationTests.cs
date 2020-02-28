@@ -10,7 +10,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_List_Card()
         {
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             try
             {
                 // Arrange
@@ -35,7 +35,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_List_Card_By_Id()
         {
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             try
             {
                 // Arrange
@@ -57,7 +57,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_Create_Card()
         {
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             try
             {
                 // Arrange
@@ -93,7 +93,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_Edit_Card()
         {
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             try
             {
                 // Arrange
@@ -132,7 +132,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_List_Card_By_Id_Not_Found()
         {
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             try
             {
                 // Arrange
@@ -153,7 +153,7 @@ namespace Spotacard.Features.Cards
         [Test]
         public async Task Expect_Delete_Card()
         {
-            var fixture = new TestFixture(graph => new CardData(graph));
+            var fixture = new TestFixture(context => new CardData(context));
             try
             {
                 // Arrange

@@ -47,16 +47,16 @@ namespace Spotacard.Features.Attributes
 
         public class Handler : IRequestHandler<Command, AttributeEnvelope>
         {
-            private readonly GraphContext _graph;
+            private readonly GraphContext _context;
 
-            public Handler(GraphContext graph)
+            public Handler(GraphContext context)
             {
-                _graph = graph;
+                _context = context;
             }
 
             public async Task<AttributeEnvelope> Handle(Command request, CancellationToken cancellationToken)
             {
-                var card = await _graph.Cards.SingleOrDefaultAsync(_card => _card.Id == request.CardId,
+                var card = await _context.Cards.SingleOrDefaultAsync(_card => _card.Id == request.CardId,
                     cancellationToken);
                 if (card == null)
                     throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
@@ -71,8 +71,8 @@ namespace Spotacard.Features.Attributes
                     CardId = card.Id
                 };
 
-                await _graph.Attributes.AddAsync(attribute, cancellationToken);
-                await _graph.SaveChangesAsync(cancellationToken);
+                await _context.Attributes.AddAsync(attribute, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
 
                 return new AttributeEnvelope(attribute);
             }

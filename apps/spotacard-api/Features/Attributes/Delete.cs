@@ -30,18 +30,18 @@ namespace Spotacard.Features.Attributes
 
         public class QueryHandler : IRequestHandler<Command>
         {
-            private readonly GraphContext _graph;
-            public QueryHandler(GraphContext graph)
+            private readonly GraphContext _context;
+            public QueryHandler(GraphContext context)
             {
-                _graph = graph;
+                _context = context;
             }
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var attribute = await _graph.Attributes.FindAsync(request.Id);
+                var attribute = await _context.Attributes.FindAsync(request.Id);
                 if (attribute == null)
                     throw new RestException(HttpStatusCode.NotFound, new {Attribute = Constants.NOT_FOUND});
-                _graph.Attributes.Remove(attribute);
-                await _graph.SaveChangesAsync(cancellationToken);
+                _context.Attributes.Remove(attribute);
+                await _context.SaveChangesAsync(cancellationToken);
                 return Unit.Value;
             }
         }

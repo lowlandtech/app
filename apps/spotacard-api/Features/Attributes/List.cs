@@ -22,16 +22,16 @@ namespace Spotacard.Features.Attributes
 
         public class QueryHandler : IRequestHandler<Query, AttributesEnvelope>
         {
-            private readonly GraphContext _graph;
+            private readonly GraphContext _context;
 
-            public QueryHandler(GraphContext graph)
+            public QueryHandler(GraphContext context)
             {
-                _graph = graph;
+                _context = context;
             }
 
             public async Task<AttributesEnvelope> Handle(Query request, CancellationToken cancellationToken)
             {
-                var attributes = await _graph.Attributes
+                var attributes = await _context.Attributes
                     .Where(attribute => attribute.CardId == request.CardId)
                     .ToListAsync(cancellationToken);
                 return new AttributesEnvelope(attributes);

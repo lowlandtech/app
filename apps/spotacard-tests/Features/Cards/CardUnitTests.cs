@@ -64,7 +64,7 @@ namespace Spotacard.Features.Cards
                 // remove the first tag and add a new tag
                 editCommand.Card.TagList = $"{created.TagList[1]}, tag3";
 
-                var handler = new Edit.Handler(fixture.GetGraph());
+                var handler = new Edit.Handler(fixture.GetContext());
                 var edited = await handler.Handle(editCommand, new CancellationToken());
 
                 Assert.That(edited, Is.Not.Null);
@@ -97,11 +97,11 @@ namespace Spotacard.Features.Cards
 
             var created = await CardHelpers.CreateCard(fixture, createCmd);
             var deleteCmd = new Delete.Command(created.Slug);
-            var handler = new Delete.QueryHandler(fixture.GetGraph());
+            var handler = new Delete.QueryHandler(fixture.GetContext());
             await handler.Handle(deleteCmd, new CancellationToken());
 
             // act
-            var deleted = await fixture.ExecuteDbContextAsync(graph => graph.Cards
+            var deleted = await fixture.ExecuteDbContextAsync(context => context.Cards
                 .Where(_card => _card.Slug == deleteCmd.Slug)
                 .SingleOrDefaultAsync());
 
@@ -127,11 +127,11 @@ namespace Spotacard.Features.Cards
 
             var created = await CardHelpers.CreateCard(fixture, command);
             var deleteCmd = new Delete.Command(created.Slug);
-            var handler = new Delete.QueryHandler(fixture.GetGraph());
+            var handler = new Delete.QueryHandler(fixture.GetContext());
             await handler.Handle(deleteCmd, new CancellationToken());
 
             // act
-            var deleted = await fixture.ExecuteDbContextAsync(graph => graph.Cards
+            var deleted = await fixture.ExecuteDbContextAsync(context => context.Cards
                 .Where(d => d.Slug == deleteCmd.Slug)
                 .SingleOrDefaultAsync());
 
@@ -157,11 +157,11 @@ namespace Spotacard.Features.Cards
             var created = await CardHelpers.CreateCard(fixture, command);
             var deleteCmd = new Delete.Command(created.Slug);
 
-            var handler = new Delete.QueryHandler(fixture.GetGraph());
+            var handler = new Delete.QueryHandler(fixture.GetContext());
             await handler.Handle(deleteCmd, new CancellationToken());
 
             // act
-            var deleted = await fixture.ExecuteDbContextAsync(graph => graph.Cards
+            var deleted = await fixture.ExecuteDbContextAsync(context => context.Cards
                 .Where(card => card.Slug == deleteCmd.Slug)
                 .SingleOrDefaultAsync());
 
@@ -175,13 +175,13 @@ namespace Spotacard.Features.Cards
             var fixture = new TestFixture();
             try
             {
-                var graph = fixture.GetGraph();
-                var service = new CardService(graph);
+                var context = fixture.GetContext();
+                var service = new CardService(context);
                 service.Add("https://example.com");
-                graph.SaveChanges();
+                context.SaveChanges();
 
-                Assert.That(1, Is.EqualTo(graph.Cards.Count()));
-                Assert.That("https://example.com", Is.EqualTo(graph.Cards.Single().Title));
+                Assert.That(1, Is.EqualTo(context.Cards.Count()));
+                Assert.That("https://example.com", Is.EqualTo(context.Cards.Single().Title));
             }
             finally
             {
@@ -195,8 +195,8 @@ namespace Spotacard.Features.Cards
             var fixture = new TestFixture();
             try
             {
-                var graph = fixture.GetGraph();
-                Assert.False(graph.Cards.Any());
+                var context = fixture.GetContext();
+                Assert.False(context.Cards.Any());
             }
             finally
             {
@@ -210,10 +210,10 @@ namespace Spotacard.Features.Cards
             var fixture = new TestFixture();
             try
             {
-                var graph = fixture.GetGraph();
+                var context = fixture.GetContext();
                 var card = new Card();
-                graph.Cards.Add(card);
-                Assert.Throws<DbUpdateException>(() => graph.SaveChanges());
+                context.Cards.Add(card);
+                Assert.Throws<DbUpdateException>(() => context.SaveChanges());
             }
             finally
             {
@@ -227,10 +227,10 @@ namespace Spotacard.Features.Cards
             var fixture = new TestFixture();
             try
             {
-                var graph = fixture.GetGraph();
+                var context = fixture.GetContext();
                 var card = new Card { Title = "TestCard" };
-                graph.Cards.Add(card);
-                graph.SaveChanges();
+                context.Cards.Add(card);
+                context.SaveChanges();
 
                 Assert.That(Guid.Empty, Is.Not.EqualTo(card.Id));
             }
@@ -248,14 +248,14 @@ namespace Spotacard.Features.Cards
 
             try
             {
-                var graph = fixture.GetGraph();
+                var context = fixture.GetContext();
 
-                graph.Cards.Add(new Card { Title = "https://example.com/cats" });
-                graph.Cards.Add(new Card { Title = "https://example.com/catfish" });
-                graph.Cards.Add(new Card { Title = "https://example.com/dogs" });
-                graph.SaveChanges();
+                context.Cards.Add(new Card { Title = "https://example.com/cats" });
+                context.Cards.Add(new Card { Title = "https://example.com/catfish" });
+                context.Cards.Add(new Card { Title = "https://example.com/dogs" });
+                context.SaveChanges();
 
-                var service = new CardService(graph);
+                var service = new CardService(context);
                 var result = service.Find("cat");
                 Assert.That(2, Is.EqualTo(result.Count()));
             }

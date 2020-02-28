@@ -25,7 +25,7 @@ namespace Spotacard.Features.Users
 
             await _fixture.SendAsync(command);
 
-            var created = await _fixture.ExecuteDbContextAsync(_graph => _graph.Persons
+            var created = await _fixture.ExecuteDbContextAsync(_context => _context.Persons
                 .Where(_person => _person.Email == command.User.Email)
                 .SingleOrDefaultAsync());
 
