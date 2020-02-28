@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Spotacard.Features.Graphs
+namespace Spotacard.Features.Infrastructure
 {
-    public class GraphTests
+    public class GraphContextTests
     {
         [Test]
         public async Task DatabaseIsAvailableAndCanBeConnectedTo()
