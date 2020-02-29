@@ -33,7 +33,7 @@ namespace Spotacard.Infrastructure
             {
                 User = new Create.UserData
                 {
-                    Email = "admin@spotacard",
+                    Email = "admin@spotacard.com",
                     Password = "admin",
                     Username = "admin"
                 }

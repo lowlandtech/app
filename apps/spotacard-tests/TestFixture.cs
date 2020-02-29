@@ -110,7 +110,7 @@ namespace Spotacard
             {
                 User = new Login.UserData
                 {
-                    Email = "admin@spotacard",
+                    Email = "admin@spotacard.com",
                     Password = "admin"
                 }
             });

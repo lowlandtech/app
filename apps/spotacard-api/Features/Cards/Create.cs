@@ -16,11 +16,8 @@ namespace Spotacard.Features.Cards
         public class CardData
         {
             public string Title { get; set; }
-
             public string Description { get; set; }
-
             public string Body { get; set; }
-
             public string TagList { get; set; }
         }
 
@@ -89,7 +86,7 @@ namespace Spotacard.Features.Cards
                     UpdatedAt = DateTime.UtcNow,
                     Description = message.Card.Description,
                     Title = message.Card.Title,
-                    Slug = message.Card.Title.GenerateSlug()
+                    Slug = await message.Card.Title.ToSlug(_context)
                 };
                 await _context.Cards.AddAsync(card, cancellationToken);
 

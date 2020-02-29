@@ -1,6 +1,9 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Humanizer;
+using Microsoft.EntityFrameworkCore;
 
 namespace Spotacard.Infrastructure
 {
@@ -8,11 +11,18 @@ namespace Spotacard.Infrastructure
     //https://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net
     public static class Slug
     {
-        public static string GenerateSlug(this string phrase)
+        public static async Task<string> ToSlug(this string text, GraphContext context)
         {
-            var idn = new IdnMapping();
-            var punyCode = idn.GetAscii(phrase);
-            return punyCode;
+            var counter = 0;
+            var slug = text.Pascalize().Kebaberize();
+            Start:
+
+            var card = await context.Cards.SingleOrDefaultAsync(c => c.Slug == slug);
+            if (card == null) return slug;
+
+            counter += counter;
+            slug = $"{text.Pascalize().Kebaberize()}-{counter}";
+            goto Start;
         }
 
         public static string RemoveDiacritics(this string text)

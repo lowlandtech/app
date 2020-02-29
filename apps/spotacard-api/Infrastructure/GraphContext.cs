@@ -25,6 +25,10 @@ namespace Spotacard.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Card>(card => {
+                card.HasIndex(e => e.Slug).IsUnique();
+            });
+
             modelBuilder.Entity<CardTag>(b =>
             {
                 b.HasKey(t => new {t.CardId, t.TagId});
