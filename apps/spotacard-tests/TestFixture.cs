@@ -17,6 +17,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Spotacard.Features.Graphs;
 
 namespace Spotacard
 {
@@ -206,6 +208,13 @@ namespace Spotacard
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        public IGraph GetGraph()
+        {
+            var scope = Factory.CreateScope();
+            var services = scope.ServiceProvider;
+            return services.GetService<IGraph>();
         }
     }
 }

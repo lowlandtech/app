@@ -19,6 +19,7 @@ namespace Spotacard.Features.Cards
             public string Description { get; set; }
             public string Body { get; set; }
             public string TagList { get; set; }
+            public List<CardAttribute> Attributes { get; set; } = new List<CardAttribute>();
         }
 
         public class CardDataValidator : AbstractValidator<CardData>
@@ -87,7 +88,16 @@ namespace Spotacard.Features.Cards
                     Description = message.Card.Description,
                     Title = message.Card.Title,
                     Slug = await message.Card.Title.ToSlug(_context)
+
                 };
+
+                foreach (var attribute in message.Card.Attributes)
+                {
+                    attribute.CardId = card.Id;
+                    attribute.Card = card;
+                    card.CardAttributes.Add(attribute);
+                }
+
                 await _context.Cards.AddAsync(card, cancellationToken);
 
                 await _context.CardTags.AddRangeAsync(tags.Select(x => new CardTag

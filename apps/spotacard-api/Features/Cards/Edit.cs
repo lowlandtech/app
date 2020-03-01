@@ -21,6 +21,7 @@ namespace Spotacard.Features.Cards
             public string Description { get; set; }
             public string Body { get; set; }
             public string TagList { get; set; }
+            public List<CardAttribute> Attributes { get; set; }
         }
 
         public class Command : IRequest<CardEnvelope>

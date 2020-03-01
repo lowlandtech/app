@@ -17,6 +17,7 @@ using Spotacard.Infrastructure.Errors;
 using Spotacard.Infrastructure.Security;
 using System.Collections.Generic;
 using System.Reflection;
+using Spotacard.Features.Graphs;
 
 namespace Spotacard
 {
@@ -95,6 +96,7 @@ namespace Spotacard
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ISettings>(Settings);
             services.AddScoped<ISeeder, GraphSeeder>();
+            services.AddScoped<IGraph, Graph>();
             services.AddJwt();
         }
 
