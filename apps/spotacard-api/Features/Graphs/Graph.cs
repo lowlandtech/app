@@ -1,12 +1,11 @@
-using MediatR;
-using Spotacard.Features.Attributes;
-using Spotacard.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MediatR;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
-using Spotacard.Features.Cards;
+using Spotacard.Features.Attributes;
+using Spotacard.Infrastructure;
 using Create = Spotacard.Features.Cards.Create;
 
 namespace Spotacard.Features.Graphs
@@ -21,6 +20,7 @@ namespace Spotacard.Features.Graphs
             _context = context;
             _mediator = mediator;
         }
+
         public async Task<string> GetCardAttribute(Guid cardId, string name)
         {
             var command = new ListByName.Query(cardId, name);
