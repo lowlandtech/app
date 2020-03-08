@@ -18,6 +18,8 @@ using Spotacard.Infrastructure.Security;
 using System.Collections.Generic;
 using System.Reflection;
 using Spotacard.Features.Graphs;
+using Spotacard.Features.Templates;
+using Spotacard.Features.Templates.Contracts;
 
 namespace Spotacard
 {
@@ -94,6 +96,7 @@ namespace Spotacard
             services.AddScoped<ICurrentUserAccessor, CurrentUserAccessor>();
             services.AddScoped<IProfileReader, ProfileReader>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<ITemplateService, TemplateService>();
             services.AddSingleton<ISettings>(Settings);
             services.AddScoped<ISeeder, GraphSeeder>();
             services.AddScoped<IGraph, Graph>();

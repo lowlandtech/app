@@ -1,7 +1,7 @@
 Feature: Templates
   As a user I want to manage templates
 
-@testcase1
+@TestCase1
 Scenario: Create new template
   Given a title
   And content

@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
+using Spotacard.Features.Graphs;
 using Spotacard.Features.Users;
 using Spotacard.Infrastructure;
 using System;
@@ -17,8 +18,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Spotacard.Features.Graphs;
 
 namespace Spotacard
 {
