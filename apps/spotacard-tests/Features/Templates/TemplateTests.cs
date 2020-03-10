@@ -1,10 +1,13 @@
 using NUnit.Framework;
 using RazorLight;
 using Spotacard.Domain;
+using Spotacard.Features.Templates.Actions;
 using Spotacard.Features.Templates.Artifacts;
 using Spotacard.Features.Templates.Types;
 using Spotacard.TestCases;
+using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Spotacard.Features.Templates
@@ -12,20 +15,27 @@ namespace Spotacard.Features.Templates
     public class TemplateTests
     {
         [Test]
-        public async Task Generate_Result_With_Template_Service()
+        public async Task Generate_Result_With_Command()
         {
             var fixture = new TestFixture(context => new TestCase80(context));
             try
             {
-                var project = new Project(fixture.GetContext());
-                var engine = new RazorLightEngineBuilder()
-                    .UseProject(project)
-                    .UseMemoryCachingProvider()
-                    .Build();
+                var command = new Generate.Command
+                {
+                    Data = new Generate.GenerateData
+                    {
+                        AppId = new Guid("bee3223a-276d-40a5-ad25-d8ac3967132e"),
+                        TemplateId = new Guid("6cc277d5-253e-48e0-8a9a-8fe3cae17e5b")
+                    }
+                };
 
                 // For key as a GUID
-                var result = await engine.CompileRenderAsync("6cc277d5-253e-48e0-8a9a-8fe3cae17e5b", new Card { Title = "John Doe" });
-                Assert.That(result, Is.EqualTo("Hello, John Doe"));
+                var result = await TemplateHelper.Generate(fixture, command);
+
+                Assert.That(result, Is.Not.Null);
+                Assert.That(result, Is.Not.Null.Or.Empty);
+                Assert.That(result.Files.First().Name, Is.EqualTo("d://repositories//tmp//John Doe"));
+                Assert.That(await result.Files.First().GetContent(), Is.EqualTo("Hello, John Doe"));
             }
             finally
             {
