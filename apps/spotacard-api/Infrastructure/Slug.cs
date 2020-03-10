@@ -12,7 +12,7 @@ namespace Spotacard.Infrastructure
     //https://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net
     public static class Slug
     {
-        public static async Task<string> ToSlug(this string text, GraphContext context, CancellationToken cancellationToken)
+        public static async Task<string> ToSlugAsync(this string text, GraphContext context, CancellationToken cancellationToken)
         {
             var counter = 0;
             var slug = text.Pascalize().Kebaberize();
