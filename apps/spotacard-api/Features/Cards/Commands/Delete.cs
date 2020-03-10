@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Commands
 {
     public class Delete
     {

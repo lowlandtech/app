@@ -6,7 +6,7 @@ using Spotacard.Core.Enums;
 using Spotacard.Domain;
 using Spotacard.Features.Attributes;
 using Spotacard.Infrastructure;
-using Create = Spotacard.Features.Cards.Create;
+using Create = Spotacard.Features.Cards.Commands.Create;
 
 namespace Spotacard.Features.Graphs
 {

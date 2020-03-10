@@ -3,9 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Commands
 {
     public class List
     {

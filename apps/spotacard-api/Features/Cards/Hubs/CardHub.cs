@@ -1,9 +1,9 @@
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Hubs
 {
     public class CardHub : Hub
     {

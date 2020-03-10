@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Spotacard.Features.Cards;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure.Security;
 
 namespace Spotacard.Features.Favorites

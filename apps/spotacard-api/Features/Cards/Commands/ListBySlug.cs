@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Commands
 {
     public class ListBySlug
     {

@@ -1,6 +1,6 @@
 using Spotacard.Domain;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Types
 {
     public class CardEnvelope
     {

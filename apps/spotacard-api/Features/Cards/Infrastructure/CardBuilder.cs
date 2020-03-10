@@ -1,4 +1,6 @@
 using Spotacard.Domain;
+using Spotacard.Features.Cards.Commands;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Infrastructure
 {
     internal class CardBuilder
     {

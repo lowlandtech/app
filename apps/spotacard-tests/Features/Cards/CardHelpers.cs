@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Features.Users;
+using Create = Spotacard.Features.Cards.Commands.Create;
 
 namespace Spotacard.Features.Cards
 {

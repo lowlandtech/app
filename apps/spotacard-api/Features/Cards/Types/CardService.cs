@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Types
 {
     public class CardService
     {

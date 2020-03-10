@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Spotacard.Features.Cards.Commands;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure.Security;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Controllers
 {
     [Route("cards")]
     public class CardsController : Controller

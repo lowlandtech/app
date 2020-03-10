@@ -1,13 +1,15 @@
-using FluentValidation;
-using MediatR;
-using Spotacard.Domain;
-using Spotacard.Infrastructure;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
 using Spotacard.Core.Enums;
+using Spotacard.Domain;
+using Spotacard.Features.Cards.Infrastructure;
+using Spotacard.Features.Cards.Types;
+using Spotacard.Infrastructure;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Commands
 {
     public class Create
     {

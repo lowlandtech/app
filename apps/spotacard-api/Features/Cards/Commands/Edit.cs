@@ -1,17 +1,18 @@
-using FluentValidation;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Spotacard.Domain;
-using Spotacard.Infrastructure;
-using Spotacard.Infrastructure.Errors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Spotacard.Domain;
+using Spotacard.Features.Cards.Types;
+using Spotacard.Infrastructure;
+using Spotacard.Infrastructure.Errors;
 
-namespace Spotacard.Features.Cards
+namespace Spotacard.Features.Cards.Commands
 {
     public class Edit
     {
