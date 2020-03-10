@@ -29,14 +29,15 @@ namespace Spotacard.Infrastructure
             modelBuilder.Entity<Edge>(b =>
             {
                 b.HasKey(t => new { t.ParentId, t.ChildId });
-
                 b.HasOne(pt => pt.Parent)
                     .WithMany(p => p.Parents)
-                    .HasForeignKey(pt => pt.ParentId);
+                    .HasForeignKey(pt => pt.ParentId)
+                    .OnDelete(DeleteBehavior.NoAction);
 
                 b.HasOne(pt => pt.Child)
                     .WithMany(t => t.Children)
-                    .HasForeignKey(pt => pt.ChildId);
+                    .HasForeignKey(pt => pt.ChildId)
+                    .OnDelete(DeleteBehavior.NoAction);
             });
 
             modelBuilder.Entity<Card>(card => {
