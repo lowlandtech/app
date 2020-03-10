@@ -34,70 +34,32 @@ namespace Spotacard
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ISettings>(Settings);
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehavior<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(DBContextTransactionPipelineBehavior<,>));
 
             services.AddProvider(Settings);
             services.AddControllers()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                );
+                    .AddNewtonsoftJson(options =>
+                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    );
 
             services.AddLocalization(x => x.ResourcesPath = "Resources");
-
-            // Inject an implementation of ISwaggerProvider with defaulted settings applied
-            services.AddSwaggerGen(x =>
-            {
-                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Please insert JWT with Bearer into field",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    BearerFormat = "JWT"
-                });
-
-                x.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference {Type = ReferenceType.SecurityScheme, Id = "Bearer"}
-                        },
-                        new string[] { }
-                    }
-                });
-                x.SwaggerDoc("v1", new OpenApiInfo {Title = "Spotacard API", Version = "v1"});
-                x.CustomSchemaIds(y => y.FullName);
-                x.DocInclusionPredicate((version, apiDescription) => true);
-                x.TagActionsBy(y => new List<string>
-                {
-                    y.GroupName
-                });
-            });
+            services.AddSwagger();
 
             services.AddCors();
             services.AddMvc(opt =>
-                {
-                    opt.Conventions.Add(new GroupByApiRootConvention());
-                    opt.Filters.Add(typeof(ValidatorActionFilter));
-                    opt.EnableEndpointRouting = false;
-                })
-                .AddJsonOptions(opt => { opt.JsonSerializerOptions.IgnoreNullValues = true; })
-                .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
+            {
+                opt.Conventions.Add(new GroupByApiRootConvention());
+                opt.Filters.Add(typeof(ValidatorActionFilter));
+                opt.EnableEndpointRouting = false;
+            })
+            .AddJsonOptions(opt => { opt.JsonSerializerOptions.IgnoreNullValues = true; })
+            .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
 
             services.AddAutoMapper(GetType().Assembly);
-
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
-            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
-            services.AddScoped<ICurrentUser, CurrentUser>();
-            services.AddScoped<IProfileReader, ProfileReader>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<ISettings>(Settings);
-            services.AddScoped<ISeeder, GraphSeeder>();
-            services.AddScoped<IGraph, Graph>();
-            services.AddJwt();
+            services.AddServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

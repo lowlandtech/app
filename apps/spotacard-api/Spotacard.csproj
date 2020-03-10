@@ -7,6 +7,9 @@
     <TreatSpecificWarningsAsErrors />
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Spotacard.csproj.DotSettings" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="EnsureThatCore" Version="1.0.0" />
     <PackageReference Include="Humanizer" Version="2.7.9" />

@@ -1,13 +1,22 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 using Spotacard.Infrastructure.Security;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Spotacard.Core.Contracts;
+using Spotacard.Features.Graphs;
+using Spotacard.Features.Profiles;
+using Spotacard.Infrastructure;
 
 namespace Spotacard.Extensions
 {
@@ -80,6 +89,51 @@ namespace Spotacard.Extensions
 
             loggerFactory.AddSerilog(log);
             Log.Logger = log;
+        }
+
+        public static void AddSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(x =>
+            {
+                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    BearerFormat = "JWT"
+                });
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference {Type = ReferenceType.SecurityScheme, Id = "Bearer"}
+                        },
+                        new string[] { }
+                    }
+                });
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Spotacard API", Version = "v1" });
+                x.CustomSchemaIds(y => y.FullName);
+                x.DocInclusionPredicate((version, apiDescription) => true);
+                x.TagActionsBy(y => new List<string>
+                {
+                    y.GroupName
+                });
+            });
+        }
+
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+            services.AddScoped<ICurrentUser, CurrentUser>();
+            services.AddScoped<IProfileReader, ProfileReader>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISeeder, GraphSeeder>();
+            services.AddScoped<IGraph, Graph>();
+            services.AddJwt();
         }
     }
 }
