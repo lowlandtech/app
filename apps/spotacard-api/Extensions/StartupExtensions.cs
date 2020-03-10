@@ -1,22 +1,20 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
+using Spotacard.Core.Contracts;
+using Spotacard.Features.Graphs;
+using Spotacard.Features.Profiles;
+using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Security;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Spotacard.Core.Contracts;
-using Spotacard.Features.Graphs;
-using Spotacard.Features.Profiles;
-using Spotacard.Infrastructure;
 
 namespace Spotacard.Extensions
 {

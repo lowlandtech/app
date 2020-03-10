@@ -23,12 +23,12 @@ namespace Spotacard
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
-        {
-            Settings = new Settings(configuration, env);
-        }
-
         public Settings Settings { get; }
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        {
+            Settings = new Settings(configuration, environment);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -49,14 +49,20 @@ namespace Spotacard
             services.AddSwagger();
 
             services.AddCors();
-            services.AddMvc(opt =>
+            services.AddMvc(options =>
             {
-                opt.Conventions.Add(new GroupByApiRootConvention());
-                opt.Filters.Add(typeof(ValidatorActionFilter));
-                opt.EnableEndpointRouting = false;
+                options.Conventions.Add(new GroupByApiRootConvention());
+                options.Filters.Add(typeof(ValidatorActionFilter));
+                options.EnableEndpointRouting = false;
             })
-            .AddJsonOptions(opt => { opt.JsonSerializerOptions.IgnoreNullValues = true; })
-            .AddFluentValidation(cfg => { cfg.RegisterValidatorsFromAssemblyContaining<Startup>(); });
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            })
+            .AddFluentValidation(configuration =>
+            {
+                configuration.RegisterValidatorsFromAssemblyContaining<Startup>();
+            });
 
             services.AddAutoMapper(GetType().Assembly);
             services.AddServices();
