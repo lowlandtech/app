@@ -42,5 +42,7 @@ namespace Spotacard.Domain
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+        [JsonIgnore] public List<Edge> Parents { get; set; }
+        [JsonIgnore] public List<Edge> Children { get; set; }
     }
 }

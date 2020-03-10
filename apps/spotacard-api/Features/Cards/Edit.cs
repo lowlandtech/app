@@ -57,7 +57,7 @@ namespace Spotacard.Features.Cards
                 card.Description = message.Card.Description ?? card.Description;
                 card.Body = message.Card.Body ?? card.Body;
                 card.Title = message.Card.Title ?? card.Title;
-                card.Slug = await card.Title.ToSlug(_context);
+                card.Slug = await card.Title.ToSlug(_context, cancellationToken);
 
                 // list of currently saved card tags for the given card
                 var cardTagList = message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>();

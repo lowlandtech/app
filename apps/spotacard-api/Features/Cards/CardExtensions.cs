@@ -4,7 +4,7 @@ using Spotacard.Domain;
 
 namespace Spotacard.Features.Cards
 {
-    public static class CardExtensions
+    internal static class CardExtensions
     {
         public static IQueryable<Card> GetAllData(this DbSet<Card> cards)
         {

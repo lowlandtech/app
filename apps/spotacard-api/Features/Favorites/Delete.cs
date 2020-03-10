@@ -33,12 +33,12 @@ namespace Spotacard.Features.Favorites
         public class QueryHandler : IRequestHandler<Command, CardEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
 
-            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
+            public QueryHandler(GraphContext context, ICurrentUser currentUser)
             {
                 _context = context;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
             }
 
             public async Task<CardEnvelope> Handle(Command message, CancellationToken cancellationToken)
@@ -49,7 +49,7 @@ namespace Spotacard.Features.Favorites
 
                 var person =
                     await _context.Persons.FirstOrDefaultAsync(
-                        x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
+                        x => x.Username == _currentUser.GetCurrentUsername(), cancellationToken);
 
                 var favorite =
                     await _context.CardFavorites.FirstOrDefaultAsync(

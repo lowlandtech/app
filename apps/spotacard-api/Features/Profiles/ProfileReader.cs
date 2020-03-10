@@ -12,19 +12,19 @@ namespace Spotacard.Features.Profiles
     public class ProfileReader : IProfileReader
     {
         private readonly GraphContext _context;
-        private readonly ICurrentUserAccessor _currentUserAccessor;
+        private readonly ICurrentUser _currentUser;
         private readonly IMapper _mapper;
 
-        public ProfileReader(GraphContext context, ICurrentUserAccessor currentUserAccessor, IMapper mapper)
+        public ProfileReader(GraphContext context, ICurrentUser currentUser, IMapper mapper)
         {
             _context = context;
-            _currentUserAccessor = currentUserAccessor;
+            _currentUser = currentUser;
             _mapper = mapper;
         }
 
         public async Task<ProfileEnvelope> ReadProfile(string username)
         {
-            var currentUserName = _currentUserAccessor.GetCurrentUsername();
+            var currentUserName = _currentUser.GetCurrentUsername();
 
             var person = await _context.Persons.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Username == username);

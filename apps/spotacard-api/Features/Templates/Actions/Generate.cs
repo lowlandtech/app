@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
+using RazorLight;
 using Spotacard.Core.Enums;
 using Spotacard.Features.Templates.Exceptions;
 using Spotacard.Features.Templates.Types;
@@ -30,43 +31,49 @@ namespace Spotacard.Features.Templates.Actions
 
         public class Command : IRequest<GenerateEnvelope>
         {
-            public GenerateData Generation { get; set; }
+            public GenerateData Data { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Generation).NotNull().SetValidator(new GenerateDataValidator());
+                RuleFor(x => x.Data).NotNull().SetValidator(new GenerateDataValidator());
             }
         }
 
         public class Handler : IRequestHandler<Command, GenerateEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
 
-            public Handler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
+            public Handler(GraphContext context, ICurrentUser currentUser)
             {
                 _context = context;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
             }
 
             public async Task<GenerateEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var template = await _context.Cards.FindAsync(message.Generation.TemplateId, cancellationToken);
+                var template = await _context.Cards.FindAsync(message.Data.TemplateId, cancellationToken);
 
                 if (template == null || template.Type != CardTypes.Template)
                 {
-                    throw new InvalidTemplateException(message.Generation.TemplateId);
+                    throw new InvalidTemplateException(message.Data.TemplateId);
                 }
 
-                var app = await _context.Cards.FindAsync(message.Generation.AppId, cancellationToken);
+                var app = await _context.Cards.FindAsync(message.Data.AppId, cancellationToken);
 
                 if (app == null || app.Type != CardTypes.App)
                 {
-                    throw new InvalidAppException(message.Generation.AppId);
+                    throw new InvalidAppException(message.Data.AppId);
                 }
+
+                var project = new Project(_context);
+                var engine = new RazorLightEngineBuilder()
+                    .UseProject(project)
+                    .UseMemoryCachingProvider()
+                    .Build();
 
                 var files = new List<FileData>();
 

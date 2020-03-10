@@ -33,14 +33,14 @@ namespace Spotacard.Features.Followers
         public class QueryHandler : IRequestHandler<Command, ProfileEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
             private readonly IProfileReader _profileReader;
 
-            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor,
+            public QueryHandler(GraphContext context, ICurrentUser currentUser,
                 IProfileReader profileReader)
             {
                 _context = context;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
                 _profileReader = profileReader;
             }
 
@@ -53,7 +53,7 @@ namespace Spotacard.Features.Followers
 
                 var observer =
                     await _context.Persons.FirstOrDefaultAsync(
-                        x => x.Username == _currentUserAccessor.GetCurrentUsername(), cancellationToken);
+                        x => x.Username == _currentUser.GetCurrentUsername(), cancellationToken);
 
                 var followedPeople =
                     await _context.FollowedPeople.FirstOrDefaultAsync(

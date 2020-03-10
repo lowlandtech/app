@@ -93,7 +93,7 @@ namespace Spotacard
 
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
-            services.AddScoped<ICurrentUserAccessor, CurrentUserAccessor>();
+            services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddScoped<IProfileReader, ProfileReader>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<ITemplateService, TemplateService>();

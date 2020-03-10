@@ -22,9 +22,23 @@ namespace Spotacard.Infrastructure
         public DbSet<CardTag> CardTags { get; set; }
         public DbSet<CardFavorite> CardFavorites { get; set; }
         public DbSet<FollowedPeople> FollowedPeople { get; set; }
+        public DbSet<Edge> Edges { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Edge>(b =>
+            {
+                b.HasKey(t => new { t.ParentId, t.ChildId });
+
+                b.HasOne(pt => pt.Parent)
+                    .WithMany(p => p.Parents)
+                    .HasForeignKey(pt => pt.ParentId);
+
+                b.HasOne(pt => pt.Child)
+                    .WithMany(t => t.Children)
+                    .HasForeignKey(pt => pt.ChildId);
+            });
+
             modelBuilder.Entity<Card>(card => {
                 card.HasIndex(e => e.Slug).IsUnique();
             });

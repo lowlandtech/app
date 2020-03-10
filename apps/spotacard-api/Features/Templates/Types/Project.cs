@@ -1,11 +1,11 @@
+using RazorLight.Razor;
+using Spotacard.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RazorLight.Razor;
-using Spotacard.Infrastructure;
 
-namespace Spotacard.Features.Templates
+namespace Spotacard.Features.Templates.Types
 {
     public class Project : RazorLightProject
     {

@@ -2,15 +2,15 @@ using Spotacard.Infrastructure;
 
 namespace Spotacard
 {
-    public class StubCurrentUserAccessor : ICurrentUserAccessor
+    public class StubCurrentUser : ICurrentUser
     {
         private readonly string _currentUserName;
 
         /// <summary>
-        ///     stub the ICurrentUserAccessor with a given userName to be used in tests
+        ///     stub the ICurrentUser with a given userName to be used in tests
         /// </summary>
         /// <param name="userName"></param>
-        public StubCurrentUserAccessor(string userName)
+        public StubCurrentUser(string userName)
         {
             _currentUserName = userName;
         }

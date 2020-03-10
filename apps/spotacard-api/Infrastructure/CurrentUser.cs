@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace Spotacard.Infrastructure
 {
-    public class CurrentUserAccessor : ICurrentUserAccessor
+    public class CurrentUser : ICurrentUser
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CurrentUserAccessor(IHttpContextAccessor httpContextAccessor)
+        public CurrentUser(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }

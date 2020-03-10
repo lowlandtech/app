@@ -43,22 +43,22 @@ namespace Spotacard.Features.Users
         public class Handler : IRequestHandler<Command, UserEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
             private readonly IMapper _mapper;
             private readonly IPasswordHasher _passwordHasher;
 
             public Handler(GraphContext context, IPasswordHasher passwordHasher,
-                ICurrentUserAccessor currentUserAccessor, IMapper mapper)
+                ICurrentUser currentUser, IMapper mapper)
             {
                 _context = context;
                 _passwordHasher = passwordHasher;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
                 _mapper = mapper;
             }
 
             public async Task<UserEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var currentUsername = _currentUserAccessor.GetCurrentUsername();
+                var currentUsername = _currentUser.GetCurrentUsername();
                 var person = await _context.Persons.Where(x => x.Username == currentUsername)
                     .FirstOrDefaultAsync(cancellationToken);
 

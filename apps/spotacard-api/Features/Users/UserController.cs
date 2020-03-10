@@ -11,13 +11,13 @@ namespace Spotacard.Features.Users
     [Authorize(AuthenticationSchemes = JwtIssuerOptions.Schemes)]
     public class UserController
     {
-        private readonly ICurrentUserAccessor _currentUserAccessor;
+        private readonly ICurrentUser _currentUser;
         private readonly IMediator _mediator;
 
-        public UserController(IMediator mediator, ICurrentUserAccessor currentUserAccessor)
+        public UserController(IMediator mediator, ICurrentUser currentUser)
         {
             _mediator = mediator;
-            _currentUserAccessor = currentUserAccessor;
+            _currentUser = currentUser;
         }
 
         [HttpGet]
@@ -25,7 +25,7 @@ namespace Spotacard.Features.Users
         {
             return await _mediator.Send(new Details.Query
             {
-                Username = _currentUserAccessor.GetCurrentUsername()
+                Username = _currentUser.GetCurrentUsername()
             });
         }
 

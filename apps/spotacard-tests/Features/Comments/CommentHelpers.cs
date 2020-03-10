@@ -26,7 +26,7 @@ namespace Spotacard.Features.Comments
             }
 
             var context = fixture.GetContext();
-            var currentAccessor = new StubCurrentUserAccessor(userName);
+            var currentAccessor = new StubCurrentUser(userName);
 
             var handler = new Create.Handler(context, currentAccessor);
             var created = await handler.Handle(command, new CancellationToken());

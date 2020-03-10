@@ -31,22 +31,22 @@ namespace Spotacard.Features.Cards
         public class QueryHandler : IRequestHandler<Query, CardsEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
 
-            public QueryHandler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
+            public QueryHandler(GraphContext context, ICurrentUser currentUser)
             {
                 _context = context;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
             }
 
             public async Task<CardsEnvelope> Handle(Query message, CancellationToken cancellationToken)
             {
                 var queryable = _context.Cards.GetAllData();
 
-                if (message.IsFeed && _currentUserAccessor.GetCurrentUsername() != null)
+                if (message.IsFeed && _currentUser.GetCurrentUsername() != null)
                 {
                     var currentUser = await _context.Persons.Include(x => x.Following)
-                        .FirstOrDefaultAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(),
+                        .FirstOrDefaultAsync(x => x.Username == _currentUser.GetCurrentUsername(),
                             cancellationToken);
                     queryable = queryable.Where(
                         x => currentUser.Following.Select(y => y.TargetId).Contains(x.Author.Id));

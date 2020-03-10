@@ -19,7 +19,7 @@ namespace Spotacard.Features.Cards
         {
             // first create the default user
             var user = await UserHelpers.CreateDefaultUser(fixture);
-            var currentAccessor = new StubCurrentUserAccessor(user.Username);
+            var currentAccessor = new StubCurrentUser(user.Username);
 
             var handler = new Create.Handler(fixture.GetContext(), currentAccessor);
             var result = await handler.Handle(command, new CancellationToken());

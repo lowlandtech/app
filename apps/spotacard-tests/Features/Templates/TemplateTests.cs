@@ -6,6 +6,7 @@ using Spotacard.Features.Templates.Artifacts;
 using Spotacard.Features.Templates.Contracts;
 using System.IO;
 using System.Threading.Tasks;
+using Spotacard.Features.Templates.Types;
 using Spotacard.TestCases;
 
 namespace Spotacard.Features.Templates

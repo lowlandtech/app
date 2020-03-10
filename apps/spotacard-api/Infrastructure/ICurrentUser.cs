@@ -1,6 +1,6 @@
 ﻿namespace Spotacard.Infrastructure
 {
-    public interface ICurrentUserAccessor
+    public interface ICurrentUser
     {
         string GetCurrentUsername();
     }

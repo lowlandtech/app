@@ -2,7 +2,7 @@ using System.IO;
 using System.Text;
 using RazorLight.Razor;
 
-namespace Spotacard.Features.Templates
+namespace Spotacard.Features.Templates.Types
 {
     public class Template : RazorLightProjectItem
     {

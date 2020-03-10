@@ -1,13 +1,11 @@
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Infrastructure;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Features.Cards
 {
@@ -19,6 +17,7 @@ namespace Spotacard.Features.Cards
             public string Description { get; set; }
             public string Body { get; set; }
             public string TagList { get; set; }
+            public CardTypes Type { get; set; }
             public List<CardAttribute> Attributes { get; set; } = new List<CardAttribute>();
         }
 
@@ -48,67 +47,22 @@ namespace Spotacard.Features.Cards
         public class Handler : IRequestHandler<Command, CardEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
 
-            public Handler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
+            public Handler(GraphContext context, ICurrentUser currentUser)
             {
                 _context = context;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
             }
 
             public async Task<CardEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
-                var author =
-                    await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(),
-                        cancellationToken);
-                var tags = new List<Tag>();
-                foreach (var tag in message.Card.TagList?.Split(",") ?? Enumerable.Empty<string>())
-                {
-                    var t = await _context.Tags.FindAsync(tag);
-                    if (t == null)
-                    {
-                        t = new Tag
-                        {
-                            TagId = tag
-                        };
-                        await _context.Tags.AddAsync(t, cancellationToken);
-                        //save immediately for reuse
-                        await _context.SaveChangesAsync(cancellationToken);
-                    }
-
-                    tags.Add(t);
-                }
-
-                var card = new Card
-                {
-                    Author = author,
-                    Body = message.Card.Body,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow,
-                    Description = message.Card.Description,
-                    Title = message.Card.Title,
-                    Slug = await message.Card.Title.ToSlug(_context)
-
-                };
-
-                foreach (var attribute in message.Card.Attributes)
-                {
-                    attribute.CardId = card.Id;
-                    attribute.Card = card;
-                    card.CardAttributes.Add(attribute);
-                }
-
-                await _context.Cards.AddAsync(card, cancellationToken);
-
-                await _context.CardTags.AddRangeAsync(tags.Select(x => new CardTag
-                {
-                    Card = card,
-                    Tag = x
-                }), cancellationToken);
-
-                await _context.SaveChangesAsync(cancellationToken);
-
-                return new CardEnvelope(card);
+                return await new CardBuilder(_context)
+                    .UseCard(message.Card)
+                    .UseTags(message.Card.TagList)
+                    .UseAttributes(message.Card.Attributes)
+                    .UseUser(_currentUser)
+                    .BuildAsync(cancellationToken);
             }
         }
     }

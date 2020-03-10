@@ -44,12 +44,12 @@ namespace Spotacard.Features.Comments
         public class Handler : IRequestHandler<Command, CommentEnvelope>
         {
             private readonly GraphContext _context;
-            private readonly ICurrentUserAccessor _currentUserAccessor;
+            private readonly ICurrentUser _currentUser;
 
-            public Handler(GraphContext context, ICurrentUserAccessor currentUserAccessor)
+            public Handler(GraphContext context, ICurrentUser currentUser)
             {
                 _context = context;
-                _currentUserAccessor = currentUserAccessor;
+                _currentUser = currentUser;
             }
 
             public async Task<CommentEnvelope> Handle(Command message, CancellationToken cancellationToken)
@@ -61,7 +61,7 @@ namespace Spotacard.Features.Comments
                 if (card == null) throw new RestException(HttpStatusCode.NotFound, new {Card = Constants.NOT_FOUND});
 
                 var author =
-                    await _context.Persons.FirstAsync(x => x.Username == _currentUserAccessor.GetCurrentUsername(),
+                    await _context.Persons.FirstAsync(x => x.Username == _currentUser.GetCurrentUsername(),
                         cancellationToken);
 
                 var comment = new Comment
