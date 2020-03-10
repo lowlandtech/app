@@ -1,13 +1,11 @@
-using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using RazorLight;
 using Spotacard.Domain;
 using Spotacard.Features.Templates.Artifacts;
-using Spotacard.Features.Templates.Contracts;
-using System.IO;
-using System.Threading.Tasks;
 using Spotacard.Features.Templates.Types;
 using Spotacard.TestCases;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Spotacard.Features.Templates
 {
@@ -17,7 +15,6 @@ namespace Spotacard.Features.Templates
         public async Task Generate_Result_With_Template_Service()
         {
             var fixture = new TestFixture(context => new TestCase80(context));
-            var service = fixture.Provider.GetRequiredService<ITemplateService>();
             try
             {
                 var project = new Project(fixture.GetContext());

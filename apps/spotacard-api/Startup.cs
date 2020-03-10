@@ -11,15 +11,13 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Spotacard.Core.Contracts;
 using Spotacard.Extensions;
+using Spotacard.Features.Graphs;
 using Spotacard.Features.Profiles;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 using Spotacard.Infrastructure.Security;
 using System.Collections.Generic;
 using System.Reflection;
-using Spotacard.Features.Graphs;
-using Spotacard.Features.Templates;
-using Spotacard.Features.Templates.Contracts;
 
 namespace Spotacard
 {
@@ -96,7 +94,6 @@ namespace Spotacard
             services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddScoped<IProfileReader, ProfileReader>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<ITemplateService, TemplateService>();
             services.AddSingleton<ISettings>(Settings);
             services.AddScoped<ISeeder, GraphSeeder>();
             services.AddScoped<IGraph, Graph>();
