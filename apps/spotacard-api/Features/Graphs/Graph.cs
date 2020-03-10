@@ -28,7 +28,7 @@ namespace Spotacard.Features.Graphs
             return result.Attribute?.Value;
         }
 
-        public async Task<Card> AddCard(ContractTypes type, string name, List<CardAttribute> attributes)
+        public async Task<Card> AddCard(CardTypes type, string name, List<CardAttribute> attributes)
         {
             var command = new Create.Command
             {

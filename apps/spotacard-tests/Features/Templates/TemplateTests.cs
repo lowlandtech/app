@@ -6,6 +6,7 @@ using Spotacard.Features.Templates.Artifacts;
 using Spotacard.Features.Templates.Contracts;
 using System.IO;
 using System.Threading.Tasks;
+using Spotacard.TestCases;
 
 namespace Spotacard.Features.Templates
 {
@@ -14,7 +15,7 @@ namespace Spotacard.Features.Templates
         [Test]
         public async Task Generate_Result_With_Template_Service()
         {
-            var fixture = new TestFixture(context => new TestCase0(context));
+            var fixture = new TestFixture(context => new TestCase80(context));
             var service = fixture.Provider.GetRequiredService<ITemplateService>();
             try
             {
@@ -37,7 +38,7 @@ namespace Spotacard.Features.Templates
         [Test]
         public async Task Create_Card_Description_With_Card_Model()
         {
-            var fixture = new TestFixture(context => new TestCase0(context));
+            var fixture = new TestFixture(context => new TestCase80(context));
             try
             {
                 var project = new Project(fixture.GetContext());
@@ -59,7 +60,7 @@ namespace Spotacard.Features.Templates
         [Test]
         public async Task Create_Card_Description_From_Database()
         {
-            var fixture = new TestFixture(context => new TestCase0(context));
+            var fixture = new TestFixture(context => new TestCase80(context));
             try
             {
                 var project = new Project(fixture.GetContext());

@@ -1,6 +1,6 @@
 namespace Spotacard.Core.Enums
 {
-    public enum ContractTypes
+    public enum CardTypes
     {
         Todo = 0,
         Project = 1,
@@ -9,6 +9,7 @@ namespace Spotacard.Core.Enums
         App = 10,
         Workflow = 50,
         Step = 55,
-        Template = 80
+        Template = 80,
+        Content = 81
     }
 }

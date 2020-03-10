@@ -16,7 +16,7 @@ namespace Spotacard.Features.Cards
             Id = Guid.Parse(FirstItemId),
             Title = "Item 1",
             Slug = "item-1",
-            Type = ContractTypes.Todo
+            Type = CardTypes.Todo
         };
 
         public static readonly Card SecondItem = new Card
@@ -24,7 +24,7 @@ namespace Spotacard.Features.Cards
             Id = Guid.Parse(SecondItemId),
             Title = "Item 2",
             Slug = "item-2",
-            Type = ContractTypes.Todo
+            Type = CardTypes.Todo
         };
 
         private readonly GraphContext _context;

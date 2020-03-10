@@ -17,7 +17,7 @@ namespace Spotacard.Features.Attributes
         {
             Id = Guid.Parse(CardId),
             Title = "Item 1",
-            Type = ContractTypes.Todo
+            Type = CardTypes.Todo
         };
 
         public static readonly CardAttribute CardAttribute1 = new CardAttribute

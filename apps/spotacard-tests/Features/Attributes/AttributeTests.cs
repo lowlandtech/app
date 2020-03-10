@@ -1,9 +1,7 @@
-using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
-using Spotacard.Features.Graphs;
 using Spotacard.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -73,7 +71,7 @@ namespace Spotacard.Features.Attributes
             try
             {
                 var attributes = new List<CardAttribute>();
-                await graph.AddCard(ContractTypes.Todo, "my todo", attributes);
+                await graph.AddCard(CardTypes.Todo, "my todo", attributes);
                 var result = await graph.GetCardAttribute(Guid.NewGuid(), "Text");
                 Assert.That(result, Is.Null);
             }
@@ -94,7 +92,7 @@ namespace Spotacard.Features.Attributes
         {
             Id = Guid.Parse(CardId),
             Title = "existing 1",
-            Type = ContractTypes.Todo,
+            Type = CardTypes.Todo,
             Slug = "existing-1"
         };
 

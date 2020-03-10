@@ -9,6 +9,6 @@ namespace Spotacard.Features.Graphs
     public interface IGraph
     {
         Task<string> GetCardAttribute(Guid cardId, string name);
-        Task<Card> AddCard(ContractTypes type, string name, List<CardAttribute> attributes);
+        Task<Card> AddCard(CardTypes type, string name, List<CardAttribute> attributes);
     }
 }

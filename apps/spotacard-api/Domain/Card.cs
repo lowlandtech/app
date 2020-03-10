@@ -16,7 +16,7 @@ namespace Spotacard.Domain
 
         [Required] public string Title { get; set; }
 
-        public ContractTypes Type { get; set; }
+        public CardTypes Type { get; set; }
 
         public string Description { get; set; }
 
