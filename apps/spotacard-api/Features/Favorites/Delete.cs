@@ -5,6 +5,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Features.Cards;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 

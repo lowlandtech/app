@@ -60,7 +60,7 @@ namespace Spotacard.Features.Cards.Commands
             public async Task<CardEnvelope> Handle(Command message, CancellationToken cancellationToken)
             {
                 return await new CardBuilder(_context)
-                    .UseCard(message.Card)
+                    .UseCreate(message.Card)
                     .UseTags(message.Card.TagList)
                     .UseAttributes(message.Card.Attributes)
                     .UseUser(_currentUser)

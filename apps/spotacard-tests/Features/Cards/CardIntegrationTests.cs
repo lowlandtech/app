@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Spotacard.Features.Cards.Commands;
+using Spotacard.Features.Cards.Types;
 
 namespace Spotacard.Features.Cards
 {

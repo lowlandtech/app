@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
+using Spotacard.Features.Cards.Commands;
 using Spotacard.Features.Cards.Types;
 
 namespace Spotacard.Features.Cards

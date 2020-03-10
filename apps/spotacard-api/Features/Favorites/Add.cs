@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Spotacard.Domain;
 using Spotacard.Features.Cards;
+using Spotacard.Features.Cards.Types;
 using Spotacard.Infrastructure;
 using Spotacard.Infrastructure.Errors;
 
