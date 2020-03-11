@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Spotacard.Migrations
 {
-    public partial class addingcardattribute : Migration
+    public partial class AddCardAttribute : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

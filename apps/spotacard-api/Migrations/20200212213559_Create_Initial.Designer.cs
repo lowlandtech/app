@@ -10,8 +10,8 @@ using Spotacard.Infrastructure;
 namespace Spotacard.Migrations
 {
     [DbContext(typeof(GraphContext))]
-    [Migration("20200229052637_add-unique-index")]
-    partial class adduniqueindex
+    [Migration("20200212213559_Create_Initial")]
+    partial class CreateInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,14 +40,10 @@ namespace Spotacard.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Slug")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -56,39 +52,7 @@ namespace Spotacard.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("Slug")
-                        .IsUnique()
-                        .HasFilter("[Slug] IS NOT NULL");
-
                     b.ToTable("Cards");
-                });
-
-            modelBuilder.Entity("Spotacard.Domain.CardAttribute", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CardId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Index")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CardId");
-
-                    b.ToTable("Attributes");
                 });
 
             modelBuilder.Entity("Spotacard.Domain.CardFavorite", b =>
@@ -210,15 +174,6 @@ namespace Spotacard.Migrations
                     b.HasOne("Spotacard.Domain.Person", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
-                });
-
-            modelBuilder.Entity("Spotacard.Domain.CardAttribute", b =>
-                {
-                    b.HasOne("Spotacard.Domain.Card", "Card")
-                        .WithMany("CardAttributes")
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Spotacard.Domain.CardFavorite", b =>

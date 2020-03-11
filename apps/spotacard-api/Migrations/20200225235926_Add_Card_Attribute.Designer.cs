@@ -10,8 +10,8 @@ using Spotacard.Infrastructure;
 namespace Spotacard.Migrations
 {
     [DbContext(typeof(GraphContext))]
-    [Migration("20200212213559_Initial")]
-    partial class Initial
+    [Migration("20200225235926_Add_Card_Attribute")]
+    partial class AddCardAttribute
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,7 +43,11 @@ namespace Spotacard.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -53,6 +57,31 @@ namespace Spotacard.Migrations
                     b.HasIndex("AuthorId");
 
                     b.ToTable("Cards");
+                });
+
+            modelBuilder.Entity("Spotacard.Domain.CardAttribute", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CardId");
+
+                    b.ToTable("CardAttributes");
                 });
 
             modelBuilder.Entity("Spotacard.Domain.CardFavorite", b =>
@@ -174,6 +203,15 @@ namespace Spotacard.Migrations
                     b.HasOne("Spotacard.Domain.Person", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("Spotacard.Domain.CardAttribute", b =>
+                {
+                    b.HasOne("Spotacard.Domain.Card", "Card")
+                        .WithMany("CardAttributes")
+                        .HasForeignKey("CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Spotacard.Domain.CardFavorite", b =>

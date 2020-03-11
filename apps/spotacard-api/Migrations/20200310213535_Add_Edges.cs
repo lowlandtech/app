@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Spotacard.Migrations
 {
-    public partial class addedges : Migration
+    public partial class AddEdges : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

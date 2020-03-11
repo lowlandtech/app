@@ -10,8 +10,8 @@ using Spotacard.Infrastructure;
 namespace Spotacard.Migrations
 {
     [DbContext(typeof(GraphContext))]
-    [Migration("20200310213535_add-edges")]
-    partial class addedges
+    [Migration("20200310213535_Add_Edges")]
+    partial class AddEdges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

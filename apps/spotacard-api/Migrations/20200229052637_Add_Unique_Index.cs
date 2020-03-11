@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Spotacard.Migrations
 {
-    public partial class adduniqueindex : Migration
+    public partial class AddUniqueIndex : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
