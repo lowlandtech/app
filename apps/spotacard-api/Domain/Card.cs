@@ -8,7 +8,7 @@ using Spotacard.Core.Enums;
 
 namespace Spotacard.Domain
 {
-    public class Card
+    public partial class Card
     {
         public Guid Id { get; set; }
 

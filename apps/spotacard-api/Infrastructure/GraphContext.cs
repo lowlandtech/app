@@ -23,9 +23,81 @@ namespace Spotacard.Infrastructure
         public DbSet<CardFavorite> CardFavorites { get; set; }
         public DbSet<FollowedPeople> FollowedPeople { get; set; }
         public DbSet<Edge> Edges { get; set; }
+        public DbSet<App> Apps { get; set; }
+        public DbSet<Page> Pages { get; set; }
+        public DbSet<Cell> Cells { get; set; }
+        public DbSet<Layout> Layouts { get; set; }
+        public DbSet<Widget> Widgets { get; set; }
+        public DbSet<Field> Fields { get; set; }
+        public DbSet<Table> Tables { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Cell>(b =>
+            {
+                b.HasKey(t => t.Id);
+
+                b.HasOne(pt => pt.Page)
+                    .WithMany(p => p.Cells)
+                    .HasForeignKey(pt => pt.PageId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasOne(pt => pt.Widget)
+                    .WithMany(p => p.Cells)
+                    .HasForeignKey(pt => pt.WidgetId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                b.HasOne(pt => pt.Field)
+                    .WithMany(p => p.Cells)
+                    .HasForeignKey(pt => pt.FieldId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            modelBuilder.Entity<Page>(b =>
+            {
+                b.HasKey(t => t.Id);
+
+                b.HasOne(pt => pt.Table)
+                    .WithMany(p => p.Pages)
+                    .HasForeignKey(pt => pt.TableId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                b.HasOne(pt => pt.App)
+                    .WithMany(p => p.Pages)
+                    .HasForeignKey(pt => pt.AppId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasOne(pt => pt.Layout)
+                    .WithMany(p => p.Pages)
+                    .HasForeignKey(pt => pt.LayoutId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
+            modelBuilder.Entity<Field>(b =>
+            {
+                b.HasKey(t => t.Id);
+
+                b.HasOne(pt => pt.Table)
+                    .WithMany(p => p.Fields)
+                    .HasForeignKey(pt => pt.TableId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasOne(pt => pt.Widget)
+                    .WithMany(p => p.Fields)
+                    .HasForeignKey(pt => pt.WidgetId)
+                    .OnDelete(DeleteBehavior.SetNull);
+            });
+
+            modelBuilder.Entity<Table>(b =>
+            {
+                b.HasKey(t => t.Id);
+
+                b.HasOne(pt => pt.App)
+                    .WithMany(p => p.Tables)
+                    .HasForeignKey(pt => pt.AppId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
             modelBuilder.Entity<Edge>(b =>
             {
                 b.HasKey(t => new { t.ParentId, t.ChildId });
