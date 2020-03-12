@@ -22,13 +22,37 @@ namespace Spotacard.Extensions
 
                 try
                 {
-                    logger.LogInformation("Seeding database");
+                    logger.LogInformation("Seeding user data");
                     seeder.Execute();
-                    logger.LogInformation("Seeding database");
+                    logger.LogInformation("Seeded user data");
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError("Error seeding database - " + ex);
+                    logger.LogError("Error seeding user data - " + ex);
+                }
+            }
+
+            return host;
+        }
+
+        public static IHost SeedGraphData(this IHost host)
+        {
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<GraphContext>();
+                var logger = services.GetRequiredService<ILogger<Program>>();
+
+
+                try
+                {
+                    logger.LogInformation("Seeding graph data");
+                    new GraphSeeder(context).Execute();
+                    logger.LogInformation("seeded graph data");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError("Error seeding graph data - " + ex);
                 }
             }
 

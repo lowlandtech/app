@@ -27,5 +27,9 @@ namespace Spotacard.Domain
         public Table Table { get; set; }
         [JsonIgnore]
         public List<Cell> Cells { get; set; }
+        [JsonIgnore]
+        public List<Relation> PkFields { get; set; }
+        [JsonIgnore]
+        public List<Relation> FkFields { get; set; }
     }
 }

@@ -30,9 +30,25 @@ namespace Spotacard.Infrastructure
         public DbSet<Widget> Widgets { get; set; }
         public DbSet<Field> Fields { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Relation> Relations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Relation>(b =>
+            {
+                b.HasKey(t => t.Id);
+
+                b.HasOne(pt => pt.PkField)
+                    .WithMany(p => p.PkFields)
+                    .HasForeignKey(pt => pt.PkFieldId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                b.HasOne(pt => pt.FkField)
+                    .WithMany(p => p.FkFields)
+                    .HasForeignKey(pt => pt.FkFieldId)
+                    .OnDelete(DeleteBehavior.NoAction);
+            });
+
             modelBuilder.Entity<Cell>(b =>
             {
                 b.HasKey(t => t.Id);

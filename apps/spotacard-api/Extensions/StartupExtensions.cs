@@ -129,7 +129,7 @@ namespace Spotacard.Extensions
             services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddScoped<IProfileReader, ProfileReader>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<ISeeder, GraphSeeder>();
+            services.AddScoped<ISeeder, PersonSeeder>();
             services.AddScoped<IGraph, Graph>();
             services.AddJwt();
         }

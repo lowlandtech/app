@@ -1,23 +1,14 @@
-using System;
-using System.Collections.Generic;
 using MediatR;
 using Spotacard.Core.Contracts;
-using Spotacard.Core.Types;
-using Spotacard.Features.Users;
-using System.Linq;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
+using Spotacard.Features.Users;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Spotacard.Infrastructure
 {
-    public class GraphSeeder : Seeder
-    {
-        public GraphSeeder(GraphContext context, IMediator mediator)
-        {
-            Activities.Add(new PersonSeeder(context, mediator));
-        }
-    }
-
     public class PersonSeeder : ISeeder
     {
         private readonly GraphContext _context;
@@ -27,6 +18,33 @@ namespace Spotacard.Infrastructure
         {
             _context = context;
             _mediator = mediator;
+        }
+
+        public void Execute()
+        {
+            if (!_context.Persons.Any())
+            {
+                var command = new Create.Command
+                {
+                    User = new Create.UserData
+                    {
+                        Email = "admin@spotacard.com",
+                        Password = "admin",
+                        Username = "admin"
+                    }
+                };
+                _mediator.Send(command);
+            };
+        }
+    }
+
+    public class GraphSeeder : ISeeder
+    {
+        private readonly GraphContext _context;
+
+        public GraphSeeder(GraphContext context)
+        {
+            _context = context;
         }
 
         private static App Spotacard =>
@@ -75,7 +93,7 @@ namespace Spotacard.Infrastructure
                             new Field { Id = new Guid("47fc2f9c-33a1-44ee-a304-5ecc532cf29a"), Name = "Id", Type = FieldTypes.Guid, Index = 0 },
                             new Field { Id = new Guid("d176d4c2-60ab-4956-ae9e-b351a960574e"), Name = "Name", Type = FieldTypes.String, Index = 1 },
                             new Field { Id = new Guid("6f241a7a-f464-4499-a492-75ae53938721"), Name = "Area", Type = FieldTypes.String, Index = 2 },
-                            new Field { Id = new Guid("5898cd47-7ade-491c-92ba-4cc754eaff2a"), Name = "FieldId", Type = FieldTypes.Guid, Index = 3, IsNullable = true },
+                            new Field { Id = new Guid("5898cd47-7ade-491c-92ba-4cc754eaff2a"), Name = "TableId", Type = FieldTypes.Guid, Index = 3, IsNullable = true },
                             new Field { Id = new Guid("f705ba92-527c-45a3-ac3d-6eb28e0415f7"), Name = "WidgetId", Type = FieldTypes.Guid, Index = 4, IsNullable = true },
                             new Field { Id = new Guid("88ce7e52-568c-4209-9b4d-f107f6c4eb47"), Name = "PageId", Type = FieldTypes.Guid, Index = 5 },
                         }
@@ -141,26 +159,121 @@ namespace Spotacard.Infrastructure
                 }
             };
 
+        public static Relation Relation0 =>
+            new Relation
+            {
+                Id = new Guid("090f7291-6d77-4e1d-b146-c1087ecbe362"),
+                Name = "[Field].[Id]=[Cell].[FieldId]",
+                PkFieldId = new Guid("47fc2f9c-33a1-44ee-a304-5ecc532cf29a"),
+                PkName = "Cells",
+                FkFieldId = new Guid("ab68b2c7-d9de-455b-b017-b507898b3be7"),
+                FkName = "Field"
+            };
+        public static Relation Relation1 =>
+            new Relation
+            {
+                Id = new Guid("dda04d12-3cf6-4c0c-b753-e70802f91e5f"),
+                Name = "[Widget].[Id]=[Cell].[Widget]",
+                PkFieldId = new Guid("6ea5f311-cb10-41f2-9350-f007359bb2e0"),
+                PkName = "Cells",
+                FkFieldId = new Guid("c2be2f78-e442-41b6-a750-78a2941a7e92"),
+                FkName = "Widget"
+            };
+        public static Relation Relation2 =>
+            new Relation
+            {
+                Id = new Guid("3e40f8b1-9e47-4741-ba9c-d0f5e848f16e"),
+                Name = "[Page].[Id]=[Cell].[PageId]",
+                PkFieldId = new Guid("54789455-6dc1-48ac-aeaa-6c27152b817c"),
+                PkName = "Cells",
+                FkFieldId = new Guid("88ce7e52-568c-4209-9b4d-f107f6c4eb47"),
+                FkName = "Page"
+            };
+        public static Relation Relation3 =>
+            new Relation
+            {
+                Id = new Guid("ba09c2ab-8902-4259-9e1e-451fe2f4b047"),
+                Name = "[Table].[Id]=[Field].[TableId]",
+                PkFieldId = new Guid("cb0a7c6a-7636-4394-93d6-d08ded9286fd"),
+                PkName = "Fields",
+                FkFieldId = new Guid("5898cd47-7ade-491c-92ba-4cc754eaff2a"),
+                FkName = "Table"
+            };
+        public static Relation Relation4 =>
+            new Relation
+            {
+                Id = new Guid("a4c550bd-7604-48b4-ab50-b14184ffc919"),
+                Name = "[Widget].[Id]=[Field].[WidgetId]",
+                PkFieldId = new Guid("6ea5f311-cb10-41f2-9350-f007359bb2e0"),
+                PkName = "Fields",
+                FkFieldId = new Guid("f705ba92-527c-45a3-ac3d-6eb28e0415f7"),
+                FkName = "Widget"
+            };
+        public static Relation Relation5 =>
+            new Relation
+            {
+                Id = new Guid("9391f014-289b-42ff-a76c-8afa12da1ba2"),
+                Name = "[Table].[Id]=[Field].[TableId]",
+                PkFieldId = new Guid("cb0a7c6a-7636-4394-93d6-d08ded9286fd"),
+                PkName = "Fields",
+                FkFieldId = new Guid("5898cd47-7ade-491c-92ba-4cc754eaff2a"),
+                FkName = "Table"
+            };
+        public static Relation Relation6 =>
+            new Relation
+            {
+                Id = new Guid("eeb037f3-beb6-45ed-a34f-50fd52a25e01"),
+                Name = "[App].[Id]=[Page].[TableId]",
+                PkFieldId = new Guid("36a4fecd-6b79-4b52-a9a9-81738ffc0ac7"),
+                PkName = "Pages",
+                FkFieldId = new Guid("7595b83b-275e-4b11-98c1-ae35e09ea0ef"),
+                FkName = "App"
+            };
+        public static Relation Relation7 =>
+            new Relation
+            {
+                Id = new Guid("1fdb24f8-4492-4448-83c7-58839f6e6ab6"),
+                Name = "[Table].[Id]=[Page].[TableId]",
+                PkFieldId = new Guid("cb0a7c6a-7636-4394-93d6-d08ded9286fd"),
+                PkName = "Pages",
+                FkFieldId = new Guid("d19afcc8-7069-413e-b164-2b8a3238fb15"),
+                FkName = "Table"
+            };
+        public static Relation Relation8 =>
+            new Relation
+            {
+                Id = new Guid("fac51c74-b874-484e-9e97-2cfcd9686bca"),
+                Name = "[Layout].[Id]=[Page].[LayoutId]",
+                PkFieldId = new Guid("4b16d0b1-229e-48e3-a2db-f80e6916e967"),
+                PkName = "Pages",
+                FkFieldId = new Guid("1f772413-e945-4770-9f68-52c1861624b1"),
+                FkName = "Layout"
+            };
+        public static Relation Relation9 =>
+            new Relation
+            {
+                Id = new Guid("3a32c227-a820-46b5-9e4a-9c339f0da65c"),
+                Name = "[App].[Id]=[Table].[AppId]",
+                PkFieldId = new Guid("36a4fecd-6b79-4b52-a9a9-81738ffc0ac7"),
+                PkName = "Tables",
+                FkFieldId = new Guid("c093ad2d-79fd-4767-a8e1-50125f59b391"),
+                FkName = "App"
+            };
         public void Execute()
         {
-            if (!_context.Persons.Any())
-            {
-                var command = new Create.Command
-                {
-                    User = new Create.UserData
-                    {
-                        Email = "admin@spotacard.com",
-                        Password = "admin",
-                        Username = "admin"
-                    }
-                };
-                _mediator.Send(command);
-            };
-
-
             if (!_context.Apps.Any())
             {
                 _context.Apps.Add(Spotacard.Copy());
+                _context.Relations.Add(Relation0.Copy());
+                _context.Relations.Add(Relation1.Copy());
+                _context.Relations.Add(Relation2.Copy());
+                _context.Relations.Add(Relation3.Copy());
+                _context.Relations.Add(Relation4.Copy());
+                _context.Relations.Add(Relation5.Copy());
+                _context.Relations.Add(Relation6.Copy());
+                _context.Relations.Add(Relation7.Copy());
+                _context.Relations.Add(Relation8.Copy());
+                _context.Relations.Add(Relation9.Copy());
                 _context.SaveChanges();
             };
         }

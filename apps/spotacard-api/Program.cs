@@ -14,6 +14,7 @@ namespace Spotacard
                 .Build()
                 .Migrate()
                 .SeedData()
+                .SeedGraphData()
                 .Run();
         }
 
