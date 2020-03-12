@@ -1,24 +1,13 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Newtonsoft.Json;
-using Spotacard.Core.Enums;
 
 namespace Spotacard.Domain
 {
     public class App
     {
-        public App()
-        {
-            Card = new Card
-            {
-                Type = CardTypes.App
-            };
-        }
-
         [Key]
-        [ForeignKey("Card")]
         public Guid Id { get; set; } = Guid.NewGuid();
         [StringLength(
             maximumLength: 100,
@@ -45,13 +34,5 @@ namespace Spotacard.Domain
         public List<Table> Tables { get; set; }
         [JsonIgnore]
         public List<Page> Pages { get; set; }
-        [JsonIgnore]
-        public Card Card { get; set; }
-    }
-
-    public partial class Card
-    {
-        [InverseProperty("Card")]
-        public App App { get; set; }
     }
 }

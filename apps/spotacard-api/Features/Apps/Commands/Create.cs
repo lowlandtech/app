@@ -12,7 +12,7 @@ namespace Spotacard.Features.Apps.Commands
         public class AppData
         {
             public string Name { get; set; }
-            public string Organisation { get; set; }
+            public string Organization { get; set; }
             public string Prefix { get; set; }
             public string Namingspace { get; set; }
         }
@@ -22,7 +22,7 @@ namespace Spotacard.Features.Apps.Commands
             public AppDataValidator()
             {
                 RuleFor(x => x.Name).NotNull().NotEmpty();
-                RuleFor(x => x.Organisation).NotNull().NotEmpty();
+                RuleFor(x => x.Organization).NotNull().NotEmpty();
                 RuleFor(x => x.Prefix).NotNull().NotEmpty();
                 RuleFor(x => x.Namingspace).NotNull().NotEmpty();
             }
@@ -56,8 +56,6 @@ namespace Spotacard.Features.Apps.Commands
             {
                 return await new AppBuilder(_context)
                     .UseCreate(message.App)
-                    .UseTags(message.App.TagList)
-                    .UseAttributes(message.App.Attributes)
                     .UseUser(_currentUser)
                     .BuildAsync(cancellationToken);
             }
