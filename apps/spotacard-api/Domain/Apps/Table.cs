@@ -1,7 +1,7 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
 
 namespace Spotacard.Domain
 {
@@ -16,10 +16,8 @@ namespace Spotacard.Domain
         )]
         public string Name { get; set; }
         public Guid AppId { get; set; }
-
         [JsonIgnore]
         public App App { get; set; }
-
         [JsonIgnore]
         public List<Field> Fields { get; set; }
         [JsonIgnore]
