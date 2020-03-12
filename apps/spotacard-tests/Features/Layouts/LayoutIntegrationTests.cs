@@ -69,6 +69,7 @@ namespace Spotacard.Features.Layouts
                     Layout = new Create.LayoutData
                     {
                         Name = "TestLayout",
+                        Items = "item1,item2"
                     },
                 };
 
@@ -82,6 +83,7 @@ namespace Spotacard.Features.Layouts
                 Assert.That(result.Layout, Is.Not.Null);
                 Assert.That(result.Layout.Id, Is.Not.EqualTo(Guid.Empty));
                 Assert.That(result.Layout.Name, Is.EqualTo("TestLayout"));
+                Assert.That(result.Layout.Items, Is.EqualTo("item1,item2"));
             }
             finally
             {

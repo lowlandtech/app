@@ -25,6 +25,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind0",
                 Styling = "Styling0",
                 Markup = "Markup0",
+                Items = "item1,item2",
             };
 
         public static Layout Layout1 =>
@@ -37,6 +38,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind1",
                 Styling = "Styling1",
                 Markup = "Markup1",
+                Items = "item1,item2",
             };
 
         public static Layout Layout2 =>
@@ -49,6 +51,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind2",
                 Styling = "Styling2",
                 Markup = "Markup2",
+                Items = "item1,item2",
             };
 
         public static Layout Layout3 =>
@@ -61,6 +64,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind3",
                 Styling = "Styling3",
                 Markup = "Markup3",
+                Items = "item1,item2",
             };
 
         public static Layout Layout4 =>
@@ -73,6 +77,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind4",
                 Styling = "Styling4",
                 Markup = "Markup4",
+                Items = "item1,item2",
             };
 
         public static Layout Layout5 =>
@@ -85,6 +90,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind5",
                 Styling = "Styling5",
                 Markup = "Markup5",
+                Items = "item1,item2",
             };
 
         public static Layout Layout6 =>
@@ -97,6 +103,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind6",
                 Styling = "Styling6",
                 Markup = "Markup6",
+                Items = "item1,item2",
             };
 
         public static Layout Layout7 =>
@@ -109,6 +116,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind7",
                 Styling = "Styling7",
                 Markup = "Markup7",
+                Items = "item1,item2",
             };
 
         public static Layout Layout8 =>
@@ -121,6 +129,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind8",
                 Styling = "Styling8",
                 Markup = "Markup8",
+                Items = "item1,item2",
             };
 
         public static Layout Layout9 =>
@@ -133,6 +142,7 @@ namespace Spotacard.Features.Layouts
                 CodeBehind = "CodeBehind9",
                 Styling = "Styling9",
                 Markup = "Markup9",
+                Items = "item1,item2",
             };
 
         public void Execute()

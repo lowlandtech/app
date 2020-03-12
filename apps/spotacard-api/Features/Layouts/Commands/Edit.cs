@@ -18,6 +18,7 @@ namespace Spotacard.Features.Layouts.Commands
             public string CodeBehind { get; set; }
             public string Styling { get; set; }
             public string Markup { get; set; }
+            public string Items { get; set; }
         }
 
         public class Command : IRequest<LayoutEnvelope>

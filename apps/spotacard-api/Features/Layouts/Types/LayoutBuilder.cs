@@ -30,6 +30,7 @@ namespace Spotacard.Features.Layouts.Types
             _layout.CodeBehind = data.CodeBehind;
             _layout.Styling = data.Styling;
             _layout.Markup = data.Markup;
+            _layout.Items = data.Items;
             _context.Layouts.Add(_layout);
 
             return this;
@@ -49,6 +50,7 @@ namespace Spotacard.Features.Layouts.Types
             _layout.CodeBehind = data.CodeBehind ?? _layout.CodeBehind;
             _layout.Styling = data.Styling ?? _layout.Styling;
             _layout.Markup = data.Markup ?? _layout.Markup;
+            _layout.Items = data.Items ?? _layout.Items;
 
             return this;
         }

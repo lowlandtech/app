@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 using FluentValidation;
 using MediatR;
 using Spotacard.Features.Layouts.Types;
@@ -18,6 +19,7 @@ namespace Spotacard.Features.Layouts.Commands
             public string CodeBehind { get; set; }
             public string Styling { get; set; }
             public string Markup { get; set; }
+            public string Items { get; set; }
         }
 
         public class LayoutDataValidator : AbstractValidator<LayoutData>
@@ -25,6 +27,7 @@ namespace Spotacard.Features.Layouts.Commands
             public LayoutDataValidator()
             {
                 RuleFor(x => x.Name).NotNull().NotEmpty();
+                RuleFor(x => x.Items).NotNull().NotEmpty();
             }
         }
 
