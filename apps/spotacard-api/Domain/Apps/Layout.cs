@@ -9,11 +9,13 @@ namespace Spotacard.Domain
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
+        [Required]
         [StringLength(
             maximumLength: 100,
             MinimumLength = 2,
             ErrorMessage = "Layout name must be between 2 and 100 characters long"
         )]
+        public string Name { get; set; }
         public string Packages { get; set; }
         public string Wiring { get; set; }
         public string CodeBehind { get; set; }
