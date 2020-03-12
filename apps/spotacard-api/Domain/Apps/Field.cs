@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Domain
 {
@@ -15,7 +16,7 @@ namespace Spotacard.Domain
             ErrorMessage = "Field name must be between 2 and 100 characters long"
         )]
         public string Name { get; set; }
-        public string Type { get; set; }
+        public FieldTypes Type { get; set; }
         public Guid? WidgetId { get; set; }
         [JsonIgnore]
         public Widget Widget { get; set; }
