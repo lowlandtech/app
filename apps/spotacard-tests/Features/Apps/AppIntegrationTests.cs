@@ -24,7 +24,6 @@ namespace Spotacard.Features.Apps
 
                 // Assert
                 Assert.That(result, Is.Not.Null);
-                Assert.That(result.Apps.Count, Is.EqualTo(10));
                 Assert.That(result.Apps.Find(app => app.Id == TestCase1001.App1.Id), Is.Not.Null);
                 Assert.That(result.Apps.Find(app => app.Id == TestCase1001.App2.Id), Is.Not.Null);
             }

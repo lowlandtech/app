@@ -110,21 +110,6 @@ namespace Spotacard.Features.Apps
         }
 
         [Test]
-        public void Expect_List_App_To_Be_Empty()
-        {
-            var fixture = new TestFixture();
-            try
-            {
-                var context = fixture.GetContext();
-                Assert.False(context.Apps.Any());
-            }
-            finally
-            {
-                fixture.Dispose();
-            }
-        }
-
-        [Test]
         public void Expect_Create_App_Name_Is_Required()
         {
             var fixture = new TestFixture();

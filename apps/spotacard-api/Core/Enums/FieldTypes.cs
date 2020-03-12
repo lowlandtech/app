@@ -11,6 +11,7 @@ namespace Spotacard.Core.Enums
         Small,
         Long,
         BigNumber,
-        Byte
+        Byte,
+        Guid
     }
 }

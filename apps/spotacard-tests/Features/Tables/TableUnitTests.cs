@@ -97,21 +97,6 @@ namespace Spotacard.Features.Tables
         }
 
         [Test]
-        public void Expect_List_Table_To_Be_Empty()
-        {
-            var fixture = new TestFixture();
-            try
-            {
-                var context = fixture.GetContext();
-                Assert.False(context.Tables.Any());
-            }
-            finally
-            {
-                fixture.Dispose();
-            }
-        }
-
-        [Test]
         public void Expect_Create_Table_Name_Is_Required()
         {
             var fixture = new TestFixture();

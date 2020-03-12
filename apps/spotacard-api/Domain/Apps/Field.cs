@@ -18,6 +18,7 @@ namespace Spotacard.Domain
         public string Name { get; set; }
         public FieldTypes Type { get; set; }
         public int Index { get; set; }
+        public bool IsNullable { get; set; }
         public Guid? WidgetId { get; set; }
         [JsonIgnore]
         public Widget Widget { get; set; }
@@ -26,7 +27,5 @@ namespace Spotacard.Domain
         public Table Table { get; set; }
         [JsonIgnore]
         public List<Cell> Cells { get; set; }
-
-        
     }
 }

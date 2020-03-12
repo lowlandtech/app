@@ -41,7 +41,7 @@ namespace Spotacard.Features.Fields.Commands
 
                 var fields = await _context.Fields
                     .Skip(message.Offset ?? 0)
-                    .Take(message.Limit ?? 20)
+                    .Take(message.Limit ?? 100)
                     .AsNoTracking()
                     .ToListAsync(cancellationToken);
 

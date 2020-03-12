@@ -26,8 +26,7 @@ namespace Spotacard.Features.Fields
 
                 // Assert
                 Assert.That(result, Is.Not.Null);
-                Assert.That(result.Fields.Count, Is.EqualTo(10));
-                Assert.That(result.Fields.Find(field => field.Id == TestCase1004.Field1.Id), Is.Not.Null);
+                Assert.That(result.Fields.Find(field => field.Id == TestCase1004.Field0.Id), Is.Not.Null);
                 Assert.That(result.Fields.Find(field => field.Id == TestCase1004.Field2.Id), Is.Not.Null);
             }
             finally

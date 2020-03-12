@@ -25,7 +25,6 @@ namespace Spotacard.Features.Tables
 
                 // Assert
                 Assert.That(result, Is.Not.Null);
-                Assert.That(result.Tables.Count, Is.EqualTo(10));
                 Assert.That(result.Tables.Find(table => table.Id == TestCase1002.Table1.Id), Is.Not.Null);
                 Assert.That(result.Tables.Find(table => table.Id == TestCase1002.Table2.Id), Is.Not.Null);
             }

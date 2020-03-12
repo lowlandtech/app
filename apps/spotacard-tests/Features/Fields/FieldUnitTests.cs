@@ -106,21 +106,6 @@ namespace Spotacard.Features.Fields
         }
 
         [Test]
-        public void Expect_List_Field_To_Be_Empty()
-        {
-            var fixture = new TestFixture();
-            try
-            {
-                var context = fixture.GetContext();
-                Assert.False(context.Fields.Any());
-            }
-            finally
-            {
-                fixture.Dispose();
-            }
-        }
-
-        [Test]
         public void Expect_Create_Field_Name_Is_Required()
         {
             var fixture = new TestFixture();
