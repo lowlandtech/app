@@ -5,6 +5,7 @@ using Spotacard.Features.Tables;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Features.Fields
 {
@@ -70,6 +71,8 @@ namespace Spotacard.Features.Fields
                     Field = new Create.FieldData
                     {
                         Name = "TestField",
+                        Type = FieldTypes.String,
+
                     },
                     TableId = TestCase1002.Table0.Id
                 };

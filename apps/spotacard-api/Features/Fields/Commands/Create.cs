@@ -5,6 +5,7 @@ using Spotacard.Features.Fields.Types;
 using Spotacard.Infrastructure;
 using System.Threading;
 using System.Threading.Tasks;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Features.Fields.Commands
 {
@@ -13,6 +14,8 @@ namespace Spotacard.Features.Fields.Commands
         public class FieldData
         {
             public string Name { get; set; }
+            public FieldTypes Type { get; set; }
+            public Guid? WidgetId { get; set; }
         }
 
         public class FieldDataValidator : AbstractValidator<FieldData>
@@ -34,7 +37,7 @@ namespace Spotacard.Features.Fields.Commands
             public CommandValidator()
             {
                 RuleFor(x => x.Field).NotNull().SetValidator(new FieldDataValidator());
-                RuleFor(x => x.TableId).NotNull();
+                RuleFor(x => x.TableId).NotNull().NotEmpty();
             }
         }
 

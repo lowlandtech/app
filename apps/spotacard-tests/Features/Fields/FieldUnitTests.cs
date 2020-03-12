@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Features.Fields
 {
@@ -20,7 +21,8 @@ namespace Spotacard.Features.Fields
             {
                 Field = new Create.FieldData
                 {
-                    Name = "TestField"
+                    Name = "TestField",
+                    Type = FieldTypes.Boolean
                 },
                 TableId = TestCase1002.Table0.Id
             };
@@ -29,6 +31,8 @@ namespace Spotacard.Features.Fields
 
             Assert.That(field, Is.Not.Null);
             Assert.That(field.Name, Is.EqualTo(command.Field.Name));
+            Assert.That(field.Index, Is.EqualTo(0));
+            Assert.That(field.Type, Is.EqualTo(command.Field.Type));
         }
 
         [Test]
@@ -41,7 +45,8 @@ namespace Spotacard.Features.Fields
                 {
                     Field = new Create.FieldData
                     {
-                        Name = "TestField"
+                        Name = "TestField",
+                        Type = FieldTypes.Boolean
                     },
                     TableId = TestCase1002.Table0.Id
                 };
@@ -51,7 +56,9 @@ namespace Spotacard.Features.Fields
                 {
                     Field = new Edit.FieldData
                     {
-                        Name = "Updated " + created.Name
+                        Name = "Updated " + created.Name,
+                        Type = FieldTypes.BigNumber,
+                        Index = 1
                     },
                     FieldId = created.Id
                 };
@@ -60,7 +67,9 @@ namespace Spotacard.Features.Fields
                 var edited = await handler.Handle(editCommand, new CancellationToken());
 
                 Assert.That(edited, Is.Not.Null);
-                Assert.That(edited.Field.Name, Is.EqualTo(editCommand.Field.Name));
+                Assert.That(edited.Field.Name, Is.EqualTo("Updated TestField"));
+                Assert.That(edited.Field.Type, Is.EqualTo(FieldTypes.BigNumber));
+                Assert.That(edited.Field.Index, Is.EqualTo(1));
             }
             finally
             {

@@ -24,7 +24,14 @@ namespace Spotacard.Features.Fields.Types
 
         public IFieldBuilder UseCreate(Create.FieldData data, Guid tableId)
         {
+            var table = _context.Tables
+                .Include(p=>p.Fields)
+                .Single(t=> t.Id == tableId);
+
             _field.Name = data.Name;
+            _field.Type = data.Type;
+            _field.Index = table.Fields.Count;
+            _field.WidgetId = data.WidgetId;
             _field.TableId = tableId;
 
             _context.Fields.Add(_field);
@@ -41,6 +48,9 @@ namespace Spotacard.Features.Fields.Types
                 throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
 
             _field.Name = data.Name ?? _field.Name;
+            _field.Type = data.Type == _field.Type ? _field.Type : data.Type;
+            _field.Index = data.Index == _field.Index ? _field.Index : data.Index;
+            _field.WidgetId = data.WidgetId ?? _field.WidgetId;
 
             return this;
         }
@@ -56,7 +66,7 @@ namespace Spotacard.Features.Fields.Types
             await _context.SaveChangesAsync(cancellationToken);
 
             return new FieldEnvelope(await _context.Fields
-                .Where(x => x.Id == _field.Id)
+                .Where(field => field.Id == _field.Id)
                 .FirstOrDefaultAsync(cancellationToken));
         }
     }

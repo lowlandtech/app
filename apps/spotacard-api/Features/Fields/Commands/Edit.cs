@@ -5,6 +5,7 @@ using Spotacard.Infrastructure;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Spotacard.Core.Enums;
 
 namespace Spotacard.Features.Fields.Commands
 {
@@ -13,6 +14,9 @@ namespace Spotacard.Features.Fields.Commands
         public class FieldData
         {
             public string Name { get; set; }
+            public FieldTypes Type { get; set; }
+            public int Index { get; set; }
+            public Guid? WidgetId { get; set; }
         }
 
         public class Command : IRequest<FieldEnvelope>
