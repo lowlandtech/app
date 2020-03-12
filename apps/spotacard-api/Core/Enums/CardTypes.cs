@@ -7,6 +7,8 @@ namespace Spotacard.Core.Enums
         Task = 2,
         TaskList = 3,
         App = 10,
+        Widget = 11,
+        Layout = 12,
         Workflow = 50,
         Step = 55,
         Template = 80,
