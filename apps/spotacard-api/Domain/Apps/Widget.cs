@@ -9,6 +9,7 @@ namespace Spotacard.Domain
     {
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
+        [Required]
         [StringLength(
             maximumLength: 100,
             MinimumLength = 2,
