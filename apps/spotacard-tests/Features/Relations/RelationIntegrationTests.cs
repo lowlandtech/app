@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using Spotacard.Features.Relations.Commands;
 using Spotacard.Features.Relations.Types;
+using Spotacard.Infrastructure;
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Spotacard.Infrastructure;
 
 namespace Spotacard.Features.Relations
 {
@@ -70,6 +70,10 @@ namespace Spotacard.Features.Relations
                     Relation = new Create.RelationData
                     {
                         Name = "TestRelation",
+                        PkFieldId = GraphSeeder.Relation0.PkFieldId,
+                        PkName = "PkTestRelation",
+                        FkFieldId = GraphSeeder.Relation0.PkFieldId,
+                        FkName = "FkTestRelation",
                     },
                 };
 
@@ -103,7 +107,11 @@ namespace Spotacard.Features.Relations
                 {
                     Relation = new Edit.RelationData
                     {
-                        Name = updated + GraphSeeder.Relation1.Name
+                        Name = updated + GraphSeeder.Relation1.Name,
+                        PkFieldId = GraphSeeder.Relation1.PkFieldId,
+                        PkName = "PkTestRelation",
+                        FkFieldId = GraphSeeder.Relation1.PkFieldId,
+                        FkName = "FkTestRelation",
                     },
                     RelationId = GraphSeeder.Relation1.Id
                 };

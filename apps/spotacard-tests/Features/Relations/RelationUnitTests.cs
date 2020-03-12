@@ -20,7 +20,11 @@ namespace Spotacard.Features.Relations
             {
                 Relation = new Create.RelationData
                 {
-                    Name = "TestRelation"
+                    Name = "TestRelation",
+                    PkFieldId = GraphSeeder.Relation0.PkFieldId,
+                    PkName = "PkTestRelation",
+                    FkFieldId = GraphSeeder.Relation0.PkFieldId,
+                    FkName = "FkTestRelation",
                 },
             };
 
@@ -40,7 +44,11 @@ namespace Spotacard.Features.Relations
                 {
                     Relation = new Create.RelationData
                     {
-                        Name = "TestRelation"
+                        Name = "TestRelation",
+                        PkFieldId = GraphSeeder.Relation0.PkFieldId,
+                        PkName = "PkTestRelation",
+                        FkFieldId = GraphSeeder.Relation0.PkFieldId,
+                        FkName = "FkTestRelation",
                     },
                 };
 
@@ -49,7 +57,11 @@ namespace Spotacard.Features.Relations
                 {
                     Relation = new Edit.RelationData
                     {
-                        Name = "Updated " + created.Name
+                        Name = "Updated " + created.Name,
+                        PkFieldId = GraphSeeder.Relation0.PkFieldId,
+                        PkName = "Updated " + "PkTestRelation",
+                        FkFieldId = GraphSeeder.Relation0.PkFieldId,
+                        FkName = "Updated " + "FkTestRelation",
                     },
                     RelationId = created.Id
                 };
@@ -59,6 +71,8 @@ namespace Spotacard.Features.Relations
 
                 Assert.That(edited, Is.Not.Null);
                 Assert.That(edited.Relation.Name, Is.EqualTo(editCommand.Relation.Name));
+                Assert.That(edited.Relation.PkName, Is.EqualTo(editCommand.Relation.PkName));
+                Assert.That(edited.Relation.FkName, Is.EqualTo(editCommand.Relation.FkName));
             }
             finally
             {
@@ -75,7 +89,11 @@ namespace Spotacard.Features.Relations
             {
                 Relation = new Create.RelationData
                 {
-                    Name = "TestRelation"
+                    Name = "TestRelation",
+                    PkFieldId = GraphSeeder.Relation0.PkFieldId,
+                    PkName = "PkTestRelation",
+                    FkFieldId = GraphSeeder.Relation0.PkFieldId,
+                    FkName = "FkTestRelation",
                 },
             };
 
@@ -128,13 +146,17 @@ namespace Spotacard.Features.Relations
         [Test]
         public void Expect_Create_Relation_Should_Generate_Id()
         {
-            var fixture = new TestFixture();
+            var fixture = new TestFixture(context => new GraphSeeder(context));
             try
             {
                 var context = fixture.GetContext();
                 var relation = new Relation
                 {
                     Name = "TestRelation",
+                    PkFieldId = GraphSeeder.Relation0.PkFieldId,
+                    PkName = "PkTestRelation",
+                    FkFieldId = GraphSeeder.Relation0.PkFieldId,
+                    FkName = "FkTestRelation",
                 };
                 context.Relations.Add(relation);
                 context.SaveChanges();
