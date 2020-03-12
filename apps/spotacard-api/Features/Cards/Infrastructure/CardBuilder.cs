@@ -49,9 +49,9 @@ namespace Spotacard.Features.Cards.Infrastructure
 
             if (_card == null) throw new RestException(HttpStatusCode.NotFound, new { Card = Constants.NOT_FOUND });
 
-            _card.Title = card.Title;
-            _card.Description = card.Description;
-            _card.Body = card.Body;
+            _card.Title = card.Title ?? _card.Title;
+            _card.Description = card.Description ?? _card.Description;
+            _card.Body = card.Body ?? _card.Body;
             _card.UpdatedAt = DateTime.UtcNow;
 
             _isEditable = true;
