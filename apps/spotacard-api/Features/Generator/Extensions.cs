@@ -1,9 +1,9 @@
 using System.Linq;
 using EnsureThat;
 using Spotacard.Domain;
-using Spotacard.Features.Templates.Enums;
+using Spotacard.Features.Generator.Enums;
 
-namespace Spotacard.Features.Templates
+namespace Spotacard.Features.Generator
 {
     internal static class Extensions
     {

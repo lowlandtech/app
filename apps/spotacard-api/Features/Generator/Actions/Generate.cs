@@ -1,19 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RazorLight;
 using Spotacard.Core.Enums;
-using Spotacard.Features.Templates.Enums;
-using Spotacard.Features.Templates.Exceptions;
-using Spotacard.Features.Templates.Types;
-using Spotacard.Features.Templates.ViewModels;
+using Spotacard.Features.Generator.Enums;
+using Spotacard.Features.Generator.Exceptions;
+using Spotacard.Features.Generator.Types;
+using Spotacard.Features.Generator.ViewModels;
 using Spotacard.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Spotacard.Features.Templates.Actions
+namespace Spotacard.Features.Generator.Actions
 {
     public class Generate
     {

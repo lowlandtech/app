@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Spotacard.Features.Templates
+namespace Spotacard.Features.Generator.Actions
 {
-    public class Subsitute
+    public class Import
     {
         
     }

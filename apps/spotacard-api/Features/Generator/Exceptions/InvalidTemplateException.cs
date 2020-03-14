@@ -1,6 +1,6 @@
 using System;
 
-namespace Spotacard.Features.Templates.Exceptions
+namespace Spotacard.Features.Generator.Exceptions
 {
     public class InvalidTemplateException : Exception
     {

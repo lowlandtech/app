@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Spotacard.Features.Templates.Types
+namespace Spotacard.Features.Generator.Types
 {
     public class FileData
     {

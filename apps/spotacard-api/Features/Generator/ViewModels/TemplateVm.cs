@@ -1,8 +1,8 @@
 using Spotacard.Domain;
-using Spotacard.Features.Templates.Enums;
+using Spotacard.Features.Generator.Enums;
 using System;
 
-namespace Spotacard.Features.Templates.ViewModels
+namespace Spotacard.Features.Generator.ViewModels
 {
     public class TemplateVm
     {

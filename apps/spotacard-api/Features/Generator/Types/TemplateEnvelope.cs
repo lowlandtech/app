@@ -1,6 +1,6 @@
 using Spotacard.Domain;
 
-namespace Spotacard.Features.Templates.Types
+namespace Spotacard.Features.Generator.Types
 {
     public class TemplateEnvelope
     {

@@ -51,6 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Stacks\" />
-    <Folder Include="Features\Templates\Contracts\" />
+    <Folder Include="Features\Generator\Contracts\" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-namespace Spotacard.Features.Templates.Enums
+namespace Spotacard.Features.Generator.Enums
 {
     public enum TemplateTypes
     {

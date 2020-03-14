@@ -1,6 +1,6 @@
 using Spotacard.Domain;
 
-namespace Spotacard.Features.Templates.ViewModels
+namespace Spotacard.Features.Generator.ViewModels
 {
     public class AppVm
     {

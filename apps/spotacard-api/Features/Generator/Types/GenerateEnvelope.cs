@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Spotacard.Features.Templates.Types
+namespace Spotacard.Features.Generator.Types
 {
     public class GenerateEnvelope
     {
