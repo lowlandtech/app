@@ -31,6 +31,8 @@ namespace Spotacard.Infrastructure
         public DbSet<Field> Fields { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Relation> Relations { get; set; }
+        public DbSet<Stack> Stacks { get; set; }
+        public DbSet<Content> Contents { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

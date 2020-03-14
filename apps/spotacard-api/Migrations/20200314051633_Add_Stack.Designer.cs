@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Spotacard.Infrastructure;
 
 namespace Spotacard.Migrations
 {
     [DbContext(typeof(GraphContext))]
-    partial class GraphContextModelSnapshot : ModelSnapshot
+    [Migration("20200314051633_Add_Stack")]
+    partial class Add_Stack
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
