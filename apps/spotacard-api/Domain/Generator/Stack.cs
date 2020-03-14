@@ -30,6 +30,10 @@ namespace Spotacard.Domain
         public Guid ContentId { get; set; }
         [JsonIgnore]
         public Content Content { get; set; }
+        [ForeignKey("Card")]
+        public Guid CardId { get; set; }
+        [JsonIgnore]
+        public Card Card { get; set; }
         [JsonIgnore]
         public List<Stack> Children { get; set; }
     }

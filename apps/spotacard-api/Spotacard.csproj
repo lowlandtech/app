@@ -50,6 +50,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Features\Stacks\" />
     <Folder Include="Features\Templates\Contracts\" />
   </ItemGroup>
 </Project>

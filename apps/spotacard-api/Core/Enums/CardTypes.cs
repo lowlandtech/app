@@ -12,6 +12,7 @@ namespace Spotacard.Core.Enums
         Workflow = 50,
         Step = 55,
         Template = 80,
-        Content = 81
+        Content = 81,
+        Stack = 82,
     }
 }

@@ -17,17 +17,16 @@ namespace Spotacard.Features.Contents
 
         public static readonly Card Template = new Card
         {
-            Id = new Guid("00c04b8e-7f13-4d61-a21b-6de03eced910"),
+            Id = new Guid("85ccaacf-2456-4492-bb4b-0f07038e14aa"),
             Title = "Template 1",
             Slug = "template-1",
             Type = CardTypes.Template
         };
 
-
         public static Content Content0 =>
             new Content
             {
-                Id = new Guid("b18e9cde-2df2-4156-ac1f-55ddadd5cd17"),
+                Id = new Guid("433cdf69-f3bc-4aeb-a91c-68db151b70ac"),
                 Name = "TestContent0",
                 CardId = Template.Id
             };
@@ -35,7 +34,7 @@ namespace Spotacard.Features.Contents
         public static Content Content1 =>
             new Content
             {
-                Id = new Guid("0adc528c-b573-415c-9243-f7633c76328d"),
+                Id = new Guid("ebc15c49-f487-402c-b775-9c30c8996024"),
                 Name = "TestContent1",
                 CardId = Template.Id
             };
@@ -43,7 +42,7 @@ namespace Spotacard.Features.Contents
         public static Content Content2 =>
             new Content
             {
-                Id = new Guid("088ee577-2e73-4052-84ac-e1d56bbf3ab2"),
+                Id = new Guid("e420017e-f5a0-4e58-ae30-ec8acf4e54ed"),
                 Name = "TestContent2",
                 CardId = Template.Id
             };
@@ -51,7 +50,7 @@ namespace Spotacard.Features.Contents
         public static Content Content3 =>
             new Content
             {
-                Id = new Guid("338cd671-cfb1-4f65-92a4-c4d6d2f6c2a4"),
+                Id = new Guid("8f6d0098-09f2-4464-9c0b-78d3db939692"),
                 Name = "TestContent3",
                 CardId = Template.Id
             };
@@ -59,7 +58,7 @@ namespace Spotacard.Features.Contents
         public static Content Content4 =>
             new Content
             {
-                Id = new Guid("d788c64c-1d52-4c33-8a91-a49bfa7cbcaa"),
+                Id = new Guid("de8810a4-6c2d-467d-9dfc-b5187fd1f972"),
                 Name = "TestContent4",
                 CardId = Template.Id
             };
@@ -67,7 +66,7 @@ namespace Spotacard.Features.Contents
         public static Content Content5 =>
             new Content
             {
-                Id = new Guid("4da6111a-140e-499f-ba7f-71dec9640c1e"),
+                Id = new Guid("eb034bc2-6327-4035-b6dc-c2541bcc70e8"),
                 Name = "TestContent5",
                 CardId = Template.Id
             };
@@ -75,7 +74,7 @@ namespace Spotacard.Features.Contents
         public static Content Content6 =>
             new Content
             {
-                Id = new Guid("49222d84-8683-4276-942d-49d6478901c2"),
+                Id = new Guid("4b042ea1-29ae-4a54-91fa-49d1754d058a"),
                 Name = "TestContent6",
                 CardId = Template.Id
             };
@@ -83,7 +82,7 @@ namespace Spotacard.Features.Contents
         public static Content Content7 =>
             new Content
             {
-                Id = new Guid("c0821719-70d8-40d0-8c89-17a3d718fdbd"),
+                Id = new Guid("23c75b0a-99b2-4897-a232-a66cc88f9f5f"),
                 Name = "TestContent7",
                 CardId = Template.Id
             };
@@ -91,7 +90,7 @@ namespace Spotacard.Features.Contents
         public static Content Content8 =>
             new Content
             {
-                Id = new Guid("46f4de02-ad1b-47da-a3bd-bc9ab0a7ae5d"),
+                Id = new Guid("1d391dc2-cd8a-4aa6-ab24-a5e67972465f"),
                 Name = "TestContent8",
                 CardId = Template.Id
             };
@@ -99,7 +98,7 @@ namespace Spotacard.Features.Contents
         public static Content Content9 =>
             new Content
             {
-                Id = new Guid("571066a5-f85c-40d5-876c-ffe786b9987d"),
+                Id = new Guid("ce895d1e-5c53-41b1-95b0-18273eb0cba2"),
                 Name = "TestContent9",
                 CardId = Template.Id
             };
