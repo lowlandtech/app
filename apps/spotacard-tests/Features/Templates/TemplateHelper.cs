@@ -1,5 +1,5 @@
-using Spotacard.Features.Templates.Actions;
-using Spotacard.Features.Templates.Types;
+using Spotacard.Features.Generator.Actions;
+using Spotacard.Features.Generator.Types;
 using Spotacard.Features.Users;
 using System.Threading;
 using System.Threading.Tasks;

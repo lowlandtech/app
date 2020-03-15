@@ -1,9 +1,9 @@
 using NUnit.Framework;
 using RazorLight;
 using Spotacard.Domain;
-using Spotacard.Features.Templates.Actions;
+using Spotacard.Features.Generator.Actions;
+using Spotacard.Features.Generator.Types;
 using Spotacard.Features.Templates.Artifacts;
-using Spotacard.Features.Templates.Types;
 using Spotacard.TestCases;
 using System;
 using System.IO;
