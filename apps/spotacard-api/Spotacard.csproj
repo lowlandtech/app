@@ -50,7 +50,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Stacks\" />
     <Folder Include="Features\Generator\Contracts\" />
   </ItemGroup>
 </Project>
