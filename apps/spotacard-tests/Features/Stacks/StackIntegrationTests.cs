@@ -4,11 +4,35 @@ using Spotacard.Features.Stacks.Types;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Spotacard.Infrastructure;
 
 namespace Spotacard.Features.Stacks
 {
     public class StackIntegrationTests
     {
+        [Test]
+        public async Task Expect_Generate_Stack()
+        {
+            var fixture = new TestFixture(context => new GraphSeeder(context));
+            try
+            {
+                // Arrange
+                var uri = new Uri($"stacks/{GraphSeeder.DotNetBackend.Id}/generate/{GraphSeeder.Spotacard.Id}", UriKind.Relative);
+                // Act
+                var client = fixture.CreateClient();
+                var response = await client.GetAsync(uri);
+;
+
+                // Assert
+                Assert.That(response.IsSuccessStatusCode, Is.True);
+
+            }
+            finally
+            {
+                fixture.Dispose();
+            }
+        }
+
         [Test]
         public async Task Expect_List_Stack()
         {
