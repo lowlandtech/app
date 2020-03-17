@@ -52,5 +52,12 @@ namespace Spotacard.Features.Stacks.Controllers
         {
             await _mediator.Send(new Delete.Command(id));
         }
+
+        [HttpGet("{id}/generate/{appId}")]
+        [Authorize(AuthenticationSchemes = JwtIssuerOptions.Schemes)]
+        public async Task Generate(Guid id, Guid appId)
+        {
+            await _mediator.Send(new Generate.Command(id, appId));
+        }
     }
 }

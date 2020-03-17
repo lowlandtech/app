@@ -25,18 +25,18 @@ namespace Spotacard.Features.Stacks.Types
                 switch (child.Data)
                 {
                     case DataTypes.App:
-                        Items.AddRange(await new StackItemBuilder<App>(_context.Engine1, _context.Engine2)
+                        Items.AddRange(await new StackItemBuilder<App>(_context.Engine)
                             .Use(child, _context.App).BuildAsync());
                         break;
                     case DataTypes.Table:
                         foreach (var table in _context.App.Tables)
-                            Items.AddRange(await new StackItemBuilder<Table>(_context.Engine1, _context.Engine2)
+                            Items.AddRange(await new StackItemBuilder<Table>(_context.Engine)
                                 .Use(child, table).BuildAsync());
 
                         break;
                     case DataTypes.Page:
                         foreach (var page in _context.App.Pages)
-                            Items.AddRange(await new StackItemBuilder<Page>(_context.Engine1, _context.Engine2)
+                            Items.AddRange(await new StackItemBuilder<Page>(_context.Engine)
                                 .Use(child, page).BuildAsync());
 
                         break;

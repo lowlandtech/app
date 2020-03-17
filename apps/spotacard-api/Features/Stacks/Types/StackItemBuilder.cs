@@ -14,15 +14,13 @@ namespace Spotacard.Features.Stacks.Types
         private readonly List<StackItem> _stacks = new List<StackItem>();
 
         private string _root;
-        private readonly RazorLightEngine _engine1;
-        private readonly RazorLightEngine _engine2;
+        private readonly RazorLightEngine _engine;
         private T _data;
         private Stack _stack;
 
-        public StackItemBuilder(RazorLightEngine engine1, RazorLightEngine engine2)
+        public StackItemBuilder(RazorLightEngine engine)
         {
-            _engine1 = engine1;
-            _engine2 = engine2;
+            _engine = engine;
         }
 
         public IStackItemBuilder<T> UseRoot(string root)
@@ -41,11 +39,11 @@ namespace Spotacard.Features.Stacks.Types
 
         private async Task UseStack<TEntity>(Stack stack, TEntity data)
         {
-            var filename = await _engine2.CompileRenderStringAsync(
+            var filename = await _engine.CompileRenderStringAsync(
                 $"{stack.Content.Id}-filename",
                 stack.Content.FileName, data);
 
-            var action = new Func<Task<string>>(() => _engine1.CompileRenderStringAsync(
+            var action = new Func<Task<string>>(() => _engine.CompileRenderStringAsync(
                 $"{stack.Content.Id}-text",
                 stack.Content.Text, data));
 

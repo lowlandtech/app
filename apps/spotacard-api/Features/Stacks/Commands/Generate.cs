@@ -2,7 +2,6 @@ using FluentValidation;
 using MediatR;
 using RazorLight;
 using Spotacard.Core.Contracts;
-using Spotacard.Domain;
 using Spotacard.Features.Generator.Types;
 using Spotacard.Features.Stacks.Types;
 using Spotacard.Infrastructure;
@@ -16,7 +15,7 @@ namespace Spotacard.Features.Stacks.Commands
     {
         public class GenerateData
         {
-            public Guid TemplateId { get; set; }
+            public Guid StackId { get; set; }
             public Guid AppId { get; set; }
         }
 
@@ -24,14 +23,30 @@ namespace Spotacard.Features.Stacks.Commands
         {
             public GenerateDataValidator()
             {
-                RuleFor(x => x.TemplateId).NotNull().NotEmpty();
-                RuleFor(x => x.AppId).NotNull().NotEmpty();
+                RuleFor(x => x.StackId)
+                    .NotNull()
+                    .NotEmpty()
+                    .WithMessage("Stack id must be supplied.");
+
+                RuleFor(x => x.AppId)
+                    .NotNull()
+                    .NotEmpty()
+                    .WithMessage("Application id must be supplied");
             }
         }
 
-        public class Command : IRequest<GeneratorEnvelope>
+        public class Command : IRequest<Unit>
         {
-            public GenerateData Data { get; set; }
+            public Command(Guid stackId, Guid appId)
+            {
+                Data = new GenerateData
+                {
+                    StackId = stackId,
+                    AppId = appId,
+                };
+            }
+
+            public GenerateData Data { get; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -42,7 +57,7 @@ namespace Spotacard.Features.Stacks.Commands
             }
         }
 
-        public class Handler : IRequestHandler<Command, GeneratorEnvelope>
+        public class Handler : IRequestHandler<Command, Unit>
         {
             private readonly GraphContext _context;
             private readonly ICurrentUser _currentUser;
@@ -55,26 +70,22 @@ namespace Spotacard.Features.Stacks.Commands
                 _settings = settings;
             }
 
-            public async Task<GeneratorEnvelope> Handle(Command message, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
                 var repository = new StackRepository(new StackContext
                 {
                     Root = _settings.Repositories.FullName,
-                    Engine1 = new RazorLightEngineBuilder()
-                        .UseProject(new Project(_context))
-                        .UseMemoryCachingProvider()
-                        .Build(),
-                    Engine2 = new RazorLightEngineBuilder()
+                    Engine = new RazorLightEngineBuilder()
                         .UseEmbeddedResourcesProject(typeof(Program))
                         .UseMemoryCachingProvider()
                         .Build(),
-                    App = new App(),
-                    Stack = new Stack()
+                    App = _context.Apps.Find(message.Data.AppId),
+                    Stack = _context.Stacks.Find(message.Data.StackId),
                 });
                 await repository.BeforeExecute();
                 await repository.Execute();
 
-                return new GeneratorEnvelope(repository.Items);
+                return Unit.Value;
             }
         }
     }
