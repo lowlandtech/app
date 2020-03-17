@@ -6,5 +6,6 @@ namespace Spotacard.Core.Enums
         Folder,
         Workspace,
         Command,
+        Repository
     }
 }
