@@ -72,7 +72,7 @@ namespace Spotacard.Features.Stacks.Commands
 
             public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
-                var repository = new StackRepository(new StackContext
+                var repository = new StackWorkspace(new StackContext
                 {
                     Root = _settings.Repositories.FullName,
                     Engine = new RazorLightEngineBuilder()

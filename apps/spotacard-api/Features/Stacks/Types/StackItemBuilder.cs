@@ -60,9 +60,6 @@ namespace Spotacard.Features.Stacks.Types
                 case StackTypes.Folder:
                     _stacks.Add(new StackFolder(_root, filename, action));
                     break;
-                case StackTypes.Workspace:
-                    _stacks.Add(new StackWorkspace(_root, filename, action));
-                    break;
                 case StackTypes.Command:
                     _stacks.Add(new StackCommand(_root, filename, action));
                     break;
