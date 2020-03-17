@@ -22,10 +22,8 @@ namespace Spotacard.Domain
         public string Example { get; set; }
         public string FileName { get; set; }
         [ForeignKey("Card")]
-        public Guid CardId { get; set; }
+        public Guid? CardId { get; set; }
         [JsonIgnore]
         public Card Card { get; set; }
-
-        
     }
 }

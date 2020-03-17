@@ -27,11 +27,11 @@ namespace Spotacard.Domain
         [JsonIgnore]
         public Stack Parent { get; set; }
         [ForeignKey("Content")]
-        public Guid ContentId { get; set; }
+        public Guid? ContentId { get; set; }
         [JsonIgnore]
         public Content Content { get; set; }
         [ForeignKey("Card")]
-        public Guid CardId { get; set; }
+        public Guid? CardId { get; set; }
         [JsonIgnore]
         public Card Card { get; set; }
         [JsonIgnore]
