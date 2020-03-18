@@ -2,7 +2,6 @@ using FluentValidation;
 using MediatR;
 using RazorLight;
 using Spotacard.Core.Contracts;
-using Spotacard.Features.Generator.Types;
 using Spotacard.Features.Stacks.Types;
 using Spotacard.Infrastructure;
 using System;
@@ -72,7 +71,7 @@ namespace Spotacard.Features.Stacks.Commands
 
             public async Task<Unit> Handle(Command message, CancellationToken cancellationToken)
             {
-                var repository = new StackWorkspace(new StackContext
+                var workspace = new StackWorkspace(new StackContext
                 {
                     Root = _settings.Repositories.FullName,
                     Engine = new RazorLightEngineBuilder()
@@ -82,8 +81,8 @@ namespace Spotacard.Features.Stacks.Commands
                     App = _context.Apps.Find(message.Data.AppId),
                     Stack = _context.Stacks.Find(message.Data.StackId),
                 });
-                await repository.BeforeExecute();
-                await repository.Execute();
+                await workspace.BeforeExecute();
+                await workspace.Execute();
 
                 return Unit.Value;
             }
