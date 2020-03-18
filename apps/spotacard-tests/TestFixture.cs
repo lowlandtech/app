@@ -18,6 +18,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace Spotacard
 {
@@ -38,6 +39,10 @@ namespace Spotacard
             var builder = new DbContextOptionsBuilder<GraphContext>()
                 .UseSqlite(connection);
 
+            var settings = new Settings(null, null);
+            settings.Repositories = new DirectoryInfo(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+
+            services.AddSingleton<ISettings>(settings);
             services.AddSingleton(new GraphContext(builder.Options));
         }
 
@@ -77,6 +82,7 @@ namespace Spotacard
             var startup = new Startup(Config, null);
             var services = new ServiceCollection();
             startup.Settings.Provider = Providers.SqlLite;
+            startup.Settings.Repositories = new DirectoryInfo(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
             startup.ConfigureServices(services);
             ReplaceGraphContext(services);
             Provider = services.BuildServiceProvider();

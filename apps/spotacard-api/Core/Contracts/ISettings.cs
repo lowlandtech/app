@@ -11,7 +11,6 @@ namespace Spotacard.Core.Contracts
         Providers Provider { get; set; }
         List<string> Plugins { get; set; }
         string PluginPath { get; set; }
-
         IConfiguration Configuration { get; }
         bool IsDevelopment();
         string[] GetTranslationFile(string path);

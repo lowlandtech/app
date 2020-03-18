@@ -17,13 +17,20 @@ namespace Spotacard.Infrastructure
 
         public Settings(IConfiguration configuration, IWebHostEnvironment hosting)
         {
-            Configuration = configuration;
-            _hosting = hosting;
-            Plugins = configuration.GetSection("Plugins").Get<List<string>>();
-            Provider = configuration.GetValue<Providers>(PROVIDER);
-            var provider = configuration[REPOSITORIES];
-            if (provider != null) Repositories = new DirectoryInfo(provider);
-            PluginPath = configuration[PLUGINPATH];
+            if (hosting != null)
+            {
+                _hosting = hosting;
+            }
+            if(configuration != null)
+            {
+                Configuration = configuration;
+
+                Plugins = configuration.GetSection("Plugins").Get<List<string>>();
+                Provider = configuration.GetValue<Providers>(PROVIDER);
+                var provider = configuration[REPOSITORIES];
+                if (provider != null) Repositories = new DirectoryInfo(provider);
+                PluginPath = configuration[PLUGINPATH];
+            }
         }
 
         public IConfiguration Configuration { get; }
