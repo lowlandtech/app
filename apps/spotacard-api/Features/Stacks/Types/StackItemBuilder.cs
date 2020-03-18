@@ -39,9 +39,14 @@ namespace Spotacard.Features.Stacks.Types
 
         private async Task UseStack<TEntity>(Stack stack, TEntity data)
         {
-            var filename = await _engine.CompileRenderStringAsync(
-                $"{stack.Content.Id}-filename",
-                stack.Content.FileName, data);
+            var filename = string.Empty;
+
+            if (stack.Content.FileName != null)
+            {
+                filename = await _engine.CompileRenderStringAsync(
+                    $"{stack.Content.Id}-filename",
+                    stack.Content.FileName, data);
+            }
 
             var action = new Func<Task<string>>(() => _engine.CompileRenderStringAsync(
                 $"{stack.Content.Id}-text",
@@ -61,7 +66,7 @@ namespace Spotacard.Features.Stacks.Types
                     _stacks.Add(new StackFolder(_root, filename, action));
                     break;
                 case StackTypes.Command:
-                    _stacks.Add(new StackCommand(_root, filename, action));
+                    _stacks.Add(new StackCommand(_root, action));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
