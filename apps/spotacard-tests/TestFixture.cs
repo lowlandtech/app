@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using Spotacard.Core.Contracts;
 using Spotacard.Core.Enums;
 using Spotacard.Domain;
@@ -18,12 +19,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 
 namespace Spotacard
 {
     public class TestFixture : IDisposable
     {
+        private static readonly string Root = Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory);
+        private readonly Func<GraphContext, IActivity> _seed;
         private static readonly IConfiguration Config;
         public string Token { get; set; }
 
@@ -39,8 +41,10 @@ namespace Spotacard
             var builder = new DbContextOptionsBuilder<GraphContext>()
                 .UseSqlite(connection);
 
-            var settings = new Settings(null, null);
-            settings.Repositories = new DirectoryInfo(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+            var settings = new Settings(null, null)
+            {
+                Repositories = new DirectoryInfo(Path.Combine(Root, "repositories"))
+            };
 
             services.AddSingleton<ISettings>(settings);
             services.AddSingleton(new GraphContext(builder.Options));
@@ -62,6 +66,8 @@ namespace Spotacard
         /// <param name="seed"></param>
         public TestFixture(Func<GraphContext, IActivity> seed = null)
         {
+            _seed = seed ?? throw new ArgumentNullException(nameof(seed));
+
             Application = new WebApplicationFactory<Startup>()
                 .WithWebHostBuilder(builder =>
                 {
@@ -71,10 +77,7 @@ namespace Spotacard
             Provider = Application.Services;
             Step1();
             Step2();
-
-            if (seed == null) return;
-            var activity = seed(GetContext());
-            activity.Execute();
+            Step3();
         }
 
         public TestFixture()
@@ -82,11 +85,10 @@ namespace Spotacard
             var startup = new Startup(Config, null);
             var services = new ServiceCollection();
             startup.Settings.Provider = Providers.SqlLite;
-            startup.Settings.Repositories = new DirectoryInfo(Path.GetDirectoryName(TestContext.CurrentContext.TestDirectory));
+            startup.Settings.Repositories = new DirectoryInfo(Path.Combine(Root, "repositories"));
             startup.ConfigureServices(services);
             ReplaceGraphContext(services);
             Provider = services.BuildServiceProvider();
-
             Step1();
             Step2();
         }
@@ -122,6 +124,13 @@ namespace Spotacard
                 }
             });
             Token = result.Result.User.Token;
+        }
+
+        private void Step3()
+        {
+            if (_seed == null) return;
+            var activity = _seed(GetContext());
+            activity.Execute();
         }
 
         public Card CreateCard(Card card)
