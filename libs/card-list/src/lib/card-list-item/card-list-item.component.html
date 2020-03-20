@@ -9,8 +9,8 @@
     <div class="row">
       <div class="col-md-2">
         <div class="card-meta">
-          <a>
-            <img [src]="card.author.image" />
+          <a *ngIf="card.author?.image">
+            <img [src]="card.author?.image" />
           </a>
           <div class="info">
             <a class="author" [routerLink]="['/profile', card.author.username]">
