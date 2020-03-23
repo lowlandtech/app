@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Text;
+using MediatR;
 using Microsoft.AspNetCore.Blazor.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace LowLandTech.Appish
 {
@@ -13,6 +10,8 @@ namespace LowLandTech.Appish
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
+            
+            builder.Services.AddMediatR(typeof(Program));
 
             await builder.Build().RunAsync();
         }
