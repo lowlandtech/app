@@ -7,7 +7,7 @@ This project was generated using [Nx](https://nx.dev).
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
 
 ## Quick Start & Documentation
-
+<details>
 [Nx Documentation](https://nx.dev/angular)
 
 [10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
@@ -42,7 +42,7 @@ Run `ng g @nrwl/angular:app my-app` to generate an application.
 > You can use any of the plugins above to generate applications as well.
 
 When using Nx, you can create multiple applications and libraries in the same workspace.
-
+</details>
 ## Generate a library
 <details>
 Run `ng g @nrwl/angular:lib my-lib` to generate a library.
