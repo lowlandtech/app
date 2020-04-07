@@ -1,4 +1,4 @@
-﻿namespace Spotacard.Infrastructure.Errors
+namespace Spotacard.Infrastructure.Errors
 {
     public static class Constants
     {
