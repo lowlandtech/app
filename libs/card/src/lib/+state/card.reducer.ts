@@ -1,4 +1,4 @@
-import { CardComment, CardData } from '@spotacard/api';
+import { CardComment, CardData } from '@lowlandtech/api';
 import { Action, createReducer, on } from '@ngrx/store';
 import * as CardActions from './card.actions';
 

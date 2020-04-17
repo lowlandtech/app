@@ -1,12 +1,12 @@
-import { cardListInitialState } from '@spotacard/card-list';
-import * as fromCardList from '@spotacard/card-list';
+import { cardListInitialState } from '@lowlandtech/card-list';
+import * as fromCardList from '@lowlandtech/card-list';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { getProfile } from './+state/profile.actions';
-import { Profile } from '@spotacard/api';
+import { Profile } from '@lowlandtech/api';
 
 @Injectable()
 export class ProfileResolverService implements Resolve<Profile> {

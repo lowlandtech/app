@@ -1,6 +1,6 @@
 // Here you can add other styles
 $color: white;
-$spotacard-gutter: 10px;
+$lowlandtech-gutter: 10px;
 $breadcrumb-height: 2 * $breadcrumb-padding-y+$font-size-base+1.5 * $spacer;
 $box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2),
 0 6px 10px 0 rgba(0, 0, 0, .14),
@@ -8,7 +8,7 @@ $box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2),
 
 
 html, body {
-  background-color: $spotacard-darker !important;
+  background-color: $lowlandtech-darker !important;
 }
 
 .navbar {
@@ -37,11 +37,11 @@ html, body {
       color: $color;
 
       &:hover {
-        color: $spotacard-dark;
+        color: $lowlandtech-dark;
       }
 
       &:focus, .active {
-        color: $spotacard-darker !important;
+        color: $lowlandtech-darker !important;
       }
 
       .nav-pill {
@@ -89,7 +89,7 @@ html, body {
 }
 
 .sidebar {
-  background-color: $spotacard-dark;
+  background-color: $lowlandtech-dark;
   box-shadow: $box-shadow;
   &-minimizer {
     box-shadow: $box-shadow;
@@ -124,14 +124,14 @@ html, body {
 }
 
 .raised {
-  background: $spotacard-dark;
+  background: $lowlandtech-dark;
   box-shadow: $box-shadow;
-  border: 1px solid $spotacard-dark;
+  border: 1px solid $lowlandtech-dark;
   border-radius: 2px !important;
 }
 
-.bg-spotacard-dark {
-  background: $spotacard-dark;
+.bg-lowlandtech-dark {
+  background: $lowlandtech-dark;
 }
 
 .logo {
@@ -189,9 +189,9 @@ html, body {
 }
 
 .toolbar {
-  background: $spotacard-dark;
+  background: $lowlandtech-dark;
   box-shadow: $box-shadow;
-  border: 1px solid $spotacard-dark;
+  border: 1px solid $lowlandtech-dark;
   height: 50px;
 
   .card-actions {
@@ -202,7 +202,7 @@ html, body {
       width: 50px;
       padding: 15px 0 15px 0;
       margin: 0 !important;
-      color:  $spotacard;
+      color:  $lowlandtech;
       text-align: center;
       background: transparent;
       border: 0;
@@ -210,7 +210,7 @@ html, body {
 
       &:hover {
         text-decoration: none;
-        background-color: $spotacard;
+        background-color: $lowlandtech;
         color: white;
       }
     }
@@ -218,7 +218,7 @@ html, body {
 }
 
 .aside-menu {
-  border-left: 1px solid $spotacard-dark;
+  border-left: 1px solid $lowlandtech-dark;
   box-shadow: $box-shadow;
 }
 
@@ -227,7 +227,7 @@ html, body {
     box-shadow: none !important;
 
     &:hover {
-      background-color: $spotacard;
+      background-color: $lowlandtech;
       color: white;
     }
   }

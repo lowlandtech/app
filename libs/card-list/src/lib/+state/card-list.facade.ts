@@ -5,7 +5,7 @@ import { CardListState, CardListConfig } from './card-list.reducer';
 import { cardListQuery } from './card-list.selectors';
 import * as CardListActions from './card-list.actions';
 import { withLatestFrom, map } from 'rxjs/operators';
-import { go } from '@spotacard/ngrx-router';
+import { go } from '@lowlandtech/ngrx-router';
 @Injectable()
 export class CardListFacade {
   cards$ = this.store.select(cardListQuery.getCards);

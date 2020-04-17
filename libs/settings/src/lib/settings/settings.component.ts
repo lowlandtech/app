@@ -1,5 +1,5 @@
-import { AuthFacade } from '@spotacard/auth';
-import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
+import { AuthFacade } from '@lowlandtech/auth';
+import { Field, NgrxFormsFacade } from '@lowlandtech/ngrx-forms';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';

@@ -1,71 +1,67 @@
-var target = Argument("target", "Default");
-var tag = Argument("tag", "cake");
-var runtime = Argument("runtime", "osx.10.12-x64");
+string          target      = Argument("target", "Build");
+FilePath        ngPath      = Context.Tools.Resolve("ng.cmd");
+FilePath        npmPath     = Context.Tools.Resolve("npm.cmd");
+DirectoryPath   outputPath  = MakeAbsolute(Directory("./output"));
 
-Task("Restore")
-  .Does(() =>
-{
-    DotNetCoreRestore(".");
-});
+Action<FilePath, ProcessArgumentBuilder> Cmd => (path, args) => {
+    var result = StartProcess(
+        path,
+        new ProcessSettings {
+            Arguments = args
+        });
 
-Task("Build")
-  .Does(() =>
-{
-    DotNetCoreBuild(".");
-});
-
-Task("Test")
-  .Does(() =>
-{
-    var files = GetFiles("tests/**/*.csproj");
-    foreach(var file in files)
+    if(0 != result)
     {
-        DotNetCoreTest(file.ToString());
+        throw new Exception($"Failed to execute tool {path.GetFilename()} ({result})");
     }
-});
+};
 
-Task("Publish")
-  .Does(() =>
-{
-    var settings = new DotNetCorePublishSettings
+Task("Install-AngularCLI")
+    .Does(() => {
+    if (ngPath != null && FileExists(ngPath))
     {
-        Configuration = "Release",
-        OutputDirectory = "./publish",
-        Runtime = runtime,
-        VersionSuffix = tag
-    };
-                
-    DotNetCorePublish("src/Spotacard", settings);
+        Information("Found Angular CLI at {0}.", ngPath);
+        return;
+    }
+
+    DirectoryPath ngDirectoryPath = MakeAbsolute(Directory("./Tools/ng"));
+
+    EnsureDirectoryExists(ngDirectoryPath);
+
+    Cmd(npmPath,
+        new ProcessArgumentBuilder()
+                .Append("install")
+                .Append("--prefix")
+                .AppendQuoted(ngDirectoryPath.FullPath)
+                .Append("@angular/cli")
+    );
+    ngPath = Context.Tools.Resolve("ng.cmd");
 });
 
 Task("Clean")
-    .Does(() => {
-        void RemoveDirectory(string d) 
-        {
-            if (DirectoryExists(d))
-            {
-                Information($"Cleaning {d}");
-                CleanDirectory(d);
-            }
-        }
+    .Does( ()=> {
+        CleanDirectory(outputPath);
+});
 
-        RemoveDirectory("publish/");
-        var directories = GetDirectories("**/obj").Concat(GetDirectories("**/bin"));
-        foreach(var dir in directories)
-        {
-            RemoveDirectory(dir.ToString());
-        }
-    });
+Task("Install")
+    .IsDependentOn("Clean")
+    .Does( ()=> {
+    Cmd(npmPath,
+        new ProcessArgumentBuilder()
+            .Append("install")
+    );
+});
 
-Task("Default")
-    .IsDependentOn("Restore")
-    .IsDependentOn("Build")
-    .IsDependentOn("Test")
-    .IsDependentOn("Publish");
-
- Task("Rebuild")
-    .IsDependentOn("Restore")
-    .IsDependentOn("Build");
-
+Task("Build")
+    .IsDependentOn("Install-AngularCLI")
+    .IsDependentOn("Install")
+    .Does( ()=> {
+    Cmd(ngPath,
+        new ProcessArgumentBuilder()
+            .Append("build")
+            .Append("--output-path")
+            .AppendQuoted(outputPath.FullPath)
+    );
+});
 
 RunTarget(target);

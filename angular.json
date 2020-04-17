@@ -1,36 +1,36 @@
 {
   "version": 1,
   "projects": {
-    "spotacard": {
+    "lowlandtech": {
       "projectType": "application",
       "schematics": {
         "@nrwl/angular:component": {
           "style": "scss"
         }
       },
-      "root": "apps/spotacard",
-      "sourceRoot": "apps/spotacard/src",
+      "root": "apps/lowlandtech",
+      "sourceRoot": "apps/lowlandtech/src",
       "prefix": "scx",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/spotacard",
-            "index": "apps/spotacard/src/index.html",
-            "main": "apps/spotacard/src/main.ts",
-            "polyfills": "apps/spotacard/src/polyfills.ts",
-            "tsConfig": "apps/spotacard/tsconfig.app.json",
+            "outputPath": "dist/apps/lowlandtech",
+            "index": "apps/lowlandtech/src/index.html",
+            "main": "apps/lowlandtech/src/main.ts",
+            "polyfills": "apps/lowlandtech/src/polyfills.ts",
+            "tsConfig": "apps/lowlandtech/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/spotacard/src/favicon.ico",
-              "apps/spotacard/src/assets"
+              "apps/lowlandtech/src/favicon.ico",
+              "apps/lowlandtech/src/assets"
             ],
             "styles": [
               "node_modules/@angular/cdk/overlay-prebuilt.css",
               "node_modules/flag-icon-css/css/flag-icon.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/simple-line-icons/css/simple-line-icons.css",
-              "apps/spotacard/src/styles/style.scss"
+              "apps/lowlandtech/src/styles/style.scss"
             ],
             "scripts": []
           },
@@ -38,8 +38,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/spotacard/src/environments/environment.ts",
-                  "with": "apps/spotacard/src/environments/environment.prod.ts"
+                  "replace": "apps/lowlandtech/src/environments/environment.ts",
+                  "with": "apps/lowlandtech/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -68,58 +68,58 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "spotacard:build"
+            "browserTarget": "lowlandtech:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "spotacard:build:production"
+              "browserTarget": "lowlandtech:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spotacard:build"
+            "browserTarget": "lowlandtech:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/spotacard/tsconfig.app.json",
-              "apps/spotacard/tsconfig.spec.json"
+              "apps/lowlandtech/tsconfig.app.json",
+              "apps/lowlandtech/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!apps/spotacard/**"
+              "!apps/lowlandtech/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/spotacard/jest.config.js",
-            "tsConfig": "apps/spotacard/tsconfig.spec.json",
-            "setupFile": "apps/spotacard/src/test-setup.ts"
+            "jestConfig": "apps/lowlandtech/jest.config.js",
+            "tsConfig": "apps/lowlandtech/tsconfig.spec.json",
+            "setupFile": "apps/lowlandtech/src/test-setup.ts"
           }
         }
       }
     },
-    "spotacard-e2e": {
-      "root": "apps/spotacard-e2e",
-      "sourceRoot": "apps/spotacard-e2e/src",
+    "lowlandtech-e2e": {
+      "root": "apps/lowlandtech-e2e",
+      "sourceRoot": "apps/lowlandtech-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/spotacard-e2e/cypress.json",
-            "tsConfig": "apps/spotacard-e2e/tsconfig.e2e.json",
-            "devServerTarget": "spotacard:serve"
+            "cypressConfig": "apps/lowlandtech-e2e/cypress.json",
+            "tsConfig": "apps/lowlandtech-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lowlandtech:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "spotacard:serve:production"
+              "devServerTarget": "lowlandtech:serve:production"
             }
           }
         },
@@ -127,11 +127,11 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/spotacard-e2e/tsconfig.e2e.json"
+              "apps/lowlandtech-e2e/tsconfig.e2e.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!apps/spotacard-e2e/**"
+              "!apps/lowlandtech-e2e/**"
             ]
           }
         }
@@ -883,5 +883,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "defaultProject": "spotacard"
+  "defaultProject": "lowlandtech"
 }

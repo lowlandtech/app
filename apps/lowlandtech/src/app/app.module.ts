@@ -13,11 +13,11 @@ import { NxModule } from '@nrwl/angular';
 import { environment } from '../environments/environment';
 
 // imports library modules;
-import { AdminModule } from '@spotacard/admin';
-import { ApiModule } from '@spotacard/api';
-import { AuthModule } from '@spotacard/auth';
-import { NgrxErrorModule } from '@spotacard/ngrx-error';
-import { NgrxRouterModule } from '@spotacard/ngrx-router';
+import { AdminModule } from '@lowlandtech/admin';
+import { ApiModule } from '@lowlandtech/api';
+import { AuthModule } from '@lowlandtech/auth';
+import { NgrxErrorModule } from '@lowlandtech/ngrx-error';
+import { NgrxRouterModule } from '@lowlandtech/ngrx-router';
 
 // imports routing module;
 import { AppRoutingModule } from './app.routing';

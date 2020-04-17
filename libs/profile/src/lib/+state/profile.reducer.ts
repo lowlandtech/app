@@ -1,5 +1,5 @@
 import { createFeatureSelector, Action, createReducer, on } from '@ngrx/store';
-import { Profile } from '@spotacard/api';
+import { Profile } from '@lowlandtech/api';
 import * as ProfileActions from './profile.actions';
 
 export interface ProfileState {

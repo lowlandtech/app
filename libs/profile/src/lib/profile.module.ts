@@ -1,6 +1,6 @@
-import { CardListModule } from '@spotacard/card-list';
-import { AuthGuardService } from '@spotacard/auth';
-import { SharedModule } from '@spotacard/shared';
+import { CardListModule } from '@lowlandtech/card-list';
+import { AuthGuardService } from '@lowlandtech/auth';
+import { SharedModule } from '@lowlandtech/shared';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';

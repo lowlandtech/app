@@ -1,5 +1,5 @@
-import { ApiService } from '@spotacard/api';
-import { ActionsService } from '@spotacard/shared';
+import { ApiService } from '@lowlandtech/api';
+import { ActionsService } from '@lowlandtech/shared';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';

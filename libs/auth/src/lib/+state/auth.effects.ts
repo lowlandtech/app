@@ -1,6 +1,6 @@
 import { AuthService } from '../auth.service';
-import { NgrxFormsFacade, setErrors } from '@spotacard/ngrx-forms';
-import * as fromNgrxForms from '@spotacard/ngrx-forms';
+import { NgrxFormsFacade, setErrors } from '@lowlandtech/ngrx-forms';
+import * as fromNgrxForms from '@lowlandtech/ngrx-forms';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';

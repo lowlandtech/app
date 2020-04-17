@@ -1,4 +1,4 @@
-import { ActionsService } from '@spotacard/shared';
+import { ActionsService } from '@lowlandtech/shared';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';

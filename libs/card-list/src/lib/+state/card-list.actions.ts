@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CardData } from '@spotacard/api';
+import { CardData } from '@lowlandtech/api';
 
 import { CardListConfig } from './card-list.reducer';
 

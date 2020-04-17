@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiService, CardData, CardComment } from '@spotacard/api';
+import { ApiService, CardData, CardComment } from '@lowlandtech/api';
 import { map } from 'rxjs/operators';
 
 @Injectable()

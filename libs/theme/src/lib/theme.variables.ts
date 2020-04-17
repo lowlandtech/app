@@ -1,5 +1,5 @@
 export const color = 'white';
-export const spotacard = '#E7701F';
+export const lowlandtech = '#E7701F';
 export const dark = '#2F2F2F';
 export const darker = '#424242';
 export const boxShadow = `

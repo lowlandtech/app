@@ -1,4 +1,4 @@
-import { User } from '@spotacard/api';
+import { User } from '@lowlandtech/api';
 import { createReducer, Action, on } from '@ngrx/store';
 import * as AuthActions from './auth.actions';
 

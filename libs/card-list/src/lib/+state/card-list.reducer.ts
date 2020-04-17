@@ -1,4 +1,4 @@
-import { CardData } from '@spotacard/api';
+import { CardData } from '@lowlandtech/api';
 import { Action, createReducer, on, ActionReducer, MetaReducer } from '@ngrx/store';
 import * as CardListActions from './card-list.actions';
 import { localStorageSync } from 'ngrx-store-localstorage';

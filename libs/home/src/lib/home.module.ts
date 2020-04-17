@@ -1,4 +1,4 @@
-import { CardListModule } from '@spotacard/card-list';
+import { CardListModule } from '@lowlandtech/card-list';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -12,7 +12,7 @@ import { HomeResolverService } from './home-resolver.service';
 import { HomeComponent } from './home.component';
 import { HomeService } from './home.service';
 import { TagsListComponent } from './tags-list';
-import { ApiModule } from '@spotacard/api';
+import { ApiModule } from '@lowlandtech/api';
 
 @NgModule({
   imports: [

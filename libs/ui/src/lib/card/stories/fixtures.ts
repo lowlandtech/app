@@ -2,7 +2,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { centered } from '@storybook/addon-centered/angular';
 
 export const config = {
-  title: '@spotacard/ui/card',
+  title: '@lowlandtech/ui/card',
   decorators: [
     withKnobs,
     centered

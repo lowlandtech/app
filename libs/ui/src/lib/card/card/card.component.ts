@@ -9,7 +9,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { DynamicOverlay } from '@spotacard/shared';
+import { DynamicOverlay } from '@lowlandtech/shared';
 import { CloseableComponent } from '../closeable';
 import { CardFacade } from '../+state';
 import { CardStateData } from '../+state';

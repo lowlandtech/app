@@ -1,5 +1,5 @@
-import { ApiService, User } from '@spotacard/api';
-import { Errors, NgrxFormsFacade, SetErrors } from '@spotacard/ngrx-forms';
+import { ApiService, User } from '@lowlandtech/api';
+import { Errors, NgrxFormsFacade, SetErrors } from '@lowlandtech/ngrx-forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';

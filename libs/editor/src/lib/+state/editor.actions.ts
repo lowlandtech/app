@@ -1,4 +1,4 @@
-import { CardData } from '@spotacard/api/src/lib/types';
+import { CardData } from '@lowlandtech/api/src/lib/types';
 import { createAction, props } from '@ngrx/store';
 
 export const publishCard = createAction('[editor] PUBLISH_ARTICLE');

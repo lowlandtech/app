@@ -1,4 +1,4 @@
-import { ApiService, User } from '@spotacard/api';
+import { ApiService, User } from '@lowlandtech/api';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

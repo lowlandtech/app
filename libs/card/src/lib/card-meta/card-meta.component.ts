@@ -5,7 +5,7 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
-import { CardData } from '@spotacard/api';
+import { CardData } from '@lowlandtech/api';
 
 @Component({
   selector: 'scx-card-meta',

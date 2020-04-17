@@ -38,7 +38,7 @@ import {
 } from './+state';
 import { AsideListItemComponent } from './aside';
 import { AsideListComponent } from './aside';
-import { SharedModule } from '@spotacard/shared';
+import { SharedModule } from '@lowlandtech/shared';
 import { AsideListGroupDirective } from './aside';
 
 @NgModule({

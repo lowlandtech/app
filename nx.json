@@ -1,5 +1,5 @@
 {
-  "npmScope": "spotacard",
+  "npmScope": "lowlandtech",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": {
@@ -11,13 +11,13 @@
     "nx.json": "*"
   },
   "projects": {
-    "spotacard": {
+    "lowlandtech": {
       "tags": []
     },
-    "spotacard-e2e": {
+    "lowlandtech-e2e": {
       "tags": [],
       "implicitDependencies": [
-        "spotacard"
+        "lowlandtech"
       ]
     },
     "theme": {

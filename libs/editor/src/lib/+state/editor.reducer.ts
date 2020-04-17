@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as EditorActions from './editor.actions';
-import { CardData } from '@spotacard/api';
+import { CardData } from '@lowlandtech/api';
 
 export interface Editor {
   card: CardData;

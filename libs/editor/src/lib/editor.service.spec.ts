@@ -1,4 +1,4 @@
-import { ApiService } from '@spotacard/api';
+import { ApiService } from '@lowlandtech/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { inject, TestBed } from '@angular/core/testing';
 

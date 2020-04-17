@@ -18,7 +18,7 @@ export const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('@spotacard/home/src/lib/home.module').then(m => m.HomeModule)
+          import('@lowlandtech/home/src/lib/home.module').then(m => m.HomeModule)
       },
       {
         path: 'dashboard',
@@ -30,33 +30,33 @@ export const routes: Routes = [
       {
         path: 'card/:slug',
         loadChildren: () =>
-          import('@spotacard/card/src/lib/card.module').then(m => m.CardModule)
+          import('@lowlandtech/card/src/lib/card.module').then(m => m.CardModule)
       },
       {
         path: 'settings',
         loadChildren: () =>
-          import('@spotacard/settings/src/lib/settings.module').then(
+          import('@lowlandtech/settings/src/lib/settings.module').then(
             m => m.SettingsModule
           )
       },
       {
         path: 'editor',
         loadChildren: () =>
-          import('@spotacard/editor/src/lib/editor.module').then(
+          import('@lowlandtech/editor/src/lib/editor.module').then(
             m => m.EditorModule
           )
       },
       {
         path: 'profile/:username',
         loadChildren: () =>
-          import('@spotacard/profile/src/lib/profile.module').then(
+          import('@lowlandtech/profile/src/lib/profile.module').then(
             m => m.ProfileModule
           )
       },
       {
         path: 'playground',
         loadChildren: () =>
-          import('@spotacard/playground/src/lib/playground.module').then(
+          import('@lowlandtech/playground/src/lib/playground.module').then(
             m => m.PlaygroundModule
           )
       },

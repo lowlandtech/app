@@ -1,4 +1,4 @@
-import { CardData } from '@spotacard/api';
+import { CardData } from '@lowlandtech/api';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 

@@ -5,7 +5,7 @@ import {
   EventEmitter,
   Output
 } from '@angular/core';
-import { CardComment, CardData, User } from '@spotacard/api';
+import { CardComment, CardData, User } from '@lowlandtech/api';
 
 @Component({
   selector: 'scx-card-comment',

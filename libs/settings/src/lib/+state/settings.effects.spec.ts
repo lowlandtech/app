@@ -1,4 +1,4 @@
-import { ApiService } from '@spotacard/api';
+import { ApiService } from '@lowlandtech/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -8,8 +8,8 @@ import { hot } from '@nrwl/angular/testing';
 
 import { SettingsService } from '../settings.service';
 import { SettingsEffects } from './settings.effects';
-import { AuthFacade } from '@spotacard/auth';
-import { NgrxFormsFacade } from '@spotacard/ngrx-forms';
+import { AuthFacade } from '@lowlandtech/auth';
+import { NgrxFormsFacade } from '@lowlandtech/ngrx-forms';
 
 describe('SettingsEffects', () => {
   let actions;

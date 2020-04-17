@@ -1,5 +1,5 @@
 {
-  "name": "@spotacard/ngrx-forms",
+  "name": "@lowlandtech/ngrx-forms",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.11",

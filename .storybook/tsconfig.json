@@ -1,5 +1,5 @@
 {
-  "extends": "../apps/spotacard/tsconfig.app.json",
+  "extends": "../apps/lowlandtech/tsconfig.app.json",
   "compilerOptions": {
     "types": [
       "node"

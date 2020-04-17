@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { dark, darker, Sheet } from '@spotacard/theme';
+import { dark, darker, Sheet } from '@lowlandtech/theme';
 import jss from 'jss';
-import { User } from '@spotacard/api';
+import { User } from '@lowlandtech/api';
 import { Observable } from 'rxjs';
-import { AuthFacade, LocalStorageJwtService } from '@spotacard/auth';
+import { AuthFacade, LocalStorageJwtService } from '@lowlandtech/auth';
 import { take, filter } from 'rxjs/operators';
-import { AdminStateFacade, AsideListItemComponent } from '@spotacard/admin';
+import { AdminStateFacade, AsideListItemComponent } from '@lowlandtech/admin';
 
 const styles = {
   footer: {

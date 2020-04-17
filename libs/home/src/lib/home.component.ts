@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 
 import { takeUntil } from 'rxjs/operators';
-import { CardListConfig } from '@spotacard/card-list';
-import { cardListInitialState, CardListFacade } from '@spotacard/card-list';
-import { AuthFacade } from '@spotacard/auth';
+import { CardListConfig } from '@lowlandtech/card-list';
+import { cardListInitialState, CardListFacade } from '@lowlandtech/card-list';
+import { AuthFacade } from '@lowlandtech/auth';
 import { HomeFacade } from './+state/home.facade';
-import { AdminStateFacade } from '@spotacard/admin';
+import { AdminStateFacade } from '@lowlandtech/admin';
 import { TagsListComponent } from './tags-list/tags-list.component';
 
 @Component({

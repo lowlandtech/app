@@ -1,5 +1,5 @@
-import { CardData, User } from '@spotacard/api';
-import { Field } from '@spotacard/ngrx-forms';
+import { CardData, User } from '@lowlandtech/api';
+import { Field } from '@lowlandtech/ngrx-forms';
 import {
   ChangeDetectionStrategy,
   Component,

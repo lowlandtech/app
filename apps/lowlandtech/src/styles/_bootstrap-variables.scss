@@ -1,7 +1,7 @@
 // Bootstrap overrides
-$spotacard:                       #E7701F !default;
-$spotacard-darker:                #2F2F2F !default;
-$spotacard-dark:                  #424242 !default;
+$lowlandtech:                       #E7701F !default;
+$lowlandtech-darker:                #2F2F2F !default;
+$lowlandtech-dark:                  #424242 !default;
 
 //
 // Color system
@@ -24,7 +24,7 @@ $indigo:                          #6610f2 !default;
 $purple:                          #6f42c1 !default;
 $pink:                            #e83e8c !default;
 $red:                             #ff5454;
-$orange:                          $spotacard;
+$orange:                          $lowlandtech;
 $yellow:                          #ffc107 !default;
 $green:                           #79c447;
 $teal:                            #20c997 !default;
@@ -47,7 +47,7 @@ $colors: (
 );
 
 $theme-colors: (
-  primary:                        $spotacard,
+  primary:                        $lowlandtech,
   secondary:                      $gray-300,
   success:                        $green,
   info:                           $cyan,

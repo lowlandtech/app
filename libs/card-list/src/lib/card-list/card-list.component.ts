@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
-import { CardData } from '@spotacard/api';
+import { CardData } from '@lowlandtech/api';
 import { CardListConfig } from '../+state';
 import { CardListFacade } from '../+state';
 

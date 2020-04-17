@@ -1,4 +1,4 @@
-import { ApiService } from '@spotacard/api';
+import { ApiService } from '@lowlandtech/api';
 import { inject, TestBed } from '@angular/core/testing';
 
 import { CardListService } from './card-list.service';

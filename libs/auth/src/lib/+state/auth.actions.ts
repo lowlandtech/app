@@ -1,4 +1,4 @@
-import { User } from '@spotacard/api';
+import { User } from '@lowlandtech/api';
 import { createAction, props } from '@ngrx/store';
 
 export const getUser = createAction('[auth] GET_USER');

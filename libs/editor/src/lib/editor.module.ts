@@ -1,5 +1,5 @@
-import { AuthGuardService } from '@spotacard/auth';
-import { NgrxFormsModule } from '@spotacard/ngrx-forms';
+import { AuthGuardService } from '@lowlandtech/auth';
+import { NgrxFormsModule } from '@lowlandtech/ngrx-forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';

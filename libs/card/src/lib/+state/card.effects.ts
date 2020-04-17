@@ -1,5 +1,5 @@
 import { CardService } from '../services';
-import { ActionsService } from '@spotacard/shared';
+import { ActionsService } from '@lowlandtech/shared';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
@@ -13,8 +13,8 @@ import {
 } from 'rxjs/operators';
 import * as CardActions from './card.actions';
 
-import { NgrxFormsFacade, setErrors, resetForm } from '@spotacard/ngrx-forms';
-import { go } from '@spotacard/ngrx-router';
+import { NgrxFormsFacade, setErrors, resetForm } from '@lowlandtech/ngrx-forms';
+import { go } from '@lowlandtech/ngrx-router';
 @Injectable()
 export class CardEffects {
   loadCard = createEffect(() =>

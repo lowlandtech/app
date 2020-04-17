@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/angular';
-import { SharedModule } from '@spotacard/shared';
+import { SharedModule } from '@lowlandtech/shared';
 
 import {
   initialState,

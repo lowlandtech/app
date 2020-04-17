@@ -1,4 +1,4 @@
-import { NgrxFormsModule } from '@spotacard/ngrx-forms';
+import { NgrxFormsModule } from '@lowlandtech/ngrx-forms';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';

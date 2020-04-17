@@ -1,5 +1,5 @@
 {
-  "name": "@spotacard/ngrx-error",
+  "name": "@lowlandtech/ngrx-error",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.11",

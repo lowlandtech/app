@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { UiModule } from '@spotacard/ui';
-import { SharedModule } from '@spotacard/shared';
+import { UiModule } from '@lowlandtech/ui';
+import { SharedModule } from '@lowlandtech/shared';
 
 import { CardListEffects } from './+state';
 import { CardListFacade } from './+state';

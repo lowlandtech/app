@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { SettingsService } from './settings.service';
-import { ApiService } from '@spotacard/api';
+import { ApiService } from '@lowlandtech/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SettingsService', () => {

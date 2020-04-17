@@ -7,9 +7,9 @@ import {
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { CardComment, CardData, User } from '@spotacard/api';
-import { AuthFacade } from '@spotacard/auth';
-import { Field, NgrxFormsFacade } from '@spotacard/ngrx-forms';
+import { CardComment, CardData, User } from '@lowlandtech/api';
+import { AuthFacade } from '@lowlandtech/auth';
+import { Field, NgrxFormsFacade } from '@lowlandtech/ngrx-forms';
 
 import { CardFacade } from '../+state';
 

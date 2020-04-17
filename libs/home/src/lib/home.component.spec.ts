@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { HomeModule } from './home.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthModule } from '@spotacard/auth';
+import { AuthModule } from '@lowlandtech/auth';
 
 function reducer(){};
 

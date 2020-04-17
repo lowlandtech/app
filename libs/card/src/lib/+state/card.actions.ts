@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CardData, CardComment, Profile } from '@spotacard/api';
+import { CardData, CardComment, Profile } from '@lowlandtech/api';
 
 export const loadCard = createAction('[card] LOAD_ARTICLE', props<{ slug: string }>());
 

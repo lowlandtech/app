@@ -21,10 +21,10 @@ $navbar-color:                      $gray-300;
 $navbar-hover-color:                darken($navbar-color, 10%);
 $navbar-active-color:               darken($navbar-color, 20%);
 $navbar-disabled-color:             lighter($navbar-color, 20%);
-$navbar-bg:                         $spotacard !default;
+$navbar-bg:                         $lowlandtech !default;
 
 $navbar-toggler-icon:               str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
-$navbar-toggler-icon-hover:         str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$spotacard-darker}' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-toggler-icon-hover:         str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$lowlandtech-darker}' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
 
 // Sidebar
 
@@ -43,8 +43,8 @@ $sidebar-nav-link-active-bg:        darken($sidebar-bg, 5%);
 
 $sidebar-nav-dropdown-bg:           darken($sidebar-bg, 3%);
 
-$sidebar-minimizer-indicator-color: $spotacard;
-$sidebar-minimizer-hover-indicator-color: darken($spotacard, 10%);
+$sidebar-minimizer-indicator-color: $lowlandtech;
+$sidebar-minimizer-hover-indicator-color: darken($lowlandtech, 10%);
 
 // Breadcrumb
 
@@ -53,9 +53,9 @@ $breadcrumb-borders:                0;
 
 // Aside
 
-$aside-menu-bg:                     $spotacard-dark !default;
+$aside-menu-bg:                     $lowlandtech-dark !default;
 $aside-menu-width:                  400px;
 
 // Footer
 
-$footer-color:                      $spotacard-dark;
+$footer-color:                      $lowlandtech-dark;

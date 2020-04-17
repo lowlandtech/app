@@ -1,4 +1,4 @@
-import { ApiService } from '@spotacard/api';
+import { ApiService } from '@lowlandtech/api';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -7,8 +7,8 @@ import { hot } from '@nrwl/angular/testing';
 
 import { CardService } from '../card.service';
 import { CardEffects } from './card.effects';
-import { ActionsService } from '@spotacard/shared';
-import { NgrxFormsFacade } from '@spotacard/ngrx-forms';
+import { ActionsService } from '@lowlandtech/shared';
+import { NgrxFormsFacade } from '@lowlandtech/ngrx-forms';
 
 describe('CardEffects', () => {
   let actions;
