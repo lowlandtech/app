@@ -21,6 +21,7 @@ building:
   stage: build
   script:
   - echo "=== building:$PROJECT.$LIBRARY ==="
+  - chmod +x ./build.sh
   - ./build.sh
   except:
     variables:
