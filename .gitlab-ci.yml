@@ -22,6 +22,7 @@ building:
   stage: build
   script:
   - echo "=== building:$PROJECT.$LIBRARY ==="
+  - npm ci
   - $(npm bin)/ng build --prod
   # - chmod +x ./build.sh
   # - ./build.sh
