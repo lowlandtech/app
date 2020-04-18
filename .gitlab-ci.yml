@@ -2,8 +2,8 @@ image: node:latest
 
 stages:
   - build
-  - linting
-  - test
+  - version
+  - release
   - deploy
 
 variables:
@@ -13,76 +13,79 @@ variables:
 cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
-    - .npm
-    - cache/Cypress
-    - node_modules
+  - .npm
+  - cache/Cypress
+  - node_modules
 
-build:
+building:
   stage: build
   script:
-    - npm ci
-    - npm run build --prod
+  - echo "=== building:$PROJECT.$LIBRARY ==="
+  - ./build.sh
   except:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /skip-ci/
+    - $CI_COMMIT_MESSAGE =~ /skip-ci/
   artifacts:
     paths:
-        - dist/
-
-
-linting:
-  stage: linting
-  script:
-    - npx ng lint
-  dependencies:
-    - build
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /skip-ci/
-
-test:unit:
-  stage: test
-  script:
-    - npm run test
-  dependencies:
-    - build
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /skip-ci/
-
-test:e2e:
-  stage: test
-  image: cypress/base:10
-  dependencies:
-    - build
-  script:
-    - npm run e2e
-  artifacts:
-    paths:
-      - cypress/screenshots
-      - cypress/videos
-    expire_in: 1 day
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /skip-ci/
-
-deploy_prod:
-  stage: deploy
-  environment:
-    name: production
-    url: $FIREBASE_URL
+    - dist/
   only:
-   - master
-  dependencies:
-    - build
-  cache:
-    policy: pull
-    paths:
-      - node_modules/
-  script:
-    - npm run deploy
-  when: manual
-  except:
-    variables:
-      - $CI_COMMIT_MESSAGE =~ /skip-ci/
+  - tags
 
+versioning:
+  stage: version
+  artifacts:
+    paths:
+    - .params/
+  image: node:12
+  script:
+  - echo "=== versioning:$PROJECT.$LIBRARY ==="
+  - mkdir .params
+  - node -p "require('./package.json').version" > .params/version
+  - export VERSION=$(cat .params/version)
+  only:
+  - tags
+
+releasing:
+  stage: release
+  artifacts:
+    paths:
+    - .params/
+  variables:
+    IMAGE: $REGISTRY/$PROJECT/$LIBRARY
+  image: docker:latest
+  services:
+  - docker:dind
+  script:
+  - echo "=== releasing:$PROJECT.$LIBRARY ==="
+  - export VERSION=$(cat .params/version)
+  - cd src/app
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $REGISTRY
+  - docker build -t $IMAGE:$VERSION -t $IMAGE:latest .
+  - docker push $IMAGE:latest
+  - docker push $IMAGE:$VERSION
+  only:
+  - tags
+
+deploying:
+  stage: deploy
+  variables:
+    IMAGE: $REGISTRY/$PROJECT/$LIBRARY
+    CONTAINER: $PROJECT.$LIBRARY
+  image: docker:dind
+  services:
+  - docker:dind
+  script:
+  - echo "=== deploying:$PROJECT.$LIBRARY ==="
+  # install the command line tool ssh-client, to manage private keys
+  - apk update && apk add openssh-client
+  # activate the ssh-agent
+  - eval $(ssh-agent -s)
+  # load the private key, which is accesible as a environment variable
+  - echo "$SSH_KEY" | ssh-add -
+  - mkdir -p ~/.ssh
+  # ensure that ssh will trust a new host, instead of asking
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  - ssh -o "StrictHostKeyChecking no" $USER@$PROJECT.$EXT "cd $FOLDER && docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com && docker-compose up -d && exit"
+  - rm -r ~/.ssh
+  only:
+  - tags

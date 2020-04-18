@@ -1,7 +1,10 @@
-string          target      = Argument("target", "Build");
+#addin nuget:?package=Cake.Docker
+
+using System.ComponentModel;
+string          target      = Argument("target", "Default");
 FilePath        ngPath      = Context.Tools.Resolve("ng.cmd");
 FilePath        npmPath     = Context.Tools.Resolve("npm.cmd");
-DirectoryPath   outputPath  = MakeAbsolute(Directory("./output"));
+DirectoryPath   outputPath  = MakeAbsolute(Directory("./dist"));
 
 Action<FilePath, ProcessArgumentBuilder> Cmd => (path, args) => {
     var result = StartProcess(
@@ -63,5 +66,22 @@ Task("Build")
             .AppendQuoted(outputPath.FullPath)
     );
 });
+
+Task("Docker-Build")
+  .Does(() => {
+      var settings = new DockerImageBuildSettings { Tag = new[] {"registry/gitlab.com/lowlandtech/app:latest" }};
+      DockerBuild(settings, "./");
+  });
+
+Task("Docker-Push")
+  .IsDependentOn("Docker-Build")
+  .Does(() => {
+      var settings = new DockerImagePushSettings();
+      DockerPush(settings, "registry/gitlab.com/lowlandtech/app:latest");
+  });
+
+Task("Default")
+    .IsDependentOn("Build");
+    // .IsDependentOn("Docker-Push");
 
 RunTarget(target);

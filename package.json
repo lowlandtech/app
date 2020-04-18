@@ -43,7 +43,6 @@
     "@ngrx/entity": "8.5.0",
     "@ngrx/router-store": "^8.6.0",
     "@ngrx/store": "^8.6.0",
-    "@ngrx/store-devtools": "^8.6.0",
     "@storybook/addon-centered": "^5.3.12",
     "@storybook/addon-knobs": "^5.3.12",
     "angular2-uuid": "^1.1.1",
