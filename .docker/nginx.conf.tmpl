@@ -5,7 +5,7 @@ map $http_upgrade $connection_upgrade {
 
 server {
 
-  listen {{ default .Env.NGINX_PORT "8080"}};
+  listen {{ default .Env.NGINX_PORT "4200"}};
 
   server_name {{ default .Env.NGINX_HOST "localhost"}};
   #  ssl                 on;
