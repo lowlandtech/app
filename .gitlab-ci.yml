@@ -59,7 +59,7 @@ releasing:
   script:
   - echo "=== releasing:$PROJECT.$LIBRARY ==="
   - export VERSION=$(cat .params/version)
-  - cd src/app
+  - cd src
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $REGISTRY
   - docker build -t $IMAGE:$VERSION -t $IMAGE:latest .
   - docker push $IMAGE:latest
