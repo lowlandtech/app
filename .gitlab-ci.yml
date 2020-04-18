@@ -14,6 +14,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
   - .npm
+  - .params
   - cache/Cypress
   - node_modules
 
@@ -21,11 +22,9 @@ building:
   stage: build
   script:
   - echo "=== building:$PROJECT.$LIBRARY ==="
-  - chmod +x ./build.sh
-  - ./build.sh
-  except:
-    variables:
-    - $CI_COMMIT_MESSAGE =~ /skip-ci/
+  - $(npm bin)/ng build --prod
+  # - chmod +x ./build.sh
+  # - ./build.sh
   artifacts:
     paths:
     - dist/
