@@ -19,7 +19,7 @@ COPY . .
 RUN $(npm bin)/ng build --prod
 
 ## From 'builder' stage copy over the artifacts in dist folder to default nginx public folder
-COPY --from=builder /ng-app/dist/apps/lowlandtech  /usr/share/nginx/html
+COPY /ng-app/dist/apps/lowlandtech  /usr/share/nginx/html
 
 EXPOSE 4200
 
