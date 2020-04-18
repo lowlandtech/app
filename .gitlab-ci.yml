@@ -1,56 +1,11 @@
 image: equinorta/dotnet-3.1-sdk-node-12
 
 stages:
-  # - build
-  - version
   - build
   - deploy
 
-variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
-  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
-
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-  - .npm
-  - .params
-  # - cache/Cypress
-  # - node_modules
-
-# building:
-#   stage: build
-#   script:
-#   - echo "=== building:$PROJECT.$LIBRARY ==="
-#   - npm ci
-#   - $(npm bin)/ng build --prod
-#   # - chmod +x ./build.sh
-#   # - ./build.sh
-#   artifacts:
-#     paths:
-#     - dist/
-#   only:
-#   - tags
-
-versioning:
-  stage: version
-  artifacts:
-    paths:
-    - .params/
-  image: node:12
-  script:
-  - echo "=== versioning:$PROJECT.$LIBRARY ==="
-  - mkdir .params
-  - node -p "require('./package.json').version" > .params/version
-  - export VERSION=$(cat .params/version)
-  only:
-  - tags
-
 building:
   stage: build
-  artifacts:
-    paths:
-    - .params/
   variables:
     IMAGE: $REGISTRY/$PROJECT/$LIBRARY
   image: docker:latest

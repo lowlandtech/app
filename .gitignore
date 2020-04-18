@@ -324,5 +324,3 @@ Thumbs.db
 apps/lowlandtech-api/lowlandtech.db*
 
 *.ncrunchsolution
-
-.params/
