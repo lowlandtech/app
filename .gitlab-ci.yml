@@ -1,4 +1,4 @@
-image: node:latest
+image: equinorta/dotnet-3.1-sdk-node-12
 
 stages:
   - build
