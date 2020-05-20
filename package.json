@@ -57,7 +57,7 @@
       "cd ..",
       "rm -r nuget"
     ],
-    "publish:image":[
+    "publish:image": [
       "VERSION=0.0.13",
       "docker login https://registry.lowlandtech.com -u wendellmva -p St@r2020",
       "docker build -t registry.lowlandtech.com/app:$VERSION -t registry.lowlandtech.com/app:latest .",
