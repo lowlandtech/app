@@ -3,6 +3,21 @@ image: equinorta/dotnet-3.1-sdk-node-12
 stages:
   - build
   - deploy
+  - version
+
+versioning:
+  stage: version
+  artifacts:
+    paths:
+    - .params/
+  image: node:12
+  script:
+  - echo "=== versioning:$PROJECT.$LIBRARY ==="
+  - mkdir .params
+  - node -p "require('./package.json').version" > .params/version
+  - export VERSION=$(cat .params/version)
+  only:
+  - tags
 
 building:
   stage: build

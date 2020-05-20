@@ -2,11 +2,12 @@
   "name": "@lowlandtech/theme",
   "version": "0.0.13",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "nx": "nx",
-    "start": "ng serve",
     "build": "ng build",
+    "start": "ng serve",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
@@ -27,9 +28,43 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "scripting": "just-build"
   },
-  "private": true,
+  "just-build": {
+    "default": [
+      "just-build build push release"
+    ],
+    "build": [
+      "ng build"
+    ],
+    "push": [
+      "git add --all",
+      "git commit -m 'chore: update src/packages/spotacard.app'"
+    ],
+    "release": [
+      "standard-version",
+      "git push --follow-tags origin master"
+    ],
+    "publish:package": [
+      "VERSION=0.0.13",
+      "cd src",
+      "dotnet build LowLandTech.Api.csproj --configuration Release",
+      "mkdir nuget",
+      "dotnet pack LowLandTech.Api.csproj -p:PackageVersion=$VERSION --output nuget",
+      "cd nuget",
+      "dotnet nuget push *.nupkg -s https://nuget.lowlandtech.com -k oy2lhucx4hz4mg6qbgdqmcgs4naqsbnu7dktu6vnuxixzu",
+      "cd ..",
+      "rm -r nuget"
+    ],
+    "publish:image":[
+      "VERSION=0.0.13",
+      "docker login https://registry.lowlandtech.com -u wendellmva -p St@r2020",
+      "docker build -t registry.lowlandtech.com/app:$VERSION -t registry.lowlandtech.com/app:latest .",
+      "docker push registry.lowlandtech.com/app:latest",
+      "docker push registry.lowlandtech.com/app:$VERSION"
+    ]
+  },
   "dependencies": {
     "@angular-devkit/build-angular": "~0.900.0-rc.12",
     "@angular-devkit/build-ng-packagr": "~0.900.0-rc.12",
@@ -93,9 +128,11 @@
     "eslint": "6.1.0",
     "jest": "24.1.0",
     "jest-preset-angular": "7.0.0",
+    "just-build": "^0.9.19",
     "ng-mocks": "^8.1.0",
     "ng-packagr": "^9.0.0-rc.7",
     "prettier": "1.18.2",
+    "standard-version": "^8.0.0",
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0"
