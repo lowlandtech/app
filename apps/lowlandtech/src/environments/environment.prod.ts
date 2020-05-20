@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_url: 'https://backend.lowlandtech.com',
+  api_url: 'https://api.lowlandtech.com',
 };
