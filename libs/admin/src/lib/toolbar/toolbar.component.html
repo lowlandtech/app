@@ -1,0 +1,29 @@
+<div class="toolbar">
+  <div class="pull-left">
+    <ol class="breadcrumb">
+      <ng-template ngFor let-toolbar [ngForOf]="toolbar" let-last="last">
+        <li
+          class="breadcrumb-item"
+          *ngIf="
+            (toolbar.label.title &&
+              toolbar.url.substring(toolbar.url.length - 1) == '/') ||
+            (toolbar.label.title && last)
+          "
+          [ngClass]="{ active: last }"
+        >
+          <a *ngIf="!last" [routerLink]="toolbar.url">{{ toolbar.label.title }}</a>
+          <span *ngIf="last" [routerLink]="toolbar.url">{{ toolbar.label.title }}</span>
+        </li>
+      </ng-template>
+    </ol>
+  </div>
+  <div class="pull-right">
+    <div class="btn-toolbar card-actions justify-content-between pull-right"
+      role="toolbar"
+      aria-label="Toolbar with button groups">
+      <div class="btn-group" role="group" aria-label="First group">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

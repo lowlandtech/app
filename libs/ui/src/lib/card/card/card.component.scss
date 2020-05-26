@@ -1,0 +1,37 @@
+:host(.card) {
+  margin-bottom: 10px;
+  > button {
+    height: 42px;
+  }
+  .card-header {
+    padding-bottom: 0;
+    height: 42px;
+  }
+  .card-footer {
+    padding: 10px;
+    height: 42px;
+    .card-actions {
+      button {
+        margin-left: 10px;
+        min-width: 75px;
+      }
+    }
+  }
+}
+:host(.card--expanded){
+  display: block;
+  z-index: 9999;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+  .card-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}

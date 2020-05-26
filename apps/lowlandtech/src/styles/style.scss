@@ -1,0 +1,27 @@
+/*!
+ * LowLandTech - Bootstrap 4 Admin Template
+ * @version v1.8.14
+ * @link https://lowlandtech.com
+ * Copyright (c) 2020 lowlandtech @wendellmva
+ * @license https://lowlandtech.com/license.html
+ */
+
+// Override Boostrap variables
+@import "bootstrap-variables";
+@import "materia/variables";
+
+// Import Bootstrap source files
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "materia/bootswatch";
+
+// Override core variables
+@import "core-variables";
+
+// Import core styles
+@import "core/core";
+
+// Import UI Kits
+@import "uikits/uikits";
+
+// Custom styles
+@import "custom";

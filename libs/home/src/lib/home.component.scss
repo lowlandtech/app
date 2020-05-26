@@ -1,0 +1,26 @@
+:host {
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .feed-toggle {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .tag-pill {
+    cursor: pointer;
+  }
+
+  .nav-item {
+    color: #E7701F;
+    margin-right: 10px;
+    border: 1px solid #E7701F;
+  }
+
+  .nav-link {
+    cursor: pointer;
+  }
+
+}

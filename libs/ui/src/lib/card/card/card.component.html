@@ -1,0 +1,47 @@
+<div class="card-header" *ngIf="hasHeader">
+  <ng-content select=".card-header-title"></ng-content>
+  <div class="btn-toolbar card-actions justify-content-between pull-right"
+    role="toolbar"
+    aria-label="Toolbar with button groups">
+    <div class="btn-group" role="group" aria-label="Second group">
+      <ng-content select=".card-toolbar"></ng-content>
+    </div>
+    <div class="btn-group" role="group" aria-label="First group">
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="hasSettings">
+        <i class="icon-settings"></i>
+      </button>
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="expandable" (click)="onExpanding(card)">
+        <span class="icon-pencil"></span>
+      </button>
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="collapsable" (click)="onCollapsing(card)">
+        <i class="icon-arrow-up"></i>
+      </button>
+      <button class="btn btn-primary btn-sm" type="button" *ngIf="closeable" (click)="onClosing(card)">
+        <i class="icon-close"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngIf="!card.minimized">
+  <ng-content select=".card-body"></ng-content>
+  <div class="card-footer" *ngIf="hasFooter">
+    <div class="pull-left">
+      <ng-content select=".card-footer-content"></ng-content>
+    </div>
+    <div class="btn-toolbar card-actions justify-content-between pull-right"
+      role="toolbar"
+      aria-label="Toolbar with button groups">
+      <div class="btn-group" role="group" aria-label="Second group">
+        <ng-content select=".card-footer-toolbar"></ng-content>
+      </div>
+      <div class="btn-group" role="group" aria-label="First group">
+        <button class="btn btn-primary btn-sm" type="button"  *ngIf="cancelable">
+          Cancel
+        </button>
+        <button class="btn btn-primary btn-sm" type="button" *ngIf="okable">
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

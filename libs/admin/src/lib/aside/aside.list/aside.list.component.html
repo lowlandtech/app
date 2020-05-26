@@ -1,0 +1,5 @@
+<accordion>
+  <accordion-group *ngFor="let group of groups$|async" [heading]="group.title" [isOpen]="group.isOpen">
+    <scx-aside-list-item [group]="group"></scx-aside-list-item>
+  </accordion-group>
+</accordion>

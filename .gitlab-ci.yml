@@ -1,0 +1,61 @@
+image: equinorta/dotnet-3.1-sdk-node-12
+
+stages:
+  - build
+  - deploy
+  - version
+
+versioning:
+  stage: version
+  artifacts:
+    paths:
+    - .params/
+  image: node:12
+  script:
+  - echo "=== versioning:$PROJECT.$LIBRARY ==="
+  - mkdir .params
+  - node -p "require('./package.json').version" > .params/version
+  - export VERSION=$(cat .params/version)
+  only:
+  - tags
+
+building:
+  stage: build
+  variables:
+    IMAGE: $REGISTRY/$PROJECT/$LIBRARY
+  image: docker:latest
+  services:
+  - docker:dind
+  script:
+  - echo "=== building:$PROJECT.$LIBRARY ==="
+  - export VERSION=$(cat .params/version)
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $REGISTRY
+  - docker build -t $IMAGE:$VERSION -t $IMAGE:latest .
+  - docker push $IMAGE:latest
+  - docker push $IMAGE:$VERSION
+  only:
+  - tags
+
+deploying:
+  stage: deploy
+  variables:
+    IMAGE: $REGISTRY/$PROJECT/$LIBRARY
+    CONTAINER: $PROJECT.$LIBRARY
+  image: docker:dind
+  services:
+  - docker:dind
+  script:
+  - echo "=== deploying:$PROJECT.$LIBRARY ==="
+  # install the command line tool ssh-client, to manage private keys
+  - apk update && apk add openssh-client
+  # activate the ssh-agent
+  - eval $(ssh-agent -s)
+  # load the private key, which is accesible as a environment variable
+  - echo "$SSH_KEY" | ssh-add -
+  - mkdir -p ~/.ssh
+  # ensure that ssh will trust a new host, instead of asking
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  - ssh -o "StrictHostKeyChecking no" $USER@$PROJECT.$EXT "cd $FOLDER && docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com && docker-compose up -d && exit"
+  - rm -r ~/.ssh
+  only:
+  - tags

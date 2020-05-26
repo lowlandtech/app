@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lowlandtech/*": ["libs/*"],
+      "@default/*": ["apps/lowlandtech/src/app/*"],
+      "@env/*": ["apps/lowlandtech/src/environments/*"],
+      "@lowlandtech/theme": ["libs/theme/src/index.ts"],
+      "@lowlandtech/api": ["libs/api/src/index.ts"],
+      "@lowlandtech/card-list": ["libs/card-list/src/index.ts"],
+      "@lowlandtech/card": ["libs/card/src/index.ts"],
+      "@lowlandtech/auth": ["libs/auth/src/index.ts"],
+      "@lowlandtech/editor": ["libs/editor/src/index.ts"],
+      "@lowlandtech/home": ["libs/home/src/index.ts"],
+      "@lowlandtech/ngrx-error": ["libs/ngrx-error/src/index.ts"],
+      "@lowlandtech/ngrx-forms": ["libs/ngrx-forms/src/index.ts"],
+      "@lowlandtech/ngrx-router": ["libs/ngrx-router/src/index.ts"],
+      "@lowlandtech/profile": ["libs/profile/src/index.ts"],
+      "@lowlandtech/settings": ["libs/settings/src/index.ts"],
+      "@lowlandtech/shared": ["libs/shared/src/index.ts"],
+      "@lowlandtech/admin": ["libs/admin/src/index.ts"],
+      "@lowlandtech/playground": ["libs/playground/src/index.ts"],
+      "@lowlandtech/ui": ["libs/ui/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

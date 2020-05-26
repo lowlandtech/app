@@ -1,0 +1,30 @@
+{
+  "vsicons.presets.nestjs": true,
+  "files.exclude": {
+    "apps\\**\\tslint.json": false,
+    "apps\\**\\tsconfig.spec.json": false,
+    "apps\\**\\tsconfig.json": false,
+    "apps\\**\\tsconfig.app.json": false,
+    "apps\\**\\jest.config.js": false,
+    "apps\\**\\browserslist": false,
+    "apps\\**\\src\\test-setup.ts": false,
+    "libs\\**\\tslint.json": false,
+    "libs\\**\\tsconfig.spec.json": false,
+    "libs\\**\\tsconfig.lib.json": false,
+    "libs\\**\\tsconfig.json": false,
+    "libs\\**\\jest.config.js": false,
+    "libs\\**\\src\\test-setup.ts": false,
+    "apps\\**\\bin": false,
+    "yarn.lock": false,
+    "tslint.json": false,
+    ".prettierignore": false,
+    ".prettierrc": false,
+    ".gitignore": false,
+    ".editorconfig": false,
+    "jest.config.js": false,
+    "package-lock.json": false,
+    "_NCrunch_spotacard": false,
+    "spotacard.v3.ncrunchsolution": false,
+    ".vs": false
+  }
+}

@@ -1,0 +1,52 @@
+<div class="card-meta">
+  <a [routerLink]="['/profile', card.author.username]">
+    <img [src]="card.author.image" />
+  </a>
+  <div class="info">
+    <a class="author" [routerLink]="['/profile', card.author.username]">
+      {{ card.author.username }}
+    </a>
+    <span class="date">{{ card.createdAt | date: 'longDate' }}</span>
+  </div>
+
+  <span [hidden]="!canModify">
+    <a
+      class="btn btn-sm btn-outline-secondary"
+      [routerLink]="['/editor', card.slug]"
+    >
+      <i class="ion-edit"></i> Edit Card
+    </a>
+
+    <button class="btn btn-sm btn-outline-danger" (click)="deleteCard()">
+      <i class="ion-trash-a"></i> Delete Card
+    </button>
+  </span>
+
+  <span [hidden]="canModify">
+    <button
+      class="btn btn-sm action-btn"
+      [ngClass]="{
+        'btn-outline-secondary': !card.author.following,
+        'btn-secondary': card.author.following
+      }"
+      (click)="toggleFollow()"
+    >
+      <i class="ion-plus-round"></i>
+      &nbsp; {{ card.author.following ? 'Unfollow' : 'Follow' }}
+      {{ card.author.username }}
+    </button>
+    &nbsp;&nbsp;
+    <button
+      class="btn btn-sm btn-outline-primary"
+      [ngClass]="{
+        'btn-outline-primary': !card.favorited,
+        'btn-primary': card.favorited
+      }"
+      (click)="toggleFavorite()"
+    >
+      <i class="ion-heart"></i>
+      &nbsp; {{ card.favorited ? 'Unfavorite' : 'Favorite' }} Card
+      <span class="counter">({{ card.favoritesCount }})</span>
+    </button>
+  </span>
+</div>

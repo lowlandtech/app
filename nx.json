@@ -1,0 +1,102 @@
+{
+  "npmScope": "lowlandtech",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "lowlandtech": {
+      "tags": []
+    },
+    "lowlandtech-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "lowlandtech"
+      ]
+    },
+    "theme": {
+      "tags": []
+    },
+    "api": {
+      "tags": [
+        "api"
+      ]
+    },
+    "card": {
+      "tags": [
+        "card"
+      ]
+    },
+    "card-list": {
+      "tags": [
+        "card-list"
+      ]
+    },
+    "auth": {
+      "tags": [
+        "auth"
+      ]
+    },
+    "editor": {
+      "tags": [
+        "editor"
+      ]
+    },
+    "home": {
+      "tags": [
+        "home"
+      ]
+    },
+    "ngrx-error": {
+      "tags": [
+        "ngrx-error"
+      ]
+    },
+    "ngrx-forms": {
+      "tags": [
+        "ngrx-forms"
+      ]
+    },
+    "profile": {
+      "tags": [
+        "profile"
+      ]
+    },
+    "ngrx-router": {
+      "tags": [
+        "ngrx-router"
+      ]
+    },
+    "settings": {
+      "tags": [
+        "settings"
+      ]
+    },
+    "shared": {
+      "tags": [
+        "shared"
+      ]
+    },
+    "admin": {
+      "tags": []
+    },
+    "playground": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "ui-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "ui"
+      ]
+    }
+  }
+}

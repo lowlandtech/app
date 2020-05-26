@@ -1,0 +1,65 @@
+<scx-ui-card [hasFooter]="true" [okable]="false" [cancelable]="false" [cardId]="card.id">
+  <div class="card-header-title">
+    <ng-content></ng-content>
+    <span>{{ card.title }}</span>
+  </div>
+  <div class="card-toolbar">
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card-meta">
+          <a *ngIf="card.author?.image">
+            <img [src]="card.author?.image" />
+          </a>
+          <div class="info">
+            <a class="author" [routerLink]="['/profile', card.author.username]">
+              {{ card.author.username }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card-preview">
+          <a (click)="navigateToCard.emit(card.slug)" class="preview-link">
+            <p>{{ card.description }}</p>
+            <span>Read more...</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-1 p-0">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 pr-0">
+        <span class="badge badge-primary date">
+          {{ card.createdAt | date: 'shortDate' }}
+        </span>
+        <span class="badge badge-secondary" *ngFor="let tag of card.tagList">
+          {{ tag }}
+        </span>
+        <div class="btn btn-like btn-sm pull-right">
+          <i class="icon-eye"></i>
+          <span class="info">0</span>
+        </div>
+        <button class="btn btn-like btn-sm pull-right"
+          (click)="showNote(card)">
+          <i class="icon-note"></i>
+          <span class="info">0</span>
+        </button>
+        <button class="btn btn-like btn-sm pull-right"
+          [ngClass]="{
+            'btn-outline-primary': !card.favorited,
+            'btn-primary': card.favorited
+          }"
+          (click)="toggleFavorite(card)">
+          <i class="icon-heart"></i>
+          <span class="info">{{ card.favoritesCount }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer-content">
+    <span>some test content</span>
+  </div>
+</scx-ui-card>

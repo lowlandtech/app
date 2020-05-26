@@ -1,0 +1,30 @@
+<div class="scx-card-preview" [hidden]="(isLoading$ | async) === false">
+  Loading cards...
+</div>
+
+<div class="scx-card-preview" [hidden]="(isLoading$ | async) || (cards$ | async).length > 0">
+  No cards are here... yet.
+</div>
+
+<div class="draggable-list" (cdkDropListDropped)="drop($event)" cdkDropList>
+  <scx-card-list-item
+    class="draggable-item"
+    cdkDrag
+    [hidden]="isLoading$ | async"
+    (navigateToCard)="navigateToCard($event)"
+    (unFavorite)="unFavorite($event)"
+    (favorite)="favorite($event)"
+    *ngFor="let card of cards$ | async"
+    [card]="card">
+    <div class="drag-handle" cdkDragHandle>
+      <i class="icon-menu"></i>
+    </div>
+  </scx-card-list-item>
+</div>
+
+<app-pager
+  (setPage)="setPage($event)"
+  [hidden]="(totalPages$ | async)?.length <= 1 || (isLoading$ | async)"
+  [currentPage]="(listConfig$ | async).currentPage"
+  [totalPages]="totalPages$ | async">
+</app-pager>

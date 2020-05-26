@@ -1,0 +1,234 @@
+// Here you can add other styles
+$color: white;
+$lowlandtech-gutter: 10px;
+$breadcrumb-height: 2 * $breadcrumb-padding-y+$font-size-base+1.5 * $spacer;
+$box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2),
+0 6px 10px 0 rgba(0, 0, 0, .14),
+0 1px 18px 0 rgba(0, 0, 0, .12);
+
+
+html, body {
+  background-color: $lowlandtech-darker !important;
+}
+
+.navbar {
+  .form-inline {
+    i {
+      color: $navbar-color;
+    }
+    .form-control {
+      margin-top: -3px;
+      color: $navbar-color;
+      border: 0;
+
+      &::placeholder {
+        color: $navbar-color;
+      }
+    }
+    .form-control::-webkit-input-placeholder { color: $navbar-color; }
+    .form-control:-moz-placeholder { color: $navbar-color; }
+    .form-control::-moz-placeholder { color: $navbar-color; }
+    .form-control:-ms-input-placeholder { color: $navbar-color; }
+  }
+  .nav-item {
+    padding: 5px;
+
+    .nav-link {
+      color: $color;
+
+      &:hover {
+        color: $lowlandtech-dark;
+      }
+
+      &:focus, .active {
+        color: $lowlandtech-darker !important;
+      }
+
+      .nav-pill {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        line-height: 32px;
+        border: 1px solid $navbar-color;
+        border-radius: 50em;
+
+        &:hover {
+          border-color: $navbar-hover-color;
+        }
+
+        .badge-pill {
+          margin-top: -18px;
+          margin-left: -5px;
+          border: 2px solid #fff !important;
+          line-height: 14px;
+        }
+
+        &.avatar {
+          width: 38px;
+          height: 38px;
+
+          img {
+            width: 36px;
+            height: 36px;
+            margin: 0;
+            border: 0;
+          }
+
+          .badge {
+            margin-top: -22px;
+            margin-left: 5px;
+          }
+
+          &.dropdown-toggle:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  background-color: $lowlandtech-dark;
+  box-shadow: $box-shadow;
+  &-minimizer {
+    box-shadow: $box-shadow;
+  }
+}
+
+.sidebar .sidebar-nav .nav {
+  .nav-title {
+    span {
+      position: relative;
+      display: inline-block;
+
+      &:before, &:after {
+        position: absolute;
+        top: 50%;
+        width: 25px;
+        height: 1px;
+        margin-top: -1px;
+        content: '';
+        border-bottom: 1px solid $sidebar-nav-title-color;
+      }
+
+      &:before {
+        left: -30px;
+      }
+
+      &:after {
+        right: -30px;
+      }
+    }
+  }
+}
+
+.raised {
+  background: $lowlandtech-dark;
+  box-shadow: $box-shadow;
+  border: 1px solid $lowlandtech-dark;
+  border-radius: 2px !important;
+}
+
+.bg-lowlandtech-dark {
+  background: $lowlandtech-dark;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0 12px;
+  color: #fff;
+}
+
+.raised-button {
+  box-shadow: $box-shadow;
+  box-sizing: border-box;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 88px;
+  line-height: 36px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  overflow: visible;
+  transform: translate3d(0, 0, 0);
+  transition: background .4s cubic-bezier(.25, .8, .25, 1), box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+}
+
+.small-logo {
+  font-size: 24px;
+  font-weight: bold;
+  min-width: 36px;
+  min-height: 36px;
+  background-color: $color !important;
+  padding: 0;
+}
+
+.navbar-brand {
+  box-shadow: $box-shadow;
+  place-content: center space-between;
+  align-items: center;
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  height: 56px;
+  line-height: 32px;
+  padding: 0.43rem !important;
+}
+
+.toolbar {
+  background: $lowlandtech-dark;
+  box-shadow: $box-shadow;
+  border: 1px solid $lowlandtech-dark;
+  height: 50px;
+
+  .card-actions {
+    //height: inherit;
+
+    a, button {
+      display: block;
+      width: 50px;
+      padding: 15px 0 15px 0;
+      margin: 0 !important;
+      color:  $lowlandtech;
+      text-align: center;
+      background: transparent;
+      border: 0;
+      box-shadow: 0;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $lowlandtech;
+        color: white;
+      }
+    }
+  }
+}
+
+.aside-menu {
+  border-left: 1px solid $lowlandtech-dark;
+  box-shadow: $box-shadow;
+}
+
+.card-actions {
+  button {
+    box-shadow: none !important;
+
+    &:hover {
+      background-color: $lowlandtech;
+      color: white;
+    }
+  }
+}
