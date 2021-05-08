@@ -130,7 +130,7 @@
     "jest-preset-angular": "7.0.0",
     "just-build": "^0.9.19",
     "ng-mocks": "^8.1.0",
-    "ng-packagr": "^9.0.0-rc.7",
+    "ng-packagr": "^10.1.1",
     "prettier": "1.18.2",
     "standard-version": "^8.0.0",
     "ts-jest": "24.0.0",
